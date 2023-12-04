@@ -10,32 +10,30 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
     short_name: 'Clean Shelving',
     icons: [
       {
-        src: "/logo512.png",
-        sizes: "512x512",
-        type: 'image/png',
-      },
-      {
-        src: "/logo192.png",
-        sizes: "192x192",
-        type: 'image/png',
-      },
-      {
-        src: "/apple-touch.png",
-        sizes: "180x180",
-        type: 'image/png',
-        purpose: 'apple touch icon',
-      },
-      {
-        src: "/maskable.png",
-        sizes: "225x225",
-        type: 'image/png',
-        purpose: 'any maskable'
-      }
+        "src": "/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    },
+    {
+        "src": "/icon-256x256.png",
+        "sizes": "256x256",
+        "type": "image/png"
+    },
+    {
+        "src": "/icon-384x384.png",
+        "sizes": "384x384",
+        "type": "image/png"
+    },
+    {
+        "src": "/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }
     ],
     theme_color: '#121212',
     background_color: '#121212',
     display: 'standalone',
-    scope: '/',
+    scope: '/products/',
     start_url: '/products/',
     orientation: 'portrait'
   }
@@ -43,6 +41,5 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "./",
   plugins: [react(), VitePWA(manifestForPlugin)],
 })
