@@ -17,9 +17,12 @@ import Activity from "./routes/features/activity";
 
 const updateSW = registerSW({
   onNeedRefresh() {
-    if (confirm("New content available. Reload?")) {
+    if (confirm("У вас старая версия приложения. Обновить?")) {
       updateSW(true);
     }
+  },
+  onOfflineReady() {
+    prompt("Вы офлайн!");
   },
 });
 
