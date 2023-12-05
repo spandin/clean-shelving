@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root";
 import ErrorPage from "./routes/error-page";
 import Products from "./routes/products/products";
-import ProductsId from "./routes/products/products-id";
+import ProductId from "./routes/products/product-id";
 import AddProduct from "./routes/products/add-product";
 import User from "./routes/users/user";
 import UserId from "./routes/users/user-id";
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path: "products/:productId",
-        element: <ProductsId />,
+        element: <ProductId />,
       },
       {
         path: "add/",

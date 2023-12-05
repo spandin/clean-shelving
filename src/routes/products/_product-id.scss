@@ -1,6 +1,6 @@
 @import "../../scss/variables.scss";
 
-.products-id {
+.product-id {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -61,12 +61,16 @@
       display: flex;
       flex-direction: column;
       align-self: flex-start;
-      padding: 1rem;
-      border-radius: 5px 30px 30px 30px;
-      background-color: $lime;
-      color: $primary-color;
-      font-weight: 300;
-      #body_headline {
+      gap: 1rem;
+
+      &__content {
+        padding: 1rem;
+        border-radius: 5px 30px 30px 30px;
+        background-color: $tertiary-color;
+        color: $white;
+        font-weight: 300;
+      }
+      #content_headline {
         font-weight: 400;
       }
     }
@@ -89,7 +93,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .products-id {
+  .product-id {
     &__wrapper {
       &__header {
         &__buttons {

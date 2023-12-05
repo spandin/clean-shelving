@@ -5,7 +5,7 @@
   flex-direction: column;
   gap: 1rem;
 
-  &__navbar {
+  &__header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -77,6 +77,10 @@
         #card_badge,
         #card_link {
           border: 1px solid $primary-color;
+        }
+        #card_link {
+          background-color: $primary-color;
+          color: $white;
         }
       }
 
