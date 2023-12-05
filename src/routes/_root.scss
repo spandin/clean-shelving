@@ -53,7 +53,8 @@
           font-size: 22px;
         }
       }
-      #menu_add {
+      #menu_add,
+      #menu_activity {
         display: none;
       }
     }
@@ -80,6 +81,13 @@
 
 @media only screen and (max-width: 1280px) {
   .layout {
+    .navbar {
+      &__menu {
+        #menu_activity {
+          display: flex;
+        }
+      }
+    }
     aside {
       display: none;
     }
@@ -94,30 +102,8 @@
     flex-direction: column-reverse;
     .navbar {
       flex-direction: row;
-
-      &__avatar {
-        min-width: 40px;
-        min-height: 40px;
-        max-width: 40px;
-        max-height: 40px;
-      }
       &__menu {
         flex-direction: row;
-        &__item {
-          min-width: 40px;
-          min-height: 40px;
-          max-width: 40px;
-          max-height: 40px;
-          &:hover {
-            background-color: $white;
-            svg {
-              color: $primary-color;
-            }
-          }
-          &:hover > svg {
-            font-size: 22px;
-          }
-        }
         #menu_add {
           display: flex;
         }

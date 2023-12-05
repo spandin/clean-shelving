@@ -28,7 +28,11 @@ export default function Root() {
           <Link className="navbar__menu__item" to={"statistics/"}>
             <BsPieChart />
           </Link>
-          <Link className="navbar__menu__item" to={"activity/"}>
+          <Link
+            className="navbar__menu__item"
+            id="menu_activity"
+            to={"activity/"}
+          >
             <BsSpeedometer2 />
           </Link>
         </div>

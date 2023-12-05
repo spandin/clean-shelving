@@ -162,20 +162,8 @@
 @media only screen and (max-width: 768px) {
   .products {
     &__navbar {
-      &__informer {
-        min-height: 40px;
-        line-height: 1rem;
-      }
-      &__buttons {
-        button {
-          min-width: 40px;
-          min-height: 40px;
-          max-width: 40px;
-          max-height: 40px;
-        }
-        #add {
-          display: none;
-        }
+      #add {
+        display: none;
       }
     }
     &__grid {
