@@ -21,9 +21,6 @@ const updateSW = registerSW({
       updateSW(true);
     }
   },
-  onOfflineReady() {
-    prompt("Вы офлайн!");
-  },
 });
 
 const router = createBrowserRouter([
