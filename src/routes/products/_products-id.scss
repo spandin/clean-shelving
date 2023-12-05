@@ -1,0 +1,27 @@
+@import "../../scss/variables.scss";
+
+.products-id {
+  &__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: 50px;
+    border-radius: 50px;
+    background-color: $white;
+    color: $primary-color;
+    &__informer {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      font-size: 16px;
+      line-height: 1.2rem;
+      :first-child {
+        font-weight: 500;
+      }
+      :last-child {
+        text-wrap: nowrap;
+        font-weight: 300;
+      }
+    }
+  }
+}
