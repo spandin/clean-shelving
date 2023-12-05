@@ -43,13 +43,15 @@
         border-radius: 50%;
         background-color: $tertiary-color;
         transition: 0.2s ease-out all;
-        &:hover {
+        &:hover,
+        &.active {
           background-color: $white;
           svg {
             color: $primary-color;
           }
         }
-        &:hover > svg {
+        &:hover,
+        &.active > svg {
           font-size: 22px;
         }
       }
