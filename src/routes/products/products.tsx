@@ -1,7 +1,7 @@
 import "./_products.scss";
 
 import {
-  BsFiletypeXls,
+  BsPlusCircle,
   BsFilterCircle,
   BsSearch,
   BsArrowDownLeftCircle,
@@ -17,8 +17,8 @@ export default function Products() {
           <span>243 позиции</span>
         </div>
         <div className="products__navbar__buttons">
-          <button id="export_xls">
-            <BsFiletypeXls />
+          <button id="add">
+            <BsPlusCircle />
           </button>
           <button id="filter">
             <BsFilterCircle />
@@ -30,7 +30,6 @@ export default function Products() {
       </nav>
 
       <div className="products__grid">
-        <div id="add_button">Добавить</div>
         <div className="products__grid__card">
           <div className="products__grid__card__row_1">
             <div>

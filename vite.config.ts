@@ -9,7 +9,7 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
     name: 'Clean Shelving',
     short_name: 'Clean Shelving',
     icons: [
-      {
+    {
         "src": "/icon-192x192.png",
         "sizes": "192x192",
         "type": "image/png"
