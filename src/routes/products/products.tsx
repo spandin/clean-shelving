@@ -1,6 +1,6 @@
 import "./_products.scss";
 
-import ProductCard from "../../components/products/product-card";
+import ProductsCard from "../../components/products/products-card";
 import ProductsHeader from "../../components/products/products-header";
 
 export default function Products() {
@@ -9,21 +9,21 @@ export default function Products() {
       <ProductsHeader />
 
       <div className="products__grid">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        <ProductsCard />
+        <ProductsCard />
+        <ProductsCard />
+        <ProductsCard />
+        <ProductsCard />
+        <ProductsCard />
+        <ProductsCard />
+        <ProductsCard />
+        <ProductsCard />
+        <ProductsCard />
+        <ProductsCard />
+        <ProductsCard />
+        <ProductsCard />
+        <ProductsCard />
+        <ProductsCard />
       </div>
     </div>
   );

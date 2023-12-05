@@ -1,7 +1,7 @@
 import { BsArrowDownLeftCircle } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-export default function ProductCard() {
+export default function ProductsCard() {
   return (
     <div className="products__grid__card">
       <div className="products__grid__card__row_1">
