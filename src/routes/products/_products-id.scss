@@ -2,10 +2,11 @@
 
 .products-id {
   &__header {
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     align-items: center;
     min-height: 50px;
+    padding-right: 1.5rem;
     border-radius: 50px;
     background-color: $white;
     color: $primary-color;
