@@ -1,0 +1,42 @@
+@import "../../scss/variables.scss";
+
+.login {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 2rem;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    &__title {
+      line-height: 1.6rem;
+      :last-child {
+        color: $gray;
+      }
+    }
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      min-width: 300px;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .login {
+    flex-direction: column;
+    align-items: center;
+    img {
+      max-width: 80%;
+    }
+    &__form {
+      width: 100%;
+      &__wrapper {
+        min-width: auto;
+      }
+    }
+  }
+}

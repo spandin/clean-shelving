@@ -23,7 +23,7 @@ export default function User() {
               </div>
 
               <div className="user__wrapper__header__buttons">
-                <button>
+                <button className="circle_button">
                   <BsGearFill />
                 </button>
               </div>

@@ -1,7 +1,7 @@
 import "./_products.scss";
 
-import ProductsCard from "../../components/products/products-card";
-import ProductsHeader from "../../components/products/products-header";
+import ProductsCard from "./components/products-card";
+import ProductsHeader from "./components/products-header";
 
 export default function Products() {
   return (

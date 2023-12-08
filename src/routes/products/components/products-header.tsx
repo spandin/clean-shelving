@@ -8,13 +8,13 @@ export default function ProductsHeader() {
         <span>243 позиции</span>
       </div>
       <div className="products__header__buttons">
-        <button id="add">
+        <button className="circle_button" id="add">
           <BsPlusCircle />
         </button>
-        <button id="filter">
+        <button className="circle_button" id="filter">
           <BsFilterCircle />
         </button>
-        <button id="search">
+        <button className="circle_button" id="search">
           <BsSearch />
         </button>
       </div>

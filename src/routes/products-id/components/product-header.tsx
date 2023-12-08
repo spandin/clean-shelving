@@ -1,6 +1,6 @@
 import { BsPencilSquare, BsTrash3 } from "react-icons/bs";
 
-import ButtonBack from "../../common/button-back";
+import ButtonBack from "../../../components/common/button-back";
 
 export default function ProductHeader() {
   return (

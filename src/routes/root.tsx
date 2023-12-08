@@ -26,7 +26,7 @@ export default function Root() {
 
         <div className="navbar__menu">
           <Link
-            className={`navbar__menu__item ${
+            className={`navbar__menu__item circle_button ${
               location.pathname === "/add/" ? "active" : null
             }`}
             id="menu_add"
@@ -40,7 +40,7 @@ export default function Root() {
           </Link>
 
           <Link
-            className={`navbar__menu__item ${
+            className={`navbar__menu__item circle_button ${
               location.pathname === "/products/" ? "active" : null
             }`}
             to={"products/"}
@@ -49,7 +49,7 @@ export default function Root() {
           </Link>
 
           <Link
-            className={`navbar__menu__item ${
+            className={`navbar__menu__item circle_button ${
               location.pathname === "/statistics/" ? "active" : null
             }`}
             to={"statistics/"}
@@ -62,7 +62,7 @@ export default function Root() {
           </Link>
 
           <Link
-            className={`navbar__menu__item ${
+            className={`navbar__menu__item circle_button ${
               location.pathname === "/activity/" ? "active" : null
             }`}
             id="menu_activity"

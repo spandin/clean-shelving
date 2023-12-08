@@ -1,3 +1,5 @@
+import "./_login.scss";
+
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch } from "@/hooks/redux-hooks";
@@ -5,6 +7,7 @@ import { useAppDispatch } from "@/hooks/redux-hooks";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { setUser } from "@/store/slices/userSlice";
 
+import IMAGES from "@/assets/images";
 import { LoadButton } from "../common/load-button";
 
 interface FormValues {
@@ -45,9 +48,19 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <div>
+    <div className="login">
+      <img src={IMAGES.welcoming} />
+      <form
+        className="login__form"
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate
+      >
+        <div className="login__form__title">
+          <h1>Войти в аккаунт</h1>
+          <p>используя email и пароль</p>
+        </div>
+
+        <div className="login__form__wrapper">
           <input
             placeholder="your@email.com"
             type="email"
@@ -80,7 +93,7 @@ export default function Login() {
           />
         </div>
 
-        <p>{errorAuth}</p>
+        {errorAuth ? <p>{errorAuth}</p> : null}
 
         <LoadButton
           type="submit"

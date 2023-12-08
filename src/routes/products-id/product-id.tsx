@@ -1,8 +1,8 @@
 import "./_product-id.scss";
 
-import ProductHeader from "../../components/products/id/product-header";
-import ProductBody from "../../components/products/id/product-body";
-import ProductFooter from "../../components/products/id/product-footer";
+import ProductHeader from "./components/product-header";
+import ProductBody from "./components/product-body";
+import ProductFooter from "./components/product-footer";
 
 export default function ProductId() {
   return (

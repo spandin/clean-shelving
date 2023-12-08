@@ -6,6 +6,7 @@
   justify-content: space-between;
   align-items: flex-start;
   height: 100%;
+  width: 100%;
   &__wrapper {
     width: 100%;
     display: flex;
@@ -39,9 +40,6 @@
             white-space: nowrap;
             overflow: hidden;
             font-weight: 500;
-          }
-          :last-child {
-            font-weight: 300;
           }
         }
       }
@@ -85,7 +83,6 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
-            font-weight: 300;
             transition: 0.2s ease-out all;
           }
           input {
@@ -122,6 +119,13 @@
       }
     }
   }
+
+  &:has(.login) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -132,6 +136,11 @@
 
     .tabs__tab > input:checked ~ .tabs__tab__content {
       width: 100%;
+    }
+
+    &:has(.login) {
+      justify-content: flex-end;
+      padding: 2rem 0rem;
     }
   }
 }
