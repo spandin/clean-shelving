@@ -62,7 +62,7 @@ export default function Login() {
 
         <div className="login__form__wrapper">
           <input
-            placeholder="your@email.com"
+            placeholder="Email"
             type="email"
             autoComplete="off"
             {...register("email", {

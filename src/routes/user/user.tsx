@@ -23,7 +23,7 @@ export default function User() {
               <div className="user__wrapper__header__buttons">
                 <button
                   className="circle_button"
-                  onClick={() => navigate("settings")}
+                  onClick={() => navigate("/settings/")}
                 >
                   <BsGear />
                 </button>
