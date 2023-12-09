@@ -60,11 +60,8 @@ button {
     background-color: $white;
     svg {
       color: $primary-color;
+      font-size: 22px;
     }
-  }
-  &:hover,
-  &.active > svg {
-    font-size: 22px;
   }
 }
 

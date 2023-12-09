@@ -13,9 +13,9 @@ import ProductId from "./routes/products-id/product-id";
 import AddProduct from "./routes/add-product/add-product";
 import User from "./routes/user/user";
 import UserId from "./routes/user-id/user-id";
-import Settings from "./routes/features/settings";
-import Statistics from "./routes/features/statistics";
-import Activity from "./routes/features/activity";
+import Statistics from "./routes/statistics/statistics";
+import Activity from "./routes/activity/activity";
+import Settings from "./routes/settings/settings";
 
 const updateSW = registerSW({
   onNeedRefresh() {
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
         element: <UserId />,
       },
       {
-        path: "settings/",
+        path: "user/settings/",
         element: <Settings />,
       },
       {

@@ -1,0 +1,38 @@
+@import "../../../scss/variables.scss";
+
+.informer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 16px;
+  line-height: 1.2rem;
+  min-height: 50px;
+  padding-right: 1.5rem;
+  border-radius: 50px;
+  background-color: $white;
+  color: $primary-color;
+  &__col {
+    display: flex;
+    flex-direction: column;
+    :first-child {
+      max-width: 64ch;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      font-weight: 500;
+    }
+    :last-child {
+      text-wrap: nowrap;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .informer {
+    &__col {
+      :first-child {
+        max-width: 17ch;
+      }
+    }
+  }
+}

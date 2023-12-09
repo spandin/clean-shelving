@@ -20,43 +20,10 @@
       align-items: center;
       margin: 0 auto;
       gap: 1rem;
-      &__informer {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        font-size: 16px;
-        line-height: 1.2rem;
-        min-height: 50px;
-        padding-right: 1.5rem;
-        border-radius: 50px;
-        background-color: $white;
-        color: $primary-color;
-        &__col {
-          display: flex;
-          flex-direction: column;
-          :first-child {
-            max-width: 64ch;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-            font-weight: 500;
-          }
-        }
-      }
       &__buttons {
         display: flex;
         flex-direction: row;
         gap: 1rem;
-        button {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          min-width: 50px;
-          min-height: 50px;
-          max-width: 50px;
-          max-height: 50px;
-          border-radius: 50%;
-        }
       }
     }
 
@@ -130,10 +97,6 @@
 
 @media only screen and (max-width: 768px) {
   .user {
-    #user-informer-email {
-      max-width: 17ch;
-    }
-
     .tabs__tab > input:checked ~ .tabs__tab__content {
       width: 100%;
     }

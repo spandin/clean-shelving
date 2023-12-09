@@ -1,23 +1,17 @@
 import { BsPencilSquare, BsTrash3 } from "react-icons/bs";
 
-import ButtonBack from "../../../components/common/button-back";
+import Informer from "@/components/common/informer/informer";
 
 export default function ProductHeader() {
   return (
     <div className="product-id__wrapper__header">
-      <div className="product-id__wrapper__header__informer">
-        <ButtonBack />
-        <div className="product-id__wrapper__header__informer__col">
-          <span>Nestle Decaration 75g</span>
-          <span>Продукты</span>
-        </div>
-      </div>
+      <Informer title="Название товара" subtitle="Категория" />
 
       <div className="product-id__wrapper__header__buttons">
-        <button>
+        <button className="circle_button">
           <BsPencilSquare />
         </button>
-        <button>
+        <button className="circle_button">
           <BsTrash3 />
         </button>
       </div>

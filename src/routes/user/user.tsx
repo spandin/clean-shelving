@@ -1,30 +1,31 @@
 import "./_user.scss";
+import { useNavigate } from "react-router-dom";
+
 import { useAuth } from "@/hooks/use-auth";
 
-import { BsGearFill } from "react-icons/bs";
+import { BsGear } from "react-icons/bs";
 
+import Informer from "@/components/common/informer/informer";
 import Login from "@/components/auth/login";
-import ButtonBack from "@/components/common/button-back";
 
 export default function User() {
   const { isAuth, email } = useAuth();
+  const navigate = useNavigate();
+
   return (
     <div className="user">
       {isAuth ? (
         <>
           <div className="user__wrapper">
             <div className="user__wrapper__header">
-              <div className="user__wrapper__header__informer">
-                <ButtonBack />
-                <div className="user__wrapper__header__informer__col">
-                  <span id="user-informer-email">{email}</span>
-                  <span id="user-informer-status">Статус</span>
-                </div>
-              </div>
+              <Informer title="Имя" subtitle={email} />
 
               <div className="user__wrapper__header__buttons">
-                <button className="circle_button">
-                  <BsGearFill />
+                <button
+                  className="circle_button"
+                  onClick={() => navigate("settings")}
+                >
+                  <BsGear />
                 </button>
               </div>
             </div>

@@ -6,11 +6,8 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 
 import {
   BsHouse,
-  BsHouseFill,
   BsPieChart,
-  BsPieChartFill,
   BsPlusCircle,
-  BsPlusCircleFill,
   BsSpeedometer,
 } from "react-icons/bs";
 
@@ -32,11 +29,7 @@ export default function Root() {
             id="menu_add"
             to={"add/"}
           >
-            {location.pathname === "/add/" ? (
-              <BsPlusCircle />
-            ) : (
-              <BsPlusCircleFill />
-            )}
+            <BsPlusCircle />
           </Link>
 
           <Link
@@ -45,7 +38,7 @@ export default function Root() {
             }`}
             to={"products/"}
           >
-            {location.pathname === "/products/" ? <BsHouse /> : <BsHouseFill />}
+            <BsHouse />
           </Link>
 
           <Link
@@ -54,11 +47,7 @@ export default function Root() {
             }`}
             to={"statistics/"}
           >
-            {location.pathname === "/statistics/" ? (
-              <BsPieChart />
-            ) : (
-              <BsPieChartFill />
-            )}
+            <BsPieChart />
           </Link>
 
           <Link
@@ -68,11 +57,7 @@ export default function Root() {
             id="menu_activity"
             to={"activity/"}
           >
-            {location.pathname === "/activity/" ? (
-              <BsSpeedometer />
-            ) : (
-              <BsSpeedometer />
-            )}
+            <BsSpeedometer />
           </Link>
         </div>
       </nav>
@@ -80,7 +65,7 @@ export default function Root() {
       <main>
         <Outlet />
       </main>
-      <aside></aside>
+      <aside />
     </div>
   );
 }
