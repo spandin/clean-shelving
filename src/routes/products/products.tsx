@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> c796e2018818c914dccd851b5514df50b80288d7
 import "./_products.scss";
 import { ProductType } from "@/types/types";
 import { useEffect, useState } from "react";
@@ -13,7 +9,6 @@ import ProductsCard from "./components/products-card";
 import ProductsHeader from "./components/products-header";
 
 export default function Products() {
-<<<<<<< HEAD
   const [products, setProducts] = useState<ProductType[]>([]);
 
   useEffect(
@@ -31,9 +26,6 @@ export default function Products() {
     []
   );
 
-=======
-  
->>>>>>> c796e2018818c914dccd851b5514df50b80288d7
   return (
     <div className="products">
       <ProductsHeader />
