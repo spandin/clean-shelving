@@ -63,6 +63,10 @@
           font-size: 1.2rem;
           :first-child {
             font-weight: 500;
+            max-width: 26ch;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
           }
         }
       }
@@ -141,6 +145,21 @@
     &__grid {
       grid-template-columns: 1fr;
       max-height: calc(100vh - 15rem);
+      &__card {
+        &__row_1 {
+          & > div {
+            align-items: flex-start;
+            gap: 1rem;
+            :first-child {
+              white-space: wrap;
+              max-width: 100%;
+            }
+            :last-child {
+              white-space: nowrap;
+            }
+          }
+        }
+      }
     }
   }
 }
