@@ -12,7 +12,7 @@ export default function ProductsCard({ product }: IProps) {
       <div className="products__grid__card__row_1">
         <div>
           <span id="card_name">{product.name}</span>
-          <span id="card_quantity">14 шт.</span>
+          <span id="card_quantity">{product.quantity}</span>
         </div>
         <span id="card_barcode">{product.code}</span>
       </div>
