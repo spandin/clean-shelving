@@ -1,6 +1,8 @@
-import { ProductType } from "@/types/types";
-import { BsArrowDownLeftCircle } from "react-icons/bs";
 import { Link } from "react-router-dom";
+
+import { ProductType } from "@/types/types";
+
+import { BsArrowDownLeftCircle } from "react-icons/bs";
 
 interface IProps {
   product: ProductType;
