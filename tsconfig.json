@@ -30,6 +30,6 @@
     ],
 
   },
-  "include": ["src", "src/firebase.ts"],
+  "include": ["src", "src/lib/firebase.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

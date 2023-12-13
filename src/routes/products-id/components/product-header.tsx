@@ -1,11 +1,16 @@
 import { BsPencilSquare, BsTrash3 } from "react-icons/bs";
 
 import Informer from "@/components/common/informer/informer";
+import { ProductType } from "@/types/types";
 
-export default function ProductHeader() {
+interface IProps {
+  product: ProductType;
+}
+
+export default function ProductHeader({ product }: IProps) {
   return (
     <div className="product-id__wrapper__header">
-      <Informer title="Название товара" subtitle="Категория" />
+      <Informer title={`${product.name}`} subtitle={product.category} />
 
       <div className="product-id__wrapper__header__buttons">
         <button className="circle_button">

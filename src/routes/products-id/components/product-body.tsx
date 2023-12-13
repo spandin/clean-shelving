@@ -1,36 +1,41 @@
-export default function ProductBody() {
+import { ProductType } from "@/types/types";
+
+interface IProps {
+  product: ProductType;
+}
+
+export default function ProductBody({ product }: IProps) {
   return (
     <div className="product-id__wrapper__body">
       <div className="product-id__wrapper__body__content">
         <h1> Основная информация:</h1>
         <div>
-          <span id="content_headline">Наименование: </span>Nestle Decaration 75g
+          <span id="content_headline">Наименование: </span>
+          {product.name}
         </div>
         <div>
-          <span id="content_headline">Штрихкод: </span> 8001987664021
+          <span id="content_headline">Штрихкод: </span> {product.code}
         </div>
         <div>
-          <span id="content_headline">Категория: </span> Продукты
+          <span id="content_headline">Категория: </span> {product.category}
         </div>
         <div>
-          <span id="content_headline">Статус: </span> Внесён
+          <span id="content_headline">Статус: </span>{" "}
+          {product.isExported ? "Внесен" : "Не внесён"}
         </div>
       </div>
 
       <div className="product-id__wrapper__body__content">
         <h1>Даты:</h1>
         <div>
-          <span id="content_headline">Добавлен: </span> 05.12.2023
+          <span id="content_headline">Добавлен: </span> {product.dateAdded}
         </div>
         <div>
-          <span id="content_headline">Обновлён: </span> 08.12.2023
-        </div>
-        <div>
-          <span id="content_headline">Изготовлен: </span> 21.02.2022
+          <span id="content_headline">Изготовлен: </span> {product.date_1}
         </div>
         <div>
           <span id="content_headline">Просрочится: </span>
-          21.02.2023
+          {product.date_2}
         </div>
       </div>
     </div>

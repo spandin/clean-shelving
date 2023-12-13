@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
-import "./firebase";
+import "./lib/firebase";
 
 import Root from "./routes/root";
 import ErrorPage from "./routes/error-page";
@@ -16,6 +16,7 @@ import UserId from "./routes/user-id/user-id";
 import Statistics from "./routes/statistics/statistics";
 import Activity from "./routes/activity/activity";
 import Settings from "./routes/settings/settings";
+import { ToastContainer } from "react-toastify";
 
 const updateSW = registerSW({
   onNeedRefresh() {
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
         element: <UserId />,
       },
       {
-        path: "user/settings/",
+        path: "settings/",
         element: <Settings />,
       },
       {
@@ -69,6 +70,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
+    <ToastContainer position="top-center" />
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
