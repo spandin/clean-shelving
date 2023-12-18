@@ -14,18 +14,21 @@ import ProductFooter from "./components/product-footer";
 export default function ProductId() {
   const theme = window.matchMedia("(prefers-color-scheme: dark)");
   const { productId } = useParams();
-
-  const [product, setProduct] = useState<DocumentData>();
+  const [isLoading, setIsLoading] = useState(false);
+  const [product, setProduct] = useState<DocumentData>({});
 
   useEffect(() => {
     const fetchProductData = async () => {
       try {
         const productSnap = await getDoc(doc(db, "data", `${productId}`));
 
+        setIsLoading(true);
+
         if (productSnap.exists()) {
           console.log(productSnap.data());
 
           setProduct(productSnap.data());
+          setIsLoading(false);
         }
       } catch (error) {
         console.log(`ProductID: ${error}`);
@@ -37,9 +40,16 @@ export default function ProductId() {
     };
   }, [productId]);
 
+  if (isLoading)
+    return (
+      <>
+        <Ring size={30} color={theme.matches ? "#ffffff" : "#121212"} />
+      </>
+    );
+
   return (
     <div className="product-id">
-      {product ? (
+      {Object.keys(product) && Object.keys(product).length ? (
         <>
           <div className="product-id__wrapper">
             <ProductHeader product={product} />
@@ -47,9 +57,7 @@ export default function ProductId() {
           </div>
           <ProductFooter />
         </>
-      ) : (
-        <Ring size={30} color={theme.matches ? "#ffffff" : "#121212"} />
-      )}
+      ) : null}
     </div>
   );
 }
