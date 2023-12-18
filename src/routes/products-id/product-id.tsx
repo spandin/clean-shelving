@@ -41,6 +41,8 @@ export default function ProductId() {
     };
   }, [productId]);
 
+  console.log(typeof product);
+
   if (isLoading)
     return (
       <>
@@ -50,7 +52,7 @@ export default function ProductId() {
 
   return (
     <div className="product-id">
-      {product != undefined ? (
+      {product ? (
         <>
           <div className="product-id__wrapper">
             <ProductHeader product={product} />
@@ -58,7 +60,9 @@ export default function ProductId() {
           </div>
           <ProductFooter />
         </>
-      ) : null}
+      ) : (
+        <Ring size={30} color={theme.matches ? "#ffffff" : "#121212"} />
+      )}
     </div>
   );
 }
