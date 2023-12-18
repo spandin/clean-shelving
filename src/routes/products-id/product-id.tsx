@@ -46,14 +46,15 @@ export default function ProductId() {
         <Ring size={30} color={theme.matches ? "#ffffff" : "#121212"} />
       </>
     );
-
-  return (
-    <div className="product-id">
-      <div className="product-id__wrapper">
-        <ProductHeader product={product} />
-        <ProductBody product={product} />
+  else {
+    return (
+      <div className="product-id">
+        <div className="product-id__wrapper">
+          <ProductHeader product={product} />
+          <ProductBody product={product} />
+        </div>
+        <ProductFooter />
       </div>
-      <ProductFooter />
-    </div>
-  );
+    );
+  }
 }
