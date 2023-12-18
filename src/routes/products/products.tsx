@@ -2,7 +2,7 @@ import "./_products.scss";
 import { ProductType } from "@/types/types";
 import { useEffect, useState } from "react";
 
-import { DocumentData, QuerySnapshot, onSnapshot } from "firebase/firestore";
+import { DocumentData, onSnapshot } from "firebase/firestore";
 import { dataCollection } from "@/lib/controller";
 
 import ProductsCard from "./components/products-card";
@@ -11,20 +11,22 @@ import ProductsHeader from "./components/products-header";
 export default function Products() {
   const [products, setProducts] = useState<ProductType[]>([]);
 
-  useEffect(
-    () =>
-      onSnapshot(dataCollection, (snapshot: QuerySnapshot<DocumentData>) => {
-        setProducts(
-          snapshot.docs.map((docs) => {
-            return {
-              id: docs.id,
-              ...docs.data(),
-            };
-          })
-        );
-      }),
-    []
-  );
+  useEffect(() => {
+    const unsubscribe = onSnapshot(dataCollection, (querySnapshot) => {
+      const resultProducts: ProductType[] = [];
+
+      querySnapshot.docChanges().forEach((doc: DocumentData) => {
+        console.log("changes", doc.doc.data());
+        resultProducts.push(doc.doc.data());
+      });
+
+      setProducts(resultProducts);
+    });
+    return () => {
+      console.log("unsub fetching data");
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <div className="products">
