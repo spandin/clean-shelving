@@ -1,11 +1,10 @@
-import { ProductType } from "@/types/types";
-
 import { BsPencilSquare, BsTrash3 } from "react-icons/bs";
 
 import Informer from "@/components/common/informer/informer";
+import { DocumentData } from "firebase/firestore";
 
 interface IProps {
-  product: ProductType;
+  product: DocumentData;
 }
 
 export default function ProductHeader({ product }: IProps) {
