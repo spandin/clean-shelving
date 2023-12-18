@@ -33,7 +33,7 @@ export default function User() {
             <div className="user__wrapper__body">
               <ul className="tabs">
                 <li className="tabs__tab">
-                  <input type="radio" name="tabs" id="tab-1" checked />
+                  <input type="radio" name="tabs" id="tab-1" defaultChecked />
                   <label htmlFor="tab-1">Информация</label>
                   <div className="tabs__tab__content">
                     <img
