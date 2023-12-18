@@ -2,12 +2,16 @@ import "./_product-id.scss";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import { ProductType } from "@/types/types";
+
+import { db } from "@/lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
+
 import { Ring } from "@uiball/loaders";
+
 import ProductHeader from "./components/product-header";
 import ProductBody from "./components/product-body";
 import ProductFooter from "./components/product-footer";
-import { ProductType } from "@/types/types";
-import { getDocument } from "@/lib/controller";
 
 export default function ProductId() {
   const theme = window.matchMedia("(prefers-color-scheme: dark)");
@@ -18,12 +22,12 @@ export default function ProductId() {
   useEffect(() => {
     const fetchProductData = async () => {
       try {
-        const productSnap = await getDocument(`${productId}`);
+        const productSnap = await getDoc(doc(db, `data/${productId}`));
 
         setIsLoading(true);
 
         if (productSnap.exists()) {
-          const productData = {
+          const productData: ProductType = {
             id: productSnap.id,
             ...productSnap.data(),
           };
