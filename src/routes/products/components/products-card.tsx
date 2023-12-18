@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+import { Timestamp } from "firebase/firestore";
 import { ProductType } from "@/types/types";
 
 import { BsArrowDownLeftCircle } from "react-icons/bs";
@@ -9,10 +10,15 @@ interface IProps {
 }
 
 export default function ProductsCard({ product }: IProps) {
+  const convetTimestampToString = (timestamp: Timestamp): string => {
+    const date: Date = new Date(timestamp.seconds * 1000);
+    return date.toLocaleDateString("ru-Ru");
+  };
+
   return (
     <div className="products__grid__card">
       <div className="products__grid__card__row_1">
-        <div>
+        <div className="products__grid__card__row_1__group">
           <span id="card_name">{product.name}</span>
           <span id="card_quantity">{product.quantity} шт.</span>
         </div>
@@ -22,15 +28,15 @@ export default function ProductsCard({ product }: IProps) {
       <div className="products__grid__card__row_2">
         <div id="card_add">
           <span>ADD:</span>
-          <span>{product.dateAdded}</span>
+          <span>{convetTimestampToString(product.dates.createdAt)}</span>
         </div>
         <div id="card_mfd">
           <span>MFD:</span>
-          <span>{product.date_1}</span>
+          <span>{convetTimestampToString(product.dates.mfd)}</span>
         </div>
         <div id="card_exp">
           <span>EXP:</span>
-          <span>{product.date_2}</span>
+          <span>{convetTimestampToString(product.dates.exp)}</span>
         </div>
       </div>
 
@@ -41,11 +47,9 @@ export default function ProductsCard({ product }: IProps) {
         </Link>
 
         <div className="products__grid__card__row_3__group">
+          <div id="card_badge">{product.category}</div>
           <div id="card_badge">
-            <span>{product.category}</span>
-          </div>
-          <div id="card_badge">
-            <span>{product.isExported ? "Внесён" : "Не вснесён"}</span>
+            {product.actions[2].isExported ? "Внесён" : "Не внесён"}
           </div>
         </div>
       </div>
