@@ -23,7 +23,7 @@ export default function Products() {
       setProducts(resultProducts);
     });
     return () => {
-      console.log("unsub fetching data");
+      console.log("fetching data");
       unsubscribe();
     };
   }, []);
