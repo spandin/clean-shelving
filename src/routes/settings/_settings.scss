@@ -1,6 +1,8 @@
 .settings {
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 1rem;
 
   &__header {
@@ -9,5 +11,12 @@
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+  }
+
+  &__footer {
+    padding: 1rem 2rem;
+    button {
+      width: 100%;
+    }
   }
 }
