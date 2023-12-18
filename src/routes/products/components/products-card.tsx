@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 
-import { Timestamp } from "firebase/firestore";
 import { ProductType } from "@/types/types";
+
+import { convetTimestampToString } from "@/lib/date";
 
 import { BsArrowDownLeftCircle } from "react-icons/bs";
 
@@ -10,11 +11,6 @@ interface IProps {
 }
 
 export default function ProductsCard({ product }: IProps) {
-  const convetTimestampToString = (timestamp: Timestamp): string => {
-    const date: Date = new Date(timestamp.seconds * 1000);
-    return date.toLocaleDateString("ru-Ru");
-  };
-
   return (
     <div className="products__grid__card">
       <div className="products__grid__card__row_1">

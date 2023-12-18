@@ -1,5 +1,7 @@
 import { ProductType } from "@/types/types";
 
+import { convetTimestampToString } from "@/lib/date";
+
 interface IProps {
   product: ProductType;
 }
@@ -20,22 +22,24 @@ export default function ProductBody({ product }: IProps) {
           <span id="content_headline">Категория: </span> {product.category}
         </div>
         <div>
-          <span id="content_headline">Статус: </span>{" "}
-          {product.isExported ? "Внесен" : "Не внесён"}
+          <span id="content_headline">Статус: </span>
+          {product.actions[2].isExported ? "Внесен" : "Не внесён"}
         </div>
       </div>
 
       <div className="product-id__wrapper__body__content">
         <h1>Даты:</h1>
         <div>
-          <span id="content_headline">Добавлен: </span> {product.dateAdded}
+          <span id="content_headline">Добавлен: </span>{" "}
+          {convetTimestampToString(product.dates.createdAt)}
         </div>
         <div>
-          <span id="content_headline">Изготовлен: </span> {product.date_1}
+          <span id="content_headline">Изготовлен: </span>{" "}
+          {convetTimestampToString(product.dates.mfd)}
         </div>
         <div>
           <span id="content_headline">Просрочится: </span>
-          {product.date_2}
+          {convetTimestampToString(product.dates.exp)}
         </div>
       </div>
     </div>
