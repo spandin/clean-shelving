@@ -49,15 +49,11 @@ export default function ProductId() {
 
   return (
     <div className="product-id">
-      {Object.keys(product) && Object.keys(product).length ? (
-        <>
-          <div className="product-id__wrapper">
-            <ProductHeader product={product} />
-            <ProductBody product={product} />
-          </div>
-          <ProductFooter />
-        </>
-      ) : null}
+      <div className="product-id__wrapper">
+        <ProductHeader product={product} />
+        <ProductBody product={product} />
+      </div>
+      <ProductFooter />
     </div>
   );
 }
