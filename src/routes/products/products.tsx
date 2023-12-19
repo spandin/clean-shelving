@@ -16,14 +16,13 @@ export default function Products() {
       const resultProducts: ProductType[] = [];
 
       querySnapshot.docChanges().forEach((doc: DocumentData) => {
-        console.log("changes", doc.doc.data());
+        console.log("changes in products", doc.doc.data());
         resultProducts.push(doc.doc.data());
       });
 
       setProducts(resultProducts);
     });
     return () => {
-      console.log("fetching data");
       unsubscribe();
     };
   }, []);
