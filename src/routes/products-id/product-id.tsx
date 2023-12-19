@@ -21,11 +21,11 @@ export default function ProductId() {
   const [product, setProduct] = useState<ProductType | DocumentData>();
 
   useEffect(() => {
-    const docRef = doc(db, "data", `${productId}`);
-
     const fetchProductData = async () => {
       setIsLoading(false);
+
       try {
+        const docRef = doc(db, "data", `${productId}`);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
@@ -44,7 +44,7 @@ export default function ProductId() {
     return () => {
       fetchProductData();
     };
-  }, [productId]);
+  }, []);
 
   return (
     <div className="product-id">
