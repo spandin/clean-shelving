@@ -26,3 +26,9 @@ export interface ProductType {
     };
   };
 }
+
+export interface BarcodeType {
+  name: string;
+  code: number;
+  category: string;
+}
