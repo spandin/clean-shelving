@@ -3,27 +3,23 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { db } from "@/lib/firebase";
-import {
-  DocumentSnapshot,
-  QueryDocumentSnapshot,
-  doc,
-  getDoc,
-} from "firebase/firestore";
+import { DocumentData, doc, getDoc } from "firebase/firestore";
 
 import { Ring } from "@uiball/loaders";
 
 import ProductHeader from "./components/product-header";
 import ProductBody from "./components/product-body";
 import ProductFooter from "./components/product-footer";
+import { ProductType } from "@/types/types";
 
 export default function ProductId() {
   const theme = window.matchMedia("(prefers-color-scheme: dark)");
   const { productId } = useParams();
 
-  const [product, setProduct] = useState<QueryDocumentSnapshot>();
+  const [product, setProduct] = useState<ProductType | DocumentData>();
 
   useEffect(() => {
-    const fetchProductData = async () => {
+    const fetchProductData = async (): Promise<void> => {
       try {
         const productSnap = await getDoc(doc(db, "data", `${productId}`));
 

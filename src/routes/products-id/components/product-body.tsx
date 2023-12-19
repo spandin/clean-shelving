@@ -1,9 +1,10 @@
 import { ProductType } from "@/types/types";
+import { DocumentData } from "firebase/firestore";
 
 import { convetTimestampToString } from "@/lib/date";
 
 interface IProps {
-  product: ProductType;
+  product: ProductType | DocumentData;
 }
 
 export default function ProductBody({ product }: IProps) {
