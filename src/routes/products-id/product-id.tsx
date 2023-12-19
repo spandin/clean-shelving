@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { db } from "@/lib/firebase";
 import { DocumentData, doc, getDoc } from "firebase/firestore";
 
-import { convetTimestampToString } from "@/lib/date";
+import { timestampToString } from "@/lib/date";
 
 import { Ring } from "@uiball/loaders";
 import { BsPencilSquare, BsTrash3 } from "react-icons/bs";
@@ -88,15 +88,15 @@ export default function ProductId() {
                 <h1>Даты:</h1>
                 <div>
                   <span id="content_headline">Добавлен: </span>{" "}
-                  {convetTimestampToString(product.dates.createdAt)}
+                  {timestampToString(product.dates.createdAt)}
                 </div>
                 <div>
                   <span id="content_headline">Изготовлен: </span>{" "}
-                  {convetTimestampToString(product.dates.mfd)}
+                  {timestampToString(product.dates.mfd)}
                 </div>
                 <div>
                   <span id="content_headline">Просрочится: </span>
-                  {convetTimestampToString(product.dates.exp)}
+                  {timestampToString(product.dates.exp)}
                 </div>
               </div>
             </div>
