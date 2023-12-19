@@ -44,7 +44,7 @@ export default function ProductId() {
     return () => {
       fetchProductData();
     };
-  }, []);
+  }, [productId]);
 
   return (
     <div className="product-id">
