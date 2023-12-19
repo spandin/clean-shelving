@@ -5,10 +5,14 @@ import { useEffect, useState } from "react";
 import { DocumentData, onSnapshot } from "firebase/firestore";
 import { dataCollection } from "@/lib/controller";
 
+import { Ring } from "@uiball/loaders";
+
 import ProductsCard from "./components/products-card";
 import ProductsHeader from "./components/products-header";
 
 export default function Products() {
+  const theme = window.matchMedia("(prefers-color-scheme: dark)");
+
   const [products, setProducts] = useState<ProductType[]>([]);
 
   useEffect(() => {
@@ -32,11 +36,13 @@ export default function Products() {
       <ProductsHeader />
 
       <div className="products__grid">
-        {products && products.length
-          ? products.map((product) => (
-              <ProductsCard key={product.id} product={product} />
-            ))
-          : null}
+        {products && products.length ? (
+          products.map((product) => (
+            <ProductsCard key={product.id} product={product} />
+          ))
+        ) : (
+          <Ring size={30} color={theme.matches ? "#ffffff" : "#121212"} />
+        )}
       </div>
     </div>
   );
