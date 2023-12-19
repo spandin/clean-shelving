@@ -10,6 +10,10 @@ import {
   BsPlusCircle,
   BsSpeedometer,
 } from "react-icons/bs";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+
 import Activity from "./activity/activity";
 
 export default function Root() {
@@ -62,11 +66,12 @@ export default function Root() {
           </Link>
         </div>
       </nav>
-
       <main>{location.pathname !== "/" ? <Outlet /> : <AboutProject />}</main>
       <aside>
         <Activity />
       </aside>
+
+      <ToastContainer theme="dark" position="bottom-center" autoClose={1500} />
     </div>
   );
 }
