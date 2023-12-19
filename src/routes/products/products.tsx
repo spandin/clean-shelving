@@ -2,8 +2,11 @@ import "./_products.scss";
 import { ProductType } from "@/types/types";
 import { useEffect, useState } from "react";
 
-import { DocumentData, onSnapshot } from "firebase/firestore";
 import { dataCollection } from "@/lib/controller";
+import { DocumentData, onSnapshot } from "firebase/firestore";
+
+import { useAppDispatch } from "@/hooks/redux-hooks";
+import { getBarcodes, getProducts } from "@/store/slices/dataSlice";
 
 import { Ring } from "@uiball/loaders";
 
@@ -13,23 +16,28 @@ import ProductsHeader from "./components/products-header";
 export default function Products() {
   const theme = window.matchMedia("(prefers-color-scheme: dark)");
 
+  const dispatch = useAppDispatch();
+
   const [products, setProducts] = useState<ProductType[]>([]);
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(dataCollection, (querySnapshot) => {
-      const resultProducts: ProductType[] = [];
+    dispatch(getProducts());
+    dispatch(getBarcodes());
 
-      querySnapshot.docChanges().forEach((doc: DocumentData) => {
-        console.log("changes in products", doc.doc.data());
-        resultProducts.push(doc.doc.data());
+    const unsubscribe = onSnapshot(dataCollection, (querySnapshot) => {
+      const collectionSnapshot: ProductType[] = [];
+
+      querySnapshot.forEach((doc: DocumentData) => {
+        collectionSnapshot.push(doc.data());
       });
 
-      setProducts(resultProducts);
+      setProducts(collectionSnapshot);
     });
+
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="products">
