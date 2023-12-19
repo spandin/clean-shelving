@@ -21,15 +21,23 @@ export default function ProductId() {
   const [product, setProduct] = useState<ProductType | DocumentData>();
 
   useEffect(() => {
-    const fetchProductData = async () => {
-      const productSnap = await getDoc(doc(db, "data", `${productId}`));
+    const docRef = doc(db, "data", `${productId}`);
 
-      if (productSnap.exists()) {
-        setProduct(productSnap.data());
-        setIsLoading(true);
-      } else {
-        setIsLoading(false);
-        console.log(`No such doc`);
+    const fetchProductData = async () => {
+      setIsLoading(false);
+      try {
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          console.log(docSnap.data());
+
+          setProduct(docSnap.data());
+          setIsLoading(true);
+        } else {
+          console.log(`Document does not exist`);
+        }
+      } catch (error) {
+        console.log("ProductID: " + error);
       }
     };
 
