@@ -48,7 +48,7 @@ export default function ProductId() {
 
   return (
     <div className="product-id">
-      {isLoading && product != undefined ? (
+      {isLoading && product ? (
         <>
           <div className="product-id__wrapper">
             <div className="product-id__wrapper__header">
