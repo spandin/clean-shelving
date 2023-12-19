@@ -1,6 +1,9 @@
-import { Timestamp } from "firebase/firestore";
-
-export const convetTimestampToString = (timestamp: Timestamp): string => {
-  const date: Date = new Date(timestamp.seconds * 1000);
+export const timestampToString = (timestamp: number): string => {
+  const date: Date = new Date(timestamp * 1000);
   return date.toLocaleDateString("ru-Ru");
+};
+
+export const stringToTimestamp = (strDate: string): number => {
+  const date = Date.parse(strDate);
+  return date / 1000;
 };
