@@ -1,5 +1,3 @@
-import { Timestamp } from "firebase/firestore";
-
 export interface ProductType {
   id: string;
   name: string;
@@ -7,22 +5,26 @@ export interface ProductType {
   category: string;
   quantity: string;
   dates: {
-    createdAt: Timestamp;
-    mfd: Timestamp;
-    exp: Timestamp;
+    createdAt: string;
+    mfd: string;
+    exp: string;
   };
   actions: {
-    created: { createdAt: Timestamp; whoCreated: string; whoCreatedID: string };
+    created: {
+      createdAt: string;
+      whoCreated: string;
+      whoCreatedID?: string;
+    };
     updated: {
-      updatedAt: Timestamp;
+      updatedAt: string;
       whoUpdated: string;
-      whoUpdatedID: string;
+      whoUpdatedID?: string;
     };
     exported: {
-      exportedOn: Timestamp;
+      exportedOn: string;
       isExported: boolean;
       whoExported: string;
-      whoExportedID: string;
+      whoExportedID?: string;
     };
   };
 }
@@ -31,4 +33,15 @@ export interface BarcodeType {
   name: string;
   code: number;
   category: string;
+}
+
+export interface AddFormInputsType {
+  code: number;
+  name: string;
+  category: string;
+  quantity: number;
+  dates: {
+    mfd: string;
+    exp: string;
+  };
 }
