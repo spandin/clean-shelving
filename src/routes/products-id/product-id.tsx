@@ -17,6 +17,7 @@ export default function ProductId() {
   const theme = window.matchMedia("(prefers-color-scheme: dark)");
   const { productId } = useParams();
 
+  const [isLoading, setIsLoading] = useState(false);
   const [product, setProduct] = useState<ProductType | DocumentData>();
 
   useEffect(() => {
@@ -25,7 +26,9 @@ export default function ProductId() {
 
       if (productSnap.exists()) {
         setProduct(productSnap.data());
+        setIsLoading(true);
       } else {
+        setIsLoading(false);
         console.log(`No such doc`);
       }
     };
@@ -37,7 +40,7 @@ export default function ProductId() {
 
   return (
     <div className="product-id">
-      {product ? (
+      {isLoading && product != undefined ? (
         <>
           <div className="product-id__wrapper">
             <div className="product-id__wrapper__header">
