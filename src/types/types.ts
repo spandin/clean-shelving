@@ -11,22 +11,18 @@ export interface ProductType {
     mfd: Timestamp;
     exp: Timestamp;
   };
-  actions: [
-    {
-      createdAt: Timestamp;
-      whoCreated: string;
-      whoCreatedID: string;
-    },
-    {
+  actions: {
+    created: { createdAt: Timestamp; whoCreated: string; whoCreatedID: string };
+    updated: {
       updatedAt: Timestamp;
       whoUpdated: string;
       whoUpdatedID: string;
-    },
-    {
+    };
+    exported: {
       exportedOn: Timestamp;
       isExported: boolean;
       whoExported: string;
       whoExportedID: string;
-    }
-  ];
+    };
+  };
 }

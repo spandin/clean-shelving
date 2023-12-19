@@ -1,8 +1,9 @@
+import { ProductType } from "@/types/types";
+
 import { convetTimestampToString } from "@/lib/date";
-import { DocumentData } from "firebase/firestore";
 
 interface IProps {
-  product: DocumentData;
+  product: ProductType;
 }
 
 export default function ProductBody({ product }: IProps) {
@@ -22,7 +23,7 @@ export default function ProductBody({ product }: IProps) {
         </div>
         <div>
           <span id="content_headline">Статус: </span>
-          {product.actions[2].isExported ? "Внесен" : "Не внесён"}
+          {product.actions.exported.isExported ? "Внесен" : "Не внесён"}
         </div>
       </div>
 

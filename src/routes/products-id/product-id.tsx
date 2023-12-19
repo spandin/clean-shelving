@@ -3,7 +3,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { db } from "@/lib/firebase";
-import { DocumentData, doc, getDoc } from "firebase/firestore";
+import {
+  DocumentSnapshot,
+  QueryDocumentSnapshot,
+  doc,
+  getDoc,
+} from "firebase/firestore";
 
 import { Ring } from "@uiball/loaders";
 
@@ -15,7 +20,7 @@ export default function ProductId() {
   const theme = window.matchMedia("(prefers-color-scheme: dark)");
   const { productId } = useParams();
 
-  const [product, setProduct] = useState<DocumentData>({});
+  const [product, setProduct] = useState<QueryDocumentSnapshot>();
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -39,7 +44,7 @@ export default function ProductId() {
 
   return (
     <div className="product-id">
-      {Object.keys(product) && Object.keys(product).length ? (
+      {product ? (
         <>
           <div className="product-id__wrapper">
             <ProductHeader product={product} />

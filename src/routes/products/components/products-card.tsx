@@ -45,7 +45,7 @@ export default function ProductsCard({ product }: IProps) {
         <div className="products__grid__card__row_3__group">
           <div id="card_badge">{product.category}</div>
           <div id="card_badge">
-            {product.actions[2].isExported ? "Внесён" : "Не внесён"}
+            {product.actions.exported.isExported ? "Внесён" : "Не внесён"}
           </div>
         </div>
       </div>
