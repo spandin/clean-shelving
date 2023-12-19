@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 
 import { ProductType } from "@/types/types";
 
-import { convetTimestampToString } from "@/lib/date";
-
 import { BsArrowDownLeftCircle } from "react-icons/bs";
 
 interface IProps {
@@ -24,15 +22,15 @@ export default function ProductsCard({ product }: IProps) {
       <div className="products__grid__card__row_2">
         <div id="card_add">
           <span>ADD:</span>
-          <span>{convetTimestampToString(product.dates.createdAt)}</span>
+          <span>{product.dates.createdAt}</span>
         </div>
         <div id="card_mfd">
           <span>MFD:</span>
-          <span>{convetTimestampToString(product.dates.mfd)}</span>
+          <span>{product.dates.mfd}</span>
         </div>
         <div id="card_exp">
           <span>EXP:</span>
-          <span>{convetTimestampToString(product.dates.exp)}</span>
+          <span>{product.dates.exp}</span>
         </div>
       </div>
 
