@@ -4,6 +4,8 @@ import { ProductType } from "@/types/types";
 
 import { BsArrowDownLeftCircle } from "react-icons/bs";
 
+import { timestampToString } from "@/lib/date";
+
 interface IProps {
   product: ProductType;
 }
@@ -22,15 +24,15 @@ export default function ProductsCard({ product }: IProps) {
       <div className="products__grid__card__row_2">
         <div id="card_add">
           <span>ADD:</span>
-          <span>{product.dates.createdAt}</span>
+          <span>{timestampToString(product.dates.createdAt)}</span>
         </div>
         <div id="card_mfd">
           <span>MFD:</span>
-          <span>{product.dates.mfd}</span>
+          <span>{timestampToString(product.dates.mfd)}</span>
         </div>
         <div id="card_exp">
           <span>EXP:</span>
-          <span>{product.dates.exp}</span>
+          <span>{timestampToString(product.dates.exp)}</span>
         </div>
       </div>
 
