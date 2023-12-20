@@ -9,23 +9,23 @@ const settingsToast: ToastOptions = {
 };
 
 const toastAuthErr = () => {
-  toast.error("Войдите в аккаунт");
+  toast.error("Войдите в аккаунт", settingsToast);
 };
 
 const toastSuccess = () => {
-  toast.success("Успех");
+  toast.success("Успех", settingsToast);
 };
 
 const toastError = () => {
-  toast.error("Ошибка");
+  toast.error("Ошибка", settingsToast);
 };
 
 const toastWarn = () => {
-  toast.warn("Внимание");
+  toast.warn("Внимание", settingsToast);
 };
 
 const toastInfo = () => {
-  toast.info("Инфо");
+  toast.info("Инфо", settingsToast);
 };
 
 export {
