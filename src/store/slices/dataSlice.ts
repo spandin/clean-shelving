@@ -11,6 +11,9 @@ import {
   setDoc,
 } from "firebase/firestore";
 
+import { getTime } from "date-fns";
+import { stringToUTC } from "@/lib/date";
+
 export const getProducts = createAsyncThunk("@@data/getProducts", async () => {
   const querySnapshot = await getDocs(collection(db, "data"));
   const data = querySnapshot.docs.map((doc: DocumentData) => doc.data());
@@ -31,17 +34,17 @@ export const addProduct = createAsyncThunk(
     await setDoc(doc(db, "data", id), {
       id: id,
       name: data.name,
-      code: data.code,
+      code: parseInt(data.code),
       category: data.category,
-      quantity: data.quantity,
+      quantity: parseInt(data.quantity),
       dates: {
-        createdAt: new Date().toLocaleDateString("ru-Ru"),
-        mfd: data.dates.mfd,
-        exp: data.dates.exp,
+        createdAt: getTime(new Date()),
+        mfd: stringToUTC(data.dates.mfd),
+        exp: stringToUTC(data.dates.exp),
       },
       actions: {
         created: {
-          createdAt: new Date().toLocaleDateString("ru-Ru"),
+          createdAt: getTime(new Date()),
           whoCreated: email,
         },
         exported: {
