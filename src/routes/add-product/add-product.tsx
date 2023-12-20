@@ -1,5 +1,4 @@
 import "./_add-product.scss";
-import { useEffect } from "react";
 import { AddFormInputsType } from "@/types/types";
 
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
@@ -17,14 +16,12 @@ import { toastAuthErr } from "@/lib/toast";
 
 import Informer from "@/components/common/informer/informer";
 import { LoadButton } from "@/components/common/load-button";
-import { calcEndDate, stringToUTC } from "@/lib/date";
-import { formatDistance, formatDistanceToNow } from "date-fns";
 
 export default function AddProduct() {
   const dispatch = useAppDispatch();
   const { isAuth, email } = useAuth();
 
-  const { selectType, shelfTime } = useAppSelector((state) => state.addForm);
+  const { selectType } = useAppSelector((state) => state.addForm);
 
   const {
     register,
@@ -33,7 +30,6 @@ export default function AddProduct() {
     handleSubmit,
     setValue,
     reset,
-    watch,
   } = useForm<AddFormInputsType>({ mode: "all" });
 
   const onCreate: SubmitHandler<AddFormInputsType> = async (data) => {
@@ -66,20 +62,20 @@ export default function AddProduct() {
     }
   };
 
-  useEffect(() => {
-    const subscription = watch((value) => {
-      selectType === "fullDate"
-        ? dispatch(setShelfTime(value.dates.exp))
-        : dispatch(
-            setShelfTime(
-              calcEndDate(value.dates.mfd, parseInt(value.dates.exp))
-            )
-          );
+  // useEffect(() => {
+  //   const subscription = watch((value) => {
+  //     selectType === "fullDate"
+  //       ? dispatch(setShelfTime(value.dates.exp))
+  //       : dispatch(
+  //           setShelfTime(
+  //             calcEndDate(value.dates.mfd, parseInt(value.dates.exp))
+  //           )
+  //         );
 
-      console.log(formatDistanceToNow(new Date(value.dates.exp)));
-    });
-    return () => subscription.unsubscribe();
-  }, [watch, dispatch, selectType]);
+  //     console.log(formatDistanceToNow(new Date(value.dates.exp)));
+  //   });
+  //   return () => subscription.unsubscribe();
+  // }, [watch, dispatch, selectType]);
 
   return (
     <div className="add_product">
