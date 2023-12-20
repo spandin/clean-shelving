@@ -1,47 +1,48 @@
 import "./_add-product.scss";
+import { useEffect } from "react";
 import { AddFormInputsType } from "@/types/types";
 
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useAuth } from "@/hooks/use-auth";
-import { useAppDispatch } from "@/hooks/redux-hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
 import { addProduct, setBarcodes } from "@/store/slices/dataSlice";
+import { setSelectType, setShelfTime } from "@/store/slices/addFormSlice";
 
 import { db } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 
-import { toast } from "react-toastify";
-import { settingsToast } from "@/lib/toast";
 import { IMaskInput } from "react-imask";
+import { toast } from "react-toastify";
+import { toastAuthErr } from "@/lib/toast";
 
 import Informer from "@/components/common/informer/informer";
 import { LoadButton } from "@/components/common/load-button";
+import { calcEndDate, stringToUTC } from "@/lib/date";
+import { formatDistance, formatDistanceToNow } from "date-fns";
 
 export default function AddProduct() {
   const dispatch = useAppDispatch();
-  const { email } = useAuth();
+  const { isAuth, email } = useAuth();
+
+  const { selectType, shelfTime } = useAppSelector((state) => state.addForm);
 
   const {
     register,
     control,
     formState: { isSubmitting },
     handleSubmit,
-
     setValue,
-
     reset,
+    watch,
   } = useForm<AddFormInputsType>({ mode: "all" });
 
   const onCreate: SubmitHandler<AddFormInputsType> = async (data) => {
     try {
-      await toast.promise(
-        dispatch(addProduct({ data, email })),
-        {
-          pending: "Загрузка на сервер",
-          success: "Загружено успешно",
-          error: "Ошибка при добавлении",
-        },
-        settingsToast
-      );
+      await toast.promise(dispatch(addProduct({ data, email })), {
+        pending: "Загрузка на сервер",
+        success: "Загружено успешно",
+        error: "Ошибка при добавлении",
+      });
 
       dispatch(setBarcodes(data));
 
@@ -64,6 +65,21 @@ export default function AddProduct() {
       console.log("GET BARCODE INFO:", error);
     }
   };
+
+  useEffect(() => {
+    const subscription = watch((value) => {
+      selectType === "fullDate"
+        ? dispatch(setShelfTime(value.dates.exp))
+        : dispatch(
+            setShelfTime(
+              calcEndDate(value.dates.mfd, parseInt(value.dates.exp))
+            )
+          );
+
+      console.log(formatDistanceToNow(new Date(value.dates.exp)));
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, dispatch, selectType]);
 
   return (
     <div className="add_product">
@@ -149,7 +165,7 @@ export default function AddProduct() {
                     message: "Минимальное число 1",
                   },
                   max: {
-                    value: 99,
+                    value: 999,
                     message: "Максимальное число 99",
                   },
                 })}
@@ -181,27 +197,52 @@ export default function AddProduct() {
             </div>
 
             <div className="add_product__form__input">
-              <select id="exp_type">
+              <select
+                id="exp_type"
+                defaultValue={selectType}
+                onChange={(e) => {
+                  dispatch(setSelectType(e.target.value));
+                  dispatch(setShelfTime(0));
+                }}
+              >
                 <option value="fullDate">Годен до:</option>
                 <option value="month">Годен месяцев:</option>
               </select>
 
-              <Controller
-                control={control}
-                {...register("dates.exp", {
-                  required: "Укажите дату производства",
-                })}
-                render={({ field }) => (
-                  <IMaskInput
-                    mask={Date}
-                    min={new Date(2018, 0, 1)}
-                    max={new Date(2099, 0, 1)}
-                    onChange={(date) => field.onChange(date)}
-                    placeholder="00.00.0000"
-                    inputMode="numeric"
-                  />
-                )}
-              />
+              {selectType === "fullDate" ? (
+                <Controller
+                  control={control}
+                  {...register("dates.exp", {
+                    required: "Укажите дату просрочки",
+                  })}
+                  render={({ field }) => (
+                    <IMaskInput
+                      mask={Date}
+                      min={new Date(2018, 0, 1)}
+                      max={new Date(2099, 0, 1)}
+                      onChange={(date) => field.onChange(date)}
+                      placeholder="00.00.0000"
+                      inputMode="numeric"
+                    />
+                  )}
+                />
+              ) : (
+                <input
+                  type="number"
+                  autoComplete="off"
+                  {...register("dates.exp", {
+                    required: "Введите количество месяцев",
+                    min: {
+                      value: 1,
+                      message: "Мин. кол. месяцев 1",
+                    },
+                    max: {
+                      value: 120,
+                      message: "Макс. кол. месяцев 120",
+                    },
+                  })}
+                />
+              )}
             </div>
           </div>
         </div>
@@ -211,6 +252,7 @@ export default function AddProduct() {
           disabled={true}
           isLoading={isSubmitting}
           text="Добавить"
+          onClick={isAuth ? () => null : toastAuthErr}
         />
       </form>
     </div>
