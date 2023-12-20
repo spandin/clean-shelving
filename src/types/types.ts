@@ -36,7 +36,7 @@ export interface BarcodeType {
 }
 
 export interface AddFormInputsType {
-  code: number;
+  code: string;
   name: string;
   category: string;
   quantity: number;
