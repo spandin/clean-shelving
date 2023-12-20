@@ -1,14 +1,16 @@
 import "./_add-product.scss";
-import { useEffect } from "react";
 import { AddFormInputsType } from "@/types/types";
 
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { useAppDispatch } from "@/hooks/redux-hooks";
-
 import { useAuth } from "@/hooks/use-auth";
+import { useAppDispatch } from "@/hooks/redux-hooks";
 import { addProduct, setBarcodes } from "@/store/slices/dataSlice";
 
+import { db } from "@/lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
+
 import { toast } from "react-toastify";
+import { settingsToast } from "@/lib/toast";
 import { IMaskInput } from "react-imask";
 
 import Informer from "@/components/common/informer/informer";
@@ -21,20 +23,25 @@ export default function AddProduct() {
   const {
     register,
     control,
-    watch,
     formState: { isSubmitting },
     handleSubmit,
 
+    setValue,
+
     reset,
-  } = useForm<AddFormInputsType>({ mode: "onChange" });
+  } = useForm<AddFormInputsType>({ mode: "all" });
 
   const onCreate: SubmitHandler<AddFormInputsType> = async (data) => {
     try {
-      await toast.promise(dispatch(addProduct({ data, email })), {
-        pending: "Загрузка на сервер",
-        success: "Загружено успешно",
-        error: "Ошибка при добавлении",
-      });
+      await toast.promise(
+        dispatch(addProduct({ data, email })),
+        {
+          pending: "Загрузка на сервер",
+          success: "Загружено успешно",
+          error: "Ошибка при добавлении",
+        },
+        settingsToast
+      );
 
       dispatch(setBarcodes(data));
 
@@ -44,12 +51,19 @@ export default function AddProduct() {
     }
   };
 
-  useEffect(() => {
-    const subscription = watch((value, { name, type }) => {
-      console.log(value, name, type);
-    });
-    return () => subscription.unsubscribe();
-  }, [watch]);
+  const getBarcodesInfo = async (barcode: string): Promise<void> => {
+    try {
+      const docRef = doc(db, `barcodes/${barcode}`);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        setValue("name", docSnap.data().name);
+        setValue("category", docSnap.data().category);
+      }
+    } catch (error) {
+      console.log("GET BARCODE INFO:", error);
+    }
+  };
 
   return (
     <div className="add_product">
@@ -80,6 +94,7 @@ export default function AddProduct() {
                   message: "Максимальная длина 16 символов",
                 },
               })}
+              onChange={(e) => getBarcodesInfo(e.target.value)}
             />
           </div>
 
@@ -107,6 +122,7 @@ export default function AddProduct() {
             <div className="add_product__form__input">
               <label htmlFor="category">Категория:</label>
               <select
+                id="category"
                 {...register("category", {
                   required: "Выберите категорию",
                 })}
@@ -165,7 +181,7 @@ export default function AddProduct() {
             </div>
 
             <div className="add_product__form__input">
-              <select>
+              <select id="exp_type">
                 <option value="fullDate">Годен до:</option>
                 <option value="month">Годен месяцев:</option>
               </select>
