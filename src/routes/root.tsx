@@ -16,6 +16,11 @@ import "react-toastify/dist/ReactToastify.min.css";
 
 import Activity from "./activity/activity";
 
+import { setDefaultOptions } from "date-fns";
+import { ru } from "date-fns/locale";
+
+setDefaultOptions({ locale: ru });
+
 export default function Root() {
   const location = useLocation();
 
@@ -68,7 +73,8 @@ export default function Root() {
       </nav>
       <main>
         {location.pathname !== "/" ? <Outlet /> : <AboutProject />}
-        <ToastContainer limit={1} />
+
+        <ToastContainer theme="dark" position="bottom-center" limit={1} />
       </main>
       <aside>
         <Activity />
