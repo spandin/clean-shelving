@@ -1,9 +1,14 @@
+import { addMonths, getTime, toDate } from "date-fns";
+
 export const timestampToString = (timestamp: number): string => {
-  const date: Date = new Date(timestamp * 1000);
-  return date.toLocaleDateString("ru-Ru");
+  return toDate(timestamp).toLocaleDateString("ru-Ru");
 };
 
-export const stringToTimestamp = (strDate: string): number => {
-  const date = Date.parse(strDate);
-  return date / 1000;
+export const stringToUTC = (dateStr: string): number => {
+  const pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
+  return getTime(new Date(dateStr?.replace(pattern, "$3-$2-$1")));
+};
+
+export const calcEndDate = (mfd: string, exp: number): Date => {
+  return addMonths(new Date(mfd), exp);
 };
