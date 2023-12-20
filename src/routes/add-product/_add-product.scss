@@ -1,3 +1,5 @@
+@import "../../scss/variables";
+
 .add_product {
   display: flex;
   flex-direction: column;
@@ -23,7 +25,30 @@
       gap: 0.2rem;
       flex: 1 0;
       label {
-        margin: 0rem 0.1rem;
+        margin: 0rem 0.2rem;
+      }
+      #category,
+      #exp_type {
+        border: none;
+        border-radius: 10px;
+        color: $white;
+        transition: 0.2s ease-out all;
+      }
+      #category {
+        min-height: 50px;
+        padding: 0.2rem 0.8rem;
+        background-color: $tertiary-color;
+        &:hover,
+        &:focus {
+          background-color: #535353;
+        }
+      }
+      #exp_type {
+        font-weight: 300;
+        max-height: 23px;
+        &:focus {
+          background-color: $secondary-color;
+        }
       }
     }
     &__wrapper {

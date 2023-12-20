@@ -94,8 +94,15 @@ input[type="submit"] {
 input:focus,
 input:active,
 button:focus,
-button:active {
+button:active,
+select:focus,
+select:active {
   outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
 
 button::-moz-focus-inner {
