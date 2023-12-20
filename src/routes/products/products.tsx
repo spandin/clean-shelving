@@ -41,7 +41,7 @@ export default function Products() {
 
   return (
     <div className="products">
-      <ProductsHeader />
+      <ProductsHeader props={products.length} />
 
       <div className="products__grid">
         {products && products.length ? (
