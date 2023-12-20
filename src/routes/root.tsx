@@ -66,12 +66,13 @@ export default function Root() {
           </Link>
         </div>
       </nav>
-      <main>{location.pathname !== "/" ? <Outlet /> : <AboutProject />}</main>
+      <main>
+        {location.pathname !== "/" ? <Outlet /> : <AboutProject />}
+        <ToastContainer limit={1} />
+      </main>
       <aside>
         <Activity />
       </aside>
-
-      <ToastContainer theme="dark" position="bottom-center" autoClose={1500} />
     </div>
   );
 }
