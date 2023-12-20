@@ -1,27 +1,27 @@
 export interface ProductType {
   id: string;
   name: string;
-  code: string;
+  code: number;
   category: string;
-  quantity: string;
+  quantity: number;
   dates: {
-    createdAt: string;
-    mfd: string;
-    exp: string;
+    createdAt: number;
+    mfd: number;
+    exp: number;
   };
   actions: {
     created: {
-      createdAt: string;
+      createdAt: number;
       whoCreated: string;
       whoCreatedID?: string;
     };
     updated: {
-      updatedAt: string;
+      updatedAt: number;
       whoUpdated: string;
       whoUpdatedID?: string;
     };
     exported: {
-      exportedOn: string;
+      exportedOn: number;
       isExported: boolean;
       whoExported: string;
       whoExportedID?: string;
@@ -39,7 +39,7 @@ export interface AddFormInputsType {
   code: string;
   name: string;
   category: string;
-  quantity: number;
+  quantity: string;
   dates: {
     mfd: string;
     exp: string;
