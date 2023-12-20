@@ -1,9 +1,6 @@
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastOptions, toast } from "react-toastify";
 
-import { toast } from "react-toastify";
-
-ToastContainer.defaultProps = {
+const settingsToast: ToastOptions = {
   position: "bottom-center",
   autoClose: 1500,
   hideProgressBar: false,
@@ -37,5 +34,5 @@ export {
   toastError,
   toastWarn,
   toastInfo,
-  ToastContainer,
+  settingsToast,
 };
