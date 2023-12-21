@@ -18,7 +18,7 @@ export const stringToUTC = (dateStr: string): Date => {
 
 export const calcDistanceEndFromExp = (exp: string): string => {
   return intlFormatDistance(stringToUTC(exp), new Date(),
-    { locale: "ru" })
+    { locale: "ru" }
   );
 };
 
