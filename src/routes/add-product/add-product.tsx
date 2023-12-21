@@ -216,6 +216,7 @@ export default function AddProduct() {
               ) : (
                 <input
                   type="number"
+                  defaultValue={0}
                   autoComplete="off"
                   {...register("dates.exp", {
                     required: "Введите количество месяцев",
