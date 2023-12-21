@@ -3,19 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 const addFormSlice = createSlice({
   name: "addForm",
   initialState: {
-    selectType: "fullDate",
-    shelfTime: 0,
+    selectType: "date",
   },
   reducers: {
     setSelectType: (state, action) => {
       state.selectType = action.payload;
     },
-    setShelfTime: (state, action) => {
-      state.shelfTime = action.payload;
-    },
   },
 });
 
-export const { setSelectType, setShelfTime } = addFormSlice.actions;
+export const { setSelectType } = addFormSlice.actions;
 
 export default addFormSlice.reducer;
