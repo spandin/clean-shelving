@@ -1,7 +1,8 @@
 import "./_product-id.scss";
-import { ProductType } from "@/types/types";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
+import { ProductType } from "@/types/types";
 
 import { db } from "@/lib/firebase";
 import { DocumentData, doc, getDoc } from "firebase/firestore";
@@ -12,9 +13,11 @@ import { Ring } from "@uiball/loaders";
 import { BsPencilSquare, BsTrash3 } from "react-icons/bs";
 
 import Informer from "@/components/common/informer/informer";
+import { useTheme } from "@/hooks/use-theme";
 
 export default function ProductId() {
-  const theme = window.matchMedia("(prefers-color-scheme: dark)");
+  const { isDark } = useTheme();
+
   const { productId } = useParams();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -29,8 +32,6 @@ export default function ProductId() {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-          console.log(docSnap.data());
-
           setProduct(docSnap.data());
           setIsLoading(true);
         } else {
@@ -112,7 +113,7 @@ export default function ProductId() {
           </div>
         </>
       ) : (
-        <Ring size={30} color={theme.matches ? "#ffffff" : "#121212"} />
+        <Ring size={30} color={isDark ? "#ffffff" : "#121212"} />
       )}
     </div>
   );

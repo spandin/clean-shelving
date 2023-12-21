@@ -1,12 +1,15 @@
 import "./_products.scss";
-import { ProductType } from "@/types/types";
 import { useEffect, useState } from "react";
 
-import { dataCollection } from "@/lib/controller";
-import { DocumentData, onSnapshot } from "firebase/firestore";
+import { ProductType } from "@/types/types";
 
+import { useTheme } from "@/hooks/use-theme";
 import { useAppDispatch } from "@/hooks/redux-hooks";
+
 import { getBarcodes, getProducts } from "@/store/slices/dataSlice";
+
+import { db } from "@/lib/firebase";
+import { DocumentData, collection, onSnapshot } from "firebase/firestore";
 
 import { Ring } from "@uiball/loaders";
 
@@ -14,8 +17,7 @@ import ProductsCard from "./components/products-card";
 import ProductsHeader from "./components/products-header";
 
 export default function Products() {
-  const theme = window.matchMedia("(prefers-color-scheme: dark)");
-
+  const { isDark } = useTheme();
   const dispatch = useAppDispatch();
 
   const [products, setProducts] = useState<ProductType[]>([]);
@@ -24,7 +26,7 @@ export default function Products() {
     dispatch(getProducts());
     dispatch(getBarcodes());
 
-    const unsubscribe = onSnapshot(dataCollection, (querySnapshot) => {
+    const unsubscribe = onSnapshot(collection(db, "data"), (querySnapshot) => {
       const collectionSnapshot: ProductType[] = [];
 
       querySnapshot.forEach((doc: DocumentData) => {
@@ -49,7 +51,7 @@ export default function Products() {
             <ProductsCard key={product.id} product={product} />
           ))
         ) : (
-          <Ring size={30} color={theme.matches ? "#ffffff" : "#121212"} />
+          <Ring size={30} color={isDark ? "#ffffff" : "#121212"} />
         )}
       </div>
     </div>
