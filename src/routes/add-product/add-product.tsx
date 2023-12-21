@@ -86,7 +86,6 @@ export default function AddProduct() {
           <div className="add_product__form__input">
             <label htmlFor="code">Штрих код:</label>
             <input
-              placeholder="8600012345678900"
               type="number"
               autoComplete="off"
               {...register("code", {
@@ -107,7 +106,6 @@ export default function AddProduct() {
           <div className="add_product__form__input">
             <label htmlFor="name">Наименование:</label>
             <input
-              placeholder="Nestle Decoration 75g"
               type="text"
               autoComplete="off"
               {...register("name", {
