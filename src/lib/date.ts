@@ -26,6 +26,7 @@ export const calcDistanceEndFromMonth = (
 ): string => {
   return intlFormatDistance(
     addMonths(stringToUTC(mfd), parseInt(month)),
-    new Date()
+    new Date(),
+    { locale: "ru" }
   );
 };
