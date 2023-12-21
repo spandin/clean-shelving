@@ -12,7 +12,7 @@ import {
 } from "firebase/firestore";
 
 import { getTime } from "date-fns";
-import { stringToUTC } from "@/lib/date";
+import { stringToTimestamp } from "@/lib/date";
 
 export const getProducts = createAsyncThunk("@@data/getProducts", async () => {
   const querySnapshot = await getDocs(collection(db, "data"));
@@ -39,8 +39,8 @@ export const addProduct = createAsyncThunk(
       quantity: parseInt(data.quantity),
       dates: {
         createdAt: getTime(new Date()),
-        mfd: stringToUTC(data.dates.mfd),
-        exp: stringToUTC(data.dates.exp),
+        mfd: stringToTimestamp(data.dates.mfd),
+        exp: stringToTimestamp(data.dates.exp),
       },
       actions: {
         created: {
