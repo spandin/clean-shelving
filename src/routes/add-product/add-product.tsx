@@ -231,7 +231,7 @@ export default function AddProduct() {
                 />
               )}
 
-              {expirationDate}
+              <span id="exp_date_informer">{expirationDate}</span>
             </div>
           </div>
         </div>

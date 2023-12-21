@@ -50,6 +50,14 @@
           background-color: $secondary-color;
         }
       }
+      #exp_date_informer {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0.2rem 0.4rem;
+        font-size: 14px;
+        font-weight: 400;
+        color: $lime;
+      }
     }
     &__wrapper {
       display: flex;
