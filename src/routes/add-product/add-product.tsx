@@ -1,25 +1,30 @@
 import "./_add-product.scss";
+import { useState } from "react";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { IMaskInput } from "react-imask";
+import { toast } from "react-toastify";
+
 import { AddFormInputsType } from "@/types/types";
 
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useAuth } from "@/hooks/use-auth";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
+
 import { addProduct, setBarcodes } from "@/store/slices/dataSlice";
-import { setSelectType, setShelfTime } from "@/store/slices/addFormSlice";
+import { setSelectType } from "@/store/slices/addFormSlice";
 
 import { db } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
-
-import { IMaskInput } from "react-imask";
-import { toast } from "react-toastify";
 import { toastAuthErr } from "@/lib/toast";
 
 import Informer from "@/components/common/informer/informer";
 import { LoadButton } from "@/components/common/load-button";
+import CalcExpirationDate from "./components/calcExpirationDate";
 
 export default function AddProduct() {
   const dispatch = useAppDispatch();
   const { isAuth, email } = useAuth();
+
+  const [expirationDate, setExpirationDate] = useState("");
 
   const { selectType } = useAppSelector((state) => state.addForm);
 
@@ -29,8 +34,12 @@ export default function AddProduct() {
     formState: { isSubmitting },
     handleSubmit,
     setValue,
+    getValues,
     reset,
-  } = useForm<AddFormInputsType>({ mode: "all" });
+    watch,
+  } = useForm<AddFormInputsType>({ mode: "onChange" });
+
+  CalcExpirationDate(watch, getValues, setExpirationDate);
 
   const onCreate: SubmitHandler<AddFormInputsType> = async (data) => {
     try {
@@ -61,21 +70,6 @@ export default function AddProduct() {
       console.log("GET BARCODE INFO:", error);
     }
   };
-
-  // useEffect(() => {
-  //   const subscription = watch((value) => {
-  //     selectType === "fullDate"
-  //       ? dispatch(setShelfTime(value.dates.exp))
-  //       : dispatch(
-  //           setShelfTime(
-  //             calcEndDate(value.dates.mfd, parseInt(value.dates.exp))
-  //           )
-  //         );
-
-  //     console.log(formatDistanceToNow(new Date(value.dates.exp)));
-  //   });
-  //   return () => subscription.unsubscribe();
-  // }, [watch, dispatch, selectType]);
 
   return (
     <div className="add_product">
@@ -139,10 +133,10 @@ export default function AddProduct() {
                   required: "Выберите категорию",
                 })}
               >
-                <option value="Косметика">Косметика</option>
-                <option value="Продукты">Продукты</option>
+                <option value="Косметика">Продукты</option>
+                <option value="Продукты">Химия</option>
                 <option value="Алкоголь">Алкоголь</option>
-                <option value="Химия">Химия</option>
+                <option value="Химия">Косметика</option>
                 <option value="Другое">Другое</option>
               </select>
             </div>
@@ -182,9 +176,7 @@ export default function AddProduct() {
                     mask={Date}
                     min={new Date(2018, 0, 1)}
                     max={new Date(2099, 0, 1)}
-                    onChange={(date) => {
-                      field.onChange(date);
-                    }}
+                    onChange={(date) => field.onChange(date)}
                     placeholder="00.00.0000"
                     inputMode="numeric"
                   />
@@ -198,14 +190,13 @@ export default function AddProduct() {
                 defaultValue={selectType}
                 onChange={(e) => {
                   dispatch(setSelectType(e.target.value));
-                  dispatch(setShelfTime(0));
                 }}
               >
-                <option value="fullDate">Годен до:</option>
+                <option value="date">Годен до:</option>
                 <option value="month">Годен месяцев:</option>
               </select>
 
-              {selectType === "fullDate" ? (
+              {selectType === "date" ? (
                 <Controller
                   control={control}
                   {...register("dates.exp", {
@@ -239,6 +230,8 @@ export default function AddProduct() {
                   })}
                 />
               )}
+
+              {expirationDate}
             </div>
           </div>
         </div>
