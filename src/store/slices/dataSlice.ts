@@ -1,4 +1,8 @@
-import { AddFormInputsType, DataState } from "@/types/types";
+import {
+  AddFormInputsType,
+  DataState,
+  UpdateFormInputsType,
+} from "@/types/types";
 
 import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
 
@@ -9,6 +13,7 @@ import {
   doc,
   getDocs,
   setDoc,
+  updateDoc,
 } from "firebase/firestore";
 
 import { getTime } from "date-fns";
@@ -55,6 +60,54 @@ export const addProduct = createAsyncThunk(
   }
 );
 
+export const updateProduct = createAsyncThunk(
+  "@@data/updateProduct",
+  async ({
+    id,
+    data,
+    email,
+  }: {
+    id: string;
+    data: UpdateFormInputsType;
+    email: string | null;
+  }) => {
+    const posts = await getDocs(collection(db, "data"));
+    for (const snap of posts.docs) {
+      if (snap.id === id) {
+        await updateDoc(doc(db, "data", snap.id), {
+          name: data.name,
+          code: data.code,
+          category: data.category,
+          quantity: data.quantity,
+          dates: {
+            mfd: stringToTimestamp(data.dates.mfd),
+            exp: stringToTimestamp(data.dates.exp),
+          },
+          actions: {
+            exported: {
+              isExported: false,
+            },
+            updated: {
+              updatedAt: getTime(new Date()),
+              isUpdated: true,
+              whoUpdated: email,
+              whoUpdatedID: id,
+            },
+          },
+        });
+      }
+    }
+
+    await setDoc(doc(db, "products", data.code), {
+      code: data.code,
+      name: data.name,
+      category: data.category,
+    });
+
+    return { id, data, email };
+  }
+);
+
 export const getBarcodes = createAsyncThunk("@@data/getBarcodes", async () => {
   const querySnapshot = await getDocs(collection(db, "barcodes"));
   const barcodes = querySnapshot.docs.map((doc: DocumentData) => doc.data());
@@ -85,6 +138,19 @@ const dataSlice = createSlice({
     builder
       .addCase(getProducts.fulfilled, (state, action) => {
         state.products = action.payload;
+      })
+      .addCase(updateProduct.fulfilled, (state, action) => {
+        const postIndex = state.products.findIndex(
+          (post) => post.id == action.payload.id
+        );
+        state.products[postIndex].name = action.payload.data.name;
+        state.products[postIndex].category = action.payload.data.category;
+        state.products[postIndex].code = action.payload.data.code;
+        state.products[postIndex].quantity = action.payload.data.quantity;
+        state.products[postIndex].dates.mfd = action.payload.data.dates.mfd;
+        state.products[postIndex].dates.exp = action.payload.data.dates.exp;
+        state.products[postIndex].actions.exported.isExported = false;
+        state.products[postIndex].actions.updated.isUpdated = true;
       })
       .addCase(getBarcodes.fulfilled, (state, action) => {
         state.barcodes = action.payload;

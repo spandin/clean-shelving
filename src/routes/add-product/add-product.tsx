@@ -72,18 +72,18 @@ export default function AddProduct() {
   };
 
   return (
-    <div className="add_product">
-      <div className="add_product__header">
+    <div className="add-product">
+      <div className="add-product__header">
         <Informer title="Добавление" />
       </div>
 
       <form
-        className="add_product__form"
+        className="add-product__form"
         onSubmit={handleSubmit(onCreate)}
         noValidate
       >
-        <div className="add_product__form__wrapper">
-          <div className="add_product__form__input">
+        <div className="add-product__form__wrapper">
+          <div className="add-product__form__input">
             <label htmlFor="code">Штрих код:</label>
             <input
               type="number"
@@ -103,7 +103,7 @@ export default function AddProduct() {
             />
           </div>
 
-          <div className="add_product__form__input">
+          <div className="add-product__form__input">
             <label htmlFor="name">Наименование:</label>
             <input
               type="text"
@@ -122,8 +122,8 @@ export default function AddProduct() {
             />
           </div>
 
-          <div className="add_product__form__wrapper__row">
-            <div className="add_product__form__input">
+          <div className="add-product__form__wrapper__row">
+            <div className="add-product__form__input">
               <label htmlFor="category">Категория:</label>
               <select
                 id="category"
@@ -131,15 +131,15 @@ export default function AddProduct() {
                   required: "Выберите категорию",
                 })}
               >
-                <option value="Косметика">Продукты</option>
-                <option value="Продукты">Химия</option>
+                <option value="Продукты">Продукты</option>
+                <option value="Химия">Химия</option>
                 <option value="Алкоголь">Алкоголь</option>
-                <option value="Химия">Косметика</option>
+                <option value="Косметика">Косметика</option>
                 <option value="Другое">Другое</option>
               </select>
             </div>
 
-            <div className="add_product__form__input">
+            <div className="add-product__form__input">
               <label htmlFor="quantity">Количество:</label>
               <input
                 placeholder="1-99"
@@ -161,8 +161,8 @@ export default function AddProduct() {
             </div>
           </div>
 
-          <div className="add_product__form__wrapper__row">
-            <div className="add_product__form__input">
+          <div className="add-product__form__wrapper__row">
+            <div className="add-product__form__input">
               <label htmlFor="mfd">Годен от:</label>
               <Controller
                 control={control}
@@ -182,7 +182,7 @@ export default function AddProduct() {
               />
             </div>
 
-            <div className="add_product__form__input">
+            <div className="add-product__form__input">
               <select
                 id="exp_type"
                 defaultValue={selectType}
