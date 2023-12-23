@@ -13,11 +13,13 @@ import storage from "redux-persist/lib/storage";
 import userReducer from "./slices/userSlice";
 import dataSlice from "./slices/dataSlice";
 import addFormSlice from "./slices/addFormSlice";
+import activitySlice from "./slices/activitySlice";
 
 const rootReducer = combineReducers({
   user: userReducer,
   data: dataSlice,
   addForm: addFormSlice,
+  activity: activitySlice,
 });
 
 const persistConfig = {
