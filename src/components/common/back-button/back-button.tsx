@@ -1,4 +1,4 @@
-import "./_index.scss";
+import "./_back-button.scss";
 
 import { useNavigate } from "react-router-dom";
 

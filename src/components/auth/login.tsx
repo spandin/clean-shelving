@@ -8,7 +8,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { setUser } from "@/store/slices/userSlice";
 
 import IMAGES from "@/assets/images";
-import { LoadButton } from "../common/load-button";
+import { LoadButton } from "../common/load-button/load-button";
 
 interface FormValues {
   email: string;

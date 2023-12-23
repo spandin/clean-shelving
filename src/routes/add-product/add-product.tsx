@@ -17,7 +17,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { toastAuthErr } from "@/lib/toast";
 
 import Informer from "@/components/common/informer/informer";
-import { LoadButton } from "@/components/common/load-button";
+import { LoadButton } from "@/components/common/load-button/load-button";
 import CalcExpirationDate from "./components/calcExpirationDate";
 
 export default function AddProduct() {
