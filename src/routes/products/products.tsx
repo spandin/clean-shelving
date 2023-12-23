@@ -33,6 +33,10 @@ export default function Products() {
         collectionSnapshot.push(doc.data());
       });
 
+      collectionSnapshot.sort(
+        (x, y) => +new Date(x.dates.exp) - +new Date(y.dates.exp)
+      );
+
       setProducts(collectionSnapshot);
     });
 
