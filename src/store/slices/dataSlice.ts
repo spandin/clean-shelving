@@ -1,4 +1,4 @@
-import { AddFormInputsType, BarcodeType, ProductType } from "@/types/types";
+import { AddFormInputsType, DataState } from "@/types/types";
 
 import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
 
@@ -71,11 +71,6 @@ export const setBarcodes = createAsyncThunk(
       category: data.category,
     })
 );
-
-interface DataState {
-  products: ProductType[];
-  barcodes: BarcodeType[];
-}
 
 const initialState: DataState = {
   products: [],
