@@ -13,10 +13,10 @@ import { useAppSelector } from "@/hooks/redux-hooks";
 export default function ProductId() {
   const { isDark } = useTheme();
 
-  const { id } = useParams();
+  const { productId } = useParams();
 
   const products = useAppSelector((state) => state.data.products);
-  const product = products.find((post) => post.id === id);
+  const product = products.find((post) => post.id === productId);
 
   return (
     <div className="product-id">
