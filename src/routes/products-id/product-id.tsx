@@ -51,9 +51,13 @@ export default function ProductId() {
     const fetchProductData = async () => {
       try {
         const docRef = doc(db, "data", `${productId}`);
+        console.log(docRef);
+
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
+          console.log(docSnap);
+
           setProduct(docSnap.data());
         } else {
           console.log(`Document does not exist`);
@@ -62,6 +66,8 @@ export default function ProductId() {
         console.log("ProductID: " + error);
       }
     };
+
+    console.log(product);
 
     return () => {
       fetchProductData();
