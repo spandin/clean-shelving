@@ -29,12 +29,6 @@ export interface ProductType {
   };
 }
 
-export interface BarcodeType {
-  name: string;
-  code: number;
-  category: string;
-}
-
 export interface AddFormInputsType {
   code: string;
   name: string;
@@ -44,4 +38,37 @@ export interface AddFormInputsType {
     mfd: string;
     exp: string;
   };
+}
+
+// Redux Data Types -
+export interface DataState {
+  products: ProductType[];
+  barcodes: BarcodeType[];
+}
+
+export interface BarcodeType {
+  name: string;
+  code: number;
+  category: string;
+}
+
+//Redux Activity Types -
+export interface ActivityState {
+  my: MyActivity[];
+  all: AllActivity[];
+}
+
+interface MyActivity {
+  date: number;
+  action: string;
+}
+
+interface AllActivity {
+  actioner: {
+    name: string;
+    email: string;
+    id: string;
+  };
+  description: string;
+  madeOn: number;
 }
