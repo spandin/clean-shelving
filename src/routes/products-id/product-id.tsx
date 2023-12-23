@@ -1,11 +1,5 @@
 import "./_product-id.scss";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-import { ProductType } from "@/types/types";
-
-import { db } from "@/lib/firebase";
-import { DocumentData, doc, getDoc } from "firebase/firestore";
 
 import { timestampToString } from "@/lib/date";
 
@@ -14,43 +8,19 @@ import { BsPencilSquare, BsTrash3 } from "react-icons/bs";
 
 import Informer from "@/components/common/informer/informer";
 import { useTheme } from "@/hooks/use-theme";
+import { useAppSelector } from "@/hooks/redux-hooks";
 
 export default function ProductId() {
   const { isDark } = useTheme();
 
   const { id } = useParams();
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [product, setProduct] = useState<DocumentData | ProductType>();
-
-  const docRef = doc(db, `data/${id}`);
-
-  useEffect(() => {
-    const fetchProductData = async () => {
-      setIsLoading(false);
-
-      try {
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          setProduct(docSnap.data());
-          setIsLoading(true);
-        } else {
-          console.log(`Document does not exist`);
-        }
-      } catch (error) {
-        console.log("ProductID: " + error);
-      }
-    };
-
-    return () => {
-      fetchProductData();
-    };
-  }, [docRef]);
+  const products = useAppSelector((state) => state.data.products);
+  const product = products.find((post) => post.id === id);
 
   return (
     <div className="product-id">
-      {isLoading && product != undefined ? (
+      {product != undefined ? (
         <>
           <div className="product-id__wrapper">
             <div className="product-id__wrapper__header">
