@@ -3,7 +3,7 @@ import "./_informer.scss";
 import { useLocation } from "react-router-dom";
 
 import ExportButton from "../export-button/export-button";
-import BackButton from "../back-button";
+import BackButton from "../back-button/back-button";
 
 interface InformerProps {
   title: string;
