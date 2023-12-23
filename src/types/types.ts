@@ -60,7 +60,7 @@ export interface ActivityState {
 
 interface MyActivity {
   date: number;
-  action: string;
+  description: string;
 }
 
 interface AllActivity {
