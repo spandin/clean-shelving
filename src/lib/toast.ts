@@ -8,6 +8,18 @@ const settingsToast: ToastOptions = {
   theme: "dark",
 };
 
+const toastPromise = async (promise: Promise<unknown>) => {
+  await toast.promise(
+    promise,
+    {
+      pending: "Загрузка на сервер",
+      success: "Загружено успешно",
+      error: "Ошибка при добавлении",
+    },
+    settingsToast
+  );
+};
+
 const toastAuthErr = () => {
   toast.error("Войдите в аккаунт", settingsToast);
 };
@@ -29,6 +41,7 @@ const toastInfo = () => {
 };
 
 export {
+  toastPromise,
   toastAuthErr,
   toastSuccess,
   toastError,
