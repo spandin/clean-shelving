@@ -96,7 +96,7 @@ export const updateProduct = createAsyncThunk(
       }
     }
 
-    await setDoc(doc(db, "products", data.code), {
+    await setDoc(doc(db, "barcodes", data.code), {
       code: data.code,
       name: data.name,
       category: data.category,
