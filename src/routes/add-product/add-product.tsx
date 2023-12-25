@@ -2,7 +2,6 @@ import "./_add-product.scss";
 import { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { IMaskInput } from "react-imask";
-import { toast } from "react-toastify";
 
 import { AddFormInputsType } from "@/types/types";
 
@@ -14,7 +13,7 @@ import { setSelectType } from "@/store/slices/addFormSlice";
 
 import { db } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
-import { toastAuthErr } from "@/lib/toast";
+import { toastAuthErr, toastPromise } from "@/lib/toast";
 
 import Informer from "@/components/common/informer/informer";
 import { LoadButton } from "@/components/common/load-button/load-button";
@@ -43,11 +42,7 @@ export default function AddProduct() {
 
   const onCreate: SubmitHandler<AddFormInputsType> = async (data) => {
     try {
-      await toast.promise(dispatch(addProduct({ data, email })), {
-        pending: "Загрузка на сервер",
-        success: "Загружено успешно",
-        error: "Ошибка при добавлении",
-      });
+      await toastPromise(dispatch(addProduct({ data, email })));
 
       dispatch(setBarcodes(data));
 
@@ -86,6 +81,7 @@ export default function AddProduct() {
           <div className="add-product__form__input">
             <label htmlFor="code">Штрих код:</label>
             <input
+              placeholder="0000000000000"
               type="number"
               autoComplete="off"
               {...register("code", {
@@ -106,6 +102,7 @@ export default function AddProduct() {
           <div className="add-product__form__input">
             <label htmlFor="name">Наименование:</label>
             <input
+              placeholder="Название товара"
               type="text"
               autoComplete="off"
               {...register("name", {
