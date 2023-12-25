@@ -1,6 +1,7 @@
-import { AddFormInputsType } from "@/types/types";
+import "./_update-products.scss";
 
-import { useEffect } from "react";
+import { ProductType } from "@/types/types";
+
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { useAuth } from "@/hooks/use-auth";
@@ -8,8 +9,8 @@ import { useAppDispatch } from "@/hooks/redux-hooks";
 
 import { updateProduct } from "@/store/slices/dataSlice";
 
-import { toast } from "react-toastify";
-import { toastAuthErr } from "@/lib/toast";
+import { toastAuthErr, toastPromise } from "@/lib/toast";
+import { timestampToString } from "@/lib/date";
 
 import { LoadButton } from "@/components/common/load-button/load-button";
 
@@ -17,7 +18,7 @@ export const UpdateProduct = ({
   product,
   id,
 }: {
-  product: AddFormInputsType;
+  product: ProductType;
   id: string;
 }) => {
   const dispatch = useAppDispatch();
@@ -27,28 +28,15 @@ export const UpdateProduct = ({
     register,
     formState: { isSubmitting },
     handleSubmit,
-    setValue,
-  } = useForm<AddFormInputsType>({ mode: "onSubmit" });
+  } = useForm<ProductType>({ mode: "onSubmit" });
 
-  const onUpdate: SubmitHandler<AddFormInputsType> = async (data) => {
+  const onUpdate: SubmitHandler<ProductType> = async (data) => {
     try {
-      await toast.promise(dispatch(updateProduct({ id, data, email })), {
-        pending: "Загрузка на сервер",
-        success: "Обновлено успешно",
-        error: "Ошибка при обновлении",
-      });
+      await toastPromise(dispatch(updateProduct({ id, data, email })));
     } catch (error) {
       console.log(`UPDATE PRODUCT:`, error);
     }
   };
-
-  useEffect(() => {
-    setValue("name", product.name);
-    setValue("code", product.code);
-    setValue("dates.mfd", product.dates.mfd);
-    setValue("dates.exp", product.dates.exp);
-    setValue("quantity", product.quantity);
-  }, [id, product, setValue]);
 
   return (
     <div className="update-product">
@@ -66,6 +54,7 @@ export const UpdateProduct = ({
               placeholder="0000000000000"
               type="number"
               autoComplete="off"
+              defaultValue={product.code}
               {...register("code", {
                 required: "Введите штрих код",
                 minLength: {
@@ -86,6 +75,7 @@ export const UpdateProduct = ({
               placeholder="Название товара"
               type="text"
               autoComplete="off"
+              defaultValue={product.name}
               {...register("name", {
                 required: "Введите название",
                 minLength: {
@@ -105,40 +95,16 @@ export const UpdateProduct = ({
               <label htmlFor="category">Категория:</label>
               <select
                 id="category"
+                defaultValue={product.category}
                 {...register("category", {
                   required: "Выберите категорию",
                 })}
               >
-                <option
-                  value="Продукты"
-                  selected={product.category == "Продукты" ? true : false}
-                >
-                  Продукты
-                </option>
-                <option
-                  value="Химия"
-                  selected={product.category == "Химия" ? true : false}
-                >
-                  Химия
-                </option>
-                <option
-                  value="Алкоголь"
-                  selected={product.category == "Алкоголь" ? true : false}
-                >
-                  Алкоголь
-                </option>
-                <option
-                  value="Косметика"
-                  selected={product.category == "Косметика" ? true : false}
-                >
-                  Косметика
-                </option>
-                <option
-                  value="Другое"
-                  selected={product.category == "Другое" ? true : false}
-                >
-                  Другое
-                </option>
+                <option value="Продукты">Продукты</option>
+                <option value="Химия">Химия</option>
+                <option value="Алкоголь">Алкоголь</option>
+                <option value="Косметика">Косметика</option>
+                <option value="Другое">Другое</option>
               </select>
             </div>
 
@@ -148,6 +114,7 @@ export const UpdateProduct = ({
                 placeholder="1-99"
                 type="number"
                 autoComplete="off"
+                defaultValue={product.quantity}
                 {...register("quantity", {
                   required: "Введите количество",
                   min: {
@@ -170,6 +137,7 @@ export const UpdateProduct = ({
                 type="text"
                 autoComplete="off"
                 inputMode="numeric"
+                defaultValue={timestampToString(product.dates.mfd)}
                 {...register("dates.mfd", {
                   required: "Укажите дату производства",
                 })}
@@ -182,6 +150,7 @@ export const UpdateProduct = ({
                 type="text"
                 autoComplete="off"
                 inputMode="numeric"
+                defaultValue={timestampToString(product.dates.exp)}
                 {...register("dates.exp", {
                   required: "Укажите дату просрочки",
                 })}

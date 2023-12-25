@@ -1,3 +1,5 @@
+import "./_delete-products.scss";
+
 import { useNavigate } from "react-router-dom";
 
 import { db } from "@/lib/firebase";
@@ -9,7 +11,7 @@ export const DeleteProduct = ({ name, id }: { name: string; id: string }) => {
   const deleteProduct = async () => {
     try {
       await deleteDoc(doc(db, "data", id));
-      navigate("/");
+      navigate("/products/");
     } catch (error) {
       console.log("DELETE PRODUCT: " + error);
     }
@@ -22,7 +24,7 @@ export const DeleteProduct = ({ name, id }: { name: string; id: string }) => {
         <p className="delete-product__body__text">&quot;{name}&quot;</p>
       </div>
 
-      <button value="Удалить" onClick={() => deleteProduct()} />
+      <button onClick={() => deleteProduct()}>Удалить</button>
     </div>
   );
 };

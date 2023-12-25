@@ -23,8 +23,19 @@ export default function ProductsCard({ product }: IProps) {
 
       <div className="products__grid__card__row_2">
         <div id="card_add">
-          <span>ADD:</span>
-          <span>{timestampToString(product.dates.createdAt)}</span>
+          {product.dates.createdAt ? (
+            <>
+              <span>ADD:</span>
+              <span>{timestampToString(product.dates.createdAt)}</span>
+            </>
+          ) : (
+            <>
+              <span>UPD:</span>
+              <span>
+                {timestampToString(product.actions.updated.updatedAt)}
+              </span>
+            </>
+          )}
         </div>
         <div id="card_mfd">
           <span>MFD:</span>

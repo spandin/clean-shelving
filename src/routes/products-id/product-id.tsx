@@ -15,6 +15,7 @@ import Informer from "@/components/common/informer/informer";
 import { UpdateProduct } from "@/components/products/update-product/update-product";
 import { DeleteProduct } from "@/components/products/delete-product/delete-product";
 import { Modal } from "@/components/common/modal/modal";
+import { timestampToString } from "@/lib/date";
 
 export default function ProductId() {
   const { productId } = useParams();
@@ -79,16 +80,24 @@ export default function ProductId() {
               <div className="product-id__wrapper__body__content">
                 <h1>Даты:</h1>
                 <div>
-                  <span id="content_headline">Добавлен: </span>{" "}
-                  {product.dates.createdAt}
+                  {product.dates.createdAt ? (
+                    <span id="content_headline">
+                      Добавлен: {timestampToString(product.dates.createdAt)}
+                    </span>
+                  ) : (
+                    <span id="content_headline">
+                      Обновлён:{" "}
+                      {timestampToString(product.actions.updated.updatedAt)}
+                    </span>
+                  )}
                 </div>
                 <div>
                   <span id="content_headline">Изготовлен: </span>{" "}
-                  {product.dates.mfd}
+                  {timestampToString(product.dates.mfd)}
                 </div>
                 <div>
                   <span id="content_headline">Просрочится: </span>
-                  {product.dates.exp}
+                  {timestampToString(product.dates.exp)}
                 </div>
               </div>
             </div>
