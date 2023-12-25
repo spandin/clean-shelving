@@ -1,8 +1,4 @@
-import {
-  AddFormInputsType,
-  DataState,
-  UpdateFormInputsType,
-} from "@/types/types";
+import { AddFormInputsType, DataState, ProductType } from "@/types/types";
 
 import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
 
@@ -21,7 +17,9 @@ import { stringToTimestamp } from "@/lib/date";
 
 export const getProducts = createAsyncThunk("@@data/getProducts", async () => {
   const querySnapshot = await getDocs(collection(db, "data"));
-  const data = querySnapshot.docs.map((doc: DocumentData) => doc.data());
+  const data: ProductType[] = querySnapshot.docs.map((doc: DocumentData) =>
+    doc.data()
+  );
 
   return data;
 });
@@ -68,7 +66,7 @@ export const updateProduct = createAsyncThunk(
     email,
   }: {
     id: string;
-    data: UpdateFormInputsType;
+    data: ProductType | DocumentData;
     email: string | null;
   }) => {
     const posts = await getDocs(collection(db, "data"));
