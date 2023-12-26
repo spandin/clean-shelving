@@ -38,14 +38,9 @@ export const getActivity = createAsyncThunk("@@data/getActivity", async () => {
 
 export const addProduct = createAsyncThunk(
   "@@data/addProduct",
-  async ({
-    data,
-    email,
-  }: {
-    data: AddFormInputsType;
-    email: string | null;
-  }) => {
+  async ({ data, user }: { data: AddFormInputsType; user: UserData }) => {
     const id = nanoid();
+
     await setDoc(doc(db, "data", id), {
       id: id,
       name: data.name,
@@ -60,12 +55,29 @@ export const addProduct = createAsyncThunk(
       actions: {
         created: {
           createdAt: getTime(new Date()),
-          whoCreated: email,
+          whoCreated: user.email,
         },
         exported: {
           isExported: false,
         },
       },
+    });
+
+    await setDoc(doc(db, "barcodes", data.code), {
+      code: data.code,
+      name: data.name,
+      category: data.category,
+    });
+
+    await setDoc(doc(db, "activity", id), {
+      id: id,
+      actioner: {
+        name: user.email,
+        email: user.email,
+        id: user.id,
+      },
+      description: `Добавил - ${data.name}`,
+      madeOn: getTime(new Date()),
     });
   }
 );
