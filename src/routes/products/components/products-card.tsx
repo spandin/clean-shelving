@@ -8,14 +8,17 @@ import { timestampToString } from "@/lib/date";
 
 interface IProps {
   product: ProductType;
+  number: number;
 }
 
-export default function ProductsCard({ product }: IProps) {
+export default function ProductsCard({ product, number }: IProps) {
   return (
     <div className="products__grid__card">
       <div className="products__grid__card__row_1">
         <div className="products__grid__card__row_1__group">
-          <span id="card_name">{product.name}</span>
+          <span id="card_name">
+            {number + 1}. {product.name}
+          </span>
           <span id="card_quantity">{product.quantity} шт.</span>
         </div>
         <span id="card_barcode">{product.code}</span>
