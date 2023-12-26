@@ -26,15 +26,15 @@ export const UpdateProduct = ({
 
   const {
     register,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
     handleSubmit,
   } = useForm<ProductType>({ mode: "onSubmit" });
 
-  const onUpdate: SubmitHandler<ProductType> = async (data) => {
+  const onUpdate: SubmitHandler<ProductType> = (data) => {
     try {
-      await toastPromise(dispatch(updateProduct({ id, data, user })));
-    } catch (error) {
-      console.log(`UPDATE PRODUCT:`, error);
+      toastPromise(dispatch(updateProduct({ id, data, user })));
+    } catch (e) {
+      console.log(`UPDATE PRODUCT:`, e);
     }
   };
 
@@ -157,6 +157,19 @@ export const UpdateProduct = ({
               />
             </div>
           </div>
+
+          <p className="update-product__form__wrapper__error">
+            {(errors.code && errors.code.message) ||
+              (errors.name && errors.name.message) ||
+              (errors.category && errors.category.message) ||
+              (errors.quantity && errors.quantity.message) ||
+              (errors.dates != undefined &&
+                errors.dates.mfd &&
+                errors.dates.mfd.message) ||
+              (errors.dates != undefined &&
+                errors.dates.exp &&
+                errors.dates.exp.message)}
+          </p>
         </div>
 
         <LoadButton
@@ -164,7 +177,7 @@ export const UpdateProduct = ({
           disabled={true}
           isLoading={isSubmitting}
           text="Обновить"
-          onClick={user.isAuth ? () => null : toastAuthErr}
+          onClick={user.isAuth ? () => null : () => toastAuthErr()}
         />
       </form>
     </div>

@@ -8,7 +8,7 @@ import { AddFormInputsType } from "@/types/types";
 import { useAuth } from "@/hooks/use-auth";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
 
-import { addProduct, setBarcodes } from "@/store/slices/dataSlice";
+import { addProduct } from "@/store/slices/dataSlice";
 import { setSelectType } from "@/store/slices/addFormSlice";
 
 import { db } from "@/lib/firebase";
@@ -21,7 +21,7 @@ import CalcExpirationDate from "./components/calcExpirationDate";
 
 export default function AddProduct() {
   const dispatch = useAppDispatch();
-  const { isAuth, email } = useAuth();
+  const user = useAuth();
 
   const [expirationDate, setExpirationDate] = useState("");
 
@@ -30,7 +30,7 @@ export default function AddProduct() {
   const {
     register,
     control,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
     handleSubmit,
     setValue,
     getValues,
@@ -40,15 +40,13 @@ export default function AddProduct() {
 
   CalcExpirationDate(watch, getValues, setExpirationDate);
 
-  const onCreate: SubmitHandler<AddFormInputsType> = async (data) => {
+  const onCreate: SubmitHandler<AddFormInputsType> = (data) => {
     try {
-      await toastPromise(dispatch(addProduct({ data, email })));
-
-      dispatch(setBarcodes(data));
+      toastPromise(dispatch(addProduct({ data, user })));
 
       reset();
     } catch (e) {
-      console.log(`ADD PRODUCT:`, e);
+      console.log(`ADD PRODUCT:`, (e as Error).message);
     }
   };
 
@@ -61,8 +59,8 @@ export default function AddProduct() {
         setValue("name", docSnap.data().name);
         setValue("category", docSnap.data().category);
       }
-    } catch (error) {
-      console.log("GET BARCODE INFO:", error);
+    } catch (e) {
+      console.log("GET BARCODE INFO:", (e as Error).message);
     }
   };
 
@@ -230,6 +228,19 @@ export default function AddProduct() {
               <span id="exp_date_informer">{expirationDate}</span>
             </div>
           </div>
+
+          <p className="add-product__form__wrapper__error">
+            {(errors.code && errors.code.message) ||
+              (errors.name && errors.name.message) ||
+              (errors.category && errors.category.message) ||
+              (errors.quantity && errors.quantity.message) ||
+              (errors.dates != undefined &&
+                errors.dates.mfd &&
+                errors.dates.mfd.message) ||
+              (errors.dates != undefined &&
+                errors.dates.exp &&
+                errors.dates.exp.message)}
+          </p>
         </div>
 
         <LoadButton
@@ -237,7 +248,7 @@ export default function AddProduct() {
           disabled={true}
           isLoading={isSubmitting}
           text="Добавить"
-          onClick={isAuth ? () => null : toastAuthErr}
+          onClick={user.isAuth ? () => null : () => toastAuthErr()}
         />
       </form>
     </div>
