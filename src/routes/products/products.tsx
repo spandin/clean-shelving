@@ -6,7 +6,11 @@ import { ProductType } from "@/types/types";
 import { useTheme } from "@/hooks/use-theme";
 import { useAppDispatch } from "@/hooks/redux-hooks";
 
-import { getBarcodes, getProducts } from "@/store/slices/dataSlice";
+import {
+  getActivity,
+  getBarcodes,
+  getProducts,
+} from "@/store/slices/dataSlice";
 
 import { db } from "@/lib/firebase";
 import { DocumentData, collection, onSnapshot } from "firebase/firestore";
@@ -24,6 +28,7 @@ export default function Products() {
 
   useEffect(() => {
     dispatch(getProducts());
+    dispatch(getActivity());
     dispatch(getBarcodes());
 
     const unsubscribe = onSnapshot(collection(db, "data"), (querySnapshot) => {
@@ -51,8 +56,8 @@ export default function Products() {
 
       <div className="products__grid">
         {products && products.length ? (
-          products.map((product) => (
-            <ProductsCard key={product.id} product={product} />
+          products.map((product, number) => (
+            <ProductsCard key={product.id} product={product} number={number} />
           ))
         ) : (
           <Ring size={30} color={isDark ? "#ffffff" : "#121212"} />
