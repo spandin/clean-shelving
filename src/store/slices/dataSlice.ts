@@ -1,4 +1,9 @@
-import { AddFormInputsType, DataState, ProductType } from "@/types/types";
+import {
+  AddFormInputsType,
+  DataState,
+  ProductType,
+  UserData,
+} from "@/types/types";
 
 import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
 
@@ -20,6 +25,13 @@ export const getProducts = createAsyncThunk("@@data/getProducts", async () => {
   const data: ProductType[] = querySnapshot.docs.map((doc: DocumentData) =>
     doc.data()
   );
+
+  return data;
+});
+
+export const getActivity = createAsyncThunk("@@data/getActivity", async () => {
+  const querySnapshot = await getDocs(collection(db, "activity"));
+  const data = querySnapshot.docs.map((doc: DocumentData) => doc.data());
 
   return data;
 });
@@ -63,11 +75,11 @@ export const updateProduct = createAsyncThunk(
   async ({
     id,
     data,
-    email,
+    user,
   }: {
     id: string;
     data: ProductType | DocumentData;
-    email: string | null;
+    user: UserData;
   }) => {
     const posts = await getDocs(collection(db, "data"));
     for (const snap of posts.docs) {
@@ -88,7 +100,7 @@ export const updateProduct = createAsyncThunk(
             updated: {
               updatedAt: getTime(new Date()),
               isUpdated: true,
-              whoUpdated: email,
+              whoUpdated: user.email,
               whoUpdatedID: id,
             },
           },
@@ -102,7 +114,18 @@ export const updateProduct = createAsyncThunk(
       category: data.category,
     });
 
-    return { id, data, email };
+    await setDoc(doc(db, "activity", id), {
+      id: id,
+      actioner: {
+        name: user.email,
+        email: user.email,
+        id: user.id,
+      },
+      description: `Обновил - ${data.name}`,
+      madeOn: getTime(new Date()),
+    });
+
+    return { id, data, user };
   }
 );
 
@@ -126,6 +149,10 @@ export const setBarcodes = createAsyncThunk(
 const initialState: DataState = {
   products: [],
   barcodes: [],
+  activity: {
+    my: [],
+    all: [],
+  },
 };
 
 const dataSlice = createSlice({
@@ -137,18 +164,37 @@ const dataSlice = createSlice({
       .addCase(getProducts.fulfilled, (state, action) => {
         state.products = action.payload;
       })
+      .addCase(getActivity.fulfilled, (state, action) => {
+        state.activity.all = action.payload;
+      })
       .addCase(updateProduct.fulfilled, (state, action) => {
-        const postIndex = state.products.findIndex(
+        // Updates in the products store
+        const productIndex = state.products.findIndex(
           (post) => post.id == action.payload.id
         );
-        state.products[postIndex].name = action.payload.data.name;
-        state.products[postIndex].category = action.payload.data.category;
-        state.products[postIndex].code = action.payload.data.code;
-        state.products[postIndex].quantity = action.payload.data.quantity;
-        state.products[postIndex].dates.mfd = action.payload.data.dates.mfd;
-        state.products[postIndex].dates.exp = action.payload.data.dates.exp;
-        state.products[postIndex].actions.exported.isExported = false;
-        state.products[postIndex].actions.updated.isUpdated = true;
+        state.products[productIndex].name = action.payload.data.name;
+        state.products[productIndex].category = action.payload.data.category;
+        state.products[productIndex].code = action.payload.data.code;
+        state.products[productIndex].quantity = action.payload.data.quantity;
+        state.products[productIndex].dates.mfd = action.payload.data.dates.mfd;
+        state.products[productIndex].dates.exp = action.payload.data.dates.exp;
+        state.products[productIndex].actions.exported.isExported = false;
+        state.products[productIndex].actions.updated.isUpdated = true;
+
+        // Updates in the activity store
+        const activityIndex = state.activity.all.findIndex(
+          (activity) => activity.id == action.payload.id
+        );
+        state.activity.all[activityIndex].id = action.payload.id;
+        state.activity.all[activityIndex].actioner.name =
+          action.payload.user.email;
+        state.activity.all[activityIndex].actioner.email =
+          action.payload.user.email;
+        state.activity.all[activityIndex].actioner.id = action.payload.user.id;
+        state.activity.all[
+          activityIndex
+        ].description = `Обновил - ${action.payload.data.name}`;
+        state.activity.all[activityIndex].madeOn = getTime(new Date());
       })
       .addCase(getBarcodes.fulfilled, (state, action) => {
         state.barcodes = action.payload;
