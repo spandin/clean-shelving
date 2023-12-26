@@ -23,12 +23,13 @@ setDefaultOptions({ locale: ru });
 
 export default function Root() {
   const location = useLocation();
+  const { email } = useAuth();
 
   return (
     <div className="layout">
       <nav className="navbar">
         <Link className="navbar__avatar" to={"user/"}>
-          S
+          {email ? email.charAt(0).toUpperCase() : "Г"}
         </Link>
 
         <div className="navbar__menu">
@@ -84,6 +85,7 @@ export default function Root() {
 }
 
 import IMAGES from "@/assets/images";
+import { useAuth } from "@/hooks/use-auth";
 
 function AboutProject() {
   return (
