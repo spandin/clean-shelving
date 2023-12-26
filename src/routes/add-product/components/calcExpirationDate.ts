@@ -24,8 +24,8 @@ export default function CalcExpirationDate(
       setExpirationDate("");
       if (selectType === "date") {
         (isValid(stringToTimestamp(getValues("dates.exp"))) &&
-          getValues("dates.exp").length > 9) ||
-        getValues("dates.exp").length < 9
+          getValues("dates.exp")?.length > 9) ||
+        getValues("dates.exp")?.length < 9
           ? setExpirationDate(calcDistanceEndFromExp(getValues("dates.exp")))
           : null;
       } else {
