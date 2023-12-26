@@ -22,7 +22,7 @@ export const UpdateProduct = ({
   id: string;
 }) => {
   const dispatch = useAppDispatch();
-  const { isAuth, email } = useAuth();
+  const user = useAuth();
 
   const {
     register,
@@ -32,7 +32,7 @@ export const UpdateProduct = ({
 
   const onUpdate: SubmitHandler<ProductType> = async (data) => {
     try {
-      await toastPromise(dispatch(updateProduct({ id, data, email })));
+      await toastPromise(dispatch(updateProduct({ id, data, user })));
     } catch (error) {
       console.log(`UPDATE PRODUCT:`, error);
     }
@@ -164,7 +164,7 @@ export const UpdateProduct = ({
           disabled={true}
           isLoading={isSubmitting}
           text="Обновить"
-          onClick={isAuth ? () => null : toastAuthErr}
+          onClick={user.isAuth ? () => null : toastAuthErr}
         />
       </form>
     </div>
