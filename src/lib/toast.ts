@@ -24,12 +24,12 @@ const toastAuthErr = () => {
   toast.error("Войдите в аккаунт", settingsToast);
 };
 
-const toastSuccess = () => {
-  toast.success("Успех", settingsToast);
+const toastSuccess = (msg: string) => {
+  toast.success(msg, settingsToast);
 };
 
-const toastError = () => {
-  toast.error("Ошибка", settingsToast);
+const toastError = (e: string) => {
+  toast.error(e, settingsToast);
 };
 
 const toastWarn = () => {
