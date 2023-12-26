@@ -8,8 +8,8 @@ const settingsToast: ToastOptions = {
   theme: "dark",
 };
 
-const toastPromise = async (promise: Promise<unknown>) => {
-  await toast.promise(
+const toastPromise = (promise: Promise<unknown>) => {
+  toast.promise(
     promise,
     {
       pending: "Загрузка на сервер",
@@ -20,8 +20,10 @@ const toastPromise = async (promise: Promise<unknown>) => {
   );
 };
 
-const toastAuthErr = () => {
-  toast.error("Войдите в аккаунт", settingsToast);
+const toastAuthErr = (isAuth: boolean) => {
+  if (!isAuth) {
+    toast.error("Войдите в аккаунт", settingsToast);
+  }
 };
 
 const toastSuccess = (msg: string) => {
