@@ -16,10 +16,10 @@ export default function ActivityCard({ activity }: { activity: AllActivity }) {
       </Link>
       <Link className="activity-card__column" to={`/products/${activity.id}`}>
         <div className="activity-card__column__row">
-          <span className="activity-card__column__row__title">
+          <span className="activity-card__column__row__title" id="card_title">
             {activity.actioner.name}
           </span>
-          <span className="activity-card__column__row__date">
+          <span className="activity-card__column__row__date" id="card_title">
             {timestampToString(activity.madeOn)}
           </span>
         </div>
