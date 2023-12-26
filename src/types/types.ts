@@ -45,6 +45,7 @@ export interface AddFormInputsType {
 export interface DataState {
   products: ProductType[];
   barcodes: BarcodeType[];
+  activity: ActivityState;
 }
 
 export interface BarcodeType {
@@ -53,23 +54,30 @@ export interface BarcodeType {
   category: string;
 }
 
-//Redux Activity Types -
 export interface ActivityState {
   my: MyActivity[];
   all: AllActivity[];
 }
 
-interface MyActivity {
+export interface MyActivity {
   date: number;
   description: string;
 }
 
-interface AllActivity {
+export interface AllActivity {
+  id: string;
   actioner: {
-    name: string;
-    email: string;
-    id: string;
+    name: string | null;
+    email: string | null;
+    id: string | null;
   };
   description: string;
   madeOn: number;
+}
+
+// Redux User Types -
+export interface UserData {
+  email: string | null;
+  token: string | null;
+  id: string | null;
 }
