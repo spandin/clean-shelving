@@ -42,7 +42,9 @@ export default function AddProduct() {
 
   const onCreate: SubmitHandler<AddFormInputsType> = (data) => {
     try {
-      toastPromise(dispatch(addProduct({ data, user })));
+      if (user.isAuth) {
+        toastPromise(dispatch(addProduct({ data, user })));
+      }
 
       reset();
     } catch (e) {
@@ -248,7 +250,7 @@ export default function AddProduct() {
           disabled={true}
           isLoading={isSubmitting}
           text="Добавить"
-          onClick={user.isAuth ? () => null : () => toastAuthErr()}
+          onClick={() => toastAuthErr(user.isAuth)}
         />
       </form>
     </div>

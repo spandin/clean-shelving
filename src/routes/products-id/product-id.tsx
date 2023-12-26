@@ -2,11 +2,8 @@ import "./_product-id.scss";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { useAuth } from "@/hooks/use-auth";
 import { useTheme } from "@/hooks/use-theme";
 import { useAppSelector } from "@/hooks/redux-hooks";
-
-import { toastAuthErr } from "@/lib/toast";
 
 import { Ring } from "@uiball/loaders";
 import { BsPencilSquare, BsTrash3 } from "react-icons/bs";
@@ -20,7 +17,6 @@ import { timestampToString } from "@/lib/date";
 export default function ProductId() {
   const { productId } = useParams();
   const { isDark } = useTheme();
-  const { isAuth } = useAuth();
 
   const [deleteModalActive, setDeleteModalActive] = useState(false);
   const [updateModalActive, setUpdateModalActive] = useState(false);
@@ -39,18 +35,14 @@ export default function ProductId() {
               <div className="product-id__wrapper__header__buttons">
                 <button
                   className="circle_button"
-                  onClick={
-                    isAuth ? () => setUpdateModalActive(true) : toastAuthErr
-                  }
+                  onClick={() => setUpdateModalActive(true)}
                 >
                   <BsPencilSquare />
                 </button>
 
                 <button
                   className="circle_button"
-                  onClick={
-                    isAuth ? () => setDeleteModalActive(true) : toastAuthErr
-                  }
+                  onClick={() => setDeleteModalActive(true)}
                 >
                   <BsTrash3 />
                 </button>
@@ -106,14 +98,14 @@ export default function ProductId() {
           <div className="product-id__footer">
             <button
               className="circle_button"
-              onClick={isAuth ? () => setUpdateModalActive(true) : toastAuthErr}
+              onClick={() => setUpdateModalActive(true)}
             >
               <BsPencilSquare />
             </button>
 
             <button
               className="circle_button"
-              onClick={isAuth ? () => setDeleteModalActive(true) : toastAuthErr}
+              onClick={() => setDeleteModalActive(true)}
             >
               <BsTrash3 />
             </button>
