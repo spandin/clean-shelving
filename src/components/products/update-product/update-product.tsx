@@ -32,7 +32,9 @@ export const UpdateProduct = ({
 
   const onUpdate: SubmitHandler<ProductType> = (data) => {
     try {
-      toastPromise(dispatch(updateProduct({ id, data, user })));
+      if (user.isAuth) {
+        toastPromise(dispatch(updateProduct({ id, data, user })));
+      }
     } catch (e) {
       console.log(`UPDATE PRODUCT:`, e);
     }
@@ -177,7 +179,7 @@ export const UpdateProduct = ({
           disabled={true}
           isLoading={isSubmitting}
           text="Обновить"
-          onClick={user.isAuth ? () => null : () => toastAuthErr()}
+          onClick={() => toastAuthErr(user.isAuth)}
         />
       </form>
     </div>
