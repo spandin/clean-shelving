@@ -1,17 +1,16 @@
-import { DocumentData, collection, onSnapshot } from "firebase/firestore";
 import "./_activity.scss";
 
-import Informer from "@/components/common/informer/informer";
 import { useEffect, useState } from "react";
-import { db } from "@/lib/firebase";
+
 import { AllActivity } from "@/types/types";
+
+import { db } from "@/lib/firebase";
+import { DocumentData, collection, onSnapshot } from "firebase/firestore";
+
+import Informer from "@/components/common/informer/informer";
 import ActivityCard from "./components/activity_card";
-import { Ring } from "@uiball/loaders";
-import { useTheme } from "@/hooks/use-theme";
 
 export default function Activity() {
-  const { isDark } = useTheme();
-
   const [activity, setActivity] = useState<AllActivity[]>([]);
 
   useEffect(() => {
@@ -44,16 +43,14 @@ export default function Activity() {
       </div>
 
       <div className="activity__body">
-        {activity && activity.length ? (
-          activity.map((activity) => (
-            <ActivityCard
-              key={`${activity.id}${activity.madeOn}`}
-              activity={activity}
-            />
-          ))
-        ) : (
-          <Ring size={30} color={isDark ? "#ffffff" : "#121212"} />
-        )}
+        {activity && activity.length
+          ? activity.map((activity) => (
+              <ActivityCard
+                key={`${activity.id}${activity.madeOn}`}
+                activity={activity}
+              />
+            ))
+          : "Пока никто ничего не сделал :("}
       </div>
     </div>
   );
