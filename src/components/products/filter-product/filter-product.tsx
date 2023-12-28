@@ -18,8 +18,8 @@ export const Filter = () => {
         <span>По статусу выгрузки:</span>
         <div className="exported__buttons">
           <button
-            className={exported === "all" ? "active" : ""}
-            onClick={() => dispatch(setExported("all"))}
+            className={exported === "Все" ? "active" : ""}
+            onClick={() => dispatch(setExported("Все"))}
           >
             Все
           </button>
@@ -44,43 +44,43 @@ export const Filter = () => {
         <span>По категориям:</span>
         <div className="category__buttons">
           <button
-            className={category === "all" ? "active" : ""}
-            onClick={() => dispatch(setCategory("all"))}
+            className={category === "Все" ? "active" : ""}
+            onClick={() => dispatch(setCategory("Все"))}
           >
             Все
           </button>
 
           <button
-            className={category === "products" ? "active" : ""}
-            onClick={() => dispatch(setCategory("products"))}
+            className={category === "Продукты" ? "active" : ""}
+            onClick={() => dispatch(setCategory("Продукты"))}
           >
             Продукты
           </button>
 
           <button
-            className={category === "chemistry" ? "active" : ""}
-            onClick={() => dispatch(setCategory("chemistry"))}
+            className={category === "Химия" ? "active" : ""}
+            onClick={() => dispatch(setCategory("Химия"))}
           >
             Химия
           </button>
 
           <button
-            className={category === "alcohol" ? "active" : ""}
-            onClick={() => dispatch(setCategory("alcohol"))}
+            className={category === "Алкоголь" ? "active" : ""}
+            onClick={() => dispatch(setCategory("Алкоголь"))}
           >
             Алкоголь
           </button>
 
           <button
-            className={category === "cosmetic" ? "active" : ""}
-            onClick={() => dispatch(setCategory("cosmetic"))}
+            className={category === "Косметика" ? "active" : ""}
+            onClick={() => dispatch(setCategory("Косметика"))}
           >
             Косметика
           </button>
 
           <button
-            className={category === "other" ? "active" : ""}
-            onClick={() => dispatch(setCategory("other"))}
+            className={category === "Другое" ? "active" : ""}
+            onClick={() => dispatch(setCategory("Другое"))}
           >
             Другое
           </button>
