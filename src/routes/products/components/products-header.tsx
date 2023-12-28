@@ -7,7 +7,13 @@ import Informer from "@/components/common/informer/informer";
 import { Modal } from "@/components/common/modal/modal";
 import { Filter } from "@/components/products/filter-product/filter-product";
 
-export default function ProductsHeader({ props }: { props: number }) {
+export default function ProductsHeader({
+  lenght,
+  category,
+}: {
+  lenght: number;
+  category: string;
+}) {
   const navigate = useNavigate();
 
   const [filterModalActive, setFilterModalActive] = useState(false);
@@ -15,7 +21,7 @@ export default function ProductsHeader({ props }: { props: number }) {
   return (
     <>
       <div className="products__header">
-        <Informer title="Категория" subtitle={`${props} позиции`} />
+        <Informer title={category} subtitle={`${lenght} позиций`} />
         <div className="products__header__buttons">
           <button
             className="circle_button"
