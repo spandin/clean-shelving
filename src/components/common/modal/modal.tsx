@@ -11,11 +11,11 @@ export const Modal = ({
 }) => {
   return (
     <div
-      className={active ? "Modal active" : "Modal"}
+      className={active ? "modal active" : "modal"}
       onClick={() => setActive(false)}
     >
       <div
-        className={active ? "Modal__content active" : "Modal__content"}
+        className={active ? "modal__content active" : "modal__content"}
         onClick={(e) => e.stopPropagation()}
       >
         {children}
