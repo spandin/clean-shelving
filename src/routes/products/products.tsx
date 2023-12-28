@@ -54,7 +54,10 @@ export default function Products() {
 
   return (
     <div className="products">
-      <ProductsHeader props={products.length} />
+      <ProductsHeader
+        lenght={FilteredProducts(products, category, exported).length}
+        category={category}
+      />
 
       <div className="products__grid">
         {products && products.length ? (
