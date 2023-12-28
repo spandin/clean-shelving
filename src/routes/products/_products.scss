@@ -67,9 +67,7 @@
         .card_name__notExported {
           &:last-child {
             max-width: 100%;
-            text-overflow: ellipsis;
             white-space: wrap;
-            overflow: hidden;
           }
         }
       }
@@ -96,7 +94,7 @@
               border-radius: 50%;
             }
             &:last-child {
-              max-width: 18ch;
+              max-width: 30ch;
               text-overflow: ellipsis;
               white-space: nowrap;
               overflow: hidden;
@@ -186,12 +184,29 @@
         grid-template-columns: 1fr;
         max-height: calc(100vh - 14.3rem);
         &__card {
+          &:hover {
+            .card_name__exported,
+            .card_name__notExported {
+              &:last-child {
+                max-width: 100%;
+                white-space: wrap;
+              }
+            }
+          }
           &__row_1 {
             &__group {
               align-items: flex-start;
               gap: 1rem;
               #card_name {
                 white-space: wrap;
+              }
+
+              .card_name__exported,
+              .card_name__notExported {
+                &:last-child {
+                  max-width: 18ch;
+                  white-space: nowrap;
+                }
               }
             }
           }
