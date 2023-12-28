@@ -4,7 +4,7 @@ import { ProductType } from "@/types/types";
 
 import { BsArrowDownLeftCircle } from "react-icons/bs";
 
-import { timestampToString } from "@/lib/date";
+import { calcDistanceEndFromExp, timestampToString } from "@/lib/date";
 
 interface IProps {
   product: ProductType;
@@ -17,10 +17,19 @@ export default function ProductsCard({ product, number }: IProps) {
       <div className="products__grid__card__row_1">
         <div className="products__grid__card__row_1__group">
           <span id="card_name">
-            {number + 1}. {product.name}
+            {product.actions.exported.isExported ? (
+              <div className="card_name__exported">
+                {number + 1 + ". " + product.name}
+              </div>
+            ) : (
+              <div className="card_name__notExported">
+                {number + 1 + ". " + product.name}
+              </div>
+            )}
           </span>
           <span id="card_quantity">{product.quantity} шт.</span>
         </div>
+
         <span id="card_barcode">{product.code}</span>
       </div>
 
@@ -56,11 +65,8 @@ export default function ProductsCard({ product, number }: IProps) {
           Подробнее
         </Link>
 
-        <div className="products__grid__card__row_3__group">
-          <div id="card_badge">{product.category}</div>
-          <div id="card_badge">
-            {product.actions.exported.isExported ? "Внесён" : "Не внесён"}
-          </div>
+        <div id="card_badge">
+          {calcDistanceEndFromExp(timestampToString(product.dates.exp))}
         </div>
       </div>
     </div>
