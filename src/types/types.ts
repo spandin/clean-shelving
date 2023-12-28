@@ -46,6 +46,10 @@ export interface DataState {
   products: ProductType[];
   barcodes: BarcodeType[];
   activity: ActivityState;
+  filter: {
+    category: string;
+    exported: boolean | string;
+  };
 }
 
 export interface BarcodeType {
