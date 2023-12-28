@@ -165,12 +165,23 @@ const initialState: DataState = {
     my: [],
     all: [],
   },
+  filter: {
+    category: "Все",
+    exported: "Все",
+  },
 };
 
 const dataSlice = createSlice({
   name: "data",
   initialState,
-  reducers: {},
+  reducers: {
+    setCategory: (state, action) => {
+      state.filter.category = action.payload;
+    },
+    setExported: (state, action) => {
+      state.filter.exported = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getProducts.fulfilled, (state, action) => {
@@ -213,5 +224,7 @@ const dataSlice = createSlice({
       });
   },
 });
+
+export const { setCategory, setExported } = dataSlice.actions;
 
 export default dataSlice.reducer;
