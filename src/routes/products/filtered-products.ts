@@ -3,19 +3,19 @@ import { ProductType } from "@/types/types";
 
 export const FilteredProducts = (
   products: ProductType[],
-  category: string,
-  exported: string | boolean
+  category?: string,
+  exported?: string | boolean
 ) => {
   switch (category) {
-    case "all":
-      if (exported === "all") {
+    case "Все":
+      if (exported === "Все") {
         return products;
       } else {
         return isNotExported(products);
       }
 
-    case "products":
-      if (exported === "all") {
+    case "Продукты":
+      if (exported === "Все") {
         return findInArrayBy(products, "Продукты");
       } else if (exported === true) {
         return isExported(findInArrayBy(products, "Продукты"));
@@ -23,8 +23,8 @@ export const FilteredProducts = (
         return isNotExported(findInArrayBy(products, "Продукты"));
       }
 
-    case "chemistry":
-      if (exported === "all") {
+    case "Химия":
+      if (exported === "Все") {
         return findInArrayBy(products, "Химия");
       } else if (exported === true) {
         return isExported(findInArrayBy(products, "Химия"));
@@ -32,8 +32,8 @@ export const FilteredProducts = (
         return isNotExported(findInArrayBy(products, "Химия"));
       }
 
-    case "alcohol":
-      if (exported === "all") {
+    case "Алкоголь":
+      if (exported === "Все") {
         return findInArrayBy(products, "Алкоголь");
       } else if (exported === true) {
         return isExported(findInArrayBy(products, "Алкоголь"));
@@ -41,8 +41,8 @@ export const FilteredProducts = (
         return isNotExported(findInArrayBy(products, "Алкоголь"));
       }
 
-    case "cosmetic":
-      if (exported === "all") {
+    case "Косметика":
+      if (exported === "Все") {
         return findInArrayBy(products, "Косметика");
       } else if (exported === true) {
         return isExported(findInArrayBy(products, "Косметика"));
@@ -50,8 +50,8 @@ export const FilteredProducts = (
         return isNotExported(findInArrayBy(products, "Косметика"));
       }
 
-    case "other":
-      if (exported === "all") {
+    case "Другое":
+      if (exported === "Все") {
         return findInArrayBy(products, "Другое");
       } else if (exported === true) {
         return isExported(findInArrayBy(products, "Другое"));
