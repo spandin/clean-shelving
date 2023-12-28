@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ProductType } from "@/types/types";
 
 import { useTheme } from "@/hooks/use-theme";
-import { useAppDispatch } from "@/hooks/redux-hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
 
 import {
   getActivity,
@@ -19,11 +19,13 @@ import { Ring } from "@uiball/loaders";
 
 import ProductsCard from "./components/products-card";
 import ProductsHeader from "./components/products-header";
+import { FilteredProducts } from "./filtered-products";
 
 export default function Products() {
   const { isDark } = useTheme();
   const dispatch = useAppDispatch();
 
+  const { exported, category } = useAppSelector((state) => state.data.filter);
   const [products, setProducts] = useState<ProductType[]>([]);
 
   useEffect(() => {
@@ -56,9 +58,15 @@ export default function Products() {
 
       <div className="products__grid">
         {products && products.length ? (
-          products.map((product, number) => (
-            <ProductsCard key={product.id} product={product} number={number} />
-          ))
+          FilteredProducts(products, category, exported).map(
+            (product, number) => (
+              <ProductsCard
+                key={product.id}
+                product={product}
+                number={number}
+              />
+            )
+          )
         ) : (
           <Ring size={30} color={isDark ? "#ffffff" : "#121212"} />
         )}
