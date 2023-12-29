@@ -10,6 +10,8 @@ export const FilteredProducts = (
     case "Все":
       if (exported === "Все") {
         return products;
+      } else if (exported === true) {
+        return isExported(products);
       } else {
         return isNotExported(products);
       }
