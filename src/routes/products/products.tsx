@@ -55,7 +55,7 @@ export default function Products() {
   return (
     <div className="products">
       <ProductsHeader
-        lenght={FilteredProducts(products, category, exported).length}
+        productsLenght={FilteredProducts(products, category, exported).length}
         category={category}
       />
 
