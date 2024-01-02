@@ -8,10 +8,10 @@ import { Modal } from "@/components/common/modal/modal";
 import { Filter } from "@/components/products/filter-product/filter-product";
 
 export default function ProductsHeader({
-  lenght,
+  productsLenght,
   category,
 }: {
-  lenght: number;
+  productsLenght: number;
   category: string;
 }) {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export default function ProductsHeader({
   return (
     <>
       <div className="products__header">
-        <Informer title={category} subtitle={`${lenght} позиций`} />
+        <Informer title={category} subtitle={`${productsLenght} позиций`} />
         <div className="products__header__buttons">
           <button
             className="circle_button"
