@@ -15,11 +15,7 @@ export default function Informer({ title, subtitle }: InformerProps) {
 
   return (
     <div className="informer">
-      {location.pathname != "/products/" ? (
-        <BackButton />
-      ) : (
-        <ExportButton fileName={title} />
-      )}
+      {location.pathname != "/products/" ? <BackButton /> : <ExportButton />}
       <div className="informer__col">
         <span>{title}</span>
         <span>{subtitle}</span>
