@@ -1,0 +1,96 @@
+import "./_export-product.scss";
+
+import * as FileSaver from "file-saver";
+import * as XLSX from "xlsx";
+
+import { useAuth } from "@/hooks/use-auth";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
+
+import { updateProductMark } from "@/store/slices/dataSlice";
+import { timestampToString } from "@/lib/date";
+
+import { BsFiletypeXls } from "react-icons/bs";
+
+import { FilteredProducts } from "@/routes/products/filtered-products";
+
+export const ExportProduct = () => {
+  const dispatch = useAppDispatch();
+  const user = useAuth();
+
+  const products = useAppSelector((state) => state.data.products);
+  const { category, exported } = useAppSelector((state) => state.data.filter);
+
+  const fileType =
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
+  const fileExtension = ".xlsx";
+
+  const exportToCSV = (apiData: any[], fileName: string) => {
+    const ws = XLSX.utils.json_to_sheet(apiData);
+    const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
+    const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+    const data = new Blob([excelBuffer], { type: fileType });
+    FileSaver.saveAs(data, fileName + fileExtension);
+  };
+
+  const exportData =
+    products &&
+    FilteredProducts(products, category, exported).map(
+      ({ name, code, quantity, dates, actions }) => ({
+        Имя: name,
+        Штрихкод: code,
+        Количество: quantity,
+        Создан: dates.createdAt
+          ? timestampToString(dates.createdAt)
+          : timestampToString(actions.updated.updatedAt),
+        Изготовлен: timestampToString(dates.mfd),
+        Просрочится: timestampToString(dates.mfd),
+        Статус: actions.exported.isExported ? "Внесён" : "Не внесён",
+      })
+    );
+
+  const setProductMark = () => {
+    const allId = FilteredProducts(products, category, exported).map(
+      (product) => product.id
+    );
+    try {
+      exportToCSV(
+        exportData,
+        `${category} ${
+          exported === "Все" ? "🙌" : exported === true ? "👍" : "👎"
+        } `
+      );
+      for (const id of allId) {
+        dispatch(updateProductMark({ id, user }));
+      }
+    } catch (e) {
+      console.log(`SET PRODUCT MARK`, e);
+    }
+  };
+
+  return (
+    <div className="export-product">
+      <h3>Экспорт Excel файла</h3>
+
+      <BsFiletypeXls />
+      <p>
+        Внимание при экспорте файла, все записи получат статус
+        &apos;Внесён&apos;
+      </p>
+      <button
+        onClick={
+          user.email === "willstesi@gmail.com" && "marinka.e@shelfx.by"
+            ? () => setProductMark()
+            : () =>
+                exportToCSV(
+                  exportData,
+                  `${category} ${
+                    exported === "Все" ? "🙌" : exported === true ? "👍" : "👎"
+                  } `
+                )
+        }
+      >
+        Экспортировать
+      </button>
+    </div>
+  );
+};
