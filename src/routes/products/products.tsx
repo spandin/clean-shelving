@@ -57,6 +57,7 @@ export default function Products() {
       <ProductsHeader
         productsLenght={FilteredProducts(products, category, exported).length}
         category={category}
+        exported={exported}
       />
 
       <div className="products__grid">

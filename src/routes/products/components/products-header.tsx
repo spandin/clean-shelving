@@ -10,9 +10,11 @@ import { Filter } from "@/components/products/filter-product/filter-product";
 export default function ProductsHeader({
   productsLenght,
   category,
+  exported,
 }: {
   productsLenght: number;
   category: string;
+  exported: string | boolean;
 }) {
   const navigate = useNavigate();
 
@@ -21,7 +23,12 @@ export default function ProductsHeader({
   return (
     <>
       <div className="products__header">
-        <Informer title={category} subtitle={`${productsLenght} позиций`} />
+        <Informer
+          title={`${category} ${
+            exported === "Все" ? "🙌" : exported === true ? "👍" : "👎"
+          } `}
+          subtitle={`${productsLenght} позиций`}
+        />
         <div className="products__header__buttons">
           <button
             className="circle_button"
