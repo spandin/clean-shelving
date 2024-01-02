@@ -56,6 +56,7 @@ export const addProduct = createAsyncThunk(
         created: {
           createdAt: getTime(new Date()),
           whoCreated: user.email,
+          whoCreatedID: user.id,
         },
         exported: {
           isExported: false,
@@ -93,8 +94,8 @@ export const updateProduct = createAsyncThunk(
     data: ProductType | DocumentData;
     user: UserData;
   }) => {
-    const posts = await getDocs(collection(db, "data"));
-    for (const snap of posts.docs) {
+    const products = await getDocs(collection(db, "data"));
+    for (const snap of products.docs) {
       if (snap.id === id) {
         await updateDoc(doc(db, "data", snap.id), {
           name: data.name,
@@ -105,17 +106,11 @@ export const updateProduct = createAsyncThunk(
             mfd: stringToTimestamp(data.dates.mfd),
             exp: stringToTimestamp(data.dates.exp),
           },
-          actions: {
-            exported: {
-              isExported: false,
-            },
-            updated: {
-              updatedAt: getTime(new Date()),
-              isUpdated: true,
-              whoUpdated: user.email,
-              whoUpdatedID: id,
-            },
-          },
+          "actions.exported.isExported": false,
+          "actions.updated.updatedAt": getTime(new Date()),
+          "actions.updated.isUpdated": true,
+          "actions.updated.whoUpdated": user.email,
+          "actions.updated.whoUpdatedID": id,
         });
       }
     }
@@ -156,6 +151,38 @@ export const setBarcodes = createAsyncThunk(
       name: data.name,
       category: data.category,
     })
+);
+
+export const updateProductMark = createAsyncThunk(
+  "@@posts/updateProductMark",
+  async ({ id, user }: { id: string; user: UserData }) => {
+    const products = await getDocs(collection(db, "data"));
+    for (const snap of products.docs) {
+      if (snap.id === id) {
+        await updateDoc(doc(db, "data", snap.id), {
+          "actions.exported.isExported": true,
+          "actions.exported.exportedOn": getTime(new Date()),
+          "actions.exported.whoExported": user.email,
+          "actions.exported.whoExportedID": user.id,
+        });
+      }
+    }
+
+    const activityID = nanoid();
+
+    await setDoc(doc(db, "activity", activityID), {
+      id: activityID,
+      actioner: {
+        name: user.email,
+        email: user.email,
+        id: user.id,
+      },
+      description: `Экспортировал файл`,
+      madeOn: getTime(new Date()),
+    });
+
+    return id;
+  }
 );
 
 const initialState: DataState = {
@@ -221,6 +248,12 @@ const dataSlice = createSlice({
       })
       .addCase(getBarcodes.fulfilled, (state, action) => {
         state.barcodes = action.payload;
+      })
+      .addCase(updateProductMark.fulfilled, (state, action) => {
+        const productIndex = state.products.findIndex(
+          (post) => post.id == action.payload
+        );
+        state.products[productIndex].actions.exported.isExported = true;
       });
   },
 });
