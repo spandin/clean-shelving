@@ -1,0 +1,12 @@
+@import "../../../scss/variables";
+
+.export-product {
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  svg {
+    align-self: center;
+    font-size: 4rem;
+  }
+}
