@@ -1,8 +1,14 @@
 import "../scss/_reset.scss";
 import "../scss/_global.scss";
 import "./_root.scss";
+import "react-toastify/dist/ReactToastify.min.css";
 
 import { Link, Outlet, useLocation } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+
+import { setDefaultOptions } from "date-fns";
+import { ru } from "date-fns/locale";
+setDefaultOptions({ locale: ru });
 
 import {
   BsHouse,
@@ -11,15 +17,7 @@ import {
   BsSpeedometer,
 } from "react-icons/bs";
 
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
-
 import Activity from "./activity/activity";
-
-import { setDefaultOptions } from "date-fns";
-import { ru } from "date-fns/locale";
-
-setDefaultOptions({ locale: ru });
 
 export default function Root() {
   const location = useLocation();

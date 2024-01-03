@@ -1,14 +1,12 @@
 import "./_login.scss";
-
-import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch } from "@/hooks/redux-hooks";
 
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { setUser } from "@/store/slices/userSlice";
+import { signInUser } from "@/store/slices/userSlice";
+
+import { LoadButton } from "../common/load-button/load-button";
 
 import IMAGES from "@/assets/images";
-import { LoadButton } from "../common/load-button/load-button";
 
 interface FormValues {
   email: string;
@@ -16,9 +14,7 @@ interface FormValues {
 }
 
 export default function Login() {
-  const auth = getAuth();
   const dispatch = useAppDispatch();
-  const [errorAuth, setErrorAuth] = useState("");
 
   const {
     register,
@@ -27,24 +23,7 @@ export default function Login() {
   } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    try {
-      await signInWithEmailAndPassword(auth, data.email, data.password).then(
-        ({ user }) => {
-          console.log(user),
-            dispatch(
-              setUser({
-                email: user.email,
-                id: user.uid,
-                token: user.refreshToken,
-              })
-            );
-        }
-      );
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (e: any) {
-      console.log(`Login`, e.message);
-      setErrorAuth(e.message);
-    }
+    dispatch(signInUser(data));
   };
 
   return (
@@ -92,8 +71,6 @@ export default function Login() {
             })}
           />
         </div>
-
-        {errorAuth ? <p>{errorAuth}</p> : null}
 
         <LoadButton
           type="submit"

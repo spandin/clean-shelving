@@ -3,7 +3,6 @@ import "./_export-product.scss";
 import * as FileSaver from "file-saver";
 import * as XLSX from "xlsx";
 
-import { useAuth } from "@/hooks/use-auth";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
 
 import { updateProductMark } from "@/store/slices/dataSlice";
@@ -15,8 +14,8 @@ import { FilteredProducts } from "@/routes/products/filtered-products";
 
 export const ExportProduct = () => {
   const dispatch = useAppDispatch();
-  const user = useAuth();
 
+  const user = useAppSelector((state) => state.user);
   const products = useAppSelector((state) => state.data.products);
   const { category, exported } = useAppSelector((state) => state.data.filter);
 

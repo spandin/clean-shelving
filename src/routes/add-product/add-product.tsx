@@ -5,7 +5,6 @@ import { IMaskInput } from "react-imask";
 
 import { AddFormInputsType } from "@/types/types";
 
-import { useAuth } from "@/hooks/use-auth";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
 
 import { addProduct } from "@/store/slices/dataSlice";
@@ -21,10 +20,10 @@ import CalcExpirationDate from "./components/calcExpirationDate";
 
 export default function AddProduct() {
   const dispatch = useAppDispatch();
-  const user = useAuth();
 
   const [expirationDate, setExpirationDate] = useState("");
 
+  const user = useAppSelector((state) => state.user);
   const { selectType } = useAppSelector((state) => state.addForm);
 
   const {

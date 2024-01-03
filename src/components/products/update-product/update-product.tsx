@@ -4,8 +4,7 @@ import { ProductType } from "@/types/types";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { useAuth } from "@/hooks/use-auth";
-import { useAppDispatch } from "@/hooks/redux-hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
 
 import { updateProduct } from "@/store/slices/dataSlice";
 
@@ -22,7 +21,8 @@ export const UpdateProduct = ({
   id: string;
 }) => {
   const dispatch = useAppDispatch();
-  const user = useAuth();
+
+  const user = useAppSelector((state) => state.user);
 
   const {
     register,
