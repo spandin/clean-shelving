@@ -237,7 +237,7 @@ const dataSlice = createSlice({
         );
         state.activity.all[activityIndex].id = action.payload.id;
         state.activity.all[activityIndex].actioner.name =
-          action.payload.user.email;
+          action.payload.user.name;
         state.activity.all[activityIndex].actioner.email =
           action.payload.user.email;
         state.activity.all[activityIndex].actioner.id = action.payload.user.id;
