@@ -20,11 +20,6 @@
       align-items: center;
       margin: 0 auto;
       gap: 1rem;
-      &__buttons {
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-      }
     }
 
     &__body {
@@ -63,11 +58,30 @@
             padding: 1rem;
             border-radius: 1rem;
             background-color: $tertiary-color;
-            #user-tabs-avatar {
+            align-items: center;
+            #user_avatar {
               height: 8rem;
               width: 8rem;
               border-radius: 100%;
               object-fit: cover;
+            }
+            &__user-info {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+            &__user-actions {
+              display: flex;
+              flex-direction: row;
+              gap: 1rem;
+              &__col {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                :first-child {
+                  font-weight: 400;
+                }
+              }
             }
           }
         }
@@ -77,6 +91,7 @@
           color: $primary-color;
           font-weight: 500;
         }
+
         &__tab > input:checked ~ .tabs__tab__content {
           display: flex;
           flex-direction: column;
