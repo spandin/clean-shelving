@@ -71,7 +71,7 @@ export interface MyActivity {
 export interface AllActivity {
   id: string;
   actioner: {
-    name: string | null;
+    name: string;
     email: string | null;
     id: string | null;
   };
@@ -81,8 +81,17 @@ export interface AllActivity {
 
 // Redux User Types -
 export interface UserData {
-  email: string | null;
-  token: string | null;
   id: string | null;
+  name: string;
+  email: string | null;
+  actions: {
+    added: number;
+    updated: number;
+    deleted: number;
+  };
+  activity: {
+    date: number;
+    description: string;
+  }[];
   isAuth: boolean;
 }
