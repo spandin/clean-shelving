@@ -23,7 +23,7 @@ export default function Login() {
   } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    dispatch(signInUser(data));
+    await dispatch(signInUser(data));
   };
 
   return (
