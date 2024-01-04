@@ -45,7 +45,7 @@ export interface AddFormInputsType {
 export interface DataState {
   products: ProductType[];
   barcodes: BarcodeType[];
-  activity: ActivityState;
+  activity: Activity[];
   filter: {
     category: string;
     exported: boolean | string;
@@ -58,17 +58,7 @@ export interface BarcodeType {
   category: string;
 }
 
-export interface ActivityState {
-  my: MyActivity[];
-  all: AllActivity[];
-}
-
-export interface MyActivity {
-  date: number;
-  description: string;
-}
-
-export interface AllActivity {
+export interface Activity {
   id: string;
   actioner: {
     name: string;
@@ -84,14 +74,11 @@ export interface UserData {
   id: string | null;
   name: string;
   email: string | null;
+  role: string;
   actions: {
     added: number;
     updated: number;
     deleted: number;
   };
-  activity: {
-    date: number;
-    description: string;
-  }[];
   isAuth: boolean;
 }
