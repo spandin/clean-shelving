@@ -94,43 +94,47 @@ export const updateProduct = createAsyncThunk(
     data: ProductType | DocumentData;
     user: UserData;
   }) => {
-    const products = await getDocs(collection(db, "data"));
-    for (const snap of products.docs) {
-      if (snap.id === id) {
-        await updateDoc(doc(db, "data", snap.id), {
-          name: data.name,
-          code: data.code,
-          category: data.category,
-          quantity: data.quantity,
-          dates: {
-            mfd: stringToTimestamp(data.dates.mfd),
-            exp: stringToTimestamp(data.dates.exp),
-          },
-          "actions.exported.isExported": false,
-          "actions.updated.updatedAt": getTime(new Date()),
-          "actions.updated.isUpdated": true,
-          "actions.updated.whoUpdated": user.name,
-          "actions.updated.whoUpdatedID": id,
-        });
+    try {
+      const products = await getDocs(collection(db, "data"));
+      for (const snap of products.docs) {
+        if (snap.id === id) {
+          await updateDoc(doc(db, "data", snap.id), {
+            name: data.name,
+            code: data.code,
+            category: data.category,
+            quantity: data.quantity,
+            dates: {
+              mfd: stringToTimestamp(data.dates.mfd),
+              exp: stringToTimestamp(data.dates.exp),
+            },
+            "actions.exported.isExported": false,
+            "actions.updated.updatedAt": getTime(new Date()),
+            "actions.updated.isUpdated": true,
+            "actions.updated.whoUpdated": user.name,
+            "actions.updated.whoUpdatedID": user.id,
+          });
+        }
       }
+
+      await setDoc(doc(db, "barcodes", data.code), {
+        code: data.code,
+        name: data.name,
+        category: data.category,
+      });
+
+      await setDoc(doc(db, "activity", id), {
+        id: id,
+        actioner: {
+          name: user.name,
+          email: user.email,
+          id: user.id,
+        },
+        description: `Обновил - ${data.name}`,
+        madeOn: getTime(new Date()),
+      });
+    } catch (e) {
+      console.log("UPDATE PRODUCT: " + e);
     }
-
-    await setDoc(doc(db, "barcodes", data.code), {
-      code: data.code,
-      name: data.name,
-      category: data.category,
-    });
-
-    await setDoc(doc(db, "activity", id), {
-      id: id,
-      actioner: {
-        name: user.name,
-        email: user.email,
-        id: user.id,
-      },
-      description: `Обновил - ${data.name}`,
-      madeOn: getTime(new Date()),
-    });
 
     return { id, data, user };
   }

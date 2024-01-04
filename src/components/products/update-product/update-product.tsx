@@ -33,10 +33,8 @@ export const UpdateProduct = ({
 
   const onUpdate: SubmitHandler<ProductType> = async (data) => {
     try {
-      if (user.isAuth) {
-        toastPromise(dispatch(updateProduct({ id, data, user })));
-        await dispatch(updatedActionsUser(user));
-      }
+      toastPromise(dispatch(updateProduct({ id, data, user })));
+      await dispatch(updatedActionsUser(user));
     } catch (e) {
       console.log(`UPDATE PRODUCT:`, e);
     }

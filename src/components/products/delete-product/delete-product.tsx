@@ -3,9 +3,13 @@ import "./_delete-products.scss";
 import { useNavigate } from "react-router-dom";
 
 import { db } from "@/lib/firebase";
-import { deleteDoc, doc } from "firebase/firestore";
+import { deleteDoc, doc, setDoc } from "firebase/firestore";
+
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
+
 import { deletedActionsUser } from "@/store/slices/userSlice";
+
+import { getTime } from "date-fns";
 
 export const DeleteProduct = ({ name, id }: { name: string; id: string }) => {
   const dispatch = useAppDispatch();
@@ -16,7 +20,19 @@ export const DeleteProduct = ({ name, id }: { name: string; id: string }) => {
   const deleteProduct = async () => {
     try {
       await deleteDoc(doc(db, "data", id));
-      await dispatch(deletedActionsUser(user));
+
+      await setDoc(doc(db, "activity", id), {
+        id: id,
+        actioner: {
+          name: user.name,
+          email: user.email,
+          id: user.id,
+        },
+        description: `Удалил - ${name}`,
+        madeOn: getTime(new Date()),
+      });
+
+      dispatch(deletedActionsUser(user));
 
       navigate("/products/");
     } catch (e) {
