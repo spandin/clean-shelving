@@ -1,8 +1,9 @@
-import "./_user.scss";
+import "./_profile.scss";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
+import { getUserInfo } from "@/store/slices/userSlice";
 
 import { BsGear } from "react-icons/bs";
 
@@ -10,9 +11,8 @@ import Informer from "@/components/common/informer/informer";
 import Login from "@/components/auth/login";
 
 import IMAGES from "@/assets/images";
-import { getUserInfo } from "@/store/slices/userSlice";
 
-export default function User() {
+export default function Profile() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -23,12 +23,12 @@ export default function User() {
   }, [dispatch, user.id]);
 
   return (
-    <div className="user">
+    <div className="profile">
       {user.isAuth ? (
         <>
-          <div className="user__wrapper">
-            <div className="user__wrapper__header">
-              <Informer title="Имя" subtitle={user.email} />
+          <div className="profile__wrapper">
+            <div className="profile__wrapper__header">
+              <Informer title="Профиль" subtitle={user.email} />
               <button
                 className="circle_button"
                 onClick={() => navigate("/settings/")}
@@ -37,7 +37,7 @@ export default function User() {
               </button>
             </div>
 
-            <div className="user__wrapper__body">
+            <div className="profile__wrapper__body">
               <ul className="tabs">
                 <li className="tabs__tab">
                   <input type="radio" name="tabs" id="tab-1" defaultChecked />
@@ -47,22 +47,22 @@ export default function User() {
 
                     <div className="tabs__tab__content__user-info">
                       <h2>{user.name}</h2>
-                      <p>{user.email}</p>
+                      <p>{user.role}</p>
                     </div>
 
                     <div className="tabs__tab__content__user-actions">
                       <div className="tabs__tab__content__user-actions__col">
-                        <span>Добавил</span>
+                        <span>ADD:</span>
                         <span>{user.actions && user.actions.added}</span>
                       </div>
 
                       <div className="tabs__tab__content__user-actions__col">
-                        <span>Обновил</span>
+                        <span>UPD:</span>
                         <span>{user.actions && user.actions.updated}</span>
                       </div>
 
                       <div className="tabs__tab__content__user-actions__col">
-                        <span>Удалил</span>
+                        <span>DEL:</span>
                         <span>{user.actions && user.actions.deleted}</span>
                       </div>
                     </div>
@@ -71,10 +71,7 @@ export default function User() {
                 <li className="tabs__tab">
                   <input type="radio" name="tabs" id="tab-2" />
                   <label htmlFor="tab-2">Активность</label>
-                  <div className="tabs__tab__content">
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                    laboris nisi ut aliquip ex ea commodo consequat.
-                  </div>
+                  <div className="tabs__tab__content">Функция в разработке</div>
                 </li>
               </ul>
             </div>
