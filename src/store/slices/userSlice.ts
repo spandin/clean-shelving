@@ -1,7 +1,7 @@
 import { UserData } from "@/types/types";
 
 import { auth, db } from "@/lib/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, increment, updateDoc } from "firebase/firestore";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -16,7 +16,7 @@ export const signInUser = createAsyncThunk(
         }
       );
     } catch (e: any) {
-      console.log(`SIGN IN`, e.message);
+      console.log(`SIGN IN: `, e.message);
     }
   }
 );
@@ -24,9 +24,52 @@ export const signInUser = createAsyncThunk(
 export const getUserInfo = createAsyncThunk(
   "@@user/getUserInfo",
   async (id: string) => {
-    const docSnap = await getDoc(doc(db, "users", `${id}`));
+    try {
+      const docSnap = await getDoc(doc(db, "users", `${id}`));
 
-    return docSnap.data();
+      return docSnap.data();
+    } catch (e) {
+      console.log("GET USER INFO: " + e);
+    }
+  }
+);
+
+export const addedActionsUser = createAsyncThunk(
+  "@@user/addedActionsUser",
+  async (user: UserData) => {
+    try {
+      await updateDoc(doc(db, "users", `${user.id}`), {
+        "actions.added": increment(1),
+      });
+    } catch (e) {
+      console.log("ADD ACTION USER: " + e);
+    }
+  }
+);
+
+export const updatedActionsUser = createAsyncThunk(
+  "@@user/updatedActionsUser",
+  async (user: UserData) => {
+    try {
+      await updateDoc(doc(db, "users", `${user.id}`), {
+        "actions.updated": increment(1),
+      });
+    } catch (e) {
+      console.log("UPDATED ACTION USER: " + e);
+    }
+  }
+);
+
+export const deletedActionsUser = createAsyncThunk(
+  "@@user/deletedActionsUser",
+  async (user: UserData) => {
+    try {
+      await updateDoc(doc(db, "users", `${user.id}`), {
+        "actions.deleted": increment(1),
+      });
+    } catch (e) {
+      console.log("DELETED ACTION USER: " + e);
+    }
   }
 );
 
@@ -34,13 +77,13 @@ const initialState: UserData = {
   id: null,
   name: "Гость",
   email: null,
+  role: "Гость",
   isAuth: false,
   actions: {
     added: 0,
     updated: 0,
     deleted: 0,
   },
-  activity: [],
 };
 
 const userSlice = createSlice({
@@ -62,8 +105,8 @@ const userSlice = createSlice({
       })
       .addCase(getUserInfo.fulfilled, (state, action) => {
         state.name = action.payload?.name;
+        state.role = action.payload?.role;
         state.actions = action.payload?.actions;
-        state.activity = action.payload?.activity;
       });
   },
 });
