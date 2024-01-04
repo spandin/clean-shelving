@@ -17,7 +17,7 @@ export default function Settings() {
       <div className="settings__footer">
         <button
           onClick={() => {
-            dispatch(removeUser()), navigate("/user/");
+            dispatch(removeUser()), navigate("/profile/");
           }}
         >
           Выйти

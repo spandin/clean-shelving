@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
-import { AllActivity } from "@/types/types";
+import { Activity } from "@/types/types";
 
 import { timestampToString } from "@/lib/date";
 
-export default function ActivityCard({ activity }: { activity: AllActivity }) {
+export default function ActivityCard({ activity }: { activity: Activity }) {
   return (
     <div className="activity-card">
       <Link
@@ -19,7 +19,7 @@ export default function ActivityCard({ activity }: { activity: AllActivity }) {
           <span className="activity-card__column__row__title" id="card_title">
             {activity.actioner.name}
           </span>
-          <span className="activity-card__column__row__date" id="card_title">
+          <span className="activity-card__column__row__date">
             {timestampToString(activity.madeOn)}
           </span>
         </div>

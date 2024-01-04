@@ -9,14 +9,15 @@ import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
 
 import { addProduct } from "@/store/slices/dataSlice";
 import { setSelectType } from "@/store/slices/addFormSlice";
+import { addedActionsUser } from "@/store/slices/userSlice";
 
 import { db } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { toastAuthErr, toastPromise } from "@/lib/toast";
 
+import CalcExpirationDate from "./components/calcExpirationDate";
 import Informer from "@/components/common/informer/informer";
 import { LoadButton } from "@/components/common/load-button/load-button";
-import CalcExpirationDate from "./components/calcExpirationDate";
 
 export default function AddProduct() {
   const dispatch = useAppDispatch();
@@ -39,15 +40,16 @@ export default function AddProduct() {
 
   CalcExpirationDate(watch, getValues, setExpirationDate);
 
-  const onCreate: SubmitHandler<AddFormInputsType> = (data) => {
+  const onCreate: SubmitHandler<AddFormInputsType> = async (data) => {
     try {
       if (user.isAuth) {
         toastPromise(dispatch(addProduct({ data, user })));
+        await dispatch(addedActionsUser(user));
       }
 
       reset();
     } catch (e) {
-      console.log(`ADD PRODUCT:`, (e as Error).message);
+      console.log(`ADD PRODUCT:`, e);
     }
   };
 

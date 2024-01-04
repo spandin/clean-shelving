@@ -1,40 +1,21 @@
 import "./_activity.scss";
+import { useEffect } from "react";
 
-import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
 
-import { AllActivity } from "@/types/types";
-
-import { db } from "@/lib/firebase";
-import { DocumentData, collection, onSnapshot } from "firebase/firestore";
+import { getActivity } from "@/store/slices/dataSlice";
 
 import Informer from "@/components/common/informer/informer";
 import ActivityCard from "./components/activity_card";
 
 export default function Activity() {
-  const [activity, setActivity] = useState<AllActivity[]>([]);
+  const dispatch = useAppDispatch();
+
+  const activity = useAppSelector((state) => state.data.activity);
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(
-      collection(db, "activity"),
-      (querySnapshot) => {
-        const collectionSnapshot: AllActivity[] = [];
-
-        querySnapshot.forEach((doc: DocumentData) => {
-          collectionSnapshot.push(doc.data());
-        });
-
-        collectionSnapshot.sort(
-          (x, y) => +new Date(y.madeOn) - +new Date(x.madeOn)
-        );
-
-        setActivity(collectionSnapshot);
-      }
-    );
-
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+    dispatch(getActivity());
+  }, [dispatch]);
 
   return (
     <div className="activity">

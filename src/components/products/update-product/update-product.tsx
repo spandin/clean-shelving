@@ -7,6 +7,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
 
 import { updateProduct } from "@/store/slices/dataSlice";
+import { updatedActionsUser } from "@/store/slices/userSlice";
 
 import { toastAuthErr, toastPromise } from "@/lib/toast";
 import { timestampToString } from "@/lib/date";
@@ -30,10 +31,11 @@ export const UpdateProduct = ({
     handleSubmit,
   } = useForm<ProductType>({ mode: "onSubmit" });
 
-  const onUpdate: SubmitHandler<ProductType> = (data) => {
+  const onUpdate: SubmitHandler<ProductType> = async (data) => {
     try {
       if (user.isAuth) {
         toastPromise(dispatch(updateProduct({ id, data, user })));
+        await dispatch(updatedActionsUser(user));
       }
     } catch (e) {
       console.log(`UPDATE PRODUCT:`, e);

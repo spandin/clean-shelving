@@ -4,16 +4,23 @@ import { useNavigate } from "react-router-dom";
 
 import { db } from "@/lib/firebase";
 import { deleteDoc, doc } from "firebase/firestore";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
+import { deletedActionsUser } from "@/store/slices/userSlice";
 
 export const DeleteProduct = ({ name, id }: { name: string; id: string }) => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const user = useAppSelector((state) => state.user);
 
   const deleteProduct = async () => {
     try {
       await deleteDoc(doc(db, "data", id));
+      await dispatch(deletedActionsUser(user));
+
       navigate("/products/");
-    } catch (error) {
-      console.log("DELETE PRODUCT: " + error);
+    } catch (e) {
+      console.log("DELETE PRODUCT: " + e);
     }
   };
 

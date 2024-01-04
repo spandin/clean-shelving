@@ -11,7 +11,7 @@ import ErrorPage from "./routes/error-page";
 import Products from "./routes/products/products";
 import ProductId from "./routes/products-id/product-id";
 import AddProduct from "./routes/add-product/add-product";
-import User from "./routes/user/user";
+import Profile from "./routes/profile/profile";
 import UserId from "./routes/user-id/user-id";
 import Statistics from "./routes/statistics/statistics";
 import Activity from "./routes/activity/activity";
@@ -45,8 +45,8 @@ const router = createBrowserRouter([
         element: <AddProduct />,
       },
       {
-        path: "user/",
-        element: <User />,
+        path: "profile/",
+        element: <Profile />,
       },
       {
         path: "user/:userId",
