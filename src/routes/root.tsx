@@ -10,24 +10,19 @@ import { setDefaultOptions } from "date-fns";
 import { ru } from "date-fns/locale";
 setDefaultOptions({ locale: ru });
 
-import {
-  BsHouse,
-  BsPieChart,
-  BsPlusCircle,
-  BsSpeedometer,
-} from "react-icons/bs";
+import { BsHouse, BsTrophy, BsPlusCircle, BsSpeedometer } from "react-icons/bs";
 
 import Activity from "./activity/activity";
 
 export default function Root() {
   const location = useLocation();
-  const { email } = useAuth();
+  const user = useAuth();
 
   return (
     <div className="layout">
       <nav className="navbar">
-        <Link className="navbar__avatar" to={"user/"}>
-          {email ? email.charAt(0).toUpperCase() : "Г"}
+        <Link className="navbar__avatar" to={"profile/"}>
+          {user.email ? user.email.charAt(0).toUpperCase() : "Г"}
         </Link>
 
         <div className="navbar__menu">
@@ -56,7 +51,7 @@ export default function Root() {
             }`}
             to={"statistics/"}
           >
-            <BsPieChart />
+            <BsTrophy />
           </Link>
 
           <Link
