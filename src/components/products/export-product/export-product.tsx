@@ -5,7 +5,7 @@ import * as XLSX from "xlsx";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
 
-import { updateProductMark } from "@/store/slices/dataSlice";
+import { setExportActivity, updateProductMark } from "@/store/slices/dataSlice";
 import { timestampToString } from "@/lib/date";
 
 import { BsFiletypeXls } from "react-icons/bs";
@@ -47,10 +47,7 @@ export const ExportProduct = () => {
       })
     );
 
-  const setProductMark = () => {
-    const allId = FilteredProducts(products, category, exported).map(
-      (product) => product.id
-    );
+  const setProductMark = async () => {
     try {
       exportToCSV(
         exportData,
@@ -58,9 +55,16 @@ export const ExportProduct = () => {
           exported === "Все" ? "🙌" : exported === true ? "👍" : "👎"
         } `
       );
+
+      const allId = FilteredProducts(products, category, exported).map(
+        (product) => product.id
+      );
+
       for (const id of allId) {
-        dispatch(updateProductMark({ id, user }));
+        await dispatch(updateProductMark({ id, user }));
       }
+
+      await dispatch(setExportActivity(user));
     } catch (e) {
       console.log(`SET PRODUCT MARK`, e);
     }
