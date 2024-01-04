@@ -55,7 +55,7 @@ export const addProduct = createAsyncThunk(
       actions: {
         created: {
           createdAt: getTime(new Date()),
-          whoCreated: user.email,
+          whoCreated: user.name,
           whoCreatedID: user.id,
         },
         exported: {
@@ -73,7 +73,7 @@ export const addProduct = createAsyncThunk(
     await setDoc(doc(db, "activity", id), {
       id: id,
       actioner: {
-        name: user.email,
+        name: user.name,
         email: user.email,
         id: user.id,
       },
@@ -109,7 +109,7 @@ export const updateProduct = createAsyncThunk(
           "actions.exported.isExported": false,
           "actions.updated.updatedAt": getTime(new Date()),
           "actions.updated.isUpdated": true,
-          "actions.updated.whoUpdated": user.email,
+          "actions.updated.whoUpdated": user.name,
           "actions.updated.whoUpdatedID": id,
         });
       }
@@ -124,7 +124,7 @@ export const updateProduct = createAsyncThunk(
     await setDoc(doc(db, "activity", id), {
       id: id,
       actioner: {
-        name: user.email,
+        name: user.name,
         email: user.email,
         id: user.id,
       },
@@ -154,7 +154,7 @@ export const setBarcodes = createAsyncThunk(
 );
 
 export const updateProductMark = createAsyncThunk(
-  "@@posts/updateProductMark",
+  "@@data/updateProductMark",
   async ({ id, user }: { id: string; user: UserData }) => {
     const products = await getDocs(collection(db, "data"));
     for (const snap of products.docs) {
@@ -162,36 +162,37 @@ export const updateProductMark = createAsyncThunk(
         await updateDoc(doc(db, "data", snap.id), {
           "actions.exported.isExported": true,
           "actions.exported.exportedOn": getTime(new Date()),
-          "actions.exported.whoExported": user.email,
+          "actions.exported.whoExported": user.name,
           "actions.exported.whoExportedID": user.id,
         });
       }
     }
 
-    const activityID = nanoid();
+    return id;
+  }
+);
 
+export const setExportActivity = createAsyncThunk(
+  "@@data/setExportActivity",
+  async (user: UserData) => {
+    const activityID = nanoid();
     await setDoc(doc(db, "activity", activityID), {
       id: activityID,
       actioner: {
-        name: user.email,
+        name: user.name,
         email: user.email,
         id: user.id,
       },
       description: `Экспортировал файл`,
       madeOn: getTime(new Date()),
     });
-
-    return id;
   }
 );
 
 const initialState: DataState = {
   products: [],
   barcodes: [],
-  activity: {
-    my: [],
-    all: [],
-  },
+  activity: [],
   filter: {
     category: "Все",
     exported: "Все",
@@ -215,7 +216,7 @@ const dataSlice = createSlice({
         state.products = action.payload;
       })
       .addCase(getActivity.fulfilled, (state, action) => {
-        state.activity.all = action.payload;
+        state.activity = action.payload;
       })
       .addCase(updateProduct.fulfilled, (state, action) => {
         // Updates in the products store
@@ -232,19 +233,18 @@ const dataSlice = createSlice({
         state.products[productIndex].actions.updated.isUpdated = true;
 
         // Updates in the activity store
-        const activityIndex = state.activity.all.findIndex(
+        const activityIndex = state.activity.findIndex(
           (activity) => activity.id == action.payload.id
         );
-        state.activity.all[activityIndex].id = action.payload.id;
-        state.activity.all[activityIndex].actioner.name =
-          action.payload.user.name;
-        state.activity.all[activityIndex].actioner.email =
+        state.activity[activityIndex].id = action.payload.id;
+        state.activity[activityIndex].actioner.name = action.payload.user.name;
+        state.activity[activityIndex].actioner.email =
           action.payload.user.email;
-        state.activity.all[activityIndex].actioner.id = action.payload.user.id;
-        state.activity.all[
+        state.activity[activityIndex].actioner.id = action.payload.user.id;
+        state.activity[
           activityIndex
         ].description = `Обновил - ${action.payload.data.name}`;
-        state.activity.all[activityIndex].madeOn = getTime(new Date());
+        state.activity[activityIndex].madeOn = getTime(new Date());
       })
       .addCase(getBarcodes.fulfilled, (state, action) => {
         state.barcodes = action.payload;
