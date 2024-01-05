@@ -151,7 +151,7 @@ const userSlice = createSlice({
       .addCase(signUpUser.fulfilled, (state, action) => {
         state.email = action.payload ? action.payload.email : null;
         state.id = action.payload ? action.payload.uid : null;
-        state.isAuth = true;
+        state.isAuth = action.payload ? !!action.payload.email : false;
       })
       .addCase(getUserInfo.fulfilled, (state, action) => {
         state.name = action.payload?.name;
