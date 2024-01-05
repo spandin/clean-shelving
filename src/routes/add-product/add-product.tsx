@@ -57,8 +57,7 @@ export default function AddProduct() {
 
   const getBarcodesInfo = async (barcode: string): Promise<void> => {
     try {
-      const docRef = doc(db, `barcodes/${barcode}`);
-      const docSnap = await getDoc(docRef);
+      const docSnap = await getDoc(doc(db, `barcodes/${barcode}`));
 
       if (docSnap.exists()) {
         setValue("name", docSnap.data().name);

@@ -76,14 +76,13 @@ export default function Login({
           />
         </div>
 
-        <div className="login__buttons">
+        <div className="login__form__buttons">
           <LoadButton
             type="submit"
             isLoading={isSubmitting}
             text={"Войти"}
             disabled={isValid}
           />
-
           <div onClick={() => setAuthForm("register")}>Регистрация</div>
         </div>
       </form>
