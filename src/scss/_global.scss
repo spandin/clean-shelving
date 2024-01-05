@@ -69,7 +69,7 @@ button {
   transition: 0.2s ease-out all;
   &:hover,
   &.active {
-    background-color: $lime;
+    background-color: $white;
     svg {
       color: $secondary-color;
       font-size: 20px;
