@@ -89,7 +89,7 @@ function AboutProject() {
   return (
     <div className="about_project">
       <div className="about_project__wrapper">
-        <img src={IMAGES.welcoming} />
+        <img src={IMAGES.registration} />
       </div>
     </div>
   );

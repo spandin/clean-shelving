@@ -1,5 +1,5 @@
 import "./_profile.scss";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
@@ -11,10 +11,13 @@ import Informer from "@/components/common/informer/informer";
 import Login from "@/components/auth/login";
 
 import IMAGES from "@/assets/images";
+import Register from "@/components/auth/register";
 
 export default function Profile() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const [authForm, setAuthForm] = useState("login");
 
   const user = useAppSelector((state) => state.user);
 
@@ -77,8 +80,10 @@ export default function Profile() {
             </div>
           </div>
         </>
+      ) : authForm === "login" ? (
+        <Login setAuthForm={setAuthForm} />
       ) : (
-        <Login />
+        <Register />
       )}
     </div>
   );

@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
 import { deletedActionsUser } from "@/store/slices/userSlice";
 
 import { getTime } from "date-fns";
+import { toastAuthErr } from "@/lib/toast";
 
 export const DeleteProduct = ({ name, id }: { name: string; id: string }) => {
   const dispatch = useAppDispatch();
@@ -36,6 +37,7 @@ export const DeleteProduct = ({ name, id }: { name: string; id: string }) => {
 
       navigate("/products/");
     } catch (e) {
+      toastAuthErr();
       console.log("DELETE PRODUCT: " + e);
     }
   };

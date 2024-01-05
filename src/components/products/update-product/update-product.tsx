@@ -36,6 +36,7 @@ export const UpdateProduct = ({
       toastPromise(dispatch(updateProduct({ id, data, user })));
       await dispatch(updatedActionsUser(user));
     } catch (e) {
+      toastAuthErr();
       console.log(`UPDATE PRODUCT:`, e);
     }
   };
@@ -179,7 +180,6 @@ export const UpdateProduct = ({
           disabled={true}
           isLoading={isSubmitting}
           text="Обновить"
-          onClick={() => toastAuthErr(user.isAuth)}
         />
       </form>
     </div>

@@ -20,10 +20,8 @@ const toastPromise = (promise: Promise<unknown>) => {
   );
 };
 
-const toastAuthErr = (isAuth: boolean) => {
-  if (!isAuth) {
-    toast.error("Войдите в аккаунт", settingsToast);
-  }
+const toastAuthErr = () => {
+  toast.error("Войдите в аккаунт", settingsToast);
 };
 
 const toastSuccess = (msg: string) => {

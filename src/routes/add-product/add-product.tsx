@@ -45,6 +45,8 @@ export default function AddProduct() {
       if (user.isAuth) {
         toastPromise(dispatch(addProduct({ data, user })));
         await dispatch(addedActionsUser(user));
+      } else {
+        toastAuthErr();
       }
 
       reset();
@@ -251,7 +253,6 @@ export default function AddProduct() {
           disabled={true}
           isLoading={isSubmitting}
           text="Добавить"
-          onClick={() => toastAuthErr(user.isAuth)}
         />
       </form>
     </div>

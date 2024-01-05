@@ -1,4 +1,4 @@
-import "./_login.scss";
+import "./_auth.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch } from "@/hooks/redux-hooks";
 
@@ -13,7 +13,11 @@ interface FormValues {
   password: string;
 }
 
-export default function Login() {
+export default function Login({
+  setAuthForm,
+}: {
+  setAuthForm: React.Dispatch<React.SetStateAction<string>>;
+}) {
   const dispatch = useAppDispatch();
 
   const {
@@ -28,7 +32,7 @@ export default function Login() {
 
   return (
     <div className="login">
-      <img src={IMAGES.welcoming} />
+      <img src={IMAGES.login} />
       <form
         className="login__form"
         onSubmit={handleSubmit(onSubmit)}
@@ -39,7 +43,7 @@ export default function Login() {
           <p>используя email и пароль</p>
         </div>
 
-        <div className="login__form__wrapper">
+        <div className="login__form__inputs">
           <input
             placeholder="Email"
             type="email"
@@ -72,12 +76,16 @@ export default function Login() {
           />
         </div>
 
-        <LoadButton
-          type="submit"
-          isLoading={isSubmitting}
-          text={"Войти"}
-          disabled={isValid}
-        />
+        <div className="login__buttons">
+          <LoadButton
+            type="submit"
+            isLoading={isSubmitting}
+            text={"Войти"}
+            disabled={isValid}
+          />
+
+          <div onClick={() => setAuthForm("register")}>Регистрация</div>
+        </div>
       </form>
     </div>
   );
