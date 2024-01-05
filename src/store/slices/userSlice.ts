@@ -1,8 +1,11 @@
 import { UserData } from "@/types/types";
 
 import { auth, db } from "@/lib/firebase";
-import { doc, getDoc, increment, updateDoc } from "firebase/firestore";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc, increment, setDoc, updateDoc } from "firebase/firestore";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
@@ -16,7 +19,49 @@ export const signInUser = createAsyncThunk(
         }
       );
     } catch (e: any) {
-      console.log(`SIGN IN: `, e.message);
+      console.log(`SIGN IN: `, e);
+    }
+  }
+);
+
+export const signUpUser = createAsyncThunk(
+  "@@user/signUpUser",
+  async (data: {
+    email: string;
+    password: string;
+    name: string;
+    role: string;
+  }) => {
+    try {
+      await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      ).then((userCredential) => {
+        return userCredential.user;
+      });
+
+      return await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      ).then((userCredential) => {
+        setDoc(doc(db, "users", `${userCredential.user.uid}`), {
+          id: userCredential.user.uid,
+          name: data.name,
+          email: userCredential.user.email,
+          role: data.role,
+          actions: {
+            added: 0,
+            updated: 0,
+            deleted: 0,
+          },
+        });
+
+        return userCredential.user;
+      });
+    } catch (e: any) {
+      console.log(`SIGN UP: `, e);
     }
   }
 );
@@ -99,6 +144,11 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(signInUser.fulfilled, (state, action) => {
+        state.email = action.payload ? action.payload.email : null;
+        state.id = action.payload ? action.payload.uid : null;
+        state.isAuth = true;
+      })
+      .addCase(signUpUser.fulfilled, (state, action) => {
         state.email = action.payload ? action.payload.email : null;
         state.id = action.payload ? action.payload.uid : null;
         state.isAuth = true;
