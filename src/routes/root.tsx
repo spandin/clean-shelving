@@ -10,7 +10,12 @@ import { setDefaultOptions } from "date-fns";
 import { ru } from "date-fns/locale";
 setDefaultOptions({ locale: ru });
 
-import { BsHouse, BsTrophy, BsPlusCircle, BsSpeedometer } from "react-icons/bs";
+import {
+  BsHouseFill,
+  BsFillAwardFill,
+  BsPlusCircleFill,
+  BsSpeedometer,
+} from "react-icons/bs";
 
 import Activity from "./activity/activity";
 
@@ -33,7 +38,7 @@ export default function Root() {
             id="menu_add"
             to={"add/"}
           >
-            <BsPlusCircle />
+            <BsPlusCircleFill />
           </Link>
 
           <Link
@@ -42,7 +47,7 @@ export default function Root() {
             }`}
             to={"products/"}
           >
-            <BsHouse />
+            <BsHouseFill />
           </Link>
 
           <Link
@@ -51,7 +56,7 @@ export default function Root() {
             }`}
             to={"statistics/"}
           >
-            <BsTrophy />
+            <BsFillAwardFill />
           </Link>
 
           <Link

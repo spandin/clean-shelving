@@ -33,7 +33,7 @@ export const getActivity = createAsyncThunk("@@data/getActivity", async () => {
   const querySnapshot = await getDocs(collection(db, "activity"));
   const data = querySnapshot.docs.map((doc: DocumentData) => doc.data());
 
-  return data;
+  return data.sort((a, b) => +new Date(b.madeOn) - +new Date(a.madeOn));
 });
 
 export const addProduct = createAsyncThunk(
@@ -57,6 +57,12 @@ export const addProduct = createAsyncThunk(
           createdAt: getTime(new Date()),
           whoCreated: user.name,
           whoCreatedID: user.id,
+        },
+        updated: {
+          isUpdated: false,
+          whoUpdated: null,
+          whoUpdatedID: null,
+          updatedAt: null,
         },
         exported: {
           isExported: false,
@@ -100,10 +106,11 @@ export const updateProduct = createAsyncThunk(
         if (snap.id === id) {
           await updateDoc(doc(db, "data", snap.id), {
             name: data.name,
-            code: data.code,
+            code: parseInt(data.code),
             category: data.category,
-            quantity: data.quantity,
+            quantity: parseInt(data.quantity),
             dates: {
+              createdAt: getTime(new Date()),
               mfd: stringToTimestamp(data.dates.mfd),
               exp: stringToTimestamp(data.dates.exp),
             },
