@@ -15,6 +15,7 @@ import {
   BsFillAwardFill,
   BsPlusCircleFill,
   BsSpeedometer,
+  BsFillPersonFill,
 } from "react-icons/bs";
 
 import Activity from "./activity/activity";
@@ -27,7 +28,11 @@ export default function Root() {
     <div className="layout">
       <nav className="navbar">
         <Link className="navbar__avatar" to={"profile/"}>
-          {user.email ? user.email.charAt(0).toUpperCase() : "Г"}
+          {user.email ? (
+            user.email.charAt(0).toUpperCase()
+          ) : (
+            <BsFillPersonFill />
+          )}
         </Link>
 
         <div className="navbar__menu">
