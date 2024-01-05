@@ -48,6 +48,10 @@ button {
   &:hover {
     background-color: $lime-lighter;
   }
+  &:disabled {
+    background-color: $tertiary-color;
+    color: $gray;
+  }
 }
 
 .circle_button {

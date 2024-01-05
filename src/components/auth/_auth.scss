@@ -12,6 +12,7 @@
     gap: 1rem;
     min-width: 396px;
     &__title {
+      padding: 0rem 0.2rem;
       line-height: 1.6rem;
       :last-child {
         color: $gray;
@@ -28,32 +29,26 @@
         gap: 1rem;
       }
     }
-  }
-  &__buttons {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-
-    button {
-      width: 50%;
-    }
-    div {
+    &__buttons {
       display: flex;
       flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      min-width: 50px;
-      min-height: 50px;
-      width: 50%;
-      border-radius: 50px;
-      background-color: $tertiary-color;
-      color: $white;
-      font-weight: 500;
-      transition: 0.2s ease-out all;
-      cursor: pointer;
-      &:hover {
+      justify-content: space-between;
+      gap: 1rem;
+      width: 100%;
+      button {
+        width: 50%;
+      }
+      div {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        border-radius: 50px;
         background-color: $white;
         color: $primary-color;
+        font-weight: 500;
+        cursor: pointer;
       }
     }
   }
