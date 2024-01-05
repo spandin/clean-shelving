@@ -128,7 +128,7 @@
     }
   }
 
-  &:has(.login) {
+  &:has(.login, .register) {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -142,9 +142,9 @@
       width: 100%;
     }
 
-    &:has(.login) {
+    &:has(.login, .register) {
       justify-content: flex-end;
-      padding: 1rem 2rem;
+      padding: 1rem;
     }
   }
 }

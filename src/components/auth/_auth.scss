@@ -1,0 +1,80 @@
+@import "../../scss/_variables.scss";
+
+.login,
+.register {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4rem;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 396px;
+    &__title {
+      line-height: 1.6rem;
+      :last-child {
+        color: $gray;
+      }
+    }
+    &__inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      min-width: 300px;
+      &__row {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+      }
+    }
+  }
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+    button {
+      width: 50%;
+    }
+    div {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      min-width: 50px;
+      min-height: 50px;
+      width: 50%;
+      border-radius: 50px;
+      background-color: $tertiary-color;
+      color: $white;
+      font-weight: 500;
+      transition: 0.2s ease-out all;
+      cursor: pointer;
+      &:hover {
+        background-color: $white;
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .login,
+  .register {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    img {
+      max-width: 70%;
+    }
+    &__form {
+      width: 100%;
+      min-width: auto;
+      &__inputs {
+        min-width: auto;
+      }
+    }
+  }
+}
