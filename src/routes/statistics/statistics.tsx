@@ -23,9 +23,9 @@ export default function Statistics() {
       collectionSnapshot.sort(
         (x, y) =>
           y.actions.added +
-          y.actions.updated +
-          y.actions.deleted -
-          (x.actions.added + x.actions.updated + x.actions.deleted)
+          y.actions.updated / 4 +
+          y.actions.deleted / 2 -
+          (x.actions.added + x.actions.updated / 4 + x.actions.deleted / 2)
       );
 
       setUsers(collectionSnapshot);
