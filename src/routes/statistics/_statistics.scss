@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    max-height: calc(100vh - 8rem);
+    max-height: calc(100vh - 15rem);
     overflow-y: scroll;
     border-radius: 15px 15px 30px 30px;
   }
@@ -34,26 +34,11 @@
     background-color: $tertiary-color;
   }
 
-  &__avatar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 40px;
-    min-height: 40px;
-    max-width: 40px;
-    max-height: 40px;
-    padding: 1rem;
-    border-radius: 50%;
-    background-color: $lime;
-    color: $primary-color;
-    font-weight: 500;
-  }
-
   &__column {
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding-left: 1rem;
+    gap: 0.5rem;
     line-height: 20px;
     word-break: break-all;
     &__row {
@@ -72,8 +57,36 @@
     }
 
     &__description {
-      color: $gray;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+      color: $white;
       font-size: 14px;
+      &__actions {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 1rem;
+        width: 100%;
+        &__col {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .statistics-card {
+    &__column {
+      &__description {
+        &__actions {
+          justify-content: space-between;
+        }
+      }
     }
   }
 }
