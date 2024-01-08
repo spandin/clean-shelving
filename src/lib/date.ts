@@ -17,9 +17,10 @@ export const stringToUTC = (dateStr: string): Date => {
 };
 
 export const calcDistanceEndFromExp = (exp: string): string => {
-  return intlFormatDistance(stringToUTC(exp), new Date(),
-    { locale: "ru" }
-  );
+  return intlFormatDistance(stringToUTC(exp), new Date(), {
+    locale: "ru",
+    unit: "day",
+  });
 };
 
 export const calcDistanceEndFromMonth = (
