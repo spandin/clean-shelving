@@ -39,6 +39,10 @@
     #card_title {
       color: $primary-color;
     }
+    #card_actions {
+      background-color: $primary-color;
+      color: $white;
+    }
   }
 
   &__column {
