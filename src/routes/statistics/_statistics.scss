@@ -39,9 +39,6 @@
     #card_title {
       color: $primary-color;
     }
-    #card_actions {
-      color: $primary-color;
-    }
   }
 
   &__column {
@@ -76,6 +73,7 @@
       padding: 0.5rem 1rem;
       border-radius: 20px;
       background-color: $white;
+      color: $primary-color;
       font-size: 14px;
       &__col {
         display: flex;
