@@ -40,7 +40,7 @@
       color: $primary-color;
     }
     #card_actions {
-      color: $white;
+      color: $primary-color;
     }
   }
 
@@ -75,7 +75,7 @@
       width: 100%;
       padding: 0.5rem 1rem;
       border-radius: 20px;
-      background-color: $secondary-color;
+      background-color: $white;
       font-size: 14px;
       &__col {
         display: flex;
