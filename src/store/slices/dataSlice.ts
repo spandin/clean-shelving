@@ -17,8 +17,8 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
-import { getTime } from "date-fns";
-import { stringToTimestamp } from "@/lib/date";
+import { addMonths, getTime } from "date-fns";
+import { stringToTimestamp, stringToUTC } from "@/lib/date";
 
 export const getProducts = createAsyncThunk("@@data/getProducts", async () => {
   const querySnapshot = await getDocs(collection(db, "data"));
@@ -38,7 +38,15 @@ export const getActivity = createAsyncThunk("@@data/getActivity", async () => {
 
 export const addProduct = createAsyncThunk(
   "@@data/addProduct",
-  async ({ data, user }: { data: AddFormInputsType; user: UserData }) => {
+  async ({
+    data,
+    user,
+    selectType,
+  }: {
+    data: AddFormInputsType;
+    user: UserData;
+    selectType: string;
+  }) => {
     const id = nanoid();
 
     await setDoc(doc(db, "data", id), {
@@ -50,7 +58,12 @@ export const addProduct = createAsyncThunk(
       dates: {
         createdAt: getTime(new Date()),
         mfd: stringToTimestamp(data.dates.mfd),
-        exp: stringToTimestamp(data.dates.exp),
+        exp:
+          selectType === "date"
+            ? stringToTimestamp(data.dates.exp)
+            : getTime(
+                addMonths(stringToUTC(data.dates.mfd), parseInt(data.dates.exp))
+              ),
       },
       actions: {
         created: {

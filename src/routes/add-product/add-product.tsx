@@ -43,7 +43,7 @@ export default function AddProduct() {
   const onCreate: SubmitHandler<AddFormInputsType> = async (data) => {
     try {
       if (user.isAuth) {
-        toastPromise(dispatch(addProduct({ data, user })));
+        toastPromise(dispatch(addProduct({ data, user, selectType })));
         await dispatch(addedActionsUser(user));
       } else {
         toastAuthErr();
