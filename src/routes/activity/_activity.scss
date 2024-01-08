@@ -18,6 +18,7 @@
     flex-direction: column;
     gap: 1rem;
     max-height: calc(100vh - 8rem);
+    max-width: 500px;
     overflow-y: scroll;
     border-radius: 15px 15px 30px 30px;
   }
@@ -33,6 +34,7 @@
   transition: 0.2s ease-out all;
   &:hover {
     background-color: $white;
+    transform: scale(0.98);
     #card_title,
     #card_description {
       color: $primary-color;
@@ -57,13 +59,11 @@
         color: $white;
       }
       &__date {
-        font-size: 16px;
         color: $gray;
       }
     }
 
     &__description {
-      font-size: 14px;
       color: $gray;
     }
   }
