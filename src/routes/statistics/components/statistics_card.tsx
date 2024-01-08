@@ -31,27 +31,36 @@ export default function StatisticsCard({
               }. `}
               {user.name}
             </span>
+
             <span className="statistics-card__column__row__role">
-              {`Баллы: ${
-                user.actions.added +
-                user.actions.updated / 4 +
-                user.actions.deleted / 2
-              }`}
+              {user.role}
             </span>
           </div>
 
           <div className="statistics-card__column__description">
-            <div className="statistics-card__column__description__actions">
+            <div
+              className="statistics-card__column__description__actions"
+              id="card_actions"
+            >
               <div className="statistics-card__column__description__actions__col">
-                <span>Добавлено:</span> {user.actions.added}
+                <span>AVG:</span>{" "}
+                {`${
+                  user.actions.added +
+                  user.actions.updated / 4 +
+                  user.actions.deleted / 2
+                }`}
               </div>
               |
               <div className="statistics-card__column__description__actions__col">
-                <span>Обновлено:</span> {user.actions.updated}{" "}
+                <span>ADD:</span> {user.actions.added}
               </div>
               |
               <div className="statistics-card__column__description__actions__col">
-                <span>Удалено:</span> {user.actions.deleted}{" "}
+                <span>UPD:</span> {user.actions.updated}
+              </div>
+              |
+              <div className="statistics-card__column__description__actions__col">
+                <span>DEL:</span> {user.actions.deleted}
               </div>
             </div>
           </div>
