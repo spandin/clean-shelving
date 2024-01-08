@@ -31,29 +31,26 @@ export default function StatisticsCard({
           </span>
         </div>
 
-        <div className="statistics-card__column__description">
-          <div
-            className="statistics-card__column__description__actions"
-            id="card_actions"
-          >
-            <div className="statistics-card__column__description__actions__col">
-              <span>AVG:</span>
-              {user.actions.added +
+        <div className="statistics-card__column__actions" id="card_actions">
+          <div className="statistics-card__column__actions__col">
+            <span>ADD:</span> {user.actions.added}
+          </div>
+
+          <div className="statistics-card__column__actions__col">
+            <span>UPD:</span> {user.actions.updated}
+          </div>
+
+          <div className="statistics-card__column__actions__col">
+            <span>DEL:</span> {user.actions.deleted}
+          </div>
+
+          <div className="statistics-card__column__actions__col">
+            <span>ОЧКИ:</span>
+            {Math.ceil(
+              user.actions.added +
                 user.actions.updated / 4 +
-                user.actions.deleted / 2}
-            </div>
-
-            <div className="statistics-card__column__description__actions__col">
-              <span>ADD:</span> {user.actions.added}
-            </div>
-
-            <div className="statistics-card__column__description__actions__col">
-              <span>UPD:</span> {user.actions.updated}
-            </div>
-
-            <div className="statistics-card__column__description__actions__col">
-              <span>DEL:</span> {user.actions.deleted}
-            </div>
+                user.actions.deleted / 2
+            )}
           </div>
         </div>
       </Link>

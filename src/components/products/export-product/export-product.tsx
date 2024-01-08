@@ -81,7 +81,7 @@ export const ExportProduct = () => {
       </p>
       <button
         onClick={
-          user.email === "willstesi@gmail.com" && "marinka.e@shelfx.by"
+          user.email === "willstesi@gmail.com" && "marinulik.85@mail.ru"
             ? () => setProductMark()
             : () =>
                 exportToCSV(
