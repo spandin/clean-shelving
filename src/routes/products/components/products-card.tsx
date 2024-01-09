@@ -4,7 +4,7 @@ import { ProductType } from "@/types/types";
 
 import { BsArrowDownLeftCircle } from "react-icons/bs";
 
-import { calcDistanceEndFromExp, timestampToString } from "@/lib/date";
+import { calcDistanceEndDayFromExp, timestampToString } from "@/lib/date";
 
 interface IProps {
   product: ProductType;
@@ -70,7 +70,7 @@ export default function ProductsCard({ product, number }: IProps) {
         </Link>
 
         <div id="card_badge">
-          {calcDistanceEndFromExp(timestampToString(product.dates.exp))}
+          {calcDistanceEndDayFromExp(timestampToString(product.dates.exp))}
         </div>
       </div>
     </div>

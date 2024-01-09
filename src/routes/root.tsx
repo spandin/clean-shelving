@@ -22,7 +22,7 @@ import Activity from "./activity/activity";
 
 export default function Root() {
   const location = useLocation();
-  const user = useAuth();
+  const user = useAppSelector((state) => state.user);
 
   return (
     <div className="layout">
@@ -32,11 +32,7 @@ export default function Root() {
           to={"profile/"}
           unstable_viewTransition
         >
-          {user.email ? (
-            user.email.charAt(0).toUpperCase()
-          ) : (
-            <BsFillPersonFill />
-          )}
+          {user.name ? user.name.charAt(0).toUpperCase() : <BsFillPersonFill />}
         </Link>
 
         <div className="navbar__menu">
@@ -97,6 +93,7 @@ export default function Root() {
 
 import IMAGES from "@/assets/images";
 import { useAuth } from "@/hooks/use-auth";
+import { useAppSelector } from "@/hooks/redux-hooks";
 
 function AboutProject() {
   return (
