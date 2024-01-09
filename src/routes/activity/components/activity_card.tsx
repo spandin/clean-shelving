@@ -10,6 +10,7 @@ export default function ActivityCard({ activity }: { activity: Activity }) {
       <Link
         className="activity-card__column"
         to={`/products/${activity.id}`}
+        preventScrollReset
         unstable_viewTransition
       >
         <div className="activity-card__column__row">

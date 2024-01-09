@@ -14,8 +14,10 @@ export default function Similar({ items }: { items: ProductType[] }) {
       {items.map((item) => {
         return (
           <Link
-            to={`/products/${item.id}`}
+            key={item.id}
             className="products__grid__card"
+            to={`/products/${item.id}`}
+            preventScrollReset
             unstable_viewTransition
           >
             <div className="products__grid__card__row_1">

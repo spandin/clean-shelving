@@ -63,6 +63,7 @@ export default function ProductsCard({ product, number }: IProps) {
         <Link
           id="card_link"
           to={`/products/${product.id}`}
+          preventScrollReset
           unstable_viewTransition
         >
           <BsArrowDownLeftCircle />

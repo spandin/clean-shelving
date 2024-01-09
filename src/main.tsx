@@ -1,13 +1,17 @@
 import { registerSW } from "virtual:pwa-register";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 import "./lib/firebase";
 
 import Root from "./routes/root";
-import ErrorPage from "./routes/error-page";
 import Products from "./routes/products/products";
 import ProductId from "./routes/products-id/product-id";
 import AddProduct from "./routes/add-product/add-product";
@@ -26,48 +30,22 @@ const updateSW = registerSW({
   },
 });
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
-
-    children: [
-      {
-        path: "products/",
-        element: <Products />,
-      },
-      {
-        path: "products/:productId",
-        element: <ProductId />,
-      },
-      {
-        path: "add/",
-        element: <AddProduct />,
-      },
-      {
-        path: "profile/",
-        element: <Profile />,
-      },
-      {
-        path: "user/:userId",
-        element: <UserId />,
-      },
-      {
-        path: "settings/",
-        element: <Settings />,
-      },
-      {
-        path: "statistics/",
-        element: <Statistics />,
-      },
-      {
-        path: "activity/",
-        element: <Activity />,
-      },
-    ],
-  },
-]);
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route path="/" element={<Root />}>
+        <Route index path="products/" element={<Products />} />
+        <Route path="products/:productId" element={<ProductId />} />
+        <Route path="add/" element={<AddProduct />} />
+        <Route path="profile/" element={<Profile />} />
+        <Route path="user/:userId/" element={<UserId />} />
+        <Route path="settings//" element={<Settings />} />
+        <Route path="statistics/" element={<Statistics />} />
+        <Route path="activity/" element={<Activity />} />
+      </Route>
+    </>
+  )
+);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

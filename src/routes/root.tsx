@@ -3,8 +3,10 @@ import "../scss/_global.scss";
 import "./_root.scss";
 import "react-toastify/dist/ReactToastify.min.css";
 
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, ScrollRestoration, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+
+import { useAppSelector } from "@/hooks/redux-hooks";
 
 import { setDefaultOptions } from "date-fns";
 import { ru } from "date-fns/locale";
@@ -30,6 +32,7 @@ export default function Root() {
         <Link
           className="navbar__avatar"
           to={"profile/"}
+          preventScrollReset
           unstable_viewTransition
         >
           {user.name ? user.name.charAt(0).toUpperCase() : <BsFillPersonFill />}
@@ -42,6 +45,7 @@ export default function Root() {
             }`}
             id="menu_add"
             to={"add/"}
+            preventScrollReset
             unstable_viewTransition
           >
             <BsPlusCircleFill />
@@ -52,6 +56,7 @@ export default function Root() {
               location.pathname === "/products/" ? "active" : null
             }`}
             to={"products/"}
+            preventScrollReset
             unstable_viewTransition
           >
             <BsHouseFill />
@@ -62,6 +67,7 @@ export default function Root() {
               location.pathname === "/statistics/" ? "active" : null
             }`}
             to={"statistics/"}
+            preventScrollReset
             unstable_viewTransition
           >
             <BsFillAwardFill />
@@ -73,6 +79,7 @@ export default function Root() {
             }`}
             id="menu_activity"
             to={"activity/"}
+            preventScrollReset
             unstable_viewTransition
           >
             <BsSpeedometer />
@@ -87,13 +94,13 @@ export default function Root() {
       <aside>
         <Activity />
       </aside>
+
+      <ScrollRestoration />
     </div>
   );
 }
 
 import IMAGES from "@/assets/images";
-import { useAuth } from "@/hooks/use-auth";
-import { useAppSelector } from "@/hooks/redux-hooks";
 
 function AboutProject() {
   return (

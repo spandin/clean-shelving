@@ -14,6 +14,7 @@ export default function StatisticsCard({
       <Link
         className="statistics-card__column"
         to={`/user/${user.id}`}
+        preventScrollReset
         unstable_viewTransition
       >
         <div className="statistics-card__column__row">
