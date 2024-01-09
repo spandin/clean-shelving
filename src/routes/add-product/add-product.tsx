@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { IMaskInput } from "react-imask";
 
-import { AddFormInputsType } from "@/types/types";
+import { AddFormInputsType, ProductType } from "@/types/types";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
 
@@ -15,16 +15,24 @@ import { db } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { toastAuthErr, toastPromise } from "@/lib/toast";
 
+import { BsCheckAll } from "react-icons/bs";
+
 import CalcExpirationDate from "./components/calcExpirationDate";
 import Informer from "@/components/common/informer/informer";
 import { LoadButton } from "@/components/common/load-button/load-button";
+import { Modal } from "@/components/common/modal/modal";
+import Similar from "./components/similar/similar";
 
 export default function AddProduct() {
   const dispatch = useAppDispatch();
 
+  const [similarModalActive, setSimilarModalActive] = useState(false);
+
   const [expirationDate, setExpirationDate] = useState("");
+  const [similarItems, setSimilarItems] = useState<ProductType[]>([]);
 
   const user = useAppSelector((state) => state.user);
+  const products = useAppSelector((state) => state.data.products);
   const { selectType } = useAppSelector((state) => state.addForm);
 
   const {
@@ -68,136 +76,132 @@ export default function AddProduct() {
     }
   };
 
+  const findAndSetStateSimilar = (searchTerm: string) => {
+    const foundItem = products.filter(
+      (item) => item.code.toString() === searchTerm
+    );
+
+    if (foundItem) {
+      setSimilarItems(foundItem);
+    } else {
+      setSimilarItems([]);
+    }
+  };
+
   return (
-    <div className="add-product">
-      <div className="add-product__header">
-        <Informer title="Добавление" />
-      </div>
+    <>
+      <div className="add-product">
+        <div className="add-product__header">
+          <Informer title="Добавление" />
+        </div>
 
-      <form
-        className="add-product__form"
-        onSubmit={handleSubmit(onCreate)}
-        noValidate
-      >
-        <div className="add-product__form__wrapper">
-          <div className="add-product__form__input">
-            <label htmlFor="code">Штрих код:</label>
-            <input
-              placeholder="0000000000000"
-              type="number"
-              autoComplete="off"
-              {...register("code", {
-                required: "Введите штрих код",
-                minLength: {
-                  value: 6,
-                  message: "Минимальная длина 6 символов",
-                },
-                maxLength: {
-                  value: 16,
-                  message: "Максимальная длина 16 символов",
-                },
-              })}
-              onChange={(e) => getBarcodesInfo(e.target.value)}
-            />
-          </div>
-
-          <div className="add-product__form__input">
-            <label htmlFor="name">Наименование:</label>
-            <input
-              placeholder="Название товара"
-              type="text"
-              autoComplete="off"
-              {...register("name", {
-                required: "Введите название",
-                minLength: {
-                  value: 8,
-                  message: "Минимальная длина 8 символов",
-                },
-                maxLength: {
-                  value: 50,
-                  message: "Максимальная длина 50 символов",
-                },
-              })}
-            />
-          </div>
-
-          <div className="add-product__form__wrapper__row">
+        <form
+          className="add-product__form"
+          onSubmit={handleSubmit(onCreate)}
+          noValidate
+        >
+          <div className="add-product__form__wrapper">
             <div className="add-product__form__input">
-              <label htmlFor="category">Категория:</label>
-              <select
-                id="category"
-                {...register("category", {
-                  required: "Выберите категорию",
-                })}
-              >
-                <option value="Продукты">Продукты</option>
-                <option value="Химия">Химия</option>
-                <option value="Алкоголь">Алкоголь</option>
-                <option value="Косметика">Косметика</option>
-                <option value="Другое">Другое</option>
-              </select>
-            </div>
-
-            <div className="add-product__form__input">
-              <label htmlFor="quantity">Количество:</label>
+              <label htmlFor="code">Штрих код:</label>
               <input
-                placeholder="1-99"
+                placeholder="0000000000000"
                 type="number"
-                defaultValue={1}
                 autoComplete="off"
-                {...register("quantity", {
-                  required: "Введите количество",
-                  min: {
-                    value: 1,
-                    message: "Минимальное число 1",
+                {...register("code", {
+                  required: "Введите штрих код",
+                  minLength: {
+                    value: 6,
+                    message: "Минимальная длина 6 символов",
                   },
-                  max: {
-                    value: 999,
-                    message: "Максимальное число 99",
+                  maxLength: {
+                    value: 16,
+                    message: "Максимальная длина 16 символов",
                   },
                 })}
-              />
-            </div>
-          </div>
-
-          <div className="add-product__form__wrapper__row">
-            <div className="add-product__form__input">
-              <label htmlFor="mfd">Годен от:</label>
-              <Controller
-                control={control}
-                {...register("dates.mfd", {
-                  required: "Укажите дату производства",
-                })}
-                render={({ field }) => (
-                  <IMaskInput
-                    mask={Date}
-                    min={new Date(2018, 0, 1)}
-                    max={new Date(2099, 0, 1)}
-                    onChange={(date) => field.onChange(date)}
-                    placeholder="00.00.0000"
-                    inputMode="numeric"
-                  />
-                )}
-              />
-            </div>
-
-            <div className="add-product__form__input">
-              <select
-                id="exp_type"
-                defaultValue={selectType}
                 onChange={(e) => {
-                  dispatch(setSelectType(e.target.value));
+                  getBarcodesInfo(e.target.value),
+                    findAndSetStateSimilar(e.target.value);
                 }}
-              >
-                <option value="date">Годен до:</option>
-                <option value="month">Годен месяцев:</option>
-              </select>
+              />
 
-              {selectType === "date" ? (
+              <div
+                className={
+                  similarItems.length
+                    ? "add-product__form__input__similar active"
+                    : "add-product__form__input__similar"
+                }
+                onClick={() => setSimilarModalActive(true)}
+              >
+                {<BsCheckAll />}
+              </div>
+            </div>
+
+            <div className="add-product__form__input">
+              <label htmlFor="name">Наименование:</label>
+              <input
+                placeholder="Название товара"
+                type="text"
+                autoComplete="off"
+                {...register("name", {
+                  required: "Введите название",
+                  minLength: {
+                    value: 8,
+                    message: "Минимальная длина 8 символов",
+                  },
+                  maxLength: {
+                    value: 50,
+                    message: "Максимальная длина 50 символов",
+                  },
+                })}
+              />
+            </div>
+
+            <div className="add-product__form__wrapper__row">
+              <div className="add-product__form__input">
+                <label htmlFor="category">Категория:</label>
+                <select
+                  id="category"
+                  {...register("category", {
+                    required: "Выберите категорию",
+                  })}
+                >
+                  <option value="Продукты">Продукты</option>
+                  <option value="Химия">Химия</option>
+                  <option value="Алкоголь">Алкоголь</option>
+                  <option value="Косметика">Косметика</option>
+                  <option value="Другое">Другое</option>
+                </select>
+              </div>
+
+              <div className="add-product__form__input">
+                <label htmlFor="quantity">Количество:</label>
+                <input
+                  placeholder="1-99"
+                  type="number"
+                  defaultValue={1}
+                  autoComplete="off"
+                  {...register("quantity", {
+                    required: "Введите количество",
+                    min: {
+                      value: 1,
+                      message: "Минимальное число 1",
+                    },
+                    max: {
+                      value: 999,
+                      message: "Максимальное число 99",
+                    },
+                  })}
+                />
+              </div>
+            </div>
+
+            <div className="add-product__form__wrapper__row">
+              <div className="add-product__form__input">
+                <label htmlFor="mfd">Годен от:</label>
                 <Controller
                   control={control}
-                  {...register("dates.exp", {
-                    required: "Укажите дату просрочки",
+                  {...register("dates.mfd", {
+                    required: "Укажите дату производства",
                   })}
                   render={({ field }) => (
                     <IMaskInput
@@ -210,50 +214,86 @@ export default function AddProduct() {
                     />
                   )}
                 />
-              ) : (
-                <input
-                  type="number"
-                  defaultValue={0}
-                  autoComplete="off"
-                  {...register("dates.exp", {
-                    required: "Введите количество месяцев",
-                    min: {
-                      value: 1,
-                      message: "Мин. кол. месяцев 1",
-                    },
-                    max: {
-                      value: 120,
-                      message: "Макс. кол. месяцев 120",
-                    },
-                  })}
-                />
-              )}
+              </div>
 
-              <span id="exp_date_informer">{expirationDate}</span>
+              <div className="add-product__form__input">
+                <select
+                  id="exp_type"
+                  defaultValue={selectType}
+                  onChange={(e) => {
+                    dispatch(setSelectType(e.target.value));
+                  }}
+                >
+                  <option value="date">Годен до:</option>
+                  <option value="month">Годен месяцев:</option>
+                </select>
+
+                {selectType === "date" ? (
+                  <Controller
+                    control={control}
+                    {...register("dates.exp", {
+                      required: "Укажите дату просрочки",
+                    })}
+                    render={({ field }) => (
+                      <IMaskInput
+                        mask={Date}
+                        min={new Date(2018, 0, 1)}
+                        max={new Date(2099, 0, 1)}
+                        onChange={(date) => field.onChange(date)}
+                        placeholder="00.00.0000"
+                        inputMode="numeric"
+                      />
+                    )}
+                  />
+                ) : (
+                  <input
+                    type="number"
+                    defaultValue={0}
+                    autoComplete="off"
+                    {...register("dates.exp", {
+                      required: "Введите количество месяцев",
+                      min: {
+                        value: 1,
+                        message: "Мин. кол. месяцев 1",
+                      },
+                      max: {
+                        value: 120,
+                        message: "Макс. кол. месяцев 120",
+                      },
+                    })}
+                  />
+                )}
+
+                <span id="exp_date_informer">{expirationDate}</span>
+              </div>
             </div>
+
+            <p className="add-product__form__wrapper__error">
+              {(errors.code && errors.code.message) ||
+                (errors.name && errors.name.message) ||
+                (errors.category && errors.category.message) ||
+                (errors.quantity && errors.quantity.message) ||
+                (errors.dates != undefined &&
+                  errors.dates.mfd &&
+                  errors.dates.mfd.message) ||
+                (errors.dates != undefined &&
+                  errors.dates.exp &&
+                  errors.dates.exp.message)}
+            </p>
           </div>
 
-          <p className="add-product__form__wrapper__error">
-            {(errors.code && errors.code.message) ||
-              (errors.name && errors.name.message) ||
-              (errors.category && errors.category.message) ||
-              (errors.quantity && errors.quantity.message) ||
-              (errors.dates != undefined &&
-                errors.dates.mfd &&
-                errors.dates.mfd.message) ||
-              (errors.dates != undefined &&
-                errors.dates.exp &&
-                errors.dates.exp.message)}
-          </p>
-        </div>
+          <LoadButton
+            type="submit"
+            disabled={true}
+            isLoading={isSubmitting}
+            text="Добавить"
+          />
+        </form>
+      </div>
 
-        <LoadButton
-          type="submit"
-          disabled={true}
-          isLoading={isSubmitting}
-          text="Добавить"
-        />
-      </form>
-    </div>
+      <Modal active={similarModalActive} setActive={setSimilarModalActive}>
+        <Similar items={similarItems} />
+      </Modal>
+    </>
   );
 }
