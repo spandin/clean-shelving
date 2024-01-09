@@ -42,7 +42,7 @@ export const ExportProduct = () => {
           ? timestampToString(dates.createdAt)
           : timestampToString(actions.updated.updatedAt),
         Изготовлен: timestampToString(dates.mfd),
-        Просрочится: timestampToString(dates.mfd),
+        Просрочится: timestampToString(dates.exp),
         Статус: actions.exported.isExported ? "Внесён" : "Не внесён",
       })
     );
