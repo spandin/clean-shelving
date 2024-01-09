@@ -24,8 +24,25 @@
       flex-direction: column;
       gap: 0.2rem;
       flex: 1 0;
+      position: relative;
       label {
         margin: 0rem 0.2rem;
+      }
+      &__similar {
+        position: absolute;
+        top: 2rem;
+        right: 0.5rem;
+        display: flex;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        color: $white;
+        opacity: 0;
+        transition: 0.2s ease-out all;
+        &.active {
+          color: $lime;
+          opacity: 1;
+        }
       }
       #category,
       #exp_type {
