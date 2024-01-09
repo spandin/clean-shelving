@@ -13,7 +13,11 @@ export default function Similar({ items }: { items: ProductType[] }) {
 
       {items.map((item) => {
         return (
-          <Link to={`/products/${item.id}`} className="products__grid__card">
+          <Link
+            to={`/products/${item.id}`}
+            className="products__grid__card"
+            unstable_viewTransition
+          >
             <div className="products__grid__card__row_1">
               <div className="products__grid__card__row_1__group">
                 <span id="card_name">

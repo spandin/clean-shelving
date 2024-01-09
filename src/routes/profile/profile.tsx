@@ -34,7 +34,9 @@ export default function Profile() {
               <Informer title="Профиль" subtitle={user.email} />
               <button
                 className="circle_button"
-                onClick={() => navigate("/settings/")}
+                onClick={() =>
+                  navigate("/settings/", { unstable_viewTransition: true })
+                }
               >
                 <BsGear />
               </button>

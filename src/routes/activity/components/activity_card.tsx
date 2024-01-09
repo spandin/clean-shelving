@@ -7,7 +7,11 @@ import { timestampToString } from "@/lib/date";
 export default function ActivityCard({ activity }: { activity: Activity }) {
   return (
     <div className="activity-card">
-      <Link className="activity-card__column" to={`/products/${activity.id}`}>
+      <Link
+        className="activity-card__column"
+        to={`/products/${activity.id}`}
+        unstable_viewTransition
+      >
         <div className="activity-card__column__row">
           <span className="activity-card__column__row__title" id="card_title">
             {activity.actioner.name}

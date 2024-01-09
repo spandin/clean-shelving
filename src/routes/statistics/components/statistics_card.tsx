@@ -11,7 +11,11 @@ export default function StatisticsCard({
 }) {
   return (
     <div className="statistics-card">
-      <Link className="statistics-card__column" to={`/user/${user.id}`}>
+      <Link
+        className="statistics-card__column"
+        to={`/user/${user.id}`}
+        unstable_viewTransition
+      >
         <div className="statistics-card__column__row">
           <span className="statistics-card__column__row__title" id="card_title">
             {`${

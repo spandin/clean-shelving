@@ -27,7 +27,11 @@ export default function Root() {
   return (
     <div className="layout">
       <nav className="navbar">
-        <Link className="navbar__avatar" to={"profile/"}>
+        <Link
+          className="navbar__avatar"
+          to={"profile/"}
+          unstable_viewTransition
+        >
           {user.email ? (
             user.email.charAt(0).toUpperCase()
           ) : (
@@ -42,6 +46,7 @@ export default function Root() {
             }`}
             id="menu_add"
             to={"add/"}
+            unstable_viewTransition
           >
             <BsPlusCircleFill />
           </Link>
@@ -51,6 +56,7 @@ export default function Root() {
               location.pathname === "/products/" ? "active" : null
             }`}
             to={"products/"}
+            unstable_viewTransition
           >
             <BsHouseFill />
           </Link>
@@ -60,6 +66,7 @@ export default function Root() {
               location.pathname === "/statistics/" ? "active" : null
             }`}
             to={"statistics/"}
+            unstable_viewTransition
           >
             <BsFillAwardFill />
           </Link>
@@ -70,6 +77,7 @@ export default function Root() {
             }`}
             id="menu_activity"
             to={"activity/"}
+            unstable_viewTransition
           >
             <BsSpeedometer />
           </Link>

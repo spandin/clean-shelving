@@ -60,7 +60,11 @@ export default function ProductsCard({ product, number }: IProps) {
       </div>
 
       <div className="products__grid__card__row_3">
-        <Link id="card_link" to={`/products/${product.id}`}>
+        <Link
+          id="card_link"
+          to={`/products/${product.id}`}
+          unstable_viewTransition
+        >
           <BsArrowDownLeftCircle />
           Подробнее
         </Link>
