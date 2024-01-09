@@ -32,16 +32,18 @@ export default function StatisticsCard({
         </div>
 
         <div className="statistics-card__column__actions" id="card_actions">
-          <div className="statistics-card__column__actions__col">
-            <span>ADD:</span> {user.actions.added}
-          </div>
-
-          <div className="statistics-card__column__actions__col">
-            <span>UPD:</span> {user.actions.updated}
-          </div>
-
-          <div className="statistics-card__column__actions__col">
-            <span>DEL:</span> {user.actions.deleted}
+          <div className="statistics-card__column__actions__row">
+            <div className="statistics-card__column__actions__row__col">
+              <span>ADD:</span> {user.actions.added}
+            </div>
+            |
+            <div className="statistics-card__column__actions__row__col">
+              <span>UPD:</span> {user.actions.updated}
+            </div>
+            |
+            <div className="statistics-card__column__actions__row__col">
+              <span>DEL:</span> {user.actions.deleted}
+            </div>
           </div>
 
           <div className="statistics-card__column__actions__col">
