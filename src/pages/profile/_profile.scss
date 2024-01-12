@@ -1,0 +1,149 @@
+@import "../../app/styles/variables";
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+  &__wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    &__header {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 auto;
+      gap: 1rem;
+    }
+
+    &__body {
+      display: flex;
+      flex-direction: column;
+      align-self: flex-start;
+      gap: 1rem;
+      width: 100%;
+      .tabs {
+        display: flex;
+        flex-direction: row;
+        gap: 0.4rem;
+        content: "";
+        clear: both;
+        position: relative;
+        &__tab {
+          label {
+            display: flex;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            transition: 0.2s ease-out all;
+          }
+          input {
+            display: none;
+          }
+          &__content {
+            display: none;
+            position: absolute;
+            left: 0;
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 1rem;
+            background-color: $tertiary-color;
+            align-items: center;
+            #user_avatar {
+              height: 8rem;
+              width: 8rem;
+              border-radius: 100%;
+              object-fit: cover;
+            }
+            &__user-info {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+            &__user-actions {
+              display: flex;
+              flex-direction: row;
+              justify-content: space-evenly;
+              width: 100%;
+              padding: 1rem;
+              border-radius: 30px;
+              background-color: $secondary-color;
+              &__col {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                gap: 0.2rem;
+                :first-child {
+                  color: $white;
+                  font-weight: 400;
+                }
+                :last-child {
+                  color: $gray;
+                  font-weight: 400;
+                }
+              }
+            }
+
+            &__user-activity {
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              gap: 1rem;
+              width: 100%;
+              font-size: 14px;
+              :first-child {
+                color: $white;
+                font-weight: 400;
+              }
+              :last-child {
+                color: $gray;
+              }
+            }
+          }
+        }
+
+        &__tab > input:checked + label {
+          background-color: $lime;
+          color: $primary-color;
+          font-weight: 500;
+        }
+
+        &__tab > input:checked ~ .tabs__tab__content {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          width: 500px;
+        }
+      }
+    }
+  }
+
+  &:has(.login, .register) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .profile {
+    .tabs__tab > input:checked ~ .tabs__tab__content {
+      width: 100%;
+    }
+
+    &:has(.login, .register) {
+      justify-content: flex-end;
+    }
+  }
+}

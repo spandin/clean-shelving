@@ -1,6 +1,6 @@
 import { UserData } from "@/types/types";
 
-import { auth, db } from "@/lib/firebase";
+import { auth, db } from "@/app/firebase-config";
 import { doc, getDoc, increment, setDoc, updateDoc } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,

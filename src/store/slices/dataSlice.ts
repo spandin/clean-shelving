@@ -7,7 +7,7 @@ import {
 
 import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
 
-import { db } from "@/lib/firebase";
+import { db } from "@/app/firebase-config";
 import {
   DocumentData,
   collection,
@@ -18,7 +18,7 @@ import {
 } from "firebase/firestore";
 
 import { addMonths, getTime } from "date-fns";
-import { stringToTimestamp, stringToUTC } from "@/lib/date";
+import { stringToTimestamp, stringToUTC } from "@/helpers/date";
 
 export const getProducts = createAsyncThunk("@@data/getProducts", async () => {
   const querySnapshot = await getDocs(collection(db, "data"));

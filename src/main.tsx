@@ -9,18 +9,19 @@ import {
 } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
-import "./lib/firebase";
+import "./app/firebase-config";
 
-import Root from "./routes/root";
-import Products from "./routes/products/products";
-import ProductId from "./routes/products-id/product-id";
-import AddProduct from "./routes/add-product/add-product";
-import Profile from "./routes/profile/profile";
-import UserId from "./routes/user-id/user-id";
-import Statistics from "./routes/statistics/statistics";
-import Activity from "./routes/activity/activity";
-import Settings from "./routes/settings/settings";
+import Root from "./app/root";
+
 import { ToastContainer } from "react-toastify";
+import Products from "./pages/products/products";
+import ProductId from "./pages/products-id/product-id";
+import AddProduct from "./pages/add-product/add-product";
+import Profile from "./pages/profile/profile";
+import UserId from "./pages/user-id/user-id";
+import Settings from "./pages/settings/settings";
+import Rating from "./pages/rating/rating";
+import Activity from "./pages/activity/activity";
 
 const updateSW = registerSW({
   onNeedRefresh() {
@@ -40,7 +41,7 @@ const router = createBrowserRouter(
         <Route path="profile/" element={<Profile />} />
         <Route path="user/:userId/" element={<UserId />} />
         <Route path="settings//" element={<Settings />} />
-        <Route path="statistics/" element={<Statistics />} />
+        <Route path="rating/" element={<Rating />} />
         <Route path="activity/" element={<Activity />} />
       </Route>
     </>
