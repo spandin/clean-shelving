@@ -6,7 +6,8 @@ import * as XLSX from "xlsx";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
 
 import { setExportActivity, updateProductMark } from "@/store/slices/dataSlice";
-import { timestampToString } from "@/helpers/date";
+
+import { timestampToString } from "@/shared/helpers/parse-date";
 
 import { BsFiletypeXls } from "react-icons/bs";
 

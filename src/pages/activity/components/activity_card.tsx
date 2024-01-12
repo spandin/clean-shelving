@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 
 import { Activity } from "@/types/types";
-
-import { timestampToString } from "@/helpers/date";
+import { timestampToString } from "@/shared/helpers/parse-date";
 
 export default function ActivityCard({ activity }: { activity: Activity }) {
   return (

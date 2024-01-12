@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 import { db } from "@/app/firebase-config";
 import { DocumentData, collection, onSnapshot } from "firebase/firestore";
 
-import Informer from "@/components/common/informer/informer";
 import StatisticsCard from "./components/rating_card";
+import Informer from "@/shared/components/common/informer/informer";
 
 export default function Rating() {
   const [users, setUsers] = useState<UserData[]>([]);

@@ -18,7 +18,7 @@ import {
 } from "firebase/firestore";
 
 import { addMonths, getTime } from "date-fns";
-import { stringToTimestamp, stringToUTC } from "@/helpers/date";
+import { stringToTimestamp, stringToUTC } from "@/shared/helpers/parse-date";
 
 export const getProducts = createAsyncThunk("@@data/getProducts", async () => {
   const querySnapshot = await getDocs(collection(db, "data"));

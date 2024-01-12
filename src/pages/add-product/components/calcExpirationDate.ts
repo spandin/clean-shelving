@@ -10,7 +10,7 @@ import {
   calcDistanceEndFromExp,
   calcDistanceEndFromMonth,
   stringToTimestamp,
-} from "@/helpers/date";
+} from "@/shared/helpers/parse-date";
 
 export default function CalcExpirationDate(
   watch: UseFormWatch<AddFormInputsType>,

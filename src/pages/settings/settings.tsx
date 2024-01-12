@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { removeUser } from "@/store/slices/userSlice";
 
-import Informer from "@/components/common/informer/informer";
+import Informer from "@/shared/components/common/informer/informer";
 
 export default function Settings() {
   const dispatch = useDispatch();

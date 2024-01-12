@@ -10,7 +10,8 @@ import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
 import { deletedActionsUser } from "@/store/slices/userSlice";
 
 import { getTime } from "date-fns";
-import { toastAuthErr } from "@/helpers/toast";
+
+import { toastAuthErr } from "@/shared/helpers/toast";
 
 export const DeleteProduct = ({ name, id }: { name: string; id: string }) => {
   const dispatch = useAppDispatch();

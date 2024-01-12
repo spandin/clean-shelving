@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 import { BsFilterCircle, BsPlusCircle, BsSearch } from "react-icons/bs";
 
-import Informer from "@/components/common/informer/informer";
-import { Modal } from "@/components/common/modal/modal";
 import { Filter } from "@/features/products/filter-product/filter-product";
+import Informer from "@/shared/components/common/informer/informer";
+import { Modal } from "@/shared/components/common/modal/modal";
 
 export default function ProductsHeader({
   productsLenght,

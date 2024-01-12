@@ -9,10 +9,10 @@ import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
 import { updateProduct } from "@/store/slices/dataSlice";
 import { updatedActionsUser } from "@/store/slices/userSlice";
 
-import { toastAuthErr, toastPromise } from "@/helpers/toast";
-import { timestampToString } from "@/helpers/date";
+import { toastAuthErr, toastPromise } from "@/shared/helpers/toast";
+import { timestampToString } from "@/shared/helpers/parse-date";
 
-import { LoadButton } from "@/components/common/buttons/load-button/load-button";
+import { LoadButton } from "@/shared/components/common/buttons/load-button/load-button";
 
 export const UpdateProduct = ({
   product,
@@ -33,10 +33,13 @@ export const UpdateProduct = ({
 
   const onUpdate: SubmitHandler<ProductType> = async (data) => {
     try {
-      toastPromise(dispatch(updateProduct({ id, data, user })));
-      await dispatch(updatedActionsUser(user));
+      if (user.isAuth) {
+        toastPromise(dispatch(updateProduct({ id, data, user })));
+        await dispatch(updatedActionsUser(user));
+      } else {
+        toastAuthErr();
+      }
     } catch (e) {
-      toastAuthErr();
       console.log(`UPDATE PRODUCT:`, e);
     }
   };

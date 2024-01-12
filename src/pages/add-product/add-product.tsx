@@ -13,15 +13,17 @@ import { addedActionsUser } from "@/store/slices/userSlice";
 
 import { db } from "@/app/firebase-config";
 import { doc, getDoc } from "firebase/firestore";
-import { toastAuthErr, toastPromise } from "@/helpers/toast";
+
+import { toastAuthErr, toastPromise } from "@/shared/helpers/toast";
 
 import { BsCheckAll } from "react-icons/bs";
 
 import CalcExpirationDate from "./components/calcExpirationDate";
-import Informer from "@/components/common/informer/informer";
-import { LoadButton } from "@/components/common/buttons/load-button/load-button";
-import { Modal } from "@/components/common/modal/modal";
 import Similar from "./components/similar/similar";
+
+import { LoadButton } from "@/shared/components/common/buttons/load-button/load-button";
+import { Modal } from "@/shared/components/common/modal/modal";
+import Informer from "@/shared/components/common/informer/informer";
 
 export default function AddProduct() {
   const dispatch = useAppDispatch();

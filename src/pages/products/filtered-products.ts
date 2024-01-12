@@ -1,4 +1,8 @@
-import { findInArrayBy, isExported, isNotExported } from "@/helpers/sort";
+import {
+  findInArrayBy,
+  isExported,
+  isNotExported,
+} from "@/shared/helpers/sort-produts";
 import { ProductType } from "@/types/types";
 
 export const FilteredProducts = (

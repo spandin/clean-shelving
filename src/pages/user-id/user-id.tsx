@@ -5,10 +5,9 @@ import { db } from "@/app/firebase-config";
 import { DocumentData, doc, onSnapshot } from "firebase/firestore";
 
 import { BsGear } from "react-icons/bs";
-
-import Informer from "@/components/common/informer/informer";
-
 import IMAGES from "@/assets/images";
+
+import Informer from "@/shared/components/common/informer/informer";
 
 export default function UserId() {
   const navigate = useNavigate();

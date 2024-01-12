@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
 
 import { getActivity } from "@/store/slices/dataSlice";
 
-import Informer from "@/components/common/informer/informer";
 import ActivityCard from "./components/activity_card";
+import Informer from "@/shared/components/common/informer/informer";
 
 export default function Activity() {
   const dispatch = useAppDispatch();

@@ -6,12 +6,11 @@ import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
 import { getUserInfo } from "@/store/slices/userSlice";
 
 import { BsGear } from "react-icons/bs";
-
-import Informer from "@/components/common/informer/informer";
-import Login from "@/features/user/sign-in/sign-in";
-
 import IMAGES from "@/assets/images";
+
+import Login from "@/features/user/sign-in/sign-in";
 import Register from "@/features/user/sign-up/sign-up";
+import Informer from "@/shared/components/common/informer/informer";
 
 export default function Profile() {
   const dispatch = useAppDispatch();

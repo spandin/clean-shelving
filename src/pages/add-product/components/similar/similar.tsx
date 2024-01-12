@@ -1,10 +1,10 @@
 import "./_similar.scss";
 
+import { ProductType } from "@/types/types";
+
 import { Link } from "react-router-dom";
 
-import { timestampToString } from "@/helpers/date";
-
-import { ProductType } from "@/types/types";
+import { timestampToString } from "@/shared/helpers/parse-date";
 
 export default function Similar({ items }: { items: ProductType[] }) {
   return (

@@ -8,11 +8,12 @@ import { useAppSelector } from "@/hooks/redux-hooks";
 import { Ring } from "@uiball/loaders";
 import { BsPencilSquare, BsTrash3 } from "react-icons/bs";
 
-import Informer from "@/components/common/informer/informer";
+import { timestampToString } from "@/shared/helpers/parse-date";
+
 import { UpdateProduct } from "@/features/products/update-product/update-product";
 import { DeleteProduct } from "@/features/products/delete-product/delete-product";
-import { Modal } from "@/components/common/modal/modal";
-import { timestampToString } from "@/helpers/date";
+import { Modal } from "@/shared/components/common/modal/modal";
+import Informer from "@/shared/components/common/informer/informer";
 
 export default function ProductId() {
   const { productId } = useParams();

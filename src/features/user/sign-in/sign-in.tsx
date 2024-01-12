@@ -4,9 +4,9 @@ import { useAppDispatch } from "@/hooks/redux-hooks";
 
 import { signInUser } from "@/store/slices/userSlice";
 
-import { LoadButton } from "../../../components/common/buttons/load-button/load-button";
-
 import IMAGES from "@/assets/images";
+
+import { LoadButton } from "@/shared/components/common/buttons/load-button/load-button";
 
 interface FormValues {
   email: string;

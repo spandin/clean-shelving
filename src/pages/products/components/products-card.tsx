@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { ProductType } from "@/types/types";
 
 import { BsArrowDownLeftCircle } from "react-icons/bs";
-
-import { calcDistanceEndDayFromExp, timestampToString } from "@/helpers/date";
+import {
+  calcDistanceEndDayFromExp,
+  timestampToString,
+} from "@/shared/helpers/parse-date";
 
 interface IProps {
   product: ProductType;
