@@ -2,18 +2,18 @@ import "./_product-id.scss";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { useTheme } from "@/hooks/use-theme";
-import { useAppSelector } from "@/hooks/redux-hooks";
+import { useTheme } from "@/shared/hooks/use-theme";
+import { useAppSelector } from "@/shared/hooks/redux-hooks";
 
 import { Ring } from "@uiball/loaders";
 import { BsPencilSquare, BsTrash3 } from "react-icons/bs";
 
 import { timestampToString } from "@/shared/helpers/parse-date";
 
-import { UpdateProduct } from "@/features/products/update-product/update-product";
-import { DeleteProduct } from "@/features/products/delete-product/delete-product";
+import { UpdateProduct } from "@/features/product/update/ui/updateProduct";
+import { DeleteProduct } from "@/features/product/delete/ui/deleteProduct";
 import { Modal } from "@/shared/components/common/modal/modal";
-import Informer from "@/shared/components/common/informer/informer";
+import Informer from "@/widgets/informer/informer";
 
 export default function ProductId() {
   const { productId } = useParams();

@@ -1,0 +1,60 @@
+@import "@/shared/styles/variables";
+
+.rootLayout {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  height: 100svh;
+  padding: 1rem;
+
+  main,
+  aside {
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    background-color: $secondary-color;
+    border-radius: 2.4rem;
+  }
+
+  main {
+    width: 80%;
+    .abountApp {
+      display: flex;
+      flex-direction: column;
+      &__wrapper {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+      }
+    }
+  }
+
+  aside {
+    width: 20%;
+    .informer {
+      padding-left: 1.5rem;
+      .export_button,
+      .back_button {
+        display: none;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .rootLayout {
+    aside {
+      display: none;
+    }
+    main {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .rootLayout {
+    flex-direction: column-reverse;
+  }
+}

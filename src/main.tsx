@@ -8,10 +8,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "./store";
-import "./app/firebase-config";
+import { PersistGate } from "redux-persist/integration/react";
+import store, { persistor } from "@/app/reduxStore";
+import "@/shared/api/firebase-config";
 
-import Root from "./app/root";
+import Rootlayout from "@/app/layouts/rootLayout";
 
 import { ToastContainer } from "react-toastify";
 import Products from "./pages/products/products";
@@ -34,7 +35,7 @@ const updateSW = registerSW({
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<Root />}>
+      <Route path="/" element={<Rootlayout />}>
         <Route index path="products/" element={<Products />} />
         <Route path="products/:productId" element={<ProductId />} />
         <Route path="add/" element={<AddProduct />} />
@@ -52,12 +53,14 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ToastContainer position="top-center" />
     <Provider store={store}>
-      <RouterProvider
-        router={router}
-        future={{
-          v7_startTransition: true,
-        }}
-      />
+      <PersistGate loading={null} persistor={persistor}>
+        <RouterProvider
+          router={router}
+          future={{
+            v7_startTransition: true,
+          }}
+        />
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

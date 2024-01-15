@@ -1,4 +1,4 @@
-@import "../../app/styles/variables";
+@import "@/shared/styles/variables";
 
 .activity {
   display: flex;
@@ -11,6 +11,12 @@
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+    .informer {
+      padding-left: 1.5rem;
+      button {
+        display: none;
+      }
+    }
   }
 
   &__body {
@@ -71,6 +77,15 @@
 
 @media only screen and (max-width: 768px) {
   .activity {
+    &__header {
+      .informer {
+        padding-left: 0rem;
+        button {
+          display: flex;
+        }
+      }
+    }
+
     &__body {
       max-height: calc(100vh - 14.3rem);
       border-radius: 15px 15px 15px 15px;

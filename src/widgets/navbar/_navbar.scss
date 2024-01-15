@@ -1,4 +1,4 @@
-@import "../../app/styles/variables";
+@import "@/shared/styles/variables";
 
 .navbar {
   display: flex;
@@ -23,6 +23,7 @@
     background-color: $lime;
     color: $primary-color;
     font-weight: 500;
+    animation: shadowAnimation 2s infinite alternate;
   }
   &__menu {
     display: flex;
@@ -31,6 +32,27 @@
     #menu_add,
     #menu_activity {
       display: none;
+    }
+  }
+}
+
+@keyframes shadowAnimation {
+  0% {
+  }
+  50% {
+    box-shadow: 0 0 0 0 $lime;
+  }
+  100% {
+    box-shadow: 0 0 10px 0.1px $lime;
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .navbar {
+    &__menu {
+      #menu_activity {
+        display: flex;
+      }
     }
   }
 }

@@ -3,11 +3,11 @@ import { UserData } from "@/types/types";
 
 import { useEffect, useState } from "react";
 
-import { db } from "@/app/firebase-config";
+import { db } from "@/shared/api/firebase-config";
 import { DocumentData, collection, onSnapshot } from "firebase/firestore";
 
 import StatisticsCard from "./components/rating_card";
-import Informer from "@/shared/components/common/informer/informer";
+import Informer from "@/widgets/informer/informer";
 
 export default function Rating() {
   const [users, setUsers] = useState<UserData[]>([]);

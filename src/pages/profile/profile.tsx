@@ -2,15 +2,15 @@ import "./_profile.scss";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
-import { getUserInfo } from "@/store/slices/userSlice";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/redux-hooks";
+import { getUserInfo } from "@/app/slices/userSlice";
 
 import { BsGear } from "react-icons/bs";
-import IMAGES from "@/assets/images";
+import IMAGES from "@/assets/images/images";
 
-import Login from "@/features/user/sign-in/sign-in";
-import Register from "@/features/user/sign-up/sign-up";
-import Informer from "@/shared/components/common/informer/informer";
+import Informer from "@/widgets/informer/informer";
+import SignIn from "@/features/authentication/login/ui/signIn";
+import SignUp from "@/features/authentication/register/ui/signUp";
 
 export default function Profile() {
   const dispatch = useAppDispatch();
@@ -82,9 +82,9 @@ export default function Profile() {
           </div>
         </>
       ) : authForm === "login" ? (
-        <Login setAuthForm={setAuthForm} />
+        <SignIn setAuthForm={setAuthForm} />
       ) : (
-        <Register />
+        <SignUp setAuthForm={setAuthForm} />
       )}
     </div>
   );

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { db } from "@/app/firebase-config";
+import { db } from "@/shared/api/firebase-config";
 import { DocumentData, doc, onSnapshot } from "firebase/firestore";
 
 import { BsGear } from "react-icons/bs";
-import IMAGES from "@/assets/images";
+import IMAGES from "@/assets/images/images";
 
-import Informer from "@/shared/components/common/informer/informer";
+import Informer from "@/widgets/informer/informer";
 
 export default function UserId() {
   const navigate = useNavigate();

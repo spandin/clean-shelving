@@ -1,9 +1,14 @@
 import { Ring } from "@uiball/loaders";
 
-import { useTheme } from "@/hooks/use-theme";
+import { useTheme } from "@/shared/hooks/use-theme";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const LoadButton = ({ disabled, isLoading, onClick, text }: any) => {
+export default function LoadButton({
+  disabled,
+  isLoading,
+  onClick,
+  text,
+}: any) {
   const { isDark } = useTheme();
 
   return (
@@ -15,4 +20,4 @@ export const LoadButton = ({ disabled, isLoading, onClick, text }: any) => {
       )}
     </button>
   );
-};
+}

@@ -1,4 +1,4 @@
-import Informer from "@/shared/components/common/informer/informer";
+import Informer from "@/widgets/informer/informer";
 import { ProductType } from "@/types/types";
 import { DocumentData } from "firebase/firestore";
 

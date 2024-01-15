@@ -1,0 +1,13 @@
+@import "@/shared/styles/variables";
+
+.exportProducts {
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 375px;
+  svg {
+    align-self: center;
+    font-size: 4rem;
+  }
+}

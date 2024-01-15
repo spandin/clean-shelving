@@ -1,4 +1,4 @@
-@import "../../app/styles/variables";
+@import "@/shared/styles/variables";
 
 .profile {
   display: flex;
@@ -127,23 +127,12 @@
       }
     }
   }
-
-  &:has(.login, .register) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
 }
 
 @media only screen and (max-width: 768px) {
   .profile {
     .tabs__tab > input:checked ~ .tabs__tab__content {
       width: 100%;
-    }
-
-    &:has(.login, .register) {
-      justify-content: flex-end;
     }
   }
 }

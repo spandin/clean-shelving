@@ -1,12 +1,12 @@
 import "./_activity.scss";
 import { useEffect } from "react";
 
-import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/redux-hooks";
 
-import { getActivity } from "@/store/slices/dataSlice";
+import { getActivity } from "@/app/slices/dataSlice";
 
 import ActivityCard from "./components/activity_card";
-import Informer from "@/shared/components/common/informer/informer";
+import Informer from "@/widgets/informer/informer";
 
 export default function Activity() {
   const dispatch = useAppDispatch();

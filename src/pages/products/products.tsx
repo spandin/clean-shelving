@@ -3,23 +3,19 @@ import { useEffect, useState } from "react";
 
 import { ProductType } from "@/types/types";
 
-import { useTheme } from "@/hooks/use-theme";
-import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
+import { useTheme } from "@/shared/hooks/use-theme";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/redux-hooks";
 
-import {
-  getActivity,
-  getBarcodes,
-  getProducts,
-} from "@/store/slices/dataSlice";
+import { getActivity, getBarcodes, getProducts } from "@/app/slices/dataSlice";
 
-import { db } from "@/app/firebase-config";
+import { db } from "@/shared/api/firebase-config";
 import { DocumentData, collection, onSnapshot } from "firebase/firestore";
 
 import { Ring } from "@uiball/loaders";
 
 import ProductsCard from "./components/products-card";
 import ProductsHeader from "./components/products-header";
-import { FilteredProducts } from "./filtered-products";
+import { productFiltration } from "../../features/products/filter/lib/productFiltration";
 
 export default function Products() {
   const { isDark } = useTheme();
@@ -55,14 +51,14 @@ export default function Products() {
   return (
     <div className="products">
       <ProductsHeader
-        productsLenght={FilteredProducts(products, category, exported).length}
+        productsLenght={productFiltration(products, category, exported).length}
         category={category}
         exported={exported}
       />
 
       <div className="products__grid">
         {products && products.length ? (
-          FilteredProducts(products, category, exported).map(
+          productFiltration(products, category, exported).map(
             (product, number) => (
               <ProductsCard
                 key={product.id}

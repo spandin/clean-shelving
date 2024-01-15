@@ -2,7 +2,7 @@ import "./_navbar.scss";
 
 import { Link } from "react-router-dom";
 
-import { useAppSelector } from "@/hooks/redux-hooks";
+import { useAppSelector } from "@/shared/hooks/redux-hooks";
 
 import {
   BsHouseFill,
