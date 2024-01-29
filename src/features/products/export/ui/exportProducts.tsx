@@ -45,7 +45,7 @@ export const ExportProducts = () => {
       </p>
       <button
         onClick={
-          user.email === "willstesi@gmail.com" && "marinulik.85@mail.ru"
+          user.email === "willstesi@gmail.com" || "marinulik.85@mail.ru"
             ? () => setProductMark()
             : () => exportToXLSX({ products, filter })
         }
