@@ -44,6 +44,7 @@ export interface AddFormInputsType {
 // Redux Data Types -
 export interface DataState {
   products: ProductType[];
+  users: UserData[];
   barcodes: BarcodeType[];
   activity: Activity[];
   filter: {
