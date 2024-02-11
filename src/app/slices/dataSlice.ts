@@ -19,11 +19,11 @@ export const getProducts = createAsyncThunk("@@data/getProducts", async () => {
   return data;
 });
 
-export const getActivity = createAsyncThunk("@@data/getActivity", async () => {
-  const querySnapshot = await getDocs(collection(db, "activity"));
-  const data = querySnapshot.docs.map((doc: DocumentData) => doc.data());
+export const getUsers = createAsyncThunk("@@data/getUsers", async () => {
+  const querySnapshot = await getDocs(collection(db, "users"));
+  const users = querySnapshot.docs.map((doc: DocumentData) => doc.data());
 
-  return data.sort((a, b) => +new Date(b.madeOn) - +new Date(a.madeOn));
+  return users;
 });
 
 export const getBarcodes = createAsyncThunk("@@data/getBarcodes", async () => {
@@ -33,8 +33,16 @@ export const getBarcodes = createAsyncThunk("@@data/getBarcodes", async () => {
   return barcodes;
 });
 
+export const getActivity = createAsyncThunk("@@data/getActivity", async () => {
+  const querySnapshot = await getDocs(collection(db, "activity"));
+  const data = querySnapshot.docs.map((doc: DocumentData) => doc.data());
+
+  return data.sort((a, b) => +new Date(b.madeOn) - +new Date(a.madeOn));
+});
+
 const initialState: DataState = {
   products: [],
+  users: [],
   barcodes: [],
   activity: [],
   filter: {
@@ -58,9 +66,6 @@ const dataSlice = createSlice({
     builder
       .addCase(getProducts.fulfilled, (state, action) => {
         state.products = action.payload;
-      })
-      .addCase(getActivity.fulfilled, (state, action) => {
-        state.activity = action.payload;
       })
       .addCase(updateProduct.fulfilled, (state, action) => {
         // Updates in the products store
@@ -90,14 +95,20 @@ const dataSlice = createSlice({
         ].description = `Обновил - ${action.payload.data.name}`;
         state.activity[activityIndex].madeOn = getTime(new Date());
       })
-      .addCase(getBarcodes.fulfilled, (state, action) => {
-        state.barcodes = action.payload;
-      })
       .addCase(changeExportState.fulfilled, (state, action) => {
         const productIndex = state.products.findIndex(
           (post) => post.id == action.payload
         );
         state.products[productIndex].actions.exported.isExported = true;
+      })
+      .addCase(getBarcodes.fulfilled, (state, action) => {
+        state.barcodes = action.payload;
+      })
+      .addCase(getUsers.fulfilled, (state, action) => {
+        state.users = action.payload;
+      })
+      .addCase(getActivity.fulfilled, (state, action) => {
+        state.activity = action.payload;
       });
   },
 });

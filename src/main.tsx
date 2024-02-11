@@ -12,7 +12,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import store, { persistor } from "@/app/reduxStore";
 import "@/shared/api/firebase-config";
 
-import Rootlayout from "@/app/layouts/rootLayout";
+import Rootlayout from "@/app/layouts/root-layout";
 
 import { ToastContainer } from "react-toastify";
 import ProductsPage from "./pages/products/products-page";

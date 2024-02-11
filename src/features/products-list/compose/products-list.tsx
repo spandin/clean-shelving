@@ -1,13 +1,12 @@
 import "./_products-list.scss";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { ProductType } from "@/types/types";
 
-import { useTheme } from "@/shared/hooks/use-theme";
-import { useAppDispatch, useAppSelector } from "@/shared/hooks/redux-hooks";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { getActivity, getBarcodes, getProducts } from "@/app/slices/dataSlice";
+import { useTheme } from "@/shared/hooks/use-theme";
+import { useAppSelector } from "@/shared/hooks/redux-hooks";
 
 import { db } from "@/shared/api/firebase-config";
 import { DocumentData, collection, onSnapshot } from "firebase/firestore";
@@ -15,16 +14,15 @@ import { DocumentData, collection, onSnapshot } from "firebase/firestore";
 import { Ring } from "@uiball/loaders";
 import { BsFilterCircle, BsPlusCircle } from "react-icons/bs";
 
-import ProductCard from "@/entities/product/ui/productCard";
-
 import { ProductsFilters } from "..";
 import productsFiltration from "../lib/products-filtration";
+import ProductCard from "@/entities/product/ui/productCard";
 import Informer from "@/shared/ui/informer/informer";
 import { Modal } from "@/shared/ui/modal/modal";
 
 export function ProductsList() {
   const { isDark } = useTheme();
-  const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
 
   const { exported, category } = useAppSelector((state) => state.data.filter);
@@ -33,10 +31,6 @@ export function ProductsList() {
   const [filterModalActive, setFilterModalActive] = useState(false);
 
   useEffect(() => {
-    dispatch(getProducts());
-    dispatch(getActivity());
-    dispatch(getBarcodes());
-
     const unsubscribe = onSnapshot(collection(db, "data"), (querySnapshot) => {
       const collectionSnapshot: ProductType[] = [];
 
@@ -54,7 +48,8 @@ export function ProductsList() {
     return () => {
       unsubscribe();
     };
-  }, [dispatch]);
+  }, []);
+
   return (
     <div className="products">
       <div className="products__header">

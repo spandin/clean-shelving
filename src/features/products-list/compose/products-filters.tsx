@@ -12,7 +12,7 @@ export function ProductsFilters() {
 
   return (
     <div className={css.productsFilter}>
-      <h3>Фильтр таблицы</h3>
+      <h3>Фильтр списка</h3>
 
       <div className={css.exported}>
         <span>По статусу выгрузки:</span>
