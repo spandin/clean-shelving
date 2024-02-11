@@ -1,20 +1,14 @@
-import { DataState, ProductType, UserData } from "@/types/types";
+import { DataState, ProductType } from "@/types/types";
 
-import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { db } from "@/shared/api/firebase-config";
-import {
-  DocumentData,
-  collection,
-  doc,
-  getDocs,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore";
+import { DocumentData, collection, getDocs } from "firebase/firestore";
 
 import { getTime } from "date-fns";
 
-import { updateProduct } from "@/features/product/update/model/updateAsyncThunk";
+import { updateProduct } from "@/features/product/update-product/model/updateProductAsyncThunk";
+import { changeExportState } from "@/features/products-list/model/change-export-state";
 
 export const getProducts = createAsyncThunk("@@data/getProducts", async () => {
   const querySnapshot = await getDocs(collection(db, "data"));
@@ -38,52 +32,6 @@ export const getBarcodes = createAsyncThunk("@@data/getBarcodes", async () => {
 
   return barcodes;
 });
-
-export const setBarcodes = createAsyncThunk(
-  "@@data/setBarcodes",
-  async (data: DocumentData) =>
-    await setDoc(doc(db, "barcodes", data.code), {
-      code: data.code,
-      name: data.name,
-      category: data.category,
-    })
-);
-
-export const updateProductMark = createAsyncThunk(
-  "@@data/updateProductMark",
-  async ({ id, user }: { id: string; user: UserData }) => {
-    const products = await getDocs(collection(db, "data"));
-    for (const snap of products.docs) {
-      if (snap.id === id) {
-        await updateDoc(doc(db, "data", snap.id), {
-          "actions.exported.isExported": true,
-          "actions.exported.exportedOn": getTime(new Date()),
-          "actions.exported.whoExported": user.name,
-          "actions.exported.whoExportedID": user.id,
-        });
-      }
-    }
-
-    return id;
-  }
-);
-
-export const setExportActivity = createAsyncThunk(
-  "@@data/setExportActivity",
-  async (user: UserData) => {
-    const activityID = nanoid();
-    await setDoc(doc(db, "activity", activityID), {
-      id: activityID,
-      actioner: {
-        name: user.name,
-        email: user.email,
-        id: user.id,
-      },
-      description: `Экспортировал файл`,
-      madeOn: getTime(new Date()),
-    });
-  }
-);
 
 const initialState: DataState = {
   products: [],
@@ -145,7 +93,7 @@ const dataSlice = createSlice({
       .addCase(getBarcodes.fulfilled, (state, action) => {
         state.barcodes = action.payload;
       })
-      .addCase(updateProductMark.fulfilled, (state, action) => {
+      .addCase(changeExportState.fulfilled, (state, action) => {
         const productIndex = state.products.findIndex(
           (post) => post.id == action.payload
         );

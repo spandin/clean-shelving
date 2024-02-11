@@ -7,7 +7,7 @@ import { useAppDispatch } from "@/shared/hooks/redux-hooks";
 import IMAGES from "@/assets/images/images";
 
 import { signUpUser } from "../model/signUpAsyncThunk";
-import LoadButton from "@/shared/components/common/buttons/load-button/load-button";
+import LoadButton from "@/shared/ui/load-button/load-button";
 
 interface FormValues {
   name: string;

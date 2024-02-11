@@ -47,7 +47,7 @@ export const signUpUser = createAsyncThunk(
         return userCredential.user;
       });
     } catch (e: any) {
-      console.log(`SIGN UP: `, e);
+      console.error(`SIGN UP: `, e);
     }
   }
 );

@@ -19,7 +19,7 @@ export const signInUser = createAsyncThunk(
         }
       );
     } catch (e: any) {
-      console.log(`SIGN IN: `, e);
+      console.error(`SIGN IN: `, e);
     }
   }
 );

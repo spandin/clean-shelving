@@ -15,14 +15,14 @@ import "@/shared/api/firebase-config";
 import Rootlayout from "@/app/layouts/rootLayout";
 
 import { ToastContainer } from "react-toastify";
-import Products from "./pages/products/products";
-import ProductId from "./pages/products-id/product-id";
-import AddProduct from "./pages/add-product/add-product";
-import Profile from "./pages/profile/profile";
-import UserId from "./pages/user-id/user-id";
-import Settings from "./pages/settings/settings";
-import Rating from "./pages/rating/rating";
-import Activity from "./pages/activity/activity";
+import ProductsPage from "./pages/products/products-page";
+import ProductPage from "./pages/product/product-page";
+import AddProductPage from "./pages/add-product/add-products-page";
+import ProfilePage from "./pages/profile/profile-page";
+import UserPage from "./pages/user/user-page";
+import SettingsPage from "./pages/settings/settings-page";
+import RatingPage from "./pages/rating/rating-page";
+import ActivityPage from "./pages/activity/activity-page";
 
 const updateSW = registerSW({
   onNeedRefresh() {
@@ -34,18 +34,16 @@ const updateSW = registerSW({
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <>
-      <Route path="/" element={<Rootlayout />}>
-        <Route index path="products/" element={<Products />} />
-        <Route path="products/:productId" element={<ProductId />} />
-        <Route path="add/" element={<AddProduct />} />
-        <Route path="profile/" element={<Profile />} />
-        <Route path="user/:userId/" element={<UserId />} />
-        <Route path="settings//" element={<Settings />} />
-        <Route path="rating/" element={<Rating />} />
-        <Route path="activity/" element={<Activity />} />
-      </Route>
-    </>
+    <Route path="/" element={<Rootlayout />}>
+      <Route index path="products/" element={<ProductsPage />} />
+      <Route path="products/:productId" element={<ProductPage />} />
+      <Route path="add/" element={<AddProductPage />} />
+      <Route path="profile/" element={<ProfilePage />} />
+      <Route path="user/:userId/" element={<UserPage />} />
+      <Route path="settings//" element={<SettingsPage />} />
+      <Route path="rating/" element={<RatingPage />} />
+      <Route path="activity/" element={<ActivityPage />} />
+    </Route>
   )
 );
 

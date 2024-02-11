@@ -16,7 +16,7 @@ export const getUserInfo = createAsyncThunk(
 
       return docSnap.data();
     } catch (e) {
-      console.log("GET USER INFO: " + e);
+      console.error("GET USER INFO: " + e);
     }
   }
 );

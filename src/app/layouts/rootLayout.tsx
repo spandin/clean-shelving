@@ -8,8 +8,8 @@ import { ToastContainer } from "react-toastify";
 
 import IMAGES from "@/assets/images/images";
 
-import Navbar from "@/widgets/navbar/navbar";
-import Activity from "@/pages/activity/activity";
+import Navbar from "@/shared/ui/navbar/navbar";
+import Activity from "@/pages/activity/activity-page";
 
 import { setDefaultOptions } from "date-fns";
 import { ru } from "date-fns/locale";
