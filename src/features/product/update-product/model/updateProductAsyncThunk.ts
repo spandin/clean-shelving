@@ -39,7 +39,6 @@ export const updateProduct = createAsyncThunk(
               mfd: stringToTimestamp(data.dates.mfd),
               exp: stringToTimestamp(data.dates.exp),
             },
-            "actions.exported.isExported": false,
             "actions.updated.updatedAt": getTime(new Date()),
             "actions.updated.isUpdated": true,
             "actions.updated.whoUpdated": user.name,
