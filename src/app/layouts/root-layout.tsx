@@ -62,22 +62,29 @@ function AbountShop() {
 
   return (
     <div className={css.abountShop}>
-      <img src={IMAGES.registration} />
-      <div className={css.shopInfo}>
-        <h2>Добро пожаловать в Clean Shelving!</h2>
-        <span>
-          На данный момент в вашем магазине{" "}
-          <span id={css.products}>{productsLenght} активных позиций</span> и{" "}
-          <span id={css.users}>{usersLenght} сотрудников</span>.
-        </span>
-      </div>
+      <div className={css.abountShopWrapper}>
+        <img src={IMAGES.registration} />
+        <div className={css.shopInfo}>
+          <div>
+            {" "}
+            <h2>Добро пожаловать в Clean Shelving!</h2>
+            <span>
+              На данный момент в вашем магазине{" "}
+              <span id={css.products}>{productsLenght} активных позиций</span> и{" "}
+              <span id={css.users}>{usersLenght} сотрудников</span>.
+            </span>
+          </div>
 
-      <button
-        id={css.go_to_list}
-        onClick={() => navigate("products/", { unstable_viewTransition: true })}
-      >
-        Перейти к списку
-      </button>
+          <button
+            id={css.go_to_list}
+            onClick={() =>
+              navigate("products/", { unstable_viewTransition: true })
+            }
+          >
+            Перейти к списку
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
