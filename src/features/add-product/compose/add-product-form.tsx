@@ -249,6 +249,13 @@ export function AddProductForm() {
           </div>
 
           <div className={css.formButtonWrapper}>
+            <LoadButton
+              type="submit"
+              disabled={true}
+              isLoading={isSubmitting}
+              text="Добавить"
+            />
+
             <div
               className={
                 similarItems.length
@@ -257,15 +264,8 @@ export function AddProductForm() {
               }
               onClick={() => setSimilarModalActive(true)}
             >
-              Показать похожие
+              Похожие
             </div>
-
-            <LoadButton
-              type="submit"
-              disabled={true}
-              isLoading={isSubmitting}
-              text="Добавить"
-            />
           </div>
         </form>
       </div>
