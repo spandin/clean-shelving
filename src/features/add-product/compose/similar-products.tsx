@@ -39,24 +39,24 @@ export function SimilarProducts({ items }: { items: ProductType[] }) {
               <div id={css.card_add}>
                 {item.actions.updated.updatedAt ? (
                   <>
-                    <span>UPD:</span>
+                    <span>ОБН:</span>
                     <span>
                       {timestampToString(item.actions.updated.updatedAt)}
                     </span>
                   </>
                 ) : (
                   <>
-                    <span>ADD:</span>
+                    <span>ДОБ:</span>
                     <span>{timestampToString(item.dates.createdAt)}</span>
                   </>
                 )}
               </div>
               <div id={css.card_mfd}>
-                <span>MFD:</span>
+                <span>ИСТ:</span>
                 <span>{timestampToString(item.dates.mfd)}</span>
               </div>
               <div id={css.card_exp}>
-                <span>EXP:</span>
+                <span>ИСТ:</span>
                 <span>{timestampToString(item.dates.exp)}</span>
               </div>
             </div>

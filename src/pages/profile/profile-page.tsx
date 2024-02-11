@@ -56,17 +56,17 @@ export default function ProfilePage() {
 
                     <div className="tabs__tab__content__user-actions">
                       <div className="tabs__tab__content__user-actions__col">
-                        <span>ADD:</span>
+                        <span>ДОБ:</span>
                         <span>{user.actions && user.actions.added}</span>
                       </div>
 
                       <div className="tabs__tab__content__user-actions__col">
-                        <span>UPD:</span>
+                        <span>ОБН:</span>
                         <span>{user.actions && user.actions.updated}</span>
                       </div>
 
                       <div className="tabs__tab__content__user-actions__col">
-                        <span>DEL:</span>
+                        <span>УДЛ:</span>
                         <span>{user.actions && user.actions.deleted}</span>
                       </div>
                     </div>

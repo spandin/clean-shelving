@@ -41,24 +41,24 @@ export default function ProductCard({ product, number }: Props) {
         <div id={css.card_add}>
           {product.actions.updated.updatedAt ? (
             <>
-              <span>UPD:</span>
+              <span>ОБН:</span>
               <span>
                 {timestampToString(product.actions.updated.updatedAt)}
               </span>
             </>
           ) : (
             <>
-              <span>ADD:</span>
+              <span>ДОБ:</span>
               <span>{timestampToString(product.dates.createdAt)}</span>
             </>
           )}
         </div>
         <div id={css.card_mfd}>
-          <span>MFD:</span>
+          <span>ИЗГ:</span>
           <span>{timestampToString(product.dates.mfd)}</span>
         </div>
         <div id={css.card_exp}>
-          <span>EXP:</span>
+          <span>ИСТ:</span>
           <span>{timestampToString(product.dates.exp)}</span>
         </div>
       </div>

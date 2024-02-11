@@ -37,15 +37,15 @@ export default function RatingCard({
         <div className="rating-card__column__actions" id="card_actions">
           <div className="rating-card__column__actions__row">
             <div className="rating-card__column__actions__row__col">
-              <span>ADD:</span> {user.actions.added}
+              <span>ДОБ:</span> {user.actions.added}
             </div>
             |
             <div className="rating-card__column__actions__row__col">
-              <span>UPD:</span> {user.actions.updated}
+              <span>ОБН:</span> {user.actions.updated}
             </div>
             |
             <div className="rating-card__column__actions__row__col">
-              <span>DEL:</span> {user.actions.deleted}
+              <span>УДЛ:</span> {user.actions.deleted}
             </div>
           </div>
 

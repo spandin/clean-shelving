@@ -97,19 +97,9 @@ export default function ProductPage() {
           </div>
 
           <div className="product-id__footer">
-            <button
-              className="circle_button"
-              onClick={() => setUpdateModalActive(true)}
-            >
-              <BsPencilSquare />
-            </button>
+            <button onClick={() => setUpdateModalActive(true)}>Обновить</button>
 
-            <button
-              className="circle_button"
-              onClick={() => setDeleteModalActive(true)}
-            >
-              <BsTrash3 />
-            </button>
+            <button onClick={() => setDeleteModalActive(true)}>Удалить</button>
           </div>
 
           <Modal active={updateModalActive} setActive={setUpdateModalActive}>

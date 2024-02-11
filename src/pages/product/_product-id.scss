@@ -21,16 +21,6 @@
         display: flex;
         flex-direction: row;
         gap: 1rem;
-        button {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          min-width: 50px;
-          min-height: 50px;
-          max-width: 50px;
-          max-height: 50px;
-          border-radius: 50%;
-        }
       }
     }
 
@@ -56,14 +46,24 @@
     width: 100%;
     display: none;
     button {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-width: 50px;
-      min-height: 50px;
-      max-width: 50px;
-      max-height: 50px;
-      border-radius: 50%;
+      padding: 0rem 2rem;
+      background-color: $tertiary-color;
+      border-radius: 50px;
+      font-weight: 500;
+    }
+    :first-child {
+      color: $white;
+      &:hover {
+        background-color: $white;
+        color: $primary-color;
+      }
+    }
+    :last-child {
+      color: $white;
+      &:hover {
+        background-color: $red;
+        color: $primary-color;
+      }
     }
   }
 }

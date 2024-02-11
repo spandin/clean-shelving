@@ -1,5 +1,10 @@
+@import "@/shared/styles/_variables.scss";
+
 .deleteProduct {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  button {
+    background-color: $red;
+  }
 }
