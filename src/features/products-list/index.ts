@@ -1,3 +1,3 @@
-export { ProductsList } from "./compose/products-list";
-export { ProductsFilters } from "./compose/products-filters";
-export { ProductsExport } from "./compose/products-export";
+export { ProductsList } from "./compose/products-list/products-list";
+export { ProductsFilter } from "./ui/products-filter/products-filter";
+export { ProductsExport } from "./ui/products-export/products-export";

@@ -1,4 +1,4 @@
-import css from "./_productCard.module.scss";
+import css from "./_product-card.module.scss";
 
 import { ProductType } from "@/types/types";
 
@@ -15,7 +15,7 @@ interface Props {
   number: number;
 }
 
-export default function ProductCard({ product, number }: Props) {
+export function ProductCard({ product, number }: Props) {
   return (
     <div className={css.productCard}>
       <div className={css.cardRow_1}>

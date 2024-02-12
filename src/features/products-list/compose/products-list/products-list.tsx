@@ -1,4 +1,4 @@
-import "./_products-list.scss";
+import css from "./_products-list.module.scss";
 
 import { ProductType } from "@/types/types";
 
@@ -12,23 +12,20 @@ import { db } from "@/shared/api/firebase-config";
 import { DocumentData, collection, onSnapshot } from "firebase/firestore";
 
 import { Ring } from "@uiball/loaders";
-import { BsFilterCircle, BsPlusCircle } from "react-icons/bs";
+import { BsPlusCircle } from "react-icons/bs";
 
-import { ProductsFilters } from "..";
-import productsFiltration from "../lib/products-filtration";
-import ProductCard from "@/entities/product/ui/productCard";
+import productsFiltration from "../../lib/products-filtration";
 import Informer from "@/shared/ui/informer/informer";
-import { Modal } from "@/shared/ui/modal/modal";
+import { ProductsListLayout } from "../../ui/products-list-layout/products-list-layout";
+import { ProductCard } from "../../ui/product-card/product-card";
+import FilterButton from "../../ui/products-filter/filter-button";
 
 export function ProductsList() {
   const { isDark } = useTheme();
-
   const navigate = useNavigate();
 
-  const { exported, category } = useAppSelector((state) => state.data.filter);
   const [products, setProducts] = useState<ProductType[]>([]);
-
-  const [filterModalActive, setFilterModalActive] = useState(false);
+  const { exported, category } = useAppSelector((state) => state.data.filter);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "data"), (querySnapshot) => {
@@ -36,11 +33,10 @@ export function ProductsList() {
 
       querySnapshot.forEach((doc: DocumentData) => {
         collectionSnapshot.push(doc.data());
+        collectionSnapshot.sort(
+          (a, b) => +new Date(a.dates.exp) - +new Date(b.dates.exp)
+        );
       });
-
-      collectionSnapshot.sort(
-        (x, y) => +new Date(x.dates.exp) - +new Date(y.dates.exp)
-      );
 
       setProducts(collectionSnapshot);
     });
@@ -51,8 +47,8 @@ export function ProductsList() {
   }, []);
 
   return (
-    <div className="products">
-      <div className="products__header">
+    <ProductsListLayout>
+      <div className={css.listHeader}>
         <Informer
           title={`${category} ${
             exported === "Все" ? "🙌" : exported === true ? "👍" : "👎"
@@ -62,29 +58,19 @@ export function ProductsList() {
           } позиций`}
         />
 
-        <div className="products__header__buttons">
+        <div className={css.listHeaderButtons}>
           <button
             className="circle_button"
-            id="add"
             onClick={() => navigate("/add/", { unstable_viewTransition: true })}
           >
             <BsPlusCircle />
           </button>
-          <button
-            className="circle_button"
-            id="filter"
-            onClick={() => setFilterModalActive(true)}
-          >
-            <BsFilterCircle />
-          </button>
-        </div>
 
-        <Modal active={filterModalActive} setActive={setFilterModalActive}>
-          <ProductsFilters />
-        </Modal>
+          <FilterButton />
+        </div>
       </div>
 
-      <div className="products__grid">
+      <div className={css.listGrid}>
         {products && products.length ? (
           productsFiltration(products, category, exported).map(
             (product, number) => (
@@ -95,6 +81,6 @@ export function ProductsList() {
           <Ring size={30} color={isDark ? "#ffffff" : "#121212"} />
         )}
       </div>
-    </div>
+    </ProductsListLayout>
   );
 }

@@ -2,10 +2,10 @@ import css from "./_products-export.module.scss";
 
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/redux-hooks";
 
-import { changeExportState } from "../model/change-export-state";
-import { addExportActivity } from "../model/add-export-activity";
-import exportToXLSX from "../lib/export-to-XLSX";
-import productsFiltration from "../lib/products-filtration";
+import { changeExportState } from "../../model/change-export-state";
+import { addExportActivity } from "../../model/add-export-activity";
+import exportToXLSX from "../../lib/export-to-XLSX";
+import productsFiltration from "../../lib/products-filtration";
 
 import { BsFiletypeXls } from "react-icons/bs";
 

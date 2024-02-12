@@ -2,7 +2,7 @@ import "./_informer.scss";
 
 import { useLocation } from "react-router-dom";
 
-import ExportButton from "@/features/products-list/ui/export-button/export-button";
+import ExportButton from "@/features/products-list/ui/products-export/button/export-button";
 import BackButton from "@/shared/ui/back-button/back-button";
 
 interface Props {

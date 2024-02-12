@@ -1,14 +1,16 @@
 import css from "./_export-button.module.scss";
+
 import { useState } from "react";
 
 import { BsDatabaseDown } from "react-icons/bs";
 
-import { ProductsExport } from "../..";
+import { ProductsExport } from "../../..";
 
 import { Modal } from "@/shared/ui/modal/modal";
 
 export default function ExportButton() {
   const [exportModalActive, setExportModalActive] = useState(false);
+
   return (
     <>
       <button

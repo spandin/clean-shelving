@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "@/shared/hooks/redux-hooks";
 
 import { setCategory, setExported } from "@/app/slices/dataSlice";
 
-export function ProductsFilters() {
+export function ProductsFilter() {
   const dispatch = useAppDispatch();
 
   const exported = useAppSelector((state) => state.data.filter.exported);
