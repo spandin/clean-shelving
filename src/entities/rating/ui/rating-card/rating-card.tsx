@@ -3,6 +3,7 @@ import css from "./_rating-card.module.scss";
 import { UserData } from "@/shared/types/types";
 
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export function RatingCard({
   user,
@@ -12,7 +13,13 @@ export function RatingCard({
   number: number;
 }) {
   return (
-    <div className={css.ratingCard}>
+    <motion.div
+      key={number}
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: number * 0.1 }}
+      className={css.ratingCard}
+    >
       <Link
         className={css.cardWrapper}
         to={`/user/${user.id}`}
@@ -61,6 +68,6 @@ export function RatingCard({
           </div>
         </div>
       </Link>
-    </div>
+    </motion.div>
   );
 }

@@ -3,6 +3,7 @@ import css from "./_product-card.module.scss";
 import { ProductType } from "@/shared/types/types";
 
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import { BsArrowDownLeftCircle } from "react-icons/bs";
 import {
@@ -17,7 +18,13 @@ interface Props {
 
 export function ProductCard({ product, number }: Props) {
   return (
-    <div className={css.productCard}>
+    <motion.div
+      key={number}
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: number * 0.1 }}
+      className={css.productCard}
+    >
       <div className={css.cardRow_1}>
         <div className={css.cardRow_1_group}>
           <span id={css.card_name}>
@@ -78,6 +85,6 @@ export function ProductCard({ product, number }: Props) {
           {calcDistanceEndDayFromExp(timestampToString(product.dates.exp))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

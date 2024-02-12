@@ -25,10 +25,11 @@ export default function ActivityList() {
 
       <div className={css.activityBody}>
         {activity && activity.length
-          ? activity.map((activity) => (
+          ? activity.map((activity, index) => (
               <ActivityCard
                 key={`${activity.id}${activity.madeOn}`}
                 activity={activity}
+                number={index}
               />
             ))
           : "Пока никто ничего не сделал :("}
