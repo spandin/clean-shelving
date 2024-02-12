@@ -5,12 +5,12 @@ import { useLocation } from "react-router-dom";
 import ExportButton from "@/features/products-list/ui/export-button/export-button";
 import BackButton from "@/shared/ui/back-button/back-button";
 
-interface InformerProps {
+interface Props {
   title: string;
   subtitle?: string | null;
 }
 
-export default function Informer({ title, subtitle }: InformerProps) {
+export default function Informer({ title, subtitle }: Props) {
   const location = useLocation();
 
   return (
