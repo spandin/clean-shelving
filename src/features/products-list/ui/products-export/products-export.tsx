@@ -1,6 +1,6 @@
 import css from "./_products-export.module.scss";
 
-import { useAppDispatch, useAppSelector } from "@/shared/hooks/redux-hooks";
+import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
 
 import { changeExportState } from "../../model/change-export-state";
 import { addExportActivity } from "../../model/add-export-activity";

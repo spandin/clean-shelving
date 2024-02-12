@@ -1,4 +1,4 @@
-import { AddFormInputsType } from "@/types/types";
+import { AddFormInputsType } from "@/shared/types/types";
 
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/shared/api/firebase-config";

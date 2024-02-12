@@ -1,6 +1,6 @@
 import css from "./_similar-products.module.scss";
 
-import { ProductType } from "@/types/types";
+import { ProductType } from "@/shared/types/types";
 
 import { Link } from "react-router-dom";
 

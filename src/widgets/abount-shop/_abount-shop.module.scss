@@ -1,0 +1,58 @@
+@import "@/app/styles/variables";
+
+.abountShop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  .abountShopWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4rem;
+    .shopInfo {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+      height: 100%;
+      #products {
+        color: $red;
+        font-weight: 400;
+      }
+      #users {
+        color: $lime;
+        font-weight: 400;
+      }
+      #go_to_list {
+        align-self: end;
+        padding: 0rem 2rem;
+        background-color: $tertiary-color;
+        color: $white;
+        font-weight: 500;
+        &:hover {
+          background-color: $white;
+          color: $primary-color;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .abountShop {
+    justify-content: flex-end;
+    .abountShopWrapper {
+      flex-direction: column;
+      gap: 2rem;
+      .shopInfo {
+        gap: 2rem;
+        #go_to_list {
+          width: 100%;
+          align-self: center;
+        }
+      }
+    }
+  }
+}

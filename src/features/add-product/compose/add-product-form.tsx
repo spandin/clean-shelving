@@ -4,9 +4,9 @@ import { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { IMaskInput } from "react-imask";
 
-import { AddFormInputsType, ProductType } from "@/types/types";
+import { AddFormInputsType, ProductType } from "@/shared/types/types";
 
-import { useAppDispatch, useAppSelector } from "@/shared/hooks/redux-hooks";
+import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
 
 import { addProduct } from "../model/add-product";
 import { setSelectType } from "@/app/slices/addFormSlice";
@@ -18,8 +18,8 @@ import getBarcodesInfo from "../lib/get-barcodes-info";
 import findSimilarProducts from "../lib/find-similar-products";
 
 import { SimilarProducts } from "./similar-products";
-import LoadButton from "@/shared/ui/load-button/load-button";
-import Informer from "@/shared/ui/informer/informer";
+import LoadButton from "@/shared/ui/buttons/load-button/load-button";
+import HeaderInformer from "@/shared/ui/header-informer/header-informer";
 import { Modal } from "@/shared/ui/modal/modal";
 
 export function AddProductForm() {
@@ -65,7 +65,7 @@ export function AddProductForm() {
     <>
       <div className={css.addProduct}>
         <div className={css.addProductHeader}>
-          <Informer title="Добавление" />
+          <HeaderInformer title="Добавление" />
         </div>
 
         <form

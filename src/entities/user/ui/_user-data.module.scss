@@ -1,0 +1,108 @@
+@import "@/app/styles/variables";
+
+.userData {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  gap: 1rem;
+  width: 100%;
+  .dataTabs {
+    display: flex;
+    flex-direction: row;
+    gap: 0.4rem;
+    content: "";
+    clear: both;
+    position: relative;
+    .dataTab {
+      label {
+        display: flex;
+        padding: 0.4rem 1rem;
+        border-radius: 30px;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        transition: 0.2s ease-out all;
+      }
+      input {
+        display: none;
+      }
+      .tabContent {
+        display: none;
+        position: absolute;
+        left: 0;
+        margin-top: 1rem;
+        padding: 1rem;
+        border-radius: 1rem;
+        background-color: $tertiary-color;
+        align-items: center;
+        #user_avatar {
+          height: 8rem;
+          width: 8rem;
+          border-radius: 100%;
+          object-fit: cover;
+        }
+        .userInfo {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .userActions {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
+          width: 100%;
+          padding: 1rem;
+          border-radius: 30px;
+          background-color: $secondary-color;
+          .actionsCol {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 0.2rem;
+            :first-child {
+              color: $white;
+              font-weight: 400;
+            }
+            :last-child {
+              color: $gray;
+              font-weight: 400;
+            }
+          }
+        }
+
+        &__user-activity {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          gap: 1rem;
+          width: 100%;
+          font-size: 14px;
+          :first-child {
+            color: $white;
+            font-weight: 400;
+          }
+          :last-child {
+            color: $gray;
+          }
+        }
+      }
+    }
+
+    .dataTab > input:checked + label {
+      background-color: $lime;
+      color: $primary-color;
+      font-weight: 500;
+    }
+
+    .dataTab > input:checked ~ .tabContent {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      min-width: 300px;
+      max-width: 500px;
+      width: 100%;
+    }
+  }
+}

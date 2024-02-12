@@ -2,8 +2,8 @@ import "./_product-id.scss";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { useTheme } from "@/shared/hooks/use-theme";
-import { useAppSelector } from "@/shared/hooks/redux-hooks";
+import { useTheme } from "@/shared/lib/hooks/use-theme";
+import { useAppSelector } from "@/shared/lib/hooks/use-redux";
 
 import { Ring } from "@uiball/loaders";
 import { BsPencilSquare, BsTrash3 } from "react-icons/bs";
@@ -13,7 +13,7 @@ import { timestampToString } from "@/shared/helpers/parse-date";
 import { UpdateProduct } from "@/features/product/update-product/ui/updateProduct";
 import { DeleteProduct } from "@/features/product/delete-product/ui/deleteProduct";
 import { Modal } from "@/shared/ui/modal/modal";
-import Informer from "@/shared/ui/informer/informer";
+import HeaderInformer from "@/shared/ui/header-informer/header-informer";
 
 export default function ProductPage() {
   const { productId } = useParams();
@@ -31,7 +31,10 @@ export default function ProductPage() {
         <>
           <div className="product-id__wrapper">
             <div className="product-id__wrapper__header">
-              <Informer title={`${product.name}`} subtitle={product.category} />
+              <HeaderInformer
+                title={`${product.name}`}
+                subtitle={product.category}
+              />
 
               <div className="product-id__wrapper__header__buttons">
                 <button

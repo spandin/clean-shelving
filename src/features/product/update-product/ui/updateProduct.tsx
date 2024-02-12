@@ -1,17 +1,17 @@
 import css from "./_updateProducts.module.scss";
 
-import { ProductType } from "@/types/types";
+import { ProductType } from "@/shared/types/types";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { useAppDispatch, useAppSelector } from "@/shared/hooks/redux-hooks";
+import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
 
 import { updateProduct } from "../model/updateProductAsyncThunk";
 
 import { toastAuthErr, toastPromise } from "@/shared/helpers/toast";
 import { timestampToString } from "@/shared/helpers/parse-date";
 
-import LoadButton from "@/shared/ui/load-button/load-button";
+import LoadButton from "@/shared/ui/buttons/load-button/load-button";
 
 interface Props {
   product: ProductType;

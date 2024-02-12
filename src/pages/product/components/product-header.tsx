@@ -1,5 +1,5 @@
-import Informer from "@/shared/ui/informer/informer";
-import { ProductType } from "@/types/types";
+import HeaderInformer from "@/shared/ui/header-informer/header-informer";
+import { ProductType } from "@/shared/types/types";
 import { DocumentData } from "firebase/firestore";
 
 import { BsPencilSquare, BsTrash3 } from "react-icons/bs";
@@ -11,7 +11,7 @@ interface IProps {
 export default function ProductHeader({ product }: IProps) {
   return (
     <div className="product-id__wrapper__header">
-      <Informer title={`${product.name}`} subtitle={product.category} />
+      <HeaderInformer title={`${product.name}`} subtitle={product.category} />
 
       <div className="product-id__wrapper__header__buttons">
         <button className="circle_button">

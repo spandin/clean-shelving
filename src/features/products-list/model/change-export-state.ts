@@ -1,4 +1,4 @@
-import { UserData } from "@/types/types";
+import { UserData } from "@/shared/types/types";
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getTime } from "date-fns";

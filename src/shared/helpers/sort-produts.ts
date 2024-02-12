@@ -1,4 +1,4 @@
-import { ProductType } from "@/types/types";
+import { ProductType } from "@/shared/types/types";
 
 export const isExported = (array: ProductType[]): ProductType[] =>
   array.filter((product) => product.actions.exported.isExported === true);

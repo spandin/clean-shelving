@@ -1,4 +1,4 @@
-import { DataState, ProductType } from "@/types/types";
+import { DataState, ProductType } from "@/shared/types/types";
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 

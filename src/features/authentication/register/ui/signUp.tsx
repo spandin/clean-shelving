@@ -2,12 +2,12 @@ import css from "./_signUp.module.scss";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { useAppDispatch } from "@/shared/hooks/redux-hooks";
+import { useAppDispatch } from "@/shared/lib/hooks/use-redux";
 
 import IMAGES from "@/assets/images/images";
 
 import { signUpUser } from "../model/signUpAsyncThunk";
-import LoadButton from "@/shared/ui/load-button/load-button";
+import LoadButton from "@/shared/ui/buttons/load-button/load-button";
 
 interface FormValues {
   name: string;

@@ -1,0 +1,15 @@
+@import "@/app/styles/variables";
+
+aside {
+  width: 20%;
+  height: 100%;
+  padding: 1rem;
+  background-color: $secondary-color;
+  border-radius: 2.4rem;
+}
+
+@media only screen and (max-width: 1280px) {
+  aside {
+    display: none;
+  }
+}

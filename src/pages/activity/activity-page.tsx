@@ -1,4 +1,4 @@
-import ActivityList from "@/widgets/ActivityList/ActivityList";
+import ActivityList from "@/widgets/activity-list/activity-list";
 
 export default function ActivityPage() {
   return <ActivityList />;

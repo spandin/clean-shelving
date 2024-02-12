@@ -1,4 +1,4 @@
-import { ProductType } from "@/types/types";
+import { ProductType } from "@/shared/types/types";
 
 interface IProps {
   product: ProductType;

@@ -1,4 +1,4 @@
-import { UserData } from "@/types/types";
+import { UserData } from "@/shared/types/types";
 
 import { db } from "@/shared/api/firebase-config";
 import { doc, getDoc } from "firebase/firestore";

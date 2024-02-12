@@ -1,4 +1,4 @@
-import { ProductType } from "@/types/types";
+import { ProductType } from "@/shared/types/types";
 
 export default function findSimilarProducts(
   products: ProductType[],

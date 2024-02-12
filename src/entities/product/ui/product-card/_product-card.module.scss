@@ -1,0 +1,152 @@
+@import "@/app/styles/variables";
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 30px;
+  background-color: $tertiary-color;
+  transition: 0.2s ease-out all;
+  &:hover {
+    border-radius: 30px;
+    background-color: $white;
+    color: $primary-color;
+    transform: scale(0.98);
+    a {
+      color: $primary-color;
+    }
+    #card_badge,
+    #card_link {
+      border: 1px solid $primary-color;
+    }
+    #card_link {
+      background-color: $secondary-color;
+      color: $white;
+    }
+
+    .card_name_exported {
+      &:before {
+        background: #93c128;
+      }
+    }
+
+    .card_name_notExported {
+      &:before {
+        background: #ca2b4b;
+      }
+    }
+  }
+
+  .cardRow_1 {
+    display: flex;
+    flex-direction: column;
+    .cardRow_1_group {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: 1.2rem;
+      font-weight: 400;
+      .card_name_exported,
+      .card_name_notExported {
+        &::before {
+          content: "";
+          display: inline-flex;
+          width: 10px;
+          height: 10px;
+          margin-right: 0.6rem;
+          vertical-align: 1px;
+          border-radius: 50%;
+        }
+      }
+      .card_name_exported {
+        &::before {
+          background: $lime;
+        }
+      }
+
+      .card_name_notExported {
+        &::before {
+          background: $red;
+        }
+      }
+
+      #card_quantity {
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .cardRow_2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 14px;
+    #card_add,
+    #card_mfd,
+    #card_exp {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      :first-child {
+        font-weight: 400;
+      }
+    }
+  }
+
+  .cardRow_3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+
+    #card_link {
+      display: flex;
+      flex-direction: row;
+      gap: 0.4rem;
+      padding: 0.2rem 0.4rem;
+      border: 1px solid $white;
+      border-radius: 1rem;
+      font-weight: 400;
+    }
+
+    #card_badge {
+      display: flex;
+      flex-direction: row;
+      gap: 0.4rem;
+      padding: 0.2rem 0.4rem;
+      border: 1px solid $white;
+      border-radius: 1rem;
+      font-weight: 400;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .productCard {
+    &:hover {
+      .card_name_exported,
+      .card_name_notExported {
+        &:last-child {
+          max-width: 100%;
+          white-space: wrap;
+        }
+      }
+    }
+    .cardRow_1 {
+      .cardRow_1_group {
+        align-items: flex-start;
+        gap: 1rem;
+        #card_name {
+          white-space: wrap;
+        }
+      }
+    }
+  }
+}

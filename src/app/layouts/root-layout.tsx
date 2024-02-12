@@ -1,13 +1,13 @@
-import "@/shared/styles/_reset.scss";
-import "@/shared/styles/_global.scss";
+import "@/app/styles/_reset.scss";
+import "@/app/styles/_global.scss";
 import css from "./_root-layout.module.scss";
 import "react-toastify/dist/ReactToastify.min.css";
 
 import { useEffect } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-import { useAppDispatch } from "@/shared/hooks/redux-hooks";
+import { useAppDispatch } from "@/shared/lib/hooks/use-redux";
 import {
   getActivity,
   getBarcodes,
@@ -15,10 +15,9 @@ import {
   getUsers,
 } from "../slices/dataSlice";
 
-import IMAGES from "@/assets/images/images";
-
-import Navbar from "@/shared/ui/navbar/navbar";
-import Activity from "@/pages/activity/activity-page";
+import { NavigationBar } from "@/widgets/navigation-bar/navigation-bar";
+import { AsideBar } from "@/widgets/aside-bar/aside-bar";
+import { AbountShop } from "@/widgets/abount-shop/abount-shop";
 
 import { setDefaultOptions } from "date-fns";
 import { ru } from "date-fns/locale";
@@ -38,53 +37,14 @@ export default function Rootlayout() {
 
   return (
     <div className={css.rootLayout}>
-      <Navbar />
+      <NavigationBar />
       <main>
         {location.pathname !== "/" ? <Outlet /> : <AbountShop />}
 
         <ToastContainer theme="dark" position="bottom-center" limit={1} />
       </main>
 
-      <aside>
-        <Activity />
-      </aside>
-    </div>
-  );
-}
-
-import { useAppSelector } from "@/shared/hooks/redux-hooks";
-
-function AbountShop() {
-  const navigate = useNavigate();
-
-  const productsLenght = useAppSelector((state) => state.data.products.length);
-  const usersLenght = useAppSelector((state) => state.data.users.length);
-
-  return (
-    <div className={css.abountShop}>
-      <div className={css.abountShopWrapper}>
-        <img src={IMAGES.registration} />
-        <div className={css.shopInfo}>
-          <div>
-            {" "}
-            <h2>Добро пожаловать в Clean Shelving!</h2>
-            <span>
-              На данный момент в вашем магазине{" "}
-              <span id={css.products}>{productsLenght} активных позиций</span> и{" "}
-              <span id={css.users}>{usersLenght} сотрудников</span>.
-            </span>
-          </div>
-
-          <button
-            id={css.go_to_list}
-            onClick={() =>
-              navigate("products/", { unstable_viewTransition: true })
-            }
-          >
-            Перейти к списку
-          </button>
-        </div>
-      </div>
+      <AsideBar />
     </div>
   );
 }

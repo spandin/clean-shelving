@@ -2,7 +2,7 @@ import css from "./_deleteProducts.module.scss";
 
 import { useNavigate } from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from "@/shared/hooks/redux-hooks";
+import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
 
 import { toastAuthErr, toastPromise } from "@/shared/helpers/toast";
 

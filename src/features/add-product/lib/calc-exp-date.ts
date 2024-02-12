@@ -1,10 +1,10 @@
-import { AddFormInputsType } from "@/types/types";
+import { AddFormInputsType } from "@/shared/types/types";
 
 import { useEffect } from "react";
 import { UseFormGetValues, UseFormWatch } from "react-hook-form";
 import { isValid } from "date-fns";
 
-import { useAppSelector } from "@/shared/hooks/redux-hooks";
+import { useAppSelector } from "@/shared/lib/hooks/use-redux";
 
 import {
   calcDistanceEndFromExp,

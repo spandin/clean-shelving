@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { removeUser } from "@/app/slices/userSlice";
 
-import Informer from "@/shared/ui/informer/informer";
+import HeaderInformer from "@/shared/ui/header-informer/header-informer";
 
 export default function SettingsPage() {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ export default function SettingsPage() {
   return (
     <div className="settings">
       <div className="settings__header">
-        <Informer title="Настройки" />
+        <HeaderInformer title="Настройки" />
       </div>
       <div className="settings__footer">
         <button

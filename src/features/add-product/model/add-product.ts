@@ -1,4 +1,4 @@
-import { AddFormInputsType, UserData } from "@/types/types";
+import { AddFormInputsType, UserData } from "@/shared/types/types";
 
 import { createAsyncThunk, nanoid } from "@reduxjs/toolkit";
 

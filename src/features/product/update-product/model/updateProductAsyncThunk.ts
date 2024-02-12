@@ -1,4 +1,4 @@
-import { ProductType, UserData } from "@/types/types";
+import { ProductType, UserData } from "@/shared/types/types";
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
