@@ -2,11 +2,9 @@ import css from "./_user-data.module.scss";
 
 import type { UserData } from "@/shared/types/types";
 
-import { DocumentData } from "firebase/firestore";
-
 import IMAGES from "@/assets/images/images";
 
-export function UserData({ user }: { user: DocumentData }) {
+export function UserData({ user }: { user: UserData }) {
   return (
     <div className={css.userData}>
       <ul className={css.dataTabs}>

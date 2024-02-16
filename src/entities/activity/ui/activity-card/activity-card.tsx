@@ -29,9 +29,9 @@ export function ActivityCard({
         unstable_viewTransition
       >
         <div className={css.cardRow}>
-          <span className={css.cardTitle} id={css.card_title}>
+          <h4 className={css.cardTitle} id={css.card_title}>
             {activity.actioner.name}
-          </span>
+          </h4>
           <span className={css.cardDate}>
             {timestampToString(activity.madeOn)}
           </span>

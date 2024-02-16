@@ -8,7 +8,7 @@ import { AddFormInputsType, ProductType } from "@/shared/types/types";
 
 import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
 
-import { addProduct } from "../model/add-product";
+import { addProduct } from "../store/thunk";
 import { setSelectType } from "@/app/slices/addFormSlice";
 
 import { toastAuthErr, toastPromise } from "@/shared/helpers/toast";
@@ -17,9 +17,9 @@ import CalcExpirationDate from "../lib/calc-exp-date";
 import getBarcodesInfo from "../lib/get-barcodes-info";
 import findSimilarProducts from "../lib/find-similar-products";
 
-import { SimilarProducts } from "./similar-products";
-import LoadButton from "@/shared/ui/buttons/load-button/load-button";
+import SimilarList from "@/widgets/similar-list/similar-list";
 import HeaderInformer from "@/shared/ui/header-informer/header-informer";
+import LoadButton from "@/shared/ui/buttons/load-button/load-button";
 import { Modal } from "@/shared/ui/modal/modal";
 
 export function AddProductForm() {
@@ -271,7 +271,7 @@ export function AddProductForm() {
       </div>
 
       <Modal active={similarModalActive} setActive={setSimilarModalActive}>
-        <SimilarProducts items={similarItems} />
+        <SimilarList items={similarItems} />
       </Modal>
     </>
   );

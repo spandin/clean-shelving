@@ -27,17 +27,17 @@ export function ProductCard({ product, number }: Props) {
     >
       <div className={css.cardRow_1}>
         <div className={css.cardRow_1_group}>
-          <span id={css.card_name}>
+          <h4 id={css.card_name}>
             {product.actions.exported.isExported ? (
-              <div className={css.card_name_exported}>
+              <span className={css.card_name_exported}>
                 {number + 1 + ". " + product.name}
-              </div>
+              </span>
             ) : (
-              <div className={css.card_name_notExported}>
+              <span className={css.card_name_notExported}>
                 {number + 1 + ". " + product.name}
-              </div>
+              </span>
             )}
-          </span>
+          </h4>
           <span id={css.card_quantity}>{product.quantity} шт.</span>
         </div>
 

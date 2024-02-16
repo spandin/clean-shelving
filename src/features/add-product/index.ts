@@ -1,2 +1,1 @@
-export { AddProductForm } from "./compose/add-product-form";
-export { SimilarProducts } from "./compose/similar-products";
+export { AddProductForm } from "./ui/add-product-form";

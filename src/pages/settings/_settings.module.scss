@@ -1,0 +1,67 @@
+@import "@/app/styles/variables";
+
+.settings {
+  height: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+
+  .settingsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    .settingsHeader {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .settingsBody {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 1rem;
+      background-color: $tertiary-color;
+      .bodyWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 2rem;
+        border-radius: 1rem;
+        background-color: $secondary-color;
+        .bodyLink,
+        .bodyThemeSwither,
+        .bodyRegisterSwither {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.5rem;
+          border-radius: 0.5rem;
+          transition: 0.2s ease-out all;
+          span {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1rem;
+          }
+        }
+        .bodyLink:hover {
+          background-color: $white;
+          color: $primary-color;
+        }
+      }
+    }
+  }
+
+  .settingsFooter {
+    padding: 0rem 0rem;
+    button {
+      width: 100%;
+    }
+  }
+}

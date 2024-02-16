@@ -27,18 +27,18 @@ export function RatingCard({
         unstable_viewTransition
       >
         <div className={css.cardHeader}>
-          <span className={css.cardTitle} id={css.card_title}>
+          <h4 className={css.cardTitle} id={css.card_title}>
             {`${
               number + 1 === 1
                 ? " 🥇"
                 : number + 1 === 2
-                ? " 🥈"
-                : number + 1 === 3
-                ? " 🥉"
-                : number + 1
+                  ? " 🥈"
+                  : number + 1 === 3
+                    ? " 🥉"
+                    : number + 1
             }. `}
             {user.name}
-          </span>
+          </h4>
 
           <span className={css.cardRole}>{user.role}</span>
         </div>

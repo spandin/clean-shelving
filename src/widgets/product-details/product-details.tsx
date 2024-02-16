@@ -1,4 +1,4 @@
-import "./_product-id.scss";
+import css from "./_product-details.module.scss";
 
 import { useState } from "react";
 import { useParams } from "react-router-dom";
@@ -14,7 +14,7 @@ import { timestampToString } from "@/shared/helpers/parse-date";
 import HeaderInformer from "@/shared/ui/header-informer/header-informer";
 import { Modal } from "@/shared/ui/modal/modal";
 
-export default function ProductPage() {
+export default function ProductDetails() {
   const { productId } = useParams();
   const { isDark } = useTheme();
 
@@ -25,17 +25,17 @@ export default function ProductPage() {
   const product = products.find((post) => post.id === productId);
 
   return (
-    <div className="product-id">
+    <div className={css.productDetails}>
       {product != undefined && productId != undefined ? (
         <>
-          <div className="product-id__wrapper">
-            <div className="product-id__wrapper__header">
+          <div className={css.detailsWrapper}>
+            <div className={css.detailsHeader}>
               <HeaderInformer
                 title={`${product.name}`}
                 subtitle={product.category}
               />
 
-              <div className="product-id__wrapper__header__buttons">
+              <div className={css.headerButton}>
                 <button
                   className="circle_button"
                   onClick={() => setUpdateModalActive(true)}
@@ -52,53 +52,54 @@ export default function ProductPage() {
               </div>
             </div>
 
-            <div className="product-id__wrapper__body">
-              <div className="product-id__wrapper__body__content">
+            <div className={css.detailsBody}>
+              <div className={css.bodyContent}>
                 <h1> Основная информация:</h1>
                 <div>
-                  <span id="content_headline">Наименование: </span>
+                  <span id={css.content_headline}>Наименование: </span>
                   {product.name}
                 </div>
                 <div>
-                  <span id="content_headline">Штрихкод: </span> {product.code}
+                  <span id={css.content_headline}>Штрихкод: </span>{" "}
+                  {product.code}
                 </div>
                 <div>
-                  <span id="content_headline">Категория: </span>{" "}
+                  <span id={css.content_headline}>Категория: </span>{" "}
                   {product.category}
                 </div>
                 <div>
-                  <span id="content_headline">Статус: </span>
+                  <span id={css.content_headline}>Статус: </span>
                   {product.actions.exported.isExported ? "Внесен" : "Не внесён"}
                 </div>
               </div>
 
-              <div className="product-id__wrapper__body__content">
+              <div className={css.bodyContent}>
                 <h1>Даты:</h1>
                 <div>
                   {product.dates.createdAt ? (
-                    <span id="content_headline">
+                    <span id={css.content_headline}>
                       Добавлен: {timestampToString(product.dates.createdAt)}
                     </span>
                   ) : (
-                    <span id="content_headline">
+                    <span id={css.content_headline}>
                       Обновлён:{" "}
                       {timestampToString(product.actions.updated.updatedAt)}
                     </span>
                   )}
                 </div>
                 <div>
-                  <span id="content_headline">Изготовлен: </span>{" "}
+                  <span id={css.content_headline}>Изготовлен: </span>{" "}
                   {timestampToString(product.dates.mfd)}
                 </div>
                 <div>
-                  <span id="content_headline">Просрочится: </span>
+                  <span id={css.content_headline}>Просрочится: </span>
                   {timestampToString(product.dates.exp)}
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="product-id__footer">
+          <div className={css.detailsFooter}>
             <button onClick={() => setUpdateModalActive(true)}>Обновить</button>
 
             <button onClick={() => setDeleteModalActive(true)}>Удалить</button>

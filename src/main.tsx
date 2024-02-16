@@ -16,10 +16,10 @@ import Rootlayout from "@/app/layouts/root-layout";
 
 import { ToastContainer } from "react-toastify";
 import ProductsPage from "./pages/products/products-page";
-import ProductPage from "./pages/product/product-page";
+import ProductDetailsPage from "./pages/product-details/product-details-page";
 import AddProductPage from "./pages/add-product/add-products-page";
-import ProfilePage from "./pages/profile/profile-page";
-import UserPage from "./pages/user/user-page";
+import ProfilePage from "./pages/profile-details/profile-page";
+import UserDetailsPage from "./pages/user-details/user-details-page";
 import SettingsPage from "./pages/settings/settings-page";
 import RatingPage from "./pages/rating/rating-page";
 import ActivityPage from "./pages/activity/activity-page";
@@ -36,10 +36,10 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Rootlayout />}>
       <Route index path="products/" element={<ProductsPage />} />
-      <Route path="products/:productId" element={<ProductPage />} />
+      <Route path="products/:productId" element={<ProductDetailsPage />} />
       <Route path="add/" element={<AddProductPage />} />
       <Route path="profile/" element={<ProfilePage />} />
-      <Route path="user/:userId/" element={<UserPage />} />
+      <Route path="user/:userId/" element={<UserDetailsPage />} />
       <Route path="settings//" element={<SettingsPage />} />
       <Route path="rating/" element={<RatingPage />} />
       <Route path="activity/" element={<ActivityPage />} />

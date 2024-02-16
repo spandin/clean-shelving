@@ -1,4 +1,4 @@
-import "./_profile.scss";
+import css from "./_profile-details.module.scss";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ import { SignUp } from "@/features/authentication/register";
 
 import HeaderInformer from "@/shared/ui/header-informer/header-informer";
 
-export default function ProfilePage() {
+export default function ProfileDetails() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -27,11 +27,11 @@ export default function ProfilePage() {
   }, [dispatch, user.id]);
 
   return (
-    <div className="profile">
+    <div className={css.profileDetails}>
       {user.isAuth ? (
         <>
-          <div className="profile__wrapper">
-            <div className="profile__wrapper__header">
+          <div className={css.detailsWrapper}>
+            <div className={css.detailsHeader}>
               <HeaderInformer title="Профиль" subtitle={user.email} />
               <button
                 className="circle_button"
