@@ -26,36 +26,38 @@ export default function SettingsPage() {
 
         <div className={css.settingsBody}>
           <div className={css.bodyWrapper}>
-            <h4>Настройки приложения</h4>
+            {" "}
+            <div className={css.bodySection}>
+              <h4>Настройки приложения</h4>
 
-            <div className={css.bodyThemeSwither}>
-              <span>
-                <BsFillMoonStarsFill />
-                Темный режим:
-              </span>
+              <div className={css.bodyThemeSwither}>
+                <span>
+                  <BsFillMoonStarsFill />
+                  Темный режим:
+                </span>
+              </div>
             </div>
-          </div>
-
-          <div className={css.bodyWrapper}>
-            <h4>Настройки БД</h4>
-            <Link to={""} className={css.bodyLink}>
-              <span>
-                <BsUpcScan />
-                Редактировать ШК
-              </span>{" "}
-              <BsChevronRight />
-            </Link>
-            <Link to={""} className={css.bodyLink}>
-              <span>
-                <BsFillPeopleFill /> Управ. сотрудниками
-              </span>
-              <BsChevronRight />
-            </Link>
-            <div className={css.bodyRegisterSwither}>
-              <span>
-                <BsPersonFillAdd />
-                Регистрация:
-              </span>
+            <div className={css.bodySection}>
+              <h4>Настройки БД</h4>
+              <Link to={""} className={css.bodyLink}>
+                <span>
+                  <BsUpcScan />
+                  Редактировать ШК
+                </span>{" "}
+                <BsChevronRight />
+              </Link>
+              <Link to={""} className={css.bodyLink}>
+                <span>
+                  <BsFillPeopleFill /> Управ. сотрудниками
+                </span>
+                <BsChevronRight />
+              </Link>
+              <div className={css.bodyRegisterSwither}>
+                <span>
+                  <BsPersonFillAdd />
+                  Регистрация:
+                </span>
+              </div>
             </div>
           </div>
         </div>
