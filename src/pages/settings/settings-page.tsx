@@ -14,6 +14,7 @@ export default function SettingsPage() {
       <div className="settings__header">
         <HeaderInformer title="Настройки" />
       </div>
+
       <div className="settings__footer">
         <button
           onClick={() => {

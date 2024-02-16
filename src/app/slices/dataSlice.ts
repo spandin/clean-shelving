@@ -7,7 +7,7 @@ import { DocumentData, collection, getDocs } from "firebase/firestore";
 
 import { getTime } from "date-fns";
 
-import { updateProduct } from "@/features/product/update-product/model/updateProductAsyncThunk";
+import { updateProduct } from "@/features/update-product/store/thunk";
 import { changeExportState } from "@/features/products-list/model/change-export-state";
 
 export const getProducts = createAsyncThunk("@@data/getProducts", async () => {
@@ -90,9 +90,8 @@ const dataSlice = createSlice({
         state.activity[activityIndex].actioner.email =
           action.payload.user.email;
         state.activity[activityIndex].actioner.id = action.payload.user.id;
-        state.activity[
-          activityIndex
-        ].description = `Обновил - ${action.payload.data.name}`;
+        state.activity[activityIndex].description =
+          `Обновил - ${action.payload.data.name}`;
         state.activity[activityIndex].madeOn = getTime(new Date());
       })
       .addCase(changeExportState.fulfilled, (state, action) => {

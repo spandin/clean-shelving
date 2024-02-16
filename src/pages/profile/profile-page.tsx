@@ -1,4 +1,5 @@
 import "./_profile.scss";
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,10 +8,11 @@ import { getUserInfo } from "@/app/slices/userSlice";
 
 import { BsGear } from "react-icons/bs";
 
-import HeaderInformer from "@/shared/ui/header-informer/header-informer";
-import SignIn from "@/features/authentication/login/ui/signIn";
-import SignUp from "@/features/authentication/register/ui/signUp";
 import { UserData } from "@/entities/user";
+import { SignIn } from "@/features/authentication/login";
+import { SignUp } from "@/features/authentication/register";
+
+import HeaderInformer from "@/shared/ui/header-informer/header-informer";
 
 export default function ProfilePage() {
   const dispatch = useAppDispatch();

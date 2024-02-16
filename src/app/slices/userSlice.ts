@@ -5,8 +5,8 @@ import { doc, getDoc } from "firebase/firestore";
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { signInUser } from "@/features/authentication/login/model/signInAsyncThunk";
-import { signUpUser } from "@/features/authentication/register/model/signUpAsyncThunk";
+import { signInUser } from "@/features/authentication/login/store/thunk";
+import { signUpUser } from "@/features/authentication/register/store/thunk";
 
 export const getUserInfo = createAsyncThunk(
   "@@user/getUserInfo",

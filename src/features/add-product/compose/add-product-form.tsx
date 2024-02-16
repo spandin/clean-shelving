@@ -153,7 +153,7 @@ export function AddProductForm() {
                       message: "Минимальное число 1",
                     },
                     max: {
-                      value: 999,
+                      value: 99,
                       message: "Максимальное число 99",
                     },
                   })}
@@ -174,7 +174,7 @@ export function AddProductForm() {
                       mask={Date}
                       min={new Date(2018, 0, 1)}
                       max={new Date(2099, 0, 1)}
-                      onChange={(date) => field.onChange(date)}
+                      onAccept={(date) => field.onChange(date)}
                       placeholder="00.00.0000"
                       inputMode="numeric"
                     />
@@ -205,7 +205,7 @@ export function AddProductForm() {
                         mask={Date}
                         min={new Date(2018, 0, 1)}
                         max={new Date(2099, 0, 1)}
-                        onChange={(date) => field.onChange(date)}
+                        onAccept={(date) => field.onChange(date)}
                         placeholder="00.00.0000"
                         inputMode="numeric"
                       />

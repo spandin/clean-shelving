@@ -1,16 +1,15 @@
-import css from "./_updateProducts.module.scss";
+import css from "./_update-product.module.scss";
 
 import { ProductType } from "@/shared/types/types";
 
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { IMaskInput } from "react-imask";
+
+import { updateProduct } from "../store/thunk";
 
 import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
-
-import { updateProduct } from "../model/updateProductAsyncThunk";
-
 import { toastAuthErr, toastPromise } from "@/shared/helpers/toast";
 import { timestampToString } from "@/shared/helpers/parse-date";
-
 import LoadButton from "@/shared/ui/buttons/load-button/load-button";
 
 interface Props {
@@ -18,13 +17,14 @@ interface Props {
   id: string;
 }
 
-export const UpdateProduct = ({ product, id }: Props) => {
+export function UpdateProduct({ product, id }: Props) {
   const dispatch = useAppDispatch();
 
   const user = useAppSelector((state) => state.user);
 
   const {
     register,
+    control,
     formState: { isSubmitting, errors },
     handleSubmit,
   } = useForm<ProductType>({ mode: "onSubmit" });
@@ -132,27 +132,43 @@ export const UpdateProduct = ({ product, id }: Props) => {
           <div className={css.wrapperRow}>
             <div className={css.input}>
               <label htmlFor="mfd">Годен от:</label>
-              <input
-                type="text"
-                autoComplete="off"
-                inputMode="numeric"
-                defaultValue={timestampToString(product.dates.mfd)}
+              <Controller
+                control={control}
                 {...register("dates.mfd", {
-                  required: "Укажите дату производства",
+                  required: "Укажите дату просрочки",
                 })}
+                render={({ field }) => (
+                  <IMaskInput
+                    mask={Date}
+                    min={new Date(2018, 0, 1)}
+                    max={new Date(2099, 0, 1)}
+                    onAccept={(date) => field.onChange(date)}
+                    defaultValue={timestampToString(product.dates.mfd)}
+                    placeholder="00.00.0000"
+                    inputMode="numeric"
+                  />
+                )}
               />
             </div>
 
             <div className={css.input}>
               <label htmlFor="exp">Годен до:</label>
-              <input
-                type="text"
-                autoComplete="off"
-                inputMode="numeric"
-                defaultValue={timestampToString(product.dates.exp)}
+              <Controller
+                control={control}
                 {...register("dates.exp", {
                   required: "Укажите дату просрочки",
                 })}
+                render={({ field }) => (
+                  <IMaskInput
+                    mask={Date}
+                    min={new Date(2018, 0, 1)}
+                    max={new Date(2099, 0, 1)}
+                    onAccept={(date) => field.onChange(date)}
+                    defaultValue={timestampToString(product.dates.exp)}
+                    placeholder="00.00.0000"
+                    inputMode="numeric"
+                  />
+                )}
               />
             </div>
           </div>
@@ -180,4 +196,4 @@ export const UpdateProduct = ({ product, id }: Props) => {
       </form>
     </div>
   );
-};
+}

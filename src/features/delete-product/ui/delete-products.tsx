@@ -1,4 +1,4 @@
-import css from "./_deleteProducts.module.scss";
+import css from "./_delete-product.module.scss";
 
 import { useNavigate } from "react-router-dom";
 
@@ -6,14 +6,14 @@ import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
 
 import { toastAuthErr, toastPromise } from "@/shared/helpers/toast";
 
-import { deleteProduct } from "../model/deleteProductAsyncThunk";
+import { deleteProduct } from "../store/thunk";
 
 interface Props {
   name: string;
   id: string;
 }
 
-export const DeleteProduct = ({ name, id }: Props) => {
+export function DeleteProduct({ name, id }: Props) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -28,7 +28,7 @@ export const DeleteProduct = ({ name, id }: Props) => {
         toastAuthErr();
       }
     } catch (e) {
-      console.error(`UPDATE PRODUCT:`, e);
+      console.error(`DELETE PRODUCT:`, e);
     }
   };
 
@@ -42,4 +42,4 @@ export const DeleteProduct = ({ name, id }: Props) => {
       <button onClick={() => handleDelete()}>Удалить</button>
     </div>
   );
-};
+}

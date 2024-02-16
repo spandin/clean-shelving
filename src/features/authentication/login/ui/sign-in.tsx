@@ -1,11 +1,11 @@
-import css from "./_signIn.module.scss";
+import css from "./_sign-in.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
-
-import { useAppDispatch } from "@/shared/lib/hooks/use-redux";
 
 import IMAGES from "@/assets/images/images";
 
-import { signInUser } from "../model/signInAsyncThunk";
+import { signInUser } from "../store/thunk";
+
+import { useAppDispatch } from "@/shared/lib/hooks/use-redux";
 import LoadButton from "@/shared/ui/buttons/load-button/load-button";
 
 interface FormValues {
@@ -13,7 +13,7 @@ interface FormValues {
   password: string;
 }
 
-export default function SignIn({
+export function SignIn({
   setAuthForm,
 }: {
   setAuthForm: React.Dispatch<React.SetStateAction<string>>;

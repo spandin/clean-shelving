@@ -18,7 +18,7 @@ export const signInUser = createAsyncThunk(
           return userCredential.user;
         }
       );
-    } catch (e: any) {
+    } catch (e) {
       console.error(`SIGN IN: `, e);
     }
   }
