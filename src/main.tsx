@@ -53,7 +53,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ToastContainer position="top-center" />
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <MotionConfig reducedMotion={"user"}>
+        <MotionConfig reducedMotion={"always"}>
           <RouterProvider
             router={router}
             future={{
