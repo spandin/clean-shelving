@@ -68,6 +68,9 @@ export default function SettingsPage() {
           onClick={() => {
             dispatch(removeUser()), navigate("/profile/");
           }}
+          onTouchStart={() => {
+            dispatch(removeUser()), navigate("/profile/");
+          }}
         >
           Выйти из аккаунта
         </button>

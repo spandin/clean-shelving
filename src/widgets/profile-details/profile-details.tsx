@@ -38,6 +38,9 @@ export default function ProfileDetails() {
                 onClick={() =>
                   navigate("/settings/", { unstable_viewTransition: true })
                 }
+                onTouchStart={() =>
+                  navigate("/settings/", { unstable_viewTransition: true })
+                }
               >
                 <BsGear />
               </button>

@@ -2,7 +2,7 @@ import css from "./_activity-card.module.scss";
 
 import { Activity } from "@/shared/types/types";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import { timestampToString } from "@/shared/helpers/parse-date";
@@ -14,6 +14,8 @@ export function ActivityCard({
   activity: Activity;
   number: number;
 }) {
+  const navigation = useNavigate();
+
   return (
     <motion.div
       key={number}
@@ -25,6 +27,11 @@ export function ActivityCard({
       <Link
         className={css.cardColumn}
         to={`/products/${activity.id}`}
+        onTouchStart={() =>
+          navigation(`/products/${activity.id}`, {
+            unstable_viewTransition: true,
+          })
+        }
         preventScrollReset
         unstable_viewTransition
       >

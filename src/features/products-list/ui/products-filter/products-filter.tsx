@@ -20,6 +20,7 @@ export function ProductsFilter() {
           <button
             className={exported === "Все" ? css.active : ""}
             onClick={() => dispatch(setExported("Все"))}
+            onTouchStart={() => dispatch(setExported("Все"))}
           >
             Все
           </button>
@@ -27,6 +28,7 @@ export function ProductsFilter() {
           <button
             className={exported === true ? css.active : ""}
             onClick={() => dispatch(setExported(true))}
+            onTouchStart={() => dispatch(setExported(true))}
           >
             Внесённые
           </button>
@@ -34,6 +36,7 @@ export function ProductsFilter() {
           <button
             className={exported === false ? css.active : ""}
             onClick={() => dispatch(setExported(false))}
+            onTouchStart={() => dispatch(setExported(false))}
           >
             Не внесённые
           </button>
@@ -46,6 +49,7 @@ export function ProductsFilter() {
           <button
             className={category === "Все" ? css.active : ""}
             onClick={() => dispatch(setCategory("Все"))}
+            onTouchStart={() => dispatch(setCategory("Все"))}
           >
             Все
           </button>
@@ -53,6 +57,7 @@ export function ProductsFilter() {
           <button
             className={category === "Продукты" ? css.active : ""}
             onClick={() => dispatch(setCategory("Продукты"))}
+            onTouchStart={() => dispatch(setCategory("Продукты"))}
           >
             Продукты
           </button>
@@ -60,6 +65,7 @@ export function ProductsFilter() {
           <button
             className={category === "Химия" ? css.active : ""}
             onClick={() => dispatch(setCategory("Химия"))}
+            onTouchStart={() => dispatch(setCategory("Химия"))}
           >
             Химия
           </button>
@@ -67,6 +73,7 @@ export function ProductsFilter() {
           <button
             className={category === "Алкоголь" ? css.active : ""}
             onClick={() => dispatch(setCategory("Алкоголь"))}
+            onTouchStart={() => dispatch(setCategory("Алкоголь"))}
           >
             Алкоголь
           </button>
@@ -74,6 +81,7 @@ export function ProductsFilter() {
           <button
             className={category === "Косметика" ? css.active : ""}
             onClick={() => dispatch(setCategory("Косметика"))}
+            onTouchStart={() => dispatch(setCategory("Косметика"))}
           >
             Косметика
           </button>
@@ -81,6 +89,7 @@ export function ProductsFilter() {
           <button
             className={category === "Другое" ? css.active : ""}
             onClick={() => dispatch(setCategory("Другое"))}
+            onTouchStart={() => dispatch(setCategory("Другое"))}
           >
             Другое
           </button>

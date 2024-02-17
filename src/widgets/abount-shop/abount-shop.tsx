@@ -32,6 +32,9 @@ export function AbountShop() {
             onClick={() =>
               navigate("products/", { unstable_viewTransition: true })
             }
+            onTouchStart={() =>
+              navigate("products/", { unstable_viewTransition: true })
+            }
           >
             Перейти к списку
           </button>

@@ -263,6 +263,7 @@ export function AddProductForm() {
                   : css.similarButton
               }
               onClick={() => setSimilarModalActive(true)}
+              onTouchStart={() => setSimilarModalActive(true)}
             >
               Похожие
             </div>

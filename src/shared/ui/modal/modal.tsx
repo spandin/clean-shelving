@@ -13,10 +13,12 @@ export const Modal = ({
     <div
       className={active ? "modal active" : "modal"}
       onClick={() => setActive(false)}
+      onTouchStart={() => setActive(false)}
     >
       <div
         className={active ? "modal__content active" : "modal__content"}
         onClick={(e) => e.stopPropagation()}
+        onTouchStart={(e) => e.stopPropagation()}
       >
         {children}
       </div>

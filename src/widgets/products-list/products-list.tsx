@@ -61,6 +61,9 @@ export function ProductsList() {
           <button
             className="circle_button"
             onClick={() => navigate("/add/", { unstable_viewTransition: true })}
+            onTouchStart={() =>
+              navigate("/add/", { unstable_viewTransition: true })
+            }
           >
             <BsPlusCircle />
           </button>

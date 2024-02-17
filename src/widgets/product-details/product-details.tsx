@@ -39,6 +39,7 @@ export default function ProductDetails() {
                 <button
                   className="circle_button"
                   onClick={() => setUpdateModalActive(true)}
+                  onTouchStart={() => setUpdateModalActive(true)}
                 >
                   <BsPencilSquare />
                 </button>
@@ -46,6 +47,7 @@ export default function ProductDetails() {
                 <button
                   className="circle_button"
                   onClick={() => setDeleteModalActive(true)}
+                  onTouchStart={() => setDeleteModalActive(true)}
                 >
                   <BsTrash3 />
                 </button>
@@ -100,9 +102,19 @@ export default function ProductDetails() {
           </div>
 
           <div className={css.detailsFooter}>
-            <button onClick={() => setUpdateModalActive(true)}>Обновить</button>
+            <button
+              onClick={() => setUpdateModalActive(true)}
+              onTouchStart={() => setUpdateModalActive(true)}
+            >
+              Обновить
+            </button>
 
-            <button onClick={() => setDeleteModalActive(true)}>Удалить</button>
+            <button
+              onClick={() => setDeleteModalActive(true)}
+              onTouchStart={() => setDeleteModalActive(true)}
+            >
+              Удалить
+            </button>
           </div>
 
           <Modal active={updateModalActive} setActive={setUpdateModalActive}>
