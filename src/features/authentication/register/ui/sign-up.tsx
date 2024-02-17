@@ -124,7 +124,6 @@ export function SignUp({
           <button
             className={css.buttonBack}
             onClick={() => setAuthForm("login")}
-            onTouchStart={() => setAuthForm("login")}
           >
             Назад
           </button>

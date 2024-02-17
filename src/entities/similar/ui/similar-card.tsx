@@ -2,23 +2,16 @@ import css from "./_similar-card.module.scss";
 
 import { ProductType } from "@/shared/types/types";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { timestampToString } from "@/shared/helpers/parse-date";
 
 export function SimilarCard({ item }: { item: ProductType }) {
-  const navigation = useNavigate();
-
   return (
     <Link
       key={item.id}
       className={css.similarCard}
       to={`/products/${item.id}`}
-      onTouchStart={() =>
-        navigation(`/products/${item.id}`, {
-          unstable_viewTransition: true,
-        })
-      }
       preventScrollReset
       unstable_viewTransition
     >

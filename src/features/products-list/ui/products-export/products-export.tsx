@@ -53,10 +53,7 @@ export function ProductsExport() {
         &apos;Внесён&apos;
       </p>
 
-      <button
-        onClick={() => exportAndChangeExportState()}
-        onTouchStart={() => exportAndChangeExportState()}
-      >
+      <button onClick={() => exportAndChangeExportState()}>
         Экспортировать
       </button>
     </div>

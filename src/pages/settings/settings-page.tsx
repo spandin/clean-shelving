@@ -39,13 +39,13 @@ export default function SettingsPage() {
             </div>
             <div className={css.bodySection}>
               <h4>Настройки БД</h4>
-<div className={css.bodyRegisterSwither}>
+              <div className={css.bodyRegisterSwither}>
                 <span>
                   <BsPersonFillAdd />
                   Регистрация:
                 </span>
               </div>
-<Link to={""} className={css.bodyLink}>
+              <Link to={""} className={css.bodyLink}>
                 <span>
                   <BsFillPeopleFill /> Управ. сотрудниками
                 </span>
@@ -66,9 +66,6 @@ export default function SettingsPage() {
       <div className={css.settingsFooter}>
         <button
           onClick={() => {
-            dispatch(removeUser()), navigate("/profile/");
-          }}
-          onTouchStart={() => {
             dispatch(removeUser()), navigate("/profile/");
           }}
         >

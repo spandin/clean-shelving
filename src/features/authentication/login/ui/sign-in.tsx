@@ -82,7 +82,6 @@ export function SignIn({
           <button
             className={css.signUpButton}
             onClick={() => setAuthForm("register")}
-            onTouchStart={() => setAuthForm("register")}
           >
             Регистрация
           </button>

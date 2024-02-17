@@ -14,7 +14,6 @@ export default function FilterButton() {
       <button
         className="circle_button"
         onClick={() => setFilterModalActive(true)}
-        onTouchStart={() => setFilterModalActive(true)}
       >
         <BsFilterCircle />
       </button>

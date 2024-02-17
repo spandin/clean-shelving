@@ -2,7 +2,7 @@ import css from "./_rating-card.module.scss";
 
 import { UserData } from "@/shared/types/types";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 export function RatingCard({
@@ -12,8 +12,6 @@ export function RatingCard({
   user: UserData;
   number: number;
 }) {
-  const navigation = useNavigate();
-
   return (
     <motion.div
       key={number}
@@ -25,11 +23,6 @@ export function RatingCard({
       <Link
         className={css.cardWrapper}
         to={`/user/${user.id}`}
-        onTouchStart={() =>
-          navigation(`/user/${user.id}`, {
-            unstable_viewTransition: true,
-          })
-        }
         preventScrollReset
         unstable_viewTransition
       >

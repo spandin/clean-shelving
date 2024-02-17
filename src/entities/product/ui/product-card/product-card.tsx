@@ -2,7 +2,7 @@ import css from "./_product-card.module.scss";
 
 import { ProductType } from "@/shared/types/types";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import { BsArrowDownLeftCircle } from "react-icons/bs";
@@ -17,8 +17,6 @@ interface Props {
 }
 
 export function ProductCard({ product, number }: Props) {
-  const navigation = useNavigate();
-
   return (
     <motion.div
       key={number}
@@ -76,11 +74,6 @@ export function ProductCard({ product, number }: Props) {
         <Link
           id={css.card_link}
           to={`/products/${product.id}`}
-          onTouchStart={() =>
-            navigation(`/products/${product.id}`, {
-              unstable_viewTransition: true,
-            })
-          }
           preventScrollReset
           unstable_viewTransition
         >

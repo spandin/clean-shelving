@@ -10,7 +10,6 @@ import {
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import store, { persistor } from "@/app/reduxStore";
-import { MotionConfig } from "framer-motion";
 import "@/shared/api/firebase-config";
 
 import Rootlayout from "@/app/layouts/root-layout";
@@ -53,14 +52,12 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ToastContainer position="top-center" />
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <MotionConfig reducedMotion={"always"}>
-          <RouterProvider
-            router={router}
-            future={{
-              v7_startTransition: true,
-            }}
-          />
-        </MotionConfig>
+        <RouterProvider
+          router={router}
+          future={{
+            v7_startTransition: true,
+          }}
+        />
       </PersistGate>
     </Provider>
   </React.StrictMode>

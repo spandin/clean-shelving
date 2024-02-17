@@ -12,11 +12,7 @@ export default function LoadButton({
   const { isDark } = useTheme();
 
   return (
-    <button
-      onClick={onClick}
-      onTouchStart={onClick}
-      disabled={disabled ? false : true}
-    >
+    <button onClick={onClick} disabled={disabled ? false : true}>
       {isLoading ? (
         <Ring size={30} color={isDark ? "#121212" : "#ffffff"} />
       ) : (

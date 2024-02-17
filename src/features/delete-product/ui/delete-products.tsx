@@ -39,12 +39,7 @@ export function DeleteProduct({ name, id }: Props) {
         <p>&quot;{name}&quot;</p>
       </div>
 
-      <button
-        onClick={() => handleDelete()}
-        onTouchStart={() => handleDelete()}
-      >
-        Удалить
-      </button>
+      <button onClick={() => handleDelete()}>Удалить</button>
     </div>
   );
 }
