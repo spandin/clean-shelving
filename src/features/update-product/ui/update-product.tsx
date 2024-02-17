@@ -135,7 +135,7 @@ export function UpdateProduct({ product, id }: Props) {
               <Controller
                 control={control}
                 {...register("dates.mfd", {
-                  required: "Укажите дату просрочки",
+                  required: "Укажите дату производства",
                 })}
                 render={({ field }) => (
                   <IMaskInput

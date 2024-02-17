@@ -39,6 +39,18 @@ export default function SettingsPage() {
             </div>
             <div className={css.bodySection}>
               <h4>Настройки БД</h4>
+<div className={css.bodyRegisterSwither}>
+                <span>
+                  <BsPersonFillAdd />
+                  Регистрация:
+                </span>
+              </div>
+<Link to={""} className={css.bodyLink}>
+                <span>
+                  <BsFillPeopleFill /> Управ. сотрудниками
+                </span>
+                <BsChevronRight />
+              </Link>
               <Link to={""} className={css.bodyLink}>
                 <span>
                   <BsUpcScan />
@@ -46,18 +58,6 @@ export default function SettingsPage() {
                 </span>{" "}
                 <BsChevronRight />
               </Link>
-              <Link to={""} className={css.bodyLink}>
-                <span>
-                  <BsFillPeopleFill /> Управ. сотрудниками
-                </span>
-                <BsChevronRight />
-              </Link>
-              <div className={css.bodyRegisterSwither}>
-                <span>
-                  <BsPersonFillAdd />
-                  Регистрация:
-                </span>
-              </div>
             </div>
           </div>
         </div>
