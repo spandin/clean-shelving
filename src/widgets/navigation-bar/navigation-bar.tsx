@@ -21,7 +21,11 @@ export function NavigationBar() {
         preventScrollReset
         unstable_viewTransition
       >
-        {user.name ? user.name.charAt(0).toUpperCase() : <BsFillPersonFill />}
+        {user.name !== "Гость" ? (
+          user.name.charAt(0).toUpperCase()
+        ) : (
+          <BsFillPersonFill />
+        )}
       </Link>
 
       <div className={css.navbarMenu}>
