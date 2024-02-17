@@ -33,6 +33,8 @@ export default function Rootlayout() {
     dispatch(getUsers());
     dispatch(getBarcodes());
     dispatch(getActivity());
+
+    console.info("ROOT LAYOUT: db is loaded");
   }, [dispatch]);
 
   return (

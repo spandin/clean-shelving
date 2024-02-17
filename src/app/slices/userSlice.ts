@@ -1,25 +1,9 @@
 import { UserData } from "@/shared/types/types";
 
-import { db } from "@/shared/api/firebase-config";
-import { doc, getDoc } from "firebase/firestore";
-
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 import { signInUser } from "@/features/authentication/login/store/thunk";
 import { signUpUser } from "@/features/authentication/register/store/thunk";
-
-export const getUserInfo = createAsyncThunk(
-  "@@user/getUserInfo",
-  async (id: string) => {
-    try {
-      const docSnap = await getDoc(doc(db, "users", `${id}`));
-
-      return docSnap.data();
-    } catch (e) {
-      console.error("GET USER INFO: " + e);
-    }
-  }
-);
 
 const initialState: UserData = {
   id: null,
@@ -55,11 +39,6 @@ const userSlice = createSlice({
         state.email = action.payload ? action.payload.email : null;
         state.id = action.payload ? action.payload.uid : null;
         state.isAuth = action.payload ? !!action.payload.email : false;
-      })
-      .addCase(getUserInfo.fulfilled, (state, action) => {
-        state.name = action.payload?.name;
-        state.role = action.payload?.role;
-        state.actions = action.payload?.actions;
       });
   },
 });

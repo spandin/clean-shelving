@@ -19,17 +19,19 @@ export default function ProfileDetails() {
 
   const [authForm, setAuthForm] = useState("login");
 
+  const isAuth = useAppSelector((state) => state.user.isAuth);
+
   const user = useAppSelector((state) =>
     state.data.users.find((u) => u.id === userId)
   );
 
   return (
     <div className={css.profileDetails}>
-      {user?.isAuth ? (
+      {isAuth ? (
         <>
           <div className={css.detailsWrapper}>
             <div className={css.detailsHeader}>
-              <HeaderInformer title="Профиль" subtitle={user.email} />
+              <HeaderInformer title="Профиль" subtitle={user?.email} />
               <button
                 className="circle_button"
                 onClick={() =>
