@@ -2,18 +2,15 @@ import css from "./_similar-card.module.scss";
 
 import { ProductType } from "@/shared/types/types";
 
-import { Link } from "react-router-dom";
-
 import { timestampToString } from "@/shared/helpers/parse-date";
+import CustomLink from "@/shared/ui/link/custom-link";
 
 export function SimilarCard({ item }: { item: ProductType }) {
   return (
-    <Link
+    <CustomLink
       key={item.id}
       className={css.similarCard}
       to={`/products/${item.id}`}
-      preventScrollReset
-      unstable_viewTransition
     >
       <div className={css.cardRow_1}>
         <div className={css.cardRow_1_group}>
@@ -52,6 +49,6 @@ export function SimilarCard({ item }: { item: ProductType }) {
           <span>{timestampToString(item.dates.exp)}</span>
         </div>
       </div>
-    </Link>
+    </CustomLink>
   );
 }

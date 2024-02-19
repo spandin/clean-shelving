@@ -1,7 +1,8 @@
 import css from "./_settings.module.scss";
 
-import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
+import { removeUser } from "@/app/slices/userSlice";
 
 import {
   BsChevronRight,
@@ -11,12 +12,12 @@ import {
   BsUpcScan,
 } from "react-icons/bs";
 
-import { removeUser } from "@/app/slices/userSlice";
+import CustomLink from "@/shared/ui/link/custom-link";
+import NavigateButton from "@/shared/ui/buttons/navigate-button/navigate-button";
 import HeaderInformer from "@/shared/ui/header-informer/header-informer";
 
 export default function SettingsPage() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   return (
     <div className={css.settings}>
@@ -46,32 +47,28 @@ export default function SettingsPage() {
                   Регистрация:
                 </span>
               </div>
-              <Link to={""} className={css.bodyLink}>
+              <CustomLink to={""} className={css.bodyLink}>
                 <span>
                   <BsFillPeopleFill /> Управ. сотрудниками
                 </span>
                 <BsChevronRight />
-              </Link>
-              <Link to={""} className={css.bodyLink}>
+              </CustomLink>
+              <CustomLink to={""} className={css.bodyLink}>
                 <span>
                   <BsUpcScan />
                   Редактировать ШК
                 </span>{" "}
                 <BsChevronRight />
-              </Link>
+              </CustomLink>
             </div>
           </div>
         </div>
       </div>
 
       <div className={css.settingsFooter}>
-        <button
-          onClick={() => {
-            dispatch(removeUser()), navigate("/profile/");
-          }}
-        >
+        <NavigateButton to={"/profile/"} action={() => dispatch(removeUser())}>
           Выйти из аккаунта
-        </button>
+        </NavigateButton>
       </div>
     </div>
   );

@@ -2,8 +2,9 @@ import css from "./_rating-card.module.scss";
 
 import { UserData } from "@/shared/types/types";
 
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+
+import CustomLink from "@/shared/ui/link/custom-link";
 
 export function RatingCard({
   user,
@@ -20,12 +21,7 @@ export function RatingCard({
       transition={{ duration: 0.5, delay: number * 0.1 }}
       className={css.ratingCard}
     >
-      <Link
-        className={css.cardWrapper}
-        to={`/user/${user.id}`}
-        preventScrollReset
-        unstable_viewTransition
-      >
+      <CustomLink className={css.cardWrapper} to={`/user/${user.id}`}>
         <div className={css.cardHeader}>
           <h4 className={css.cardTitle} id={css.card_title}>
             {`${
@@ -67,7 +63,7 @@ export function RatingCard({
             )}
           </div>
         </div>
-      </Link>
+      </CustomLink>
     </motion.div>
   );
 }

@@ -3,7 +3,6 @@ import css from "./_products-list.module.scss";
 import { ProductType } from "@/shared/types/types";
 
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { useTheme } from "@/shared/lib/hooks/use-theme";
 import { useAppSelector } from "@/shared/lib/hooks/use-redux";
@@ -18,10 +17,10 @@ import { ProductCard } from "@/entities/product";
 import productsFiltration from "../../features/products-list/lib/products-filtration";
 import HeaderInformer from "@/shared/ui/header-informer/header-informer";
 import FilterButton from "../../features/products-list/ui/products-filter/filter-button";
+import NavigateButton from "@/shared/ui/buttons/navigate-button/navigate-button";
 
 export function ProductsList() {
   const { isDark } = useTheme();
-  const navigate = useNavigate();
 
   const [products, setProducts] = useState<ProductType[]>([]);
   const { exported, category } = useAppSelector((state) => state.data.filter);
@@ -58,12 +57,9 @@ export function ProductsList() {
         />
 
         <div className={css.listHeaderButtons}>
-          <button
-            className="circle_button"
-            onClick={() => navigate("/add/", { unstable_viewTransition: true })}
-          >
+          <NavigateButton className="circle_button" to={"/add/"}>
             <BsPlusCircle />
-          </button>
+          </NavigateButton>
 
           <FilterButton />
         </div>

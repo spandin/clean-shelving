@@ -2,10 +2,10 @@ import css from "./_activity-card.module.scss";
 
 import { Activity } from "@/shared/types/types";
 
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import { timestampToString } from "@/shared/helpers/parse-date";
+import CustomLink from "@/shared/ui/link/custom-link";
 
 export function ActivityCard({
   activity,
@@ -22,12 +22,7 @@ export function ActivityCard({
       transition={{ duration: 0.5, delay: number * 0.1 }}
       className={css.activityCard}
     >
-      <Link
-        className={css.cardColumn}
-        to={`/products/${activity.id}`}
-        preventScrollReset
-        unstable_viewTransition
-      >
+      <CustomLink className={css.cardColumn} to={`/products/${activity.id}`}>
         <div className={css.cardRow}>
           <h4 className={css.cardTitle} id={css.card_title}>
             {activity.actioner.name}
@@ -40,7 +35,7 @@ export function ActivityCard({
         <span className={css.cardDescription} id={css.card_description}>
           {activity.description}
         </span>
-      </Link>
+      </CustomLink>
     </motion.div>
   );
 }

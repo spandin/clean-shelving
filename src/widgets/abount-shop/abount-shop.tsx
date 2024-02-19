@@ -1,14 +1,12 @@
 import css from "./_abount-shop.module.scss";
 
-import { useNavigate } from "react-router-dom";
-
 import { useAppSelector } from "@/shared/lib/hooks/use-redux";
 
 import IMAGES from "@/assets/images/images";
 
-export function AbountShop() {
-  const navigate = useNavigate();
+import NavigateButton from "@/shared/ui/buttons/navigate-button/navigate-button";
 
+export function AbountShop() {
   const productsLenght = useAppSelector((state) => state.data.products.length);
   const usersLenght = useAppSelector((state) => state.data.users.length);
 
@@ -27,14 +25,9 @@ export function AbountShop() {
             </span>
           </div>
 
-          <button
-            id={css.go_to_list}
-            onClick={() =>
-              navigate("products/", { unstable_viewTransition: true })
-            }
-          >
+          <NavigateButton id={css.go_to_list} to={"products/"}>
             Перейти к списку
-          </button>
+          </NavigateButton>
         </div>
       </div>
     </div>

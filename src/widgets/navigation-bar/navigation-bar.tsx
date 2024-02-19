@@ -1,6 +1,6 @@
 import css from "./_navigation-bar.module.scss";
 
-import { Link } from "react-router-dom";
+import CustomLink from "@/shared/ui/link/custom-link";
 
 import {
   BsHouseFill,
@@ -12,49 +12,38 @@ import {
 export function NavigationBar() {
   return (
     <nav className={css.navbar}>
-      <Link
-        className={css.navbarAvatar}
-        to={"profile/"}
-        preventScrollReset
-        unstable_viewTransition
-      >
+      <CustomLink className={css.navbarAvatar} to={"profile/"}>
         <BsFillPersonFill />
-      </Link>
+      </CustomLink>
 
       <div className={css.navbarMenu}>
-        <Link
+        <CustomLink
           className={`circle_button ${
             location.pathname === "/products/" ? "active" : null
           }`}
           to={"products/"}
-          preventScrollReset
-          unstable_viewTransition
         >
           <BsHouseFill />
-        </Link>
+        </CustomLink>
 
-        <Link
+        <CustomLink
           className={`circle_button ${
             location.pathname === "/rating/" ? "active" : null
           }`}
           to={"rating/"}
-          preventScrollReset
-          unstable_viewTransition
         >
           <BsFillAwardFill />
-        </Link>
+        </CustomLink>
 
-        <Link
+        <CustomLink
           className={`circle_button ${
             location.pathname === "/activity/" ? "active" : null
           }`}
           id={css.menu_activity}
           to={"activity/"}
-          preventScrollReset
-          unstable_viewTransition
         >
           <BsSpeedometer />
-        </Link>
+        </CustomLink>
       </div>
     </nav>
   );

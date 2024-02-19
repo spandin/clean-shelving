@@ -2,7 +2,6 @@ import css from "./_product-card.module.scss";
 
 import { ProductType } from "@/shared/types/types";
 
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import { BsArrowDownLeftCircle } from "react-icons/bs";
@@ -10,6 +9,7 @@ import {
   calcDistanceEndDayFromExp,
   timestampToString,
 } from "@/shared/helpers/parse-date";
+import CustomLink from "@/shared/ui/link/custom-link";
 
 interface Props {
   product: ProductType;
@@ -71,15 +71,10 @@ export function ProductCard({ product, number }: Props) {
       </div>
 
       <div className={css.cardRow_3}>
-        <Link
-          id={css.card_link}
-          to={`/products/${product.id}`}
-          preventScrollReset
-          unstable_viewTransition
-        >
+        <CustomLink id={css.card_link} to={`/products/${product.id}`}>
           <BsArrowDownLeftCircle />
           Подробнее
-        </Link>
+        </CustomLink>
 
         <div id={css.card_badge}>
           {calcDistanceEndDayFromExp(timestampToString(product.dates.exp))}

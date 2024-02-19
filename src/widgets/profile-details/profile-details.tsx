@@ -1,7 +1,6 @@
 import css from "./_profile-details.module.scss";
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { useAppSelector } from "@/shared/lib/hooks/use-redux";
 
@@ -11,11 +10,10 @@ import { UserData } from "@/entities/user";
 import { SignIn } from "@/features/authentication/login";
 import { SignUp } from "@/features/authentication/register";
 
+import NavigateButton from "@/shared/ui/buttons/navigate-button/navigate-button";
 import HeaderInformer from "@/shared/ui/header-informer/header-informer";
 
 export default function ProfileDetails() {
-  const navigate = useNavigate();
-
   const [authForm, setAuthForm] = useState("login");
 
   const { id, isAuth } = useAppSelector((state) => state.user);
@@ -31,14 +29,9 @@ export default function ProfileDetails() {
           <div className={css.detailsWrapper}>
             <div className={css.detailsHeader}>
               <HeaderInformer title="Профиль" subtitle={profileInfo?.email} />
-              <button
-                className="circle_button"
-                onClick={() =>
-                  navigate("/settings/", { unstable_viewTransition: true })
-                }
-              >
+              <NavigateButton className="circle_button" to={"/settings/"}>
                 <BsGear />
-              </button>
+              </NavigateButton>
             </div>
 
             {profileInfo ? (
