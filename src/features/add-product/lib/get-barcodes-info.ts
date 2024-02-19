@@ -4,11 +4,11 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/shared/api/firebase-config";
 import { UseFormSetValue } from "react-hook-form";
 
-export default function CalcExpirationDate(
+export default function getBarcodesInfo(
   barcode: string,
   setValue: UseFormSetValue<AddFormInputsType>
 ) {
-  const getBarcodesInfo = async (): Promise<void> => {
+  const getInfo = async (): Promise<void> => {
     try {
       const docSnap = await getDoc(doc(db, `barcodes/${barcode}`));
 
@@ -21,5 +21,5 @@ export default function CalcExpirationDate(
     }
   };
 
-  return getBarcodesInfo();
+  return getInfo();
 }

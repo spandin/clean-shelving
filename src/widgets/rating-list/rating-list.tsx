@@ -1,21 +1,40 @@
 import css from "./_rating-list.module.scss";
 
+import { UserData } from "@/shared/types/types";
+
+import { useEffect, useState } from "react";
+
+import { db } from "@/shared/api/firebase-config";
+import { DocumentData, collection, onSnapshot } from "firebase/firestore";
+
 import { RatingCard } from "@/entities/rating";
-import { useAppSelector } from "@/shared/lib/hooks/use-redux";
 import HeaderInformer from "@/shared/ui/header-informer/header-informer";
 
 export default function RatingList() {
-  const users = useAppSelector((state) => state.data.users);
+  const [users, setUsers] = useState<UserData[]>([]);
 
-  const copyArrayUsers = [...users];
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, "users"), (querySnapshot) => {
+      const collectionSnapshot: UserData[] = [];
 
-  copyArrayUsers.sort(
-    (a, b) =>
-      b.actions.added +
-      b.actions.updated / 4 +
-      b.actions.deleted / 2 -
-      (a.actions.added + a.actions.updated / 4 + a.actions.deleted / 2)
-  );
+      querySnapshot.forEach((doc: DocumentData) => {
+        collectionSnapshot.push(doc.data());
+        collectionSnapshot.sort(
+          (a, b) =>
+            b.actions.added +
+            b.actions.updated / 4 +
+            b.actions.deleted / 2 -
+            (a.actions.added + a.actions.updated / 4 + a.actions.deleted / 2)
+        );
+      });
+
+      setUsers(collectionSnapshot);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <div className={css.ratingList}>
@@ -24,7 +43,7 @@ export default function RatingList() {
       </div>
 
       <div className={css.listBody}>
-        {copyArrayUsers.map((user, number) => {
+        {users.map((user, number) => {
           return <RatingCard key={user.id} user={user} number={number} />;
         })}
       </div>

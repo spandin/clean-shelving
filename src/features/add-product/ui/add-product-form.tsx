@@ -30,7 +30,7 @@ export function AddProductForm() {
   const [expirationDate, setExpirationDate] = useState("");
   const [similarItems, setSimilarItems] = useState<ProductType[]>([]);
 
-  const user = useAppSelector((state) => state.user);
+  const currentUser = useAppSelector((state) => state.user);
   const products = useAppSelector((state) => state.data.products);
   const { selectType } = useAppSelector((state) => state.addForm);
 
@@ -47,8 +47,8 @@ export function AddProductForm() {
 
   const onCreate: SubmitHandler<AddFormInputsType> = async (data) => {
     try {
-      if (user.isAuth) {
-        toastPromise(dispatch(addProduct({ data, user, selectType })));
+      if (currentUser.isAuth) {
+        toastPromise(dispatch(addProduct({ data, currentUser, selectType })));
       } else {
         toastAuthErr();
       }

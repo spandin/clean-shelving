@@ -10,13 +10,13 @@ import { stringToTimestamp, stringToUTC } from "@/shared/helpers/parse-date";
 
 interface Props {
   data: AddFormInputsType;
-  user: UserData;
+  currentUser: UserData;
   selectType: string;
 }
 
 export const addProduct = createAsyncThunk(
   "@@data/addProduct",
-  async ({ data, user, selectType }: Props) => {
+  async ({ data, currentUser, selectType }: Props) => {
     const id = nanoid();
 
     try {
@@ -43,8 +43,8 @@ export const addProduct = createAsyncThunk(
         actions: {
           created: {
             createdAt: getTime(new Date()),
-            whoCreated: user.name,
-            whoCreatedID: user.id,
+            whoCreated: currentUser.name,
+            whoCreatedID: currentUser.id,
           },
           updated: {
             isUpdated: false,
@@ -69,16 +69,16 @@ export const addProduct = createAsyncThunk(
       await setDoc(doc(db, "activity", id), {
         id: id,
         actioner: {
-          name: user.name,
-          email: user.email,
-          id: user.id,
+          name: currentUser.name,
+          email: currentUser.email,
+          id: currentUser.id,
         },
         description: `Добавил - ${data.name}`,
         madeOn: getTime(new Date()),
       });
 
       // Инкримирование числа активности(добавления) юзера в firestore/users/userId
-      await updateDoc(doc(db, "users", `${user.id}`), {
+      await updateDoc(doc(db, "users", `${currentUser.id}`), {
         "actions.added": increment(1),
       });
     } catch (e) {

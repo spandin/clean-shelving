@@ -18,7 +18,7 @@ export default function ProfileDetails() {
 
   const [authForm, setAuthForm] = useState("login");
 
-  const { id, isAuth } = useAppSelector((state) => state.profile);
+  const { id, isAuth } = useAppSelector((state) => state.user);
 
   const profileInfo = useAppSelector((state) =>
     state.data.users.find((u) => u.id === id)

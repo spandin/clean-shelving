@@ -12,18 +12,26 @@ import { changeExportState } from "@/features/products-list/model/change-export-
 
 export const getProducts = createAsyncThunk("@@data/getProducts", async () => {
   const querySnapshot = await getDocs(collection(db, "data"));
-  const data: ProductType[] = querySnapshot.docs.map((doc: DocumentData) =>
+  const products: ProductType[] = querySnapshot.docs.map((doc: DocumentData) =>
     doc.data()
   );
 
-  return data;
+  return products.sort(
+    (a, b) => +new Date(a.dates.exp) - +new Date(b.dates.exp)
+  );
 });
 
 export const getUsers = createAsyncThunk("@@data/getUsers", async () => {
   const querySnapshot = await getDocs(collection(db, "users"));
   const users = querySnapshot.docs.map((doc: DocumentData) => doc.data());
 
-  return users;
+  return users.sort(
+    (a, b) =>
+      b.actions.added +
+      b.actions.updated / 4 +
+      b.actions.deleted / 2 -
+      (a.actions.added + a.actions.updated / 4 + a.actions.deleted / 2)
+  );
 });
 
 export const getBarcodes = createAsyncThunk("@@data/getBarcodes", async () => {
@@ -35,9 +43,9 @@ export const getBarcodes = createAsyncThunk("@@data/getBarcodes", async () => {
 
 export const getActivity = createAsyncThunk("@@data/getActivity", async () => {
   const querySnapshot = await getDocs(collection(db, "activity"));
-  const data = querySnapshot.docs.map((doc: DocumentData) => doc.data());
+  const activity = querySnapshot.docs.map((doc: DocumentData) => doc.data());
 
-  return data.sort((a, b) => +new Date(b.madeOn) - +new Date(a.madeOn));
+  return activity.sort((a, b) => +new Date(b.madeOn) - +new Date(a.madeOn));
 });
 
 const initialState: DataState = {

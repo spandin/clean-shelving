@@ -1,11 +1,36 @@
 import css from "./_activity-list.module.scss";
 
 import { ActivityCard } from "@/entities/activity";
-import { useAppSelector } from "@/shared/lib/hooks/use-redux";
+import { db } from "@/shared/api/firebase-config";
+import { Activity } from "@/shared/types/types";
 import HeaderInformer from "@/shared/ui/header-informer/header-informer";
+import { DocumentData, collection, onSnapshot } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 export default function ActivityList() {
-  const activity = useAppSelector((state) => state.data.activity);
+  const [activity, setActivity] = useState<Activity[]>([]);
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      collection(db, "activity"),
+      (querySnapshot) => {
+        const collectionSnapshot: Activity[] = [];
+
+        querySnapshot.forEach((doc: DocumentData) => {
+          collectionSnapshot.push(doc.data());
+          collectionSnapshot.sort(
+            (a, b) => +new Date(b.madeOn) - +new Date(a.madeOn)
+          );
+        });
+
+        setActivity(collectionSnapshot);
+      }
+    );
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <div className={css.activity}>

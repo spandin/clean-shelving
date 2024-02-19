@@ -30,8 +30,8 @@ export default function Rootlayout() {
 
   useEffect(() => {
     dispatch(getProducts());
-    dispatch(getUsers());
     dispatch(getBarcodes());
+    dispatch(getUsers());
     dispatch(getActivity());
 
     console.info("ROOT LAYOUT: db is loaded");

@@ -18,8 +18,8 @@ const initialState: UserData = {
   },
 };
 
-const profileSlice = createSlice({
-  name: "profile",
+const userSlice = createSlice({
+  name: "user",
   initialState,
   reducers: {
     removeUser(state) {
@@ -51,6 +51,6 @@ const profileSlice = createSlice({
   },
 });
 
-export const { removeUser } = profileSlice.actions;
+export const { removeUser } = userSlice.actions;
 
-export default profileSlice.reducer;
+export default userSlice.reducer;

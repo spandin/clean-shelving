@@ -1,4 +1,4 @@
-import { ProductType, UserData } from "@/shared/types/types";
+import { ProductType } from "@/shared/types/types";
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -19,7 +19,7 @@ import { stringToTimestamp } from "@/shared/helpers/parse-date";
 interface Props {
   id: string;
   data: ProductType | DocumentData;
-  user: UserData;
+  user: DocumentData;
 }
 
 export const updateProduct = createAsyncThunk(

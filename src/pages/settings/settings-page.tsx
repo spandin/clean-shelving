@@ -11,12 +11,13 @@ import {
   BsUpcScan,
 } from "react-icons/bs";
 
-import { removeUser } from "@/app/slices/profileSlice";
+import { removeUser } from "@/app/slices/userSlice";
 import HeaderInformer from "@/shared/ui/header-informer/header-informer";
 
 export default function SettingsPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   return (
     <div className={css.settings}>
       <div className={css.settingsWrapper}>
