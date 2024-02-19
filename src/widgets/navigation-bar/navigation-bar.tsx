@@ -2,8 +2,6 @@ import css from "./_navigation-bar.module.scss";
 
 import { Link } from "react-router-dom";
 
-import { useAppSelector } from "@/shared/lib/hooks/use-redux";
-
 import {
   BsHouseFill,
   BsFillAwardFill,
@@ -12,7 +10,6 @@ import {
 } from "react-icons/bs";
 
 export function NavigationBar() {
-  const user = useAppSelector((state) => state.user);
   return (
     <nav className={css.navbar}>
       <Link
@@ -21,11 +18,7 @@ export function NavigationBar() {
         preventScrollReset
         unstable_viewTransition
       >
-        {user.name !== "Гость" ? (
-          user.name.charAt(0).toUpperCase()
-        ) : (
-          <BsFillPersonFill />
-        )}
+        <BsFillPersonFill />
       </Link>
 
       <div className={css.navbarMenu}>

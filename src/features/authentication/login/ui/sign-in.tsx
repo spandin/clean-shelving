@@ -1,11 +1,10 @@
 import css from "./_sign-in.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import IMAGES from "@/assets/images/images";
-
+import { useAppDispatch } from "@/shared/lib/hooks/use-redux";
 import { signInUser } from "../store/thunk";
 
-import { useAppDispatch } from "@/shared/lib/hooks/use-redux";
+import IMAGES from "@/assets/images/images";
 import LoadButton from "@/shared/ui/buttons/load-button/load-button";
 
 interface FormValues {
@@ -75,9 +74,9 @@ export function SignIn({
         <div className={css.buttons}>
           <LoadButton
             type="submit"
+            disabled={isValid}
             isLoading={isSubmitting}
             text={"Войти"}
-            disabled={isValid}
           />
           <button
             className={css.signUpButton}

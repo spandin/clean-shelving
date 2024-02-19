@@ -1,7 +1,7 @@
 import css from "./_profile-details.module.scss";
 
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { useAppSelector } from "@/shared/lib/hooks/use-redux";
 
@@ -15,14 +15,13 @@ import HeaderInformer from "@/shared/ui/header-informer/header-informer";
 
 export default function ProfileDetails() {
   const navigate = useNavigate();
-  const { userId } = useParams();
 
   const [authForm, setAuthForm] = useState("login");
 
-  const isAuth = useAppSelector((state) => state.user.isAuth);
+  const { id, isAuth } = useAppSelector((state) => state.profile);
 
-  const user = useAppSelector((state) =>
-    state.data.users.find((u) => u.id === userId)
+  const profileInfo = useAppSelector((state) =>
+    state.data.users.find((u) => u.id === id)
   );
 
   return (
@@ -31,7 +30,7 @@ export default function ProfileDetails() {
         <>
           <div className={css.detailsWrapper}>
             <div className={css.detailsHeader}>
-              <HeaderInformer title="Профиль" subtitle={user?.email} />
+              <HeaderInformer title="Профиль" subtitle={profileInfo?.email} />
               <button
                 className="circle_button"
                 onClick={() =>
@@ -42,7 +41,11 @@ export default function ProfileDetails() {
               </button>
             </div>
 
-            {user ? <UserData user={user} /> : "Пользователь не найден"}
+            {profileInfo ? (
+              <UserData user={profileInfo} />
+            ) : (
+              "Пользователь не найден"
+            )}
           </div>
         </>
       ) : authForm === "login" ? (

@@ -11,7 +11,7 @@ import {
   BsUpcScan,
 } from "react-icons/bs";
 
-import { removeUser } from "@/app/slices/userSlice";
+import { removeUser } from "@/app/slices/profileSlice";
 import HeaderInformer from "@/shared/ui/header-informer/header-informer";
 
 export default function SettingsPage() {

@@ -73,13 +73,13 @@ export interface Activity {
 // Redux User Types -
 export interface UserData {
   id: string | null;
-  name: string;
+  name: string | null;
   email: string | null;
-  role: string;
+  role: string | null;
   actions: {
     added: number;
     updated: number;
     deleted: number;
   };
-  isAuth: boolean;
+  isAuth?: boolean;
 }

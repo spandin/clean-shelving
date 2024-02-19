@@ -3,7 +3,6 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { initializeFirestore } from "firebase/firestore";
 import { persistentLocalCache } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
 
 export const firebaseConfig: { [key: string]: string } = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -14,10 +13,8 @@ export const firebaseConfig: { [key: string]: string } = {
   appId: import.meta.env.VITE_APP_ID,
 };
 
-export const app = initializeApp(firebaseConfig);
-
-export const auth = getAuth(app);
-export const db = initializeFirestore(app, {
+export const firebase = initializeApp(firebaseConfig);
+export const auth = getAuth(firebase);
+export const db = initializeFirestore(firebase, {
   localCache: persistentLocalCache(/*settings*/ {}),
 });
-export const storage = getStorage(app);

@@ -10,12 +10,12 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import userReducer from "./slices/userSlice";
+import profileReducer from "./slices/profileSlice";
 import dataSlice from "./slices/dataSlice";
 import addFormSlice from "./slices/addFormSlice";
 
 const rootReducer = combineReducers({
-  user: userReducer,
+  profile: profileReducer,
   data: dataSlice,
   addForm: addFormSlice,
 });
