@@ -6,7 +6,7 @@ interface Props {
   className?: string;
   id?: string;
   to: string;
-  action?: () => void;
+  action?: any;
 }
 
 export default function NavigateButton({
@@ -17,13 +17,14 @@ export default function NavigateButton({
   action,
 }: Props) {
   const navigate = useNavigate();
+
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
     navigator.userAgent
   ) ? (
     <button
       className={className}
       id={id}
-      onTouchCancel={() => {
+      onTouchEnd={() => {
         navigate(to, { unstable_viewTransition: true }), action;
       }}
     >

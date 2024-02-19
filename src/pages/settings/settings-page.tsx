@@ -66,7 +66,7 @@ export default function SettingsPage() {
       </div>
 
       <div className={css.settingsFooter}>
-        <NavigateButton to={"/profile/"} action={() => dispatch(removeUser())}>
+        <NavigateButton to={"/profile/"} action={dispatch(removeUser())}>
           Выйти из аккаунта
         </NavigateButton>
       </div>
