@@ -1,13 +1,14 @@
 import "./_back-button.scss";
 
+import { useNavigate } from "react-router-dom";
+
 import { BsArrowLeftCircle } from "react-icons/bs";
 
-import NavigateButton from "../navigate-button/navigate-button";
-
 export default function BackButton() {
+  const navigate = useNavigate();
   return (
-    <NavigateButton className="back_button" to={-1}>
+    <button className="back_button" onClick={() => navigate(-1)}>
       <BsArrowLeftCircle />
-    </NavigateButton>
+    </button>
   );
 }
