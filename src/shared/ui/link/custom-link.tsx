@@ -17,7 +17,7 @@ export default function CustomLink({ children, className, id, to }: Props) {
       className={className}
       id={id}
       to={to}
-      onTouchCancel={() => navigate(to)}
+      onTouchEnd={() => navigate(to)}
       preventScrollReset
       unstable_viewTransition
     >
