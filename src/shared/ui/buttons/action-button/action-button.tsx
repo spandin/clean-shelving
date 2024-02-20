@@ -18,7 +18,7 @@ export default function ActionButton({
   };
 
   return /iPhone|iPad|iPod/i.test(navigator.userAgent) ? (
-    <button className={className} id={id} onTouchEnd={handleAction}>
+    <button className={className} id={id} onTouchStart={handleAction}>
       {children}
     </button>
   ) : (
