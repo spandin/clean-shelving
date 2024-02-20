@@ -8,7 +8,7 @@ import { DocumentData, collection, getDocs } from "firebase/firestore";
 import { getTime } from "date-fns";
 
 import { updateProduct } from "@/features/update-product/store/thunk";
-import { changeExportState } from "@/features/products-list/model/change-export-state";
+import { changeExportState } from "@/features/products-list/store/change-export-state";
 
 export const getProducts = createAsyncThunk("@@data/getProducts", async () => {
   const querySnapshot = await getDocs(collection(db, "data"));

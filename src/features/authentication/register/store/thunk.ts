@@ -4,8 +4,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { DocumentData, doc, getDoc, setDoc } from "firebase/firestore";
-import { auth, db } from "@/shared/api/firebase-config";
+import { DocumentData, getDoc, setDoc } from "firebase/firestore";
+
+import { auth, query } from "@/shared/api/firebase-config";
 
 interface Props {
   email: string;
@@ -23,7 +24,7 @@ export const signUpUser = createAsyncThunk(
         data.email,
         data.password
       ).then(async (userCredential) => {
-        await setDoc(doc(db, "users", `${userCredential.user.uid}`), {
+        await setDoc(query(`users/${userCredential.user.uid}`), {
           id: userCredential.user.uid,
           name: data.name,
           email: userCredential.user.email,
@@ -42,7 +43,7 @@ export const signUpUser = createAsyncThunk(
         data.password
       ).then(async (userCredential) => {
         const docSnap: DocumentData = await getDoc(
-          doc(db, "users", userCredential.user.uid)
+          query(`users/${userCredential.user.uid}`)
         );
 
         return docSnap.data();

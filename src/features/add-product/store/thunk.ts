@@ -2,10 +2,10 @@ import { AddFormInputsType, UserData } from "@/shared/types/types";
 
 import { createAsyncThunk, nanoid } from "@reduxjs/toolkit";
 
-import { db } from "@/shared/api/firebase-config";
-import { doc, increment, setDoc, updateDoc } from "firebase/firestore";
+import { increment, setDoc, updateDoc } from "firebase/firestore";
 
 import { addMonths, getTime } from "date-fns";
+import { query } from "@/shared/api/firebase-config";
 import { stringToTimestamp, stringToUTC } from "@/shared/helpers/parse-date";
 
 interface Props {
@@ -21,7 +21,7 @@ export const addProduct = createAsyncThunk(
 
     try {
       // Создание обьекта продукта в firestore/data
-      await setDoc(doc(db, "data", id), {
+      await setDoc(query(`data/${id}`), {
         id: id,
         name: data.name,
         code: parseInt(data.code),
@@ -59,14 +59,14 @@ export const addProduct = createAsyncThunk(
       });
 
       // Создание обьекта штрихкода в firestore/barcodes
-      await setDoc(doc(db, "barcodes", data.code), {
+      await setDoc(query(`barcodes/${data.code}`), {
         code: data.code,
         name: data.name,
         category: data.category,
       });
 
       // Создание обьекта активности в firestore/activity
-      await setDoc(doc(db, "activity", id), {
+      await setDoc(query(`activity/${id}`), {
         id: id,
         actioner: {
           name: currentUser.name,
@@ -78,7 +78,7 @@ export const addProduct = createAsyncThunk(
       });
 
       // Инкримирование числа активности(добавления) юзера в firestore/users/userId
-      await updateDoc(doc(db, "users", `${currentUser.id}`), {
+      await updateDoc(query(`users/${currentUser.id}`), {
         "actions.added": increment(1),
       });
     } catch (e) {

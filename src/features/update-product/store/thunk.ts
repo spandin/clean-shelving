@@ -1,20 +1,19 @@
 import { ProductType } from "@/shared/types/types";
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { getTime } from "date-fns";
 
-import { db } from "@/shared/api/firebase-config";
 import {
   DocumentData,
   collection,
-  doc,
   getDocs,
   increment,
   setDoc,
   updateDoc,
 } from "firebase/firestore";
 
-import { getTime } from "date-fns";
 import { stringToTimestamp } from "@/shared/helpers/parse-date";
+import { db, query } from "@/shared/api/firebase-config";
 
 interface Props {
   id: string;
@@ -29,7 +28,7 @@ export const updateProduct = createAsyncThunk(
       const products = await getDocs(collection(db, "data"));
       for (const snap of products.docs) {
         if (snap.id === id) {
-          await updateDoc(doc(db, "data", snap.id), {
+          await updateDoc(query(`data/${snap.id}`), {
             name: data.name,
             code: parseInt(data.code),
             category: data.category,
@@ -47,13 +46,13 @@ export const updateProduct = createAsyncThunk(
         }
       }
 
-      await setDoc(doc(db, "barcodes", data.code), {
+      await setDoc(query(`barcodes/${data.code}`), {
         code: data.code,
         name: data.name,
         category: data.category,
       });
 
-      await setDoc(doc(db, "activity", id), {
+      await setDoc(query(`activity/${id}`), {
         id: id,
         actioner: {
           name: user.name,
@@ -64,7 +63,7 @@ export const updateProduct = createAsyncThunk(
         madeOn: getTime(new Date()),
       });
 
-      await updateDoc(doc(db, "users", `${user.id}`), {
+      await updateDoc(query(`users/${user.id}`), {
         "actions.updated": increment(1),
       });
     } catch (e) {

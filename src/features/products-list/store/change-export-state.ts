@@ -3,8 +3,9 @@ import { UserData } from "@/shared/types/types";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getTime } from "date-fns";
 
-import { db } from "@/shared/api/firebase-config";
-import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
+import { collection, getDocs, updateDoc } from "firebase/firestore";
+
+import { db, query } from "@/shared/api/firebase-config";
 
 export const changeExportState = createAsyncThunk(
   "@@data/changeExportState",
@@ -12,7 +13,7 @@ export const changeExportState = createAsyncThunk(
     const products = await getDocs(collection(db, "data"));
     for (const snap of products.docs) {
       if (snap.id === id) {
-        await updateDoc(doc(db, "data", snap.id), {
+        await updateDoc(query(`activity/${snap.id}`), {
           "actions.exported.isExported": true,
           "actions.exported.exportedOn": getTime(new Date()),
           "actions.exported.whoExported": user.name,

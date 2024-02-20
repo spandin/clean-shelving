@@ -3,14 +3,16 @@ import { UserData } from "@/shared/types/types";
 import { createAsyncThunk, nanoid } from "@reduxjs/toolkit";
 import { getTime } from "date-fns";
 
-import { db } from "@/shared/api/firebase-config";
-import { doc, setDoc } from "firebase/firestore";
+import { setDoc } from "firebase/firestore";
+
+import { query } from "@/shared/api/firebase-config";
 
 export const addExportActivity = createAsyncThunk(
   "@@data/addExportActivity",
   async (user: UserData) => {
     const activityID = nanoid();
-    await setDoc(doc(db, "activity", activityID), {
+
+    await setDoc(query(`activity/${activityID}`), {
       id: activityID,
       actioner: {
         name: user.name,
