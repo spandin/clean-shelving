@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
 
-import { toastAuthErr, toastPromise } from "@/shared/helpers/toast";
+import { toastAuthErr, toastDelPromise } from "@/shared/helpers/toast";
 
 import { deleteProduct } from "../store/thunk";
 import ActionButton from "@/shared/ui/buttons/action-button/action-button";
@@ -23,7 +23,7 @@ export function DeleteProduct({ name, id }: Props) {
   const handleDelete = async () => {
     try {
       if (user.isAuth) {
-        toastPromise(dispatch(deleteProduct({ id, name, user })));
+        toastDelPromise(dispatch(deleteProduct({ id, name, user })));
         navigate("/products");
       } else {
         toastAuthErr();

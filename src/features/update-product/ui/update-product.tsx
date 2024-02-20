@@ -8,7 +8,7 @@ import { IMaskInput } from "react-imask";
 import { updateProduct } from "../store/thunk";
 
 import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
-import { toastAuthErr, toastPromise } from "@/shared/helpers/toast";
+import { toastAuthErr, toastUpdPromise } from "@/shared/helpers/toast";
 import { timestampToString } from "@/shared/helpers/parse-date";
 import LoadButton from "@/shared/ui/buttons/load-button/load-button";
 
@@ -32,7 +32,7 @@ export function UpdateProduct({ product, id }: Props) {
   const onUpdate: SubmitHandler<ProductType> = async (data) => {
     try {
       if (user.isAuth) {
-        toastPromise(dispatch(updateProduct({ id, data, user })));
+        toastUpdPromise(dispatch(updateProduct({ id, data, user })));
       } else {
         toastAuthErr();
       }

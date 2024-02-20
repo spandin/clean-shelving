@@ -11,7 +11,7 @@ import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
 import { addProduct } from "../store/thunk";
 import { setSelectType } from "@/app/slices/addFormSlice";
 
-import { toastAuthErr, toastPromise } from "@/shared/helpers/toast";
+import { toastAddPromise, toastAuthErr } from "@/shared/helpers/toast";
 
 import CalcExpirationDate from "../lib/calc-exp-date";
 import getBarcodesInfo from "../lib/get-barcodes-info";
@@ -48,7 +48,9 @@ export function AddProductForm() {
   const onCreate: SubmitHandler<AddFormInputsType> = async (data) => {
     try {
       if (currentUser.isAuth) {
-        toastPromise(dispatch(addProduct({ data, currentUser, selectType })));
+        toastAddPromise(
+          dispatch(addProduct({ data, currentUser, selectType }))
+        );
       } else {
         toastAuthErr();
       }
