@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { isMobile } from "@/shared/helpers/mobile-check";
+
 interface Props {
   children: ReactNode;
   className?: string;
@@ -23,7 +25,7 @@ export default function NavigateButton({
     navigate(to, { unstable_viewTransition: true });
   };
 
-  return /iPhone|iPad|iPod/i.test(navigator.userAgent) ? (
+  return isMobile ? (
     <button className={className} id={id} onTouchStart={handleAction}>
       {children}
     </button>

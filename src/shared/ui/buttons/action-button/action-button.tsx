@@ -1,10 +1,12 @@
 import { ReactNode } from "react";
 
+import { isMobile } from "@/shared/helpers/mobile-check";
+
 interface Props {
   children: ReactNode;
   className?: string;
   id?: string;
-  action?: () => any;
+  action: () => any;
 }
 
 export default function ActionButton({
@@ -14,10 +16,10 @@ export default function ActionButton({
   action,
 }: Props) {
   const handleAction = () => {
-    action && action();
+    action();
   };
 
-  return /iPhone|iPad|iPod/i.test(navigator.userAgent) ? (
+  return isMobile ? (
     <button className={className} id={id} onTouchStart={handleAction}>
       {children}
     </button>

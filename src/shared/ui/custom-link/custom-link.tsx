@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import { isMobile } from "@/shared/helpers/mobile-check";
+
 interface Props {
   children: ReactNode;
   className?: string;
@@ -10,7 +12,7 @@ interface Props {
 
 export default function CustomLink({ children, className, id, to }: Props) {
   const navigate = useNavigate();
-  return /iPhone|iPad|iPod/i.test(navigator.userAgent) ? (
+  return isMobile ? (
     <Link
       className={className}
       id={id}

@@ -1,5 +1,7 @@
 import "./_modal.scss";
 
+import { isMobile } from "@/shared/helpers/mobile-check";
+
 export const Modal = ({
   active,
   setActive,
@@ -9,7 +11,7 @@ export const Modal = ({
   setActive: React.Dispatch<React.SetStateAction<boolean>>;
   children: React.ReactNode;
 }) => {
-  return /iPhone|iPad|iPod/i.test(navigator.userAgent) ? (
+  return isMobile ? (
     <div
       className={active ? "modal active" : "modal"}
       onTouchStart={() => setActive(false)}
