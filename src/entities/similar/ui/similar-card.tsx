@@ -41,7 +41,7 @@ export function SimilarCard({ item }: { item: ProductType }) {
           )}
         </div>
         <div id={css.card_mfd}>
-          <span>ИСТ:</span>
+          <span>ИЗГ:</span>
           <span>{timestampToString(item.dates.mfd)}</span>
         </div>
         <div id={css.card_exp}>
