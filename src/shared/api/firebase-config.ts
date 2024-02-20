@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 // import { getFirestore } from 'firebase/firestore';
 import { getAuth } from "firebase/auth";
-import { initializeFirestore } from "firebase/firestore";
+import { doc, initializeFirestore } from "firebase/firestore";
 import { persistentLocalCache } from "firebase/firestore";
 
 export const firebaseConfig: { [key: string]: string } = {
@@ -18,3 +18,5 @@ export const auth = getAuth(firebase);
 export const db = initializeFirestore(firebase, {
   localCache: persistentLocalCache(/*settings*/ {}),
 });
+
+export const query = (q: string) => doc(db, `${q}`);

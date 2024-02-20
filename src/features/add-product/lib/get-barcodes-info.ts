@@ -1,7 +1,7 @@
 import { AddFormInputsType } from "@/shared/types/types";
 
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "@/shared/api/firebase-config";
+import { getDoc } from "firebase/firestore";
+import { query } from "@/shared/api/firebase-config";
 import { UseFormSetValue } from "react-hook-form";
 
 export default function getBarcodesInfo(
@@ -10,7 +10,7 @@ export default function getBarcodesInfo(
 ) {
   const getInfo = async (): Promise<void> => {
     try {
-      const docSnap = await getDoc(doc(db, `barcodes/${barcode}`));
+      const docSnap = await getDoc(query(`barcodes/${barcode}`));
 
       if (docSnap.exists()) {
         setValue("name", docSnap.data().name);
