@@ -20,7 +20,7 @@ export default function ActionButton({
   };
 
   return isMobile ? (
-    <button className={className} id={id} onTouchStart={handleAction}>
+    <button className={className} id={id} onTouchEnd={handleAction}>
       {children}
     </button>
   ) : (
