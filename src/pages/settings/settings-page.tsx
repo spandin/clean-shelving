@@ -12,7 +12,7 @@ import {
   BsUpcScan,
 } from "react-icons/bs";
 
-import CustomLink from "@/shared/ui/link/custom-link";
+import CustomLink from "@/shared/ui/custom-link/custom-link";
 import NavigateButton from "@/shared/ui/buttons/navigate-button/navigate-button";
 import HeaderInformer from "@/shared/ui/header-informer/header-informer";
 
@@ -66,7 +66,7 @@ export default function SettingsPage() {
       </div>
 
       <div className={css.settingsFooter}>
-        <NavigateButton to={"/profile/"} action={dispatch(removeUser())}>
+        <NavigateButton to={"/profile/"} action={() => dispatch(removeUser())}>
           Выйти из аккаунта
         </NavigateButton>
       </div>

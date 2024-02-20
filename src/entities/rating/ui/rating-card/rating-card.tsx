@@ -4,7 +4,7 @@ import { UserData } from "@/shared/types/types";
 
 import { motion } from "framer-motion";
 
-import CustomLink from "@/shared/ui/link/custom-link";
+import CustomLink from "@/shared/ui/custom-link/custom-link";
 
 export function RatingCard({
   user,

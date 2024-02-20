@@ -1,6 +1,6 @@
 import css from "./_navigation-bar.module.scss";
 
-import CustomLink from "@/shared/ui/link/custom-link";
+import CustomLink from "@/shared/ui/custom-link/custom-link";
 
 import {
   BsHouseFill,

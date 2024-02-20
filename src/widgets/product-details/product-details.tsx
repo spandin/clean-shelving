@@ -13,6 +13,7 @@ import { useTheme } from "@/shared/lib/hooks/use-theme";
 import { timestampToString } from "@/shared/helpers/parse-date";
 import HeaderInformer from "@/shared/ui/header-informer/header-informer";
 import { Modal } from "@/shared/ui/modal/modal";
+import ActionButton from "@/shared/ui/buttons/action-button/action-button";
 
 export default function ProductDetails() {
   const { productId } = useParams();
@@ -36,19 +37,19 @@ export default function ProductDetails() {
               />
 
               <div className={css.headerButton}>
-                <button
+                <ActionButton
                   className="circle_button"
-                  onClick={() => setUpdateModalActive(true)}
+                  action={() => setUpdateModalActive(true)}
                 >
                   <BsPencilSquare />
-                </button>
+                </ActionButton>
 
-                <button
+                <ActionButton
                   className="circle_button"
-                  onClick={() => setDeleteModalActive(true)}
+                  action={() => setDeleteModalActive(true)}
                 >
                   <BsTrash3 />
-                </button>
+                </ActionButton>
               </div>
             </div>
 
@@ -100,9 +101,13 @@ export default function ProductDetails() {
           </div>
 
           <div className={css.detailsFooter}>
-            <button onClick={() => setUpdateModalActive(true)}>Обновить</button>
+            <ActionButton action={() => setUpdateModalActive(true)}>
+              Обновить
+            </ActionButton>
 
-            <button onClick={() => setDeleteModalActive(true)}>Удалить</button>
+            <ActionButton action={() => setDeleteModalActive(true)}>
+              Удалить
+            </ActionButton>
           </div>
 
           <Modal active={updateModalActive} setActive={setUpdateModalActive}>

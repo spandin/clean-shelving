@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
 import { toastAuthErr, toastPromise } from "@/shared/helpers/toast";
 
 import { deleteProduct } from "../store/thunk";
+import ActionButton from "@/shared/ui/buttons/action-button/action-button";
 
 interface Props {
   name: string;
@@ -39,7 +40,7 @@ export function DeleteProduct({ name, id }: Props) {
         <p>&quot;{name}&quot;</p>
       </div>
 
-      <button onClick={() => handleDelete()}>Удалить</button>
+      <ActionButton action={() => handleDelete()}>Удалить</ActionButton>
     </div>
   );
 }

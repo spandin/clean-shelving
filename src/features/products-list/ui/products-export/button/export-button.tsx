@@ -5,20 +5,20 @@ import { useState } from "react";
 import { BsDatabaseDown } from "react-icons/bs";
 
 import { ProductsExport } from "../../..";
-
 import { Modal } from "@/shared/ui/modal/modal";
+import ActionButton from "@/shared/ui/buttons/action-button/action-button";
 
 export default function ExportButton() {
   const [exportModalActive, setExportModalActive] = useState(false);
 
   return (
     <>
-      <button
+      <ActionButton
         className={css.exportButton}
-        onClick={() => setExportModalActive(true)}
+        action={() => setExportModalActive(true)}
       >
         <BsDatabaseDown />
-      </button>
+      </ActionButton>
 
       <Modal active={exportModalActive} setActive={setExportModalActive}>
         <ProductsExport />

@@ -3,6 +3,7 @@ import css from "./_products-filter.module.scss";
 import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
 
 import { setCategory, setExported } from "@/app/slices/dataSlice";
+import ActionButton from "@/shared/ui/buttons/action-button/action-button";
 
 export function ProductsFilter() {
   const dispatch = useAppDispatch();
@@ -17,73 +18,73 @@ export function ProductsFilter() {
       <div className={css.exported}>
         <span>По статусу выгрузки:</span>
         <div className={css.exportedButtons}>
-          <button
+          <ActionButton
             className={exported === "Все" ? css.active : ""}
-            onClick={() => dispatch(setExported("Все"))}
+            action={() => dispatch(setExported("Все"))}
           >
             Все
-          </button>
+          </ActionButton>
 
-          <button
+          <ActionButton
             className={exported === true ? css.active : ""}
-            onClick={() => dispatch(setExported(true))}
+            action={() => dispatch(setExported(true))}
           >
             Внесённые
-          </button>
+          </ActionButton>
 
-          <button
+          <ActionButton
             className={exported === false ? css.active : ""}
-            onClick={() => dispatch(setExported(false))}
+            action={() => dispatch(setExported(false))}
           >
             Не внесённые
-          </button>
+          </ActionButton>
         </div>
       </div>
 
       <div className={css.category}>
         <span>По категориям:</span>
         <div className={css.categoryButtons}>
-          <button
+          <ActionButton
             className={category === "Все" ? css.active : ""}
-            onClick={() => dispatch(setCategory("Все"))}
+            action={() => dispatch(setCategory("Все"))}
           >
             Все
-          </button>
+          </ActionButton>
 
-          <button
+          <ActionButton
             className={category === "Продукты" ? css.active : ""}
-            onClick={() => dispatch(setCategory("Продукты"))}
+            action={() => dispatch(setCategory("Продукты"))}
           >
             Продукты
-          </button>
+          </ActionButton>
 
-          <button
+          <ActionButton
             className={category === "Химия" ? css.active : ""}
-            onClick={() => dispatch(setCategory("Химия"))}
+            action={() => dispatch(setCategory("Химия"))}
           >
             Химия
-          </button>
+          </ActionButton>
 
-          <button
+          <ActionButton
             className={category === "Алкоголь" ? css.active : ""}
-            onClick={() => dispatch(setCategory("Алкоголь"))}
+            action={() => dispatch(setCategory("Алкоголь"))}
           >
             Алкоголь
-          </button>
+          </ActionButton>
 
-          <button
+          <ActionButton
             className={category === "Косметика" ? css.active : ""}
-            onClick={() => dispatch(setCategory("Косметика"))}
+            action={() => dispatch(setCategory("Косметика"))}
           >
             Косметика
-          </button>
+          </ActionButton>
 
-          <button
+          <ActionButton
             className={category === "Другое" ? css.active : ""}
-            onClick={() => dispatch(setCategory("Другое"))}
+            action={() => dispatch(setCategory("Другое"))}
           >
             Другое
-          </button>
+          </ActionButton>
         </div>
       </div>
     </div>

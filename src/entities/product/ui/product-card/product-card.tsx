@@ -9,7 +9,7 @@ import {
   calcDistanceEndDayFromExp,
   timestampToString,
 } from "@/shared/helpers/parse-date";
-import CustomLink from "@/shared/ui/link/custom-link";
+import CustomLink from "@/shared/ui/custom-link/custom-link";
 
 interface Props {
   product: ProductType;

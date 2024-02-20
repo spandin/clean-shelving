@@ -5,7 +5,7 @@ import { Activity } from "@/shared/types/types";
 import { motion } from "framer-motion";
 
 import { timestampToString } from "@/shared/helpers/parse-date";
-import CustomLink from "@/shared/ui/link/custom-link";
+import CustomLink from "@/shared/ui/custom-link/custom-link";
 
 export function ActivityCard({
   activity,

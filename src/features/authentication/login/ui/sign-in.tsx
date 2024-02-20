@@ -6,6 +6,7 @@ import { signInUser } from "../store/thunk";
 
 import IMAGES from "@/assets/images/images";
 import LoadButton from "@/shared/ui/buttons/load-button/load-button";
+import ActionButton from "@/shared/ui/buttons/action-button/action-button";
 
 interface FormValues {
   email: string;
@@ -78,12 +79,12 @@ export function SignIn({
             isLoading={isSubmitting}
             text={"Войти"}
           />
-          <button
+          <ActionButton
             className={css.signUpButton}
-            onClick={() => setAuthForm("register")}
+            action={() => setAuthForm("register")}
           >
             Регистрация
-          </button>
+          </ActionButton>
         </div>
       </form>
     </div>

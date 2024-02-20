@@ -8,6 +8,7 @@ import IMAGES from "@/assets/images/images";
 
 import { signUpUser } from "../store/thunk";
 import LoadButton from "@/shared/ui/buttons/load-button/load-button";
+import ActionButton from "@/shared/ui/buttons/action-button/action-button";
 
 interface FormValues {
   name: string;
@@ -121,12 +122,12 @@ export function SignUp({
             disabled={isValid}
           />
 
-          <button
+          <ActionButton
             className={css.buttonBack}
-            onClick={() => setAuthForm("login")}
+            action={() => setAuthForm("login")}
           >
             Назад
-          </button>
+          </ActionButton>
         </div>
       </form>
     </div>

@@ -1,13 +1,13 @@
 import css from "./_products-export.module.scss";
 
 import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
-
 import { changeExportState } from "../../model/change-export-state";
 import { addExportActivity } from "../../model/add-export-activity";
-import exportToXLSX from "../../lib/export-to-XLSX";
-import productsFiltration from "../../lib/products-filtration";
 
 import { BsFiletypeXls } from "react-icons/bs";
+import exportToXLSX from "../../lib/export-to-XLSX";
+import productsFiltration from "../../lib/products-filtration";
+import ActionButton from "@/shared/ui/buttons/action-button/action-button";
 
 export function ProductsExport() {
   const dispatch = useAppDispatch();
@@ -53,9 +53,9 @@ export function ProductsExport() {
         &apos;Внесён&apos;
       </p>
 
-      <button onClick={() => exportAndChangeExportState()}>
+      <ActionButton action={() => exportAndChangeExportState()}>
         Экспортировать
-      </button>
+      </ActionButton>
     </div>
   );
 }

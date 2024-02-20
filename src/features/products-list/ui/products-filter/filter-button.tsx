@@ -5,18 +5,19 @@ import { BsFilterCircle } from "react-icons/bs";
 import { ProductsFilter } from "../..";
 
 import { Modal } from "@/shared/ui/modal/modal";
+import ActionButton from "@/shared/ui/buttons/action-button/action-button";
 
 export default function FilterButton() {
   const [filterModalActive, setFilterModalActive] = useState(false);
 
   return (
     <>
-      <button
+      <ActionButton
         className="circle_button"
-        onClick={() => setFilterModalActive(true)}
+        action={() => setFilterModalActive(true)}
       >
         <BsFilterCircle />
-      </button>
+      </ActionButton>
 
       <Modal active={filterModalActive} setActive={setFilterModalActive}>
         <ProductsFilter />
