@@ -13,7 +13,7 @@ export default function FilterButton() {
   return (
     <>
       <ActionButton
-        className="circle_button"
+        className={filterModalActive ? "circle_button active" : "circle_button"}
         action={() => setFilterModalActive(true)}
       >
         <BsFilterCircle />
