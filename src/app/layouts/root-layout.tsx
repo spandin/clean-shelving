@@ -2,6 +2,7 @@ import "@/app/styles/_reset.scss";
 import "@/app/styles/_global.scss";
 import css from "./_root-layout.module.scss";
 import "react-toastify/dist/ReactToastify.min.css";
+import "@/app/styles/_toast.scss";
 
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
@@ -43,7 +44,7 @@ export default function Rootlayout() {
       <main>
         {location.pathname !== "/" ? <Outlet /> : <AbountShop />}
 
-        <ToastContainer theme="dark" position="bottom-center" limit={1} />
+        <ToastContainer theme="dark" limit={1} />
       </main>
 
       <AsideBar />

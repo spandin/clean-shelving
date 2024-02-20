@@ -12,6 +12,7 @@ interface Props {
 
 export default function CustomLink({ children, className, id, to }: Props) {
   const navigate = useNavigate();
+
   return isMobile ? (
     <Link
       className={className}
