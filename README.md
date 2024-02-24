@@ -1,30 +1,30 @@
-# React + TypeScript + Vite
+# Clean Shelving
+#### <i>@spandin</i>
+#### <i>version: 1.0.0</i>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Приложение Clean Shelving (Чистые полки) - это прогрессивное веб-приложение (PWA), созданное с использованием React, предназначенное для помощи менеджерам магазинов и сотрудникам в отслеживании просроченных товаров. 
 
-Currently, two official plugins are available:
+С помощью Clean Shelving вы можете добавлять, редактировать и удалять товары, а также просматривать список всех товаров, находящихся в системе.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Возможности:
+<ul>
 
-## Expanding the ESLint configuration
+  <li>Авторизация: войдите в свой аккаунт, используя логин и пароль, чтобы сразу начать использовать Clean Shelving;</li>
+  <li>Добавление товаров: добавьте новые товары в систему, указав их название, штрих код, срок годности и категорию;</li>
+  <li>Редактирование товаров: измените информацию о товаре, если это необходимо;</li>
+  <li>Удаление товаров: удалите товар из системы, если он больше не доступен;</li>
+  <li>Список товаров: просмотрите список всех товаров в системе;</li>
+   <li>Фильтрация списка: изменение списка по категориям или же по статусу.</li>
+</ul>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Состояние товара:
+Для каждого товара в системе Clean Shelving можно узнать его текущее состояние: добавлен ли он в систему магазина. Эта информация отображается в виде индикаторов рядом с названием товара.
+Если товар добавлен в систему, индикатор будет зеленым. Если товар не добавлен, индикатор будет красным.
 
-- Configure the top-level `parserOptions` property like this:
+### Экспорт в Excel:
+Помимо функционала отслеживания просроченных товаров, в Clean Shelving есть возможность экспорта списка товаров в формате Excel. Это позволяет легко и быстро получить информацию о товарах в удобном для анализа виде.
+Для экспорта списка товаров пользователю достаточно нажать на кнопку “Экспортировать” в приложении. 
+Важно! При экспорте файла состояние товар изменится на "Внесён".
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+С Clean Shelving ваш магазин будет в порядке!
