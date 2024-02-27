@@ -1,0 +1,47 @@
+@import "./variables";
+
+@mixin bg-anim-lime {
+  background: linear-gradient(90deg, #c4e778, #e3c1ff);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+}
+
+@mixin bg-anim-dark {
+  background: linear-gradient(90deg, #0b1f00, #0d001f);
+  background-size: 400% 400%;
+  animation: gradient 20s ease infinite;
+}
+
+@mixin button-green {
+  background: linear-gradient(90deg, #c4e778, #e3c1ff);
+  color: $primary-color-dark;
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+}
+
+@mixin button-dark {
+  background: linear-gradient(90deg, #0b1f00, #0d001f);
+  color: $primary-color-light;
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+}
+
+@mixin button-disabled {
+  background: $tertiary-color-light;
+  color: $gray;
+  border: 1px solid $tertiary-color-light;
+  background-size: 400% 400%;
+  animation: none;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

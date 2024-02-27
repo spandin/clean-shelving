@@ -1,0 +1,31 @@
+@import "@/app/styles/variables";
+@import "@/app/styles/mixins";
+
+.loadButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-width: 50px;
+  min-height: 50px;
+  border-radius: 50px;
+  color: $primary-color-dark;
+  font-weight: 500;
+  transition: 0.2s ease-out all;
+  &:hover {
+    background-color: $lime-darkH;
+  }
+  &:disabled {
+    background-color: $tertiary-color-dark;
+    color: $gray;
+  }
+}
+
+body[data-theme="light"] {
+  .loadButton {
+    @include button-dark;
+    &:disabled {
+      @include button-disabled;
+    }
+  }
+}

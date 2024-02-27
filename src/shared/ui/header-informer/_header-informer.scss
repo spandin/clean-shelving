@@ -1,4 +1,5 @@
 @import "@/app/styles/variables";
+@import "@/app/styles/mixins";
 
 aside {
   .informer {
@@ -39,8 +40,9 @@ aside {
 
 body[data-theme="light"] {
   .informer {
-    background-color: $primary-color-dark;
-    color: $primary-color-light;
+    @include bg-anim-lime;
+    color: $primary-color-dark;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
   }
 }
 

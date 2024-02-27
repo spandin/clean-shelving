@@ -1,4 +1,5 @@
 @import "@/app/styles/variables";
+@import "@/app/styles/mixins";
 
 .navbar {
   display: flex;
@@ -36,11 +37,13 @@
 body[data-theme="light"] {
   .navbar {
     background-color: $secondary-color-light;
+    border: 1px solid $tertiary-color-light;
 
     .navbarAvatar {
-      background-color: $primary-color-light;
+      @include bg-anim-lime;
       color: $primary-color-dark;
       border: 1px solid $tertiary-color-light;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
     }
   }
 }

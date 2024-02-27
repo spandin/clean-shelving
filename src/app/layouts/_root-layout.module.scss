@@ -38,6 +38,7 @@ body[data-theme="light"] {
   .rootLayout {
     main {
       background-color: $secondary-color-light;
+      border: 1px solid $tertiary-color-light;
     }
   }
 }

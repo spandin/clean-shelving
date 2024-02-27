@@ -1,3 +1,5 @@
+import css from "./_load-button.module.scss";
+
 import { Ring } from "@uiball/loaders";
 
 import { useTheme } from "@/shared/lib/hooks/use-theme";
@@ -12,7 +14,11 @@ export default function LoadButton({
   const { isDark } = useTheme();
 
   return (
-    <button onClick={onClick} disabled={disabled ? false : true}>
+    <button
+      className={css.loadButton}
+      onClick={onClick}
+      disabled={disabled ? false : true}
+    >
       {isLoading ? (
         <Ring size={30} color={isDark ? "#121212" : "#ffffff"} />
       ) : (

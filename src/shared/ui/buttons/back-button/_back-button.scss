@@ -24,13 +24,13 @@
 
 body[data-theme="light"] {
   .backButton {
-    background-color: $primary-color-dark;
-    color: $primary-color-light;
+    background-color: #ffffff00;
+    color: $primary-color-dark;
     &:hover,
     &.active {
-      background-color: $primary-color-dark;
+      background-color: #ffffff00;
       svg {
-        color: $primary-color-light;
+        color: $primary-color-dark;
       }
     }
   }
