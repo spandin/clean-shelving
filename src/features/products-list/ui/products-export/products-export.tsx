@@ -53,7 +53,10 @@ export function ProductsExport() {
         &apos;Внесён&apos;
       </p>
 
-      <ActionButton action={() => exportAndChangeExportState()}>
+      <ActionButton
+        className={css.exportButton}
+        action={() => exportAndChangeExportState()}
+      >
         Экспортировать
       </ActionButton>
     </div>

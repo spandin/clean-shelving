@@ -40,7 +40,9 @@ export function DeleteProduct({ name, id }: Props) {
         <p>&quot;{name}&quot;</p>
       </div>
 
-      <ActionButton action={() => handleDelete()}>Удалить</ActionButton>
+      <ActionButton className={css.deleteButton} action={() => handleDelete()}>
+        Удалить
+      </ActionButton>
     </div>
   );
 }

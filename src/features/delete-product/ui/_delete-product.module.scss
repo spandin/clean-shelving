@@ -1,10 +1,11 @@
 @import "@/app/styles/variables";
+@import "@/app/styles/mixins";
 
 .deleteProduct {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  button {
-    background-color: $red;
+  .deleteButton {
+    @include button-dark;
   }
 }

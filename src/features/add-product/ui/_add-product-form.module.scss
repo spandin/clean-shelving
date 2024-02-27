@@ -1,4 +1,5 @@
 @import "@/app/styles/variables";
+@import "@/app/styles/mixins";
 
 .addProduct {
   display: flex;
@@ -137,12 +138,10 @@ body[data-theme="light"] {
       }
 
       .similarButton {
-        background-color: $primary-color-dark;
-        color: $primary-color-light;
+        @include bg-anim-lime;
         &.active {
           &:hover {
-            background-color: $primary-color-dark;
-            color: $primary-color-light;
+            color: $primary-color-dark;
           }
         }
       }
