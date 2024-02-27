@@ -74,6 +74,7 @@ export function SignIn({
 
         <div className={css.buttons}>
           <LoadButton
+            className={css.signInButton}
             type="submit"
             disabled={isValid}
             isLoading={isSubmitting}

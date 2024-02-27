@@ -6,6 +6,7 @@ import { useTheme } from "@/shared/lib/hooks/use-theme";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function LoadButton({
+  className,
   disabled,
   isLoading,
   onClick,
@@ -15,7 +16,7 @@ export default function LoadButton({
 
   return (
     <button
-      className={css.loadButton}
+      className={`${css.loadButton} ${className}`}
       onClick={onClick}
       disabled={disabled ? false : true}
     >

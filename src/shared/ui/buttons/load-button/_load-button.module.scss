@@ -24,8 +24,5 @@
 body[data-theme="light"] {
   .loadButton {
     @include button-dark;
-    &:disabled {
-      @include button-disabled;
-    }
   }
 }

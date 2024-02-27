@@ -1,4 +1,5 @@
 @import "@/app/styles/variables";
+@import "@/app/styles/mixins";
 
 .signUp {
   display: flex;
@@ -43,7 +44,7 @@
       button {
         width: 60%;
       }
-      .buttonBack {
+      .backButton {
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -63,7 +64,13 @@ body[data-theme="light"] {
   .signUp {
     .form {
       .buttons {
-        .buttonBack {
+        .signUpButton {
+          @include bg-anim-lime;
+          &:disabled {
+            @include button-disabled;
+          }
+        }
+        .backButton {
           background-color: $primary-color-dark;
           color: $primary-color-light;
         }

@@ -116,6 +116,7 @@ export function SignUp({
 
         <div className={css.buttons}>
           <LoadButton
+            className={css.signUpButton}
             type="submit"
             isLoading={isSubmitting}
             text={"Зарегистрироваться"}
@@ -123,7 +124,7 @@ export function SignUp({
           />
 
           <ActionButton
-            className={css.buttonBack}
+            className={css.backButton}
             action={() => setAuthForm("login")}
           >
             Назад

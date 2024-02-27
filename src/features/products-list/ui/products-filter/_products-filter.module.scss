@@ -1,4 +1,5 @@
 @import "@/app/styles/variables";
+@import "@/app/styles/mixins";
 
 .productsFilter {
   display: flex;
@@ -50,15 +51,13 @@ body[data-theme="light"] {
       background-color: $secondary-color-light;
       color: $primary-color-dark;
       border: 1px solid $tertiary-color-light;
-
       &:hover {
         background-color: $tertiary-color-dark;
         color: $primary-color-light;
       }
     }
     button.active {
-      background-color: $primary-color-dark;
-      color: $primary-color-light;
+      @include bg-anim-dark;
     }
   }
 }
