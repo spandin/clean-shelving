@@ -13,7 +13,7 @@
 }
 
 @mixin button-green {
-  background: linear-gradient(90deg, #c4e778, #e3c1ff);
+  background: linear-gradient(90deg, #c4e778, #c1ffd1);
   color: $primary-color-dark;
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
@@ -21,6 +21,13 @@
 
 @mixin button-dark {
   background: linear-gradient(90deg, #0b1f00, #0d001f);
+  color: $primary-color-light;
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+}
+
+@mixin button-dark-red {
+  background: linear-gradient(90deg, #e77878, #ffc1c1);
   color: $primary-color-light;
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;

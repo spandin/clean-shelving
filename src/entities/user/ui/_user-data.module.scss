@@ -1,4 +1,5 @@
 @import "@/app/styles/variables";
+@import "@/app/styles/mixins";
 
 .userData {
   display: flex;
@@ -115,7 +116,7 @@ body[data-theme="light"] {
           background-color: $primary-color-light;
           border: 1px solid $tertiary-color-light;
           .userActions {
-            background-color: $primary-color-dark;
+            @include bg-anim-dark;
             .actionsCol {
               :first-child {
                 color: $primary-color-light;
@@ -138,8 +139,8 @@ body[data-theme="light"] {
       }
 
       .dataTab > input:checked + label {
-        background-color: $lime-light;
-        color: $primary-color-dark;
+        @include bg-anim-dark;
+        color: $primary-color-light;
       }
     }
   }
