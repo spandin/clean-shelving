@@ -11,3 +11,9 @@
     font-size: 4rem;
   }
 }
+
+body[data-theme="light"] {
+  .exportProducts {
+    color: $primary-color-dark;
+  }
+}

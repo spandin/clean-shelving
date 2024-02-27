@@ -17,7 +17,21 @@
   &.active {
     background-color: $white;
     svg {
-      color: $primary-color;
+      color: $primary-color-dark;
+    }
+  }
+}
+
+body[data-theme="light"] {
+  .exportButton {
+    background-color: $primary-color-dark;
+    color: $primary-color-light;
+    &:hover,
+    &.active {
+      background-color: $primary-color-dark;
+      svg {
+        color: $primary-color-light;
+      }
     }
   }
 }

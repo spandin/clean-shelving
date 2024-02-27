@@ -45,9 +45,13 @@ export function UpdateProduct({ product, id }: Props) {
     <div className={css.updateProduct}>
       <h3>Обновить продукт</h3>
 
-      <form className={css.form} onSubmit={handleSubmit(onUpdate)} noValidate>
-        <div className={css.wrapper}>
-          <div className={css.input}>
+      <form
+        className={css.updateForm}
+        onSubmit={handleSubmit(onUpdate)}
+        noValidate
+      >
+        <div className={css.formWrapper}>
+          <div className={css.inputWrapper}>
             <label htmlFor="code">Штрих код:</label>
             <input
               placeholder="0000000000000"
@@ -68,7 +72,7 @@ export function UpdateProduct({ product, id }: Props) {
             />
           </div>
 
-          <div className={css.input}>
+          <div className={css.inputWrapper}>
             <label htmlFor="name">Наименование:</label>
             <input
               placeholder="Название товара"
@@ -90,7 +94,7 @@ export function UpdateProduct({ product, id }: Props) {
           </div>
 
           <div className={css.wrapperRow}>
-            <div className={css.input}>
+            <div className={css.inputWrapper}>
               <label htmlFor="category">Категория:</label>
               <select
                 id={css.category}
@@ -107,7 +111,7 @@ export function UpdateProduct({ product, id }: Props) {
               </select>
             </div>
 
-            <div className={css.input}>
+            <div className={css.inputWrapper}>
               <label htmlFor="quantity">Количество:</label>
               <input
                 placeholder="1-99"
@@ -130,7 +134,7 @@ export function UpdateProduct({ product, id }: Props) {
           </div>
 
           <div className={css.wrapperRow}>
-            <div className={css.input}>
+            <div className={css.inputWrapper}>
               <label htmlFor="mfd">Годен от:</label>
               <Controller
                 control={control}
@@ -151,7 +155,7 @@ export function UpdateProduct({ product, id }: Props) {
               />
             </div>
 
-            <div className={css.input}>
+            <div className={css.inputWrapper}>
               <label htmlFor="exp">Годен до:</label>
               <Controller
                 control={control}

@@ -35,11 +35,13 @@ export default function Rootlayout() {
     dispatch(getUsers());
     dispatch(getActivity());
 
+    document.body.setAttribute("data-theme", "light");
+
     console.info("ROOT LAYOUT: db is loaded");
   }, [dispatch]);
 
   return (
-    <div className={css.rootLayout}>
+    <div className={css.rootLayout} data-theme="dark">
       <NavigationBar />
       <main>
         {location.pathname !== "/" ? <Outlet /> : <AbountShop />}

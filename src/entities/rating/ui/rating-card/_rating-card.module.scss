@@ -5,18 +5,18 @@
   flex-direction: row;
   align-items: flex-start;
   border-radius: 30px;
-  background-color: $tertiary-color;
+  background-color: $tertiary-color-dark;
   color: $white;
   transition: 0.2s ease-out all;
   &:hover {
     background-color: $white;
-    color: $primary-color;
+    color: $primary-color-dark;
     transform: scale(0.98);
     #card_title {
-      color: $primary-color;
+      color: $primary-color-dark;
     }
     #card_actions {
-      color: $primary-color;
+      color: $primary-color-dark;
     }
   }
 
@@ -59,6 +59,35 @@
         align-items: center;
         :first-child {
           font-weight: 400;
+        }
+      }
+    }
+  }
+}
+
+body[data-theme="light"] {
+  .ratingCard {
+    background-color: $primary-color-light;
+    color: $primary-color-dark;
+    border: 1px solid $tertiary-color-light;
+    &:hover {
+      background-color: $primary-color-dark;
+      color: $primary-color-dark;
+      #card_title {
+        color: $primary-color-light;
+      }
+      #card_actions {
+        color: $primary-color-light;
+      }
+    }
+
+    .cardWrapper {
+      .cardHeader {
+        .cardTitle {
+          color: $primary-color-dark;
+        }
+        .cardRole {
+          color: $gray;
         }
       }
     }

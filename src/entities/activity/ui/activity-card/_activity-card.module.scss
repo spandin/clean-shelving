@@ -5,7 +5,7 @@
   flex-direction: row;
   align-items: flex-start;
   border-radius: 30px;
-  background-color: $tertiary-color;
+  background-color: $tertiary-color-dark;
   color: $white;
   transition: 0.2s ease-out all;
   &:hover {
@@ -13,7 +13,7 @@
     transform: scale(0.98);
     #card_description,
     #card_title {
-      color: $primary-color;
+      color: $primary-color-dark;
     }
   }
 
@@ -40,6 +40,36 @@
 
     .cardDescription {
       color: $gray;
+    }
+  }
+}
+
+body[data-theme="light"] {
+  .activityCard {
+    background-color: $primary-color-light;
+    color: $primary-color-dark;
+    border: 1px solid #f0f0f0;
+    &:hover {
+      background-color: $primary-color-dark;
+      #card_description,
+      #card_title {
+        color: $primary-color-light;
+      }
+    }
+
+    .cardColumn {
+      .cardRow {
+        .cardTitle {
+          color: $primary-color-dark;
+        }
+        .cardDate {
+          color: $gray;
+        }
+      }
+
+      .cardDescription {
+        color: $gray;
+      }
     }
   }
 }

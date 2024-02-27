@@ -8,18 +8,18 @@
   button {
     min-height: 36px;
     padding: 0.5rem 1rem;
-    background-color: $tertiary-color;
+    background-color: $tertiary-color-dark;
     color: $white;
     font-size: 16px;
     font-weight: 400;
     &:hover {
-      background-color: $lime;
-      color: $primary-color;
+      background-color: $primary-color-light;
+      color: $primary-color-dark;
     }
   }
   button.active {
-    background-color: $lime;
-    color: $primary-color;
+    background-color: $primary-color-light;
+    color: $primary-color-dark;
   }
 }
 
@@ -41,5 +41,24 @@
     flex-wrap: wrap;
     column-gap: 0.6rem;
     row-gap: 0.6rem;
+  }
+}
+
+body[data-theme="light"] {
+  .productsFilter {
+    button {
+      background-color: $secondary-color-light;
+      color: $primary-color-dark;
+      border: 1px solid $tertiary-color-light;
+
+      &:hover {
+        background-color: $tertiary-color-dark;
+        color: $primary-color-light;
+      }
+    }
+    button.active {
+      background-color: $primary-color-dark;
+      color: $primary-color-light;
+    }
   }
 }

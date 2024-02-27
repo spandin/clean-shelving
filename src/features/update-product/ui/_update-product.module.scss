@@ -5,56 +5,71 @@
   flex-direction: column;
   gap: 1rem;
   height: 100%;
-}
+  .updateForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    height: 100%;
+    .formWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      .wrapperRow {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .inputWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+        flex: 1 0;
+        label {
+          margin: 0rem 0.2rem;
+        }
+      }
+    }
+    #category {
+      min-height: 50px;
+      padding: 0.2rem 0.8rem;
+      border: none;
+      border-radius: 10px;
+      background-color: $tertiary-color-dark;
+      color: $white;
+      transition: 0.2s ease-out all;
+      &:hover,
+      &:focus {
+        background-color: #434343;
+      }
+    }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 2rem;
-  height: 100%;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.wrapperRow {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.input {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  flex: 1 0;
-  label {
-    margin: 0rem 0.2rem;
+    .error {
+      padding: 0rem 0.2rem;
+      color: $gray;
+      font-size: 14px;
+      font-weight: 400;
+    }
   }
 }
 
-#category {
-  min-height: 50px;
-  padding: 0.2rem 0.8rem;
-  border: none;
-  border-radius: 10px;
-  background-color: $tertiary-color;
-  color: $white;
-  transition: 0.2s ease-out all;
-  &:hover,
-  &:focus {
-    background-color: #434343;
-  }
-}
+body[data-theme="light"] {
+  .updateProduct {
+    .updateForm {
+      #category {
+        background-color: $secondary-color-light;
+        color: $primary-color-dark;
+        border: 1px solid $tertiary-color-light;
+        &:hover,
+        &:focus {
+          background-color: $tertiary-color-light;
+        }
+      }
 
-.error {
-  padding: 0rem 0.2rem;
-  color: $gray;
-  font-size: 14px;
-  font-weight: 400;
+      .error {
+        color: $primary-color-dark;
+      }
+    }
+  }
 }

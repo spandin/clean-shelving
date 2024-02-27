@@ -7,22 +7,22 @@
   gap: 1rem;
   padding: 1rem 1.5rem;
   border-radius: 30px;
-  background-color: $tertiary-color;
+  background-color: $tertiary-color-dark;
   transition: 0.2s ease-out all;
   &:hover {
     border-radius: 30px;
     background-color: $white;
-    color: $primary-color;
+    color: $primary-color-dark;
     transform: scale(0.98);
     a {
-      color: $primary-color;
+      color: $primary-color-dark;
     }
     #card_badge,
     #card_link {
-      border: 1px solid $primary-color;
+      border: 1px solid $primary-color-dark;
     }
     #card_link {
-      background-color: $secondary-color;
+      background-color: $secondary-color-dark;
       color: $white;
     }
 
@@ -64,7 +64,7 @@
       }
       .card_name_exported {
         &::before {
-          background: $lime;
+          background: $lime-dark;
         }
       }
 
@@ -124,6 +124,66 @@
       border: 1px solid $white;
       border-radius: 1rem;
       font-weight: 400;
+    }
+  }
+}
+
+body[data-theme="light"] {
+  .productCard {
+    background-color: $primary-color-light;
+    color: $primary-color-dark;
+    border: 1px solid $tertiary-color-light;
+    a {
+      color: $primary-color-dark;
+    }
+    &:hover {
+      background-color: $primary-color-dark;
+      color: $primary-color-light;
+      #card_badge,
+      #card_link {
+        border: none;
+      }
+      #card_link {
+        background-color: $primary-color-dark;
+        color: $white;
+      }
+
+      .card_name_exported {
+        &:before {
+          background: $lime-lightH;
+        }
+      }
+
+      .card_name_notExported {
+        &:before {
+          background: #ca2b4b;
+        }
+      }
+    }
+
+    .cardRow_1 {
+      .cardRow_1_group {
+        .card_name_exported {
+          &::before {
+            background: $lime-light;
+          }
+        }
+
+        .card_name_notExported {
+          &::before {
+            background: $red;
+          }
+        }
+      }
+    }
+
+    .cardRow_3 {
+      #card_badge {
+        border: none;
+      }
+      #card_link {
+        border: 1px solid $tertiary-color-light;
+      }
     }
   }
 }

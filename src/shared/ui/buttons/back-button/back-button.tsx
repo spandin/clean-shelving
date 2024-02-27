@@ -8,7 +8,7 @@ import ActionButton from "../action-button/action-button";
 export default function BackButton() {
   const navigate = useNavigate();
   return (
-    <ActionButton className="back_button" action={() => navigate(-1)}>
+    <ActionButton className="backButton" action={() => navigate(-1)}>
       <BsArrowLeftCircle />
     </ActionButton>
   );

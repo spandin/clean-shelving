@@ -35,7 +35,7 @@
         margin-top: 1rem;
         padding: 1rem;
         border-radius: 1rem;
-        background-color: $tertiary-color;
+        background-color: $tertiary-color-dark;
         align-items: center;
         #user_avatar {
           height: 8rem;
@@ -55,7 +55,7 @@
           width: 100%;
           padding: 1rem;
           border-radius: 30px;
-          background-color: $secondary-color;
+          background-color: $secondary-color-dark;
           .actionsCol {
             display: flex;
             align-items: center;
@@ -91,9 +91,9 @@
     }
 
     .dataTab > input:checked + label {
-      background-color: $lime;
-      color: $primary-color;
-      font-weight: 500;
+      background-color: $lime-dark;
+      color: $primary-color-dark;
+      font-weight: 400;
     }
 
     .dataTab > input:checked ~ .tabContent {
@@ -103,6 +103,44 @@
       min-width: 300px;
       max-width: 500px;
       width: 100%;
+    }
+  }
+}
+
+body[data-theme="light"] {
+  .userData {
+    .dataTabs {
+      .dataTab {
+        .tabContent {
+          background-color: $primary-color-light;
+          border: 1px solid $tertiary-color-light;
+          .userActions {
+            background-color: $primary-color-dark;
+            .actionsCol {
+              :first-child {
+                color: $primary-color-light;
+              }
+              :last-child {
+                color: $gray;
+              }
+            }
+          }
+
+          &__user-activity {
+            :first-child {
+              color: $primary-color-dark;
+            }
+            :last-child {
+              color: $gray;
+            }
+          }
+        }
+      }
+
+      .dataTab > input:checked + label {
+        background-color: $lime-light;
+        color: $primary-color-dark;
+      }
     }
   }
 }

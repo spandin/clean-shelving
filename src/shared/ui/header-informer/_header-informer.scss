@@ -20,7 +20,7 @@ aside {
   padding-right: 1.2rem;
   border-radius: 50px;
   background-color: $white;
-  color: $primary-color;
+  color: $primary-color-dark;
   &__col {
     display: flex;
     flex-direction: column;
@@ -34,6 +34,13 @@ aside {
     :last-child {
       text-wrap: nowrap;
     }
+  }
+}
+
+body[data-theme="light"] {
+  .informer {
+    background-color: $primary-color-dark;
+    color: $primary-color-light;
   }
 }
 

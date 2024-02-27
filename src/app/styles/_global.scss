@@ -7,7 +7,7 @@ body {
   width: 100svw;
   height: 100svh;
   overflow: hidden;
-  background-color: $primary-color;
+  background-color: $primary-color-dark;
   font-family: "Jost", sans-serif;
   font-size: 16px;
   font-weight: 300;
@@ -21,7 +21,7 @@ input {
   min-height: 50px;
   padding: 0.2rem 1rem;
   border-radius: 10px;
-  background-color: $tertiary-color;
+  background-color: $tertiary-color-dark;
   color: $white;
   transition: 0.2s ease-out all;
   &:hover,
@@ -41,15 +41,15 @@ button {
   min-width: 50px;
   min-height: 50px;
   border-radius: 50px;
-  background-color: $lime;
-  color: $primary-color;
+  background-color: $lime-dark;
+  color: $primary-color-dark;
   font-weight: 500;
   transition: 0.2s ease-out all;
   &:hover {
-    background-color: $lime-lighter;
+    background-color: $lime-darkH;
   }
   &:disabled {
-    background-color: $tertiary-color;
+    background-color: $tertiary-color-dark;
     color: $gray;
   }
 }
@@ -64,14 +64,14 @@ button {
   max-width: 100%;
   max-height: 50px;
   border-radius: 50%;
-  background-color: $tertiary-color;
+  background-color: $tertiary-color-dark;
   color: white;
   transition: 0.2s ease-out all;
   &:hover,
   &.active {
     background-color: $white;
     svg {
-      color: $secondary-color;
+      color: $secondary-color-dark;
       font-size: 20px;
     }
   }
@@ -102,6 +102,46 @@ h3 {
 
 h4 {
   font-size: 1.2rem;
+}
+
+body[data-theme="light"] {
+  background-color: $tertiary-color-light;
+  color: $primary-color-dark;
+
+  input {
+    background-color: $secondary-color-light;
+    color: $primary-color-dark;
+    border: 1px solid $tertiary-color-light;
+    &:hover,
+    &:focus {
+      background-color: $tertiary-color-light;
+    }
+  }
+
+  button {
+    background-color: $lime-light;
+    color: $primary-color-dark;
+    &:hover {
+      background-color: $lime-lightH;
+    }
+    &:disabled {
+      background-color: $tertiary-color-light;
+      color: $gray;
+    }
+  }
+
+  .circle_button {
+    background-color: $primary-color-light;
+    color: $tertiary-color-dark;
+    border: 1px solid $tertiary-color-light;
+    &:hover,
+    &.active {
+      background-color: $primary-color-dark;
+      svg {
+        color: $white;
+      }
+    }
+  }
 }
 
 //-Scrollbar----------------------------------------------------------------------------------------------------------------------------

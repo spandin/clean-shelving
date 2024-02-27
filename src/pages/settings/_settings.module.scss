@@ -24,7 +24,7 @@
       gap: 1rem;
       padding: 1rem;
       border-radius: 1rem;
-      background-color: $tertiary-color;
+      background-color: $tertiary-color-dark;
       .bodyWrapper {
         display: flex;
         flex-direction: column;
@@ -33,7 +33,7 @@
         .bodySection {
           padding: 1rem;
           border-radius: 1rem;
-          background-color: $secondary-color;
+          background-color: $secondary-color-dark;
           h4 {
             margin-left: 1rem;
             margin-top: 0.5rem;
@@ -57,7 +57,7 @@
           }
           .bodyLink:hover {
             background-color: $white;
-            color: $primary-color;
+            color: $primary-color-dark;
           }
         }
       }

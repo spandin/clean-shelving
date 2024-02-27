@@ -7,28 +7,16 @@
   gap: 0.5rem;
   padding: 1rem 1.5rem;
   border-radius: 30px;
-  background-color: $tertiary-color;
+  background-color: $tertiary-color-dark;
   transition: 0.2s ease-out all;
   &:hover {
     border-radius: 30px;
     background-color: $white;
-    color: $primary-color;
+    color: $primary-color-dark;
     transform: scale(0.98);
-    a {
-      color: $primary-color;
-    }
-    #card_badge,
-    #card_link {
-      border: 1px solid $primary-color;
-    }
-    #card_link {
-      background-color: $secondary-color;
-      color: $white;
-    }
-
     .card_name_exported {
       &:before {
-        background: #93c128;
+        background: $lime-darkH;
       }
     }
 
@@ -63,7 +51,7 @@
       }
       .card_name_exported {
         &::before {
-          background: $lime;
+          background: $lime-dark;
         }
       }
 
@@ -97,32 +85,42 @@
       }
     }
   }
+}
 
-  .cardRow_3 {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
+body[data-theme="light"] {
+  .similarCard {
+    background-color: $primary-color-light;
+    color: $primary-color-dark;
+    &:hover {
+      background-color: $primary-color-dark;
+      color: $primary-color-light;
+      .card_name_exported {
+        &:before {
+          background: $lime-lightH;
+        }
+      }
 
-    #card_link {
-      display: flex;
-      flex-direction: row;
-      gap: 0.4rem;
-      padding: 0.2rem 0.4rem;
-      border: 1px solid $white;
-      border-radius: 1rem;
-      font-weight: 400;
+      .card_name_notExported {
+        &:before {
+          background: #ca2b4b;
+        }
+      }
     }
 
-    #card_badge {
-      display: flex;
-      flex-direction: row;
-      gap: 0.4rem;
-      padding: 0.2rem 0.4rem;
-      border: 1px solid $white;
-      border-radius: 1rem;
-      font-weight: 400;
+    .cardRow_1 {
+      .cardRow_1_group {
+        .card_name_exported {
+          &::before {
+            background: $lime-light;
+          }
+        }
+
+        .card_name_notExported {
+          &::before {
+            background: $red;
+          }
+        }
+      }
     }
   }
 }

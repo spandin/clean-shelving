@@ -22,18 +22,18 @@
         font-weight: 400;
       }
       #users {
-        color: $lime;
+        color: $lime-dark;
         font-weight: 400;
       }
       #go_to_list {
         align-self: end;
         padding: 0rem 2rem;
-        background-color: $tertiary-color;
+        background-color: $tertiary-color-dark;
         color: $white;
         font-weight: 500;
         &:hover {
           background-color: $white;
-          color: $primary-color;
+          color: $primary-color-dark;
         }
       }
     }

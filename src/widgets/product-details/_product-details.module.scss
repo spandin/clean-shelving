@@ -33,7 +33,7 @@
       .bodyContent {
         padding: 1rem;
         border-radius: 5px 30px 30px 30px;
-        background-color: $tertiary-color;
+        background-color: $tertiary-color-dark;
         color: $white;
       }
       #content_headline {
@@ -47,7 +47,7 @@
     display: none;
     button {
       padding: 0rem 2rem;
-      background-color: $tertiary-color;
+      background-color: $tertiary-color-dark;
       border-radius: 50px;
       font-weight: 500;
     }
@@ -55,14 +55,14 @@
       color: $white;
       &:hover {
         background-color: $white;
-        color: $primary-color;
+        color: $primary-color-dark;
       }
     }
     :last-child {
       color: $white;
       &:hover {
         background-color: $red;
-        color: $primary-color;
+        color: $primary-color-dark;
       }
     }
   }

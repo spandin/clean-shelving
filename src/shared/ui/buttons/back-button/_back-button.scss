@@ -1,6 +1,6 @@
 @import "@/app/styles/variables";
 
-.back_button {
+.backButton {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,7 +17,21 @@
   &.active {
     background-color: $white;
     svg {
-      color: $primary-color;
+      color: $primary-color-dark;
+    }
+  }
+}
+
+body[data-theme="light"] {
+  .backButton {
+    background-color: $primary-color-dark;
+    color: $primary-color-light;
+    &:hover,
+    &.active {
+      background-color: $primary-color-dark;
+      svg {
+        color: $primary-color-light;
+      }
     }
   }
 }

@@ -51,9 +51,22 @@
         width: 40%;
         border-radius: 50px;
         background-color: $white;
-        color: $primary-color;
+        color: $primary-color-dark;
         font-weight: 500;
         cursor: pointer;
+      }
+    }
+  }
+}
+
+body[data-theme="light"] {
+  .signUp {
+    .form {
+      .buttons {
+        .buttonBack {
+          background-color: $primary-color-dark;
+          color: $primary-color-light;
+        }
       }
     }
   }
