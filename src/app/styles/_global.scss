@@ -71,7 +71,7 @@ button {
   transition: 0.2s ease-out all;
   &:hover,
   &.active {
-    @include bg-lDark;
+    @include button-light;
     svg {
       color: $primary-color-light;
       font-size: 20px;
