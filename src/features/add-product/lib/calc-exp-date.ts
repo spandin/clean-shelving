@@ -17,7 +17,7 @@ export default function CalcExpirationDate(
   getValues: UseFormGetValues<AddFormInputsType>,
   setExpirationDate: React.Dispatch<React.SetStateAction<string>>
 ) {
-  const { selectType } = useAppSelector((state) => state.addForm);
+  const { selectType } = useAppSelector((state) => state.settings);
 
   useEffect(() => {
     const subscription = watch(() => {
