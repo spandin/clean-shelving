@@ -9,18 +9,18 @@
   button {
     min-height: 36px;
     padding: 0.5rem 1rem;
-    background-color: $tertiary-color-dark;
-    color: $white;
+    background-color: $secondary-color-light;
+    color: $primary-color-dark;
+    border: 1px solid $tertiary-color-light;
     font-size: 16px;
     font-weight: 400;
     &:hover {
-      background-color: $primary-color-light;
-      color: $primary-color-dark;
+      background-color: $tertiary-color-dark;
+      color: $primary-color-light;
     }
   }
   button.active {
-    background-color: $primary-color-light;
-    color: $primary-color-dark;
+    @include bg-lLight;
   }
 }
 
@@ -45,19 +45,19 @@
   }
 }
 
-body[data-theme="light"] {
+body[data-theme="dark"] {
   .productsFilter {
     button {
-      background-color: $secondary-color-light;
-      color: $primary-color-dark;
-      border: 1px solid $tertiary-color-light;
+      background-color: $tertiary-color-dark;
+      color: $primary-color-light;
+      border: 1px solid $tertiary-color-dark;
       &:hover {
-        background-color: $tertiary-color-dark;
-        color: $primary-color-light;
+        background-color: $primary-color-light;
+        color: $primary-color-dark;
       }
     }
     button.active {
-      @include bg-anim-dark;
+      @include bg-dLight;
     }
   }
 }

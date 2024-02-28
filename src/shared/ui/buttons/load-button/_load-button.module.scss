@@ -9,7 +9,7 @@
   min-width: 50px;
   min-height: 50px;
   border-radius: 50px;
-  color: $primary-color-dark;
+  @include button-light;
   font-weight: 500;
   transition: 0.2s ease-out all;
   &:hover {
@@ -21,8 +21,8 @@
   }
 }
 
-body[data-theme="light"] {
+body[data-theme="dark"] {
   .loadButton {
-    @include button-dark;
+    @include bg-dDark;
   }
 }

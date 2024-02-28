@@ -37,7 +37,9 @@ export function RatingCard({
             </h4>
           </Link>
 
-          <span className={css.cardRole}>{user.role}</span>
+          <span className={css.cardRole} id={css.card_role}>
+            {user.role}
+          </span>
         </div>
 
         <div className={css.cardActions} id={css.card_actions}>

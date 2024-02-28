@@ -1,22 +1,45 @@
 @import "./variables";
 
-@mixin bg-anim-lime {
-  background: linear-gradient(45deg, #dbff8e, #e3c1ff);
+@mixin bg-lLight {
+  background: linear-gradient(45deg, #b8ffb5, #bab2ff);
   color: $primary-color-dark;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
 }
 
-@mixin bg-anim-dark {
-  background: linear-gradient(45deg, #0b1f00, #0d001f);
+@mixin bg-lDark {
+  background: linear-gradient(45deg, #298937, #276c48);
   color: $primary-color-light;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
 }
 
+@mixin bg-dLight {
+  background: linear-gradient(45deg, #d9ff82, #a1b675);
+  color: $primary-color-dark;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+}
+
+@mixin bg-dDark {
+  background: linear-gradient(45deg, #d7ffc1, #c0fc34);
+  color: $primary-color-dark;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+}
+
 @mixin button-dark {
+  background: linear-gradient(45deg, #ddffcc, #dfc9ff);
+  color: $primary-color-dark;
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+}
+
+@mixin button-light {
   background: linear-gradient(45deg, #0b1f00, #0d001f);
   color: $primary-color-light;
   background-size: 400% 400%;

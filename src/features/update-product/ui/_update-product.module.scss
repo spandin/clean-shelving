@@ -36,12 +36,13 @@
       padding: 0.2rem 0.8rem;
       border: none;
       border-radius: 10px;
-      background-color: $tertiary-color-dark;
-      color: $white;
+      background-color: $secondary-color-light;
+      color: $primary-color-dark;
+      border: 1px solid $tertiary-color-light;
       transition: 0.2s ease-out all;
       &:hover,
       &:focus {
-        background-color: #434343;
+        background-color: $tertiary-color-light;
       }
     }
 
@@ -54,21 +55,21 @@
   }
 }
 
-body[data-theme="light"] {
+body[data-theme="dark"] {
   .updateProduct {
     .updateForm {
       #category {
-        background-color: $secondary-color-light;
-        color: $primary-color-dark;
-        border: 1px solid $tertiary-color-light;
+        background-color: $secondary-color-dark;
+        color: $white;
+        border: 1px solid $tertiary-color-dark;
         &:hover,
         &:focus {
-          background-color: $tertiary-color-light;
+          background-color: $tertiary-color-dark;
         }
       }
 
       .error {
-        color: $primary-color-dark;
+        color: $primary-color-light;
       }
     }
   }

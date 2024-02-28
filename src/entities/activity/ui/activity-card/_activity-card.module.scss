@@ -6,15 +6,17 @@
   flex-direction: row;
   align-items: flex-start;
   border-radius: 30px;
-  background-color: $tertiary-color-dark;
-  color: $white;
+  background-color: $primary-color-light;
+  color: $primary-color-dark;
+  border: 1px solid $tertiary-color-light;
   transition: 0.2s ease-out all;
   &:hover {
-    background-color: $white;
+    @include bg-lDark;
     transform: scale(0.98);
+    #card_date,
     #card_description,
     #card_title {
-      color: $primary-color-dark;
+      color: $primary-color-light;
     }
   }
 
@@ -32,7 +34,7 @@
       justify-content: space-between;
       .cardTitle {
         font-weight: 400;
-        color: $white;
+        color: $primary-color-dark;
       }
       .cardDate {
         color: $gray;
@@ -45,31 +47,21 @@
   }
 }
 
-body[data-theme="light"] {
+body[data-theme="dark"] {
   .activityCard {
-    background-color: $primary-color-light;
-    color: $primary-color-dark;
-    border: 1px solid #f0f0f0;
+    background-color: $tertiary-color-dark;
+    color: $primary-color-light;
+    border: 1px solid $tertiary-color-dark;
     &:hover {
-      @include bg-anim-dark;
+      @include bg-dLight;
       #card_description,
       #card_title {
-        color: $primary-color-light;
+        color: $primary-color-dark;
       }
     }
-
-    .cardColumn {
-      .cardRow {
-        .cardTitle {
-          color: $primary-color-dark;
-        }
-        .cardDate {
-          color: $gray;
-        }
-      }
-
-      .cardDescription {
-        color: $gray;
+    .cardRow {
+      .cardTitle {
+        color: $primary-color-light;
       }
     }
   }

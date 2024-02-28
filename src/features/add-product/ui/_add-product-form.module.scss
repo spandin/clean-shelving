@@ -46,9 +46,9 @@
 
       .error {
         padding: 0rem 0.2rem;
-        color: $gray;
         font-size: 14px;
         font-weight: 400;
+        color: $primary-color-dark;
       }
     }
 
@@ -71,13 +71,11 @@
       justify-content: center;
       width: 0px;
       height: 50px;
-      background-color: $secondary-color-dark;
-      color: $gray;
       border-radius: 50px;
-      border: 1px solid $tertiary-color-dark;
+      @include bg-dLight;
       font-weight: 500;
-      transition: 0.2s ease-out all;
       pointer-events: none;
+      transition: 0.2s ease-out all;
       &.active {
         opacity: 1;
         width: auto;
@@ -85,8 +83,7 @@
         cursor: pointer;
         pointer-events: all;
         &:hover {
-          background-color: $tertiary-color-dark;
-          color: $white;
+          color: $primary-color-dark;
         }
       }
     }
@@ -97,17 +94,18 @@
 #exp_type {
   border: none;
   border-radius: 10px;
-  color: $white;
+  color: $primary-color-dark;
   transition: 0.2s ease-out all;
 }
 
 #category {
   min-height: 50px;
   padding: 0.2rem 0.8rem;
-  background-color: $tertiary-color-dark;
+  background-color: $secondary-color-light;
+  border: 1px solid $tertiary-color-light;
   &:hover,
   &:focus {
-    background-color: #535353;
+    background-color: $tertiary-color-light;
   }
 }
 
@@ -115,7 +113,7 @@
   font-weight: 300;
   max-height: 23px;
   &:focus {
-    background-color: $secondary-color-dark;
+    background-color: $secondary-color-light;
   }
 }
 
@@ -125,23 +123,23 @@
   padding: 0.2rem 0.4rem;
   font-size: 14px;
   font-weight: 400;
-  color: $lime-dark;
+  color: $lime-light;
 }
 
-body[data-theme="light"] {
+body[data-theme="dark"] {
   .addProduct {
     .addProductForm {
       .formWrapper {
         .error {
-          color: $primary-color-dark;
+          color: $primary-color-light;
         }
       }
 
       .similarButton {
-        @include bg-anim-lime;
+        @include bg-dDark;
         &.active {
           &:hover {
-            color: $primary-color-dark;
+            color: $primary-color-light;
           }
         }
       }
@@ -150,25 +148,25 @@ body[data-theme="light"] {
 
   #category,
   #exp_type {
-    color: $primary-color-dark;
+    color: $primary-color-light;
   }
 
   #category {
-    background-color: $secondary-color-light;
-    border: 1px solid $tertiary-color-light;
+    background-color: $secondary-color-dark;
+    border: 1px solid $tertiary-color-dark;
     &:hover,
     &:focus {
-      background-color: $tertiary-color-light;
+      background-color: $tertiary-color-dark;
     }
   }
 
   #exp_type {
     &:focus {
-      background-color: $secondary-color-light;
+      background-color: $secondary-color-dark;
     }
   }
 
   #exp_date_informer {
-    color: $lime-light;
+    color: $lime-dark;
   }
 }

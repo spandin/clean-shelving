@@ -20,8 +20,7 @@ aside {
   min-height: 50px;
   padding-right: 1.2rem;
   border-radius: 50px;
-  background-color: $white;
-  color: $primary-color-dark;
+  @include bg-lLight;
   &__col {
     display: flex;
     flex-direction: column;
@@ -38,9 +37,9 @@ aside {
   }
 }
 
-body[data-theme="light"] {
+body[data-theme="dark"] {
   .informer {
-    @include bg-anim-lime;
+    @include bg-dLight;
   }
 }
 

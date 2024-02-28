@@ -40,7 +40,7 @@ body[data-theme="light"] {
     border: 1px solid $tertiary-color-light;
 
     .navbarAvatar {
-      @include bg-anim-lime;
+      @include bg-lLight;
     }
   }
 }

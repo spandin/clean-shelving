@@ -25,7 +25,8 @@
       gap: 1rem;
       padding: 1rem;
       border-radius: 1rem;
-      background-color: $tertiary-color-dark;
+      background-color: $primary-color-light;
+      border: 1px solid $tertiary-color-light;
       .bodyWrapper {
         display: flex;
         flex-direction: column;
@@ -34,7 +35,7 @@
         .bodySection {
           padding: 1rem;
           border-radius: 1rem;
-          background-color: $secondary-color-dark;
+          background-color: $secondary-color-light;
           h4 {
             margin-left: 1rem;
             margin-top: 0.5rem;
@@ -55,6 +56,12 @@
               align-items: center;
               gap: 1rem;
             }
+          }
+          .bodyLink {
+            color: $primary-color-dark;
+          }
+          .bodyLink:hover {
+            @include button-light;
           }
           .themeSwither {
             label {
@@ -95,23 +102,23 @@
   .settingsFooter {
     padding: 0rem 0rem;
     .logoutButton {
-      @include bg-anim-lime;
       width: 100%;
+      @include button-light;
     }
   }
 }
 
-body[data-theme="light"] {
+body[data-theme="dark"] {
   .settings {
     .settingsWrapper {
       .settingsBody {
-        background-color: $primary-color-light;
-        border: 1px solid $tertiary-color-light;
+        background-color: $tertiary-color-dark;
+        border: 1px solid $tertiary-color-dark;
         .bodyWrapper {
           .bodySection {
-            background-color: $secondary-color-light;
+            background-color: $secondary-color-dark;
             .bodyLink {
-              color: $primary-color-dark;
+              color: $primary-color-light;
             }
             .bodyLink:hover {
               @include button-dark;
@@ -121,7 +128,6 @@ body[data-theme="light"] {
       }
     }
     .settingsFooter {
-      padding: 0rem 0rem;
       .logoutButton {
         @include button-dark;
       }

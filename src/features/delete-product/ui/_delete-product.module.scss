@@ -6,6 +6,14 @@
   flex-direction: column;
   gap: 2rem;
   .deleteButton {
-    @include button-dark;
+    @include button-light;
+  }
+}
+
+body[data-theme="dark"] {
+  .deleteProduct {
+    .deleteButton {
+      @include button-dark;
+    }
   }
 }

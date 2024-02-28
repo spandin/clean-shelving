@@ -8,28 +8,29 @@
   gap: 1rem;
   padding: 1rem 1.5rem;
   border-radius: 30px;
-  background-color: $tertiary-color-dark;
+  background-color: $primary-color-light;
+  color: $primary-color-dark;
+  border: 1px solid $tertiary-color-light;
   transition: 0.2s ease-out all;
+  a {
+    color: $primary-color-dark;
+  }
   &:hover {
     border-radius: 30px;
-    background-color: $white;
-    color: $primary-color-dark;
+    @include bg-lDark;
+    color: $primary-color-light;
     transform: scale(0.98);
-    a {
-      color: $primary-color-dark;
-    }
     #card_badge,
     #card_link {
-      border: 1px solid $primary-color-dark;
+      border: none;
     }
     #card_link {
-      background-color: $secondary-color-dark;
-      color: $white;
+      color: $primary-color-light;
     }
 
     .card_name_exported {
       &:before {
-        background: #93c128;
+        background: $lime-lightH;
       }
     }
 
@@ -65,7 +66,7 @@
       }
       .card_name_exported {
         &::before {
-          background: $lime-dark;
+          background: $lime-light;
         }
       }
 
@@ -112,7 +113,8 @@
       flex-direction: row;
       gap: 0.4rem;
       padding: 0.2rem 0.4rem;
-      border: 1px solid $white;
+
+      border: 1px solid $tertiary-color-light;
       border-radius: 1rem;
       font-weight: 400;
     }
@@ -122,39 +124,33 @@
       flex-direction: row;
       gap: 0.4rem;
       padding: 0.2rem 0.4rem;
-      border: 1px solid $white;
       border-radius: 1rem;
       font-weight: 400;
     }
   }
 }
 
-body[data-theme="light"] {
+body[data-theme="dark"] {
   .productCard {
-    background-color: $primary-color-light;
-    color: $primary-color-dark;
-    border: 1px solid $tertiary-color-light;
+    background-color: $tertiary-color-dark;
+    color: $primary-color-light;
+    border: 1px solid $tertiary-color-dark;
     a {
-      color: $primary-color-dark;
+      color: $primary-color-light;
     }
     &:hover {
-      @include bg-anim-dark;
-      color: $primary-color-light;
-      #card_badge,
+      @include bg-dLight;
+      color: $primary-color-dark;
       #card_link {
-        border: none;
-      }
-      #card_link {
-        background-color: #ffffff00;
-        color: $white;
+        color: $primary-color-dark;
+        border: 1px solid $primary-color-dark;
       }
 
       .card_name_exported {
         &:before {
-          background: $lime-lightH;
+          background: $lime-darkH;
         }
       }
-
       .card_name_notExported {
         &:before {
           background: #ca2b4b;
@@ -162,28 +158,15 @@ body[data-theme="light"] {
       }
     }
 
-    .cardRow_1 {
-      .cardRow_1_group {
-        .card_name_exported {
-          &::before {
-            background: $lime-light;
-          }
-        }
-
-        .card_name_notExported {
-          &::before {
-            background: $red;
-          }
-        }
+    .card_name_exported {
+      &::before {
+        background: $lime-dark;
       }
     }
 
-    .cardRow_3 {
-      #card_badge {
-        border: none;
-      }
-      #card_link {
-        border: 1px solid $tertiary-color-light;
+    .card_name_notExported {
+      &::before {
+        background: $red;
       }
     }
   }

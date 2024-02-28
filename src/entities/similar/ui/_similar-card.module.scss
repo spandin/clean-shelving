@@ -8,16 +8,19 @@
   gap: 0.5rem;
   padding: 1rem 1.5rem;
   border-radius: 30px;
-  background-color: $tertiary-color-dark;
+
+  background-color: $primary-color-light;
+  color: $primary-color-dark;
   transition: 0.2s ease-out all;
   &:hover {
     border-radius: 30px;
-    background-color: $white;
-    color: $primary-color-dark;
+
+    @include bg-lDark;
+    color: $primary-color-light;
     transform: scale(0.98);
     .card_name_exported {
       &:before {
-        background: $lime-darkH;
+        background: $lime-lightH;
       }
     }
 
@@ -52,7 +55,7 @@
       }
       .card_name_exported {
         &::before {
-          background: $lime-dark;
+          background: $lime-light;
         }
       }
 
@@ -88,16 +91,16 @@
   }
 }
 
-body[data-theme="light"] {
+body[data-theme="dark"] {
   .similarCard {
-    background-color: $primary-color-light;
-    color: $primary-color-dark;
+    background-color: $tertiary-color-dark;
+    color: $primary-color-light;
+    border: 1px solid $tertiary-color-dark;
     &:hover {
-      @include bg-anim-dark;
-      color: $primary-color-light;
+      @include bg-dLight;
       .card_name_exported {
         &:before {
-          background: $lime-lightH;
+          background: $lime-darkH;
         }
       }
 
@@ -108,19 +111,15 @@ body[data-theme="light"] {
       }
     }
 
-    .cardRow_1 {
-      .cardRow_1_group {
-        .card_name_exported {
-          &::before {
-            background: $lime-light;
-          }
-        }
+    .card_name_exported {
+      &::before {
+        background: $lime-dark;
+      }
+    }
 
-        .card_name_notExported {
-          &::before {
-            background: $red;
-          }
-        }
+    .card_name_notExported {
+      &::before {
+        background: $red;
       }
     }
   }

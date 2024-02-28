@@ -26,7 +26,7 @@ export function ActivityCard({
           <h4 className={css.cardTitle} id={css.card_title}>
             {activity.actioner.name}
           </h4>
-          <span className={css.cardDate}>
+          <span className={css.cardDate} id={css.card_date}>
             {timestampToString(activity.madeOn)}
           </span>
         </div>

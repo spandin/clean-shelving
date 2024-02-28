@@ -8,11 +8,11 @@ body {
   width: 100svw;
   height: 100svh;
   overflow: hidden;
-  background-color: $primary-color-dark;
+  background-color: $primary-color-light;
+  color: $primary-color-dark;
   font-family: "Jost", sans-serif;
   font-size: 16px;
   font-weight: 300;
-  color: $white;
 }
 
 input {
@@ -22,12 +22,13 @@ input {
   min-height: 50px;
   padding: 0.2rem 1rem;
   border-radius: 10px;
-  background-color: $tertiary-color-dark;
-  color: $white;
+  background-color: $secondary-color-light;
+  color: $primary-color-dark;
+  border: 1px solid $tertiary-color-light;
   transition: 0.2s ease-out all;
   &:hover,
   &:focus {
-    background-color: #434343;
+    background-color: $tertiary-color-light;
   }
   &::placeholder {
     color: $gray;
@@ -46,10 +47,10 @@ button {
   font-weight: 500;
   transition: 0.2s ease-out all;
   &:hover {
-    background-color: $lime-darkH;
+    background-color: $lime-lightH;
   }
   &:disabled {
-    background-color: $tertiary-color-dark;
+    background-color: $tertiary-color-light;
     color: $gray;
   }
 }
@@ -64,14 +65,15 @@ button {
   max-width: 100%;
   max-height: 50px;
   border-radius: 50%;
-  background-color: $tertiary-color-dark;
-  color: white;
+  background-color: $primary-color-light;
+  color: $tertiary-color-dark;
+  border: 1px solid $tertiary-color-light;
   transition: 0.2s ease-out all;
   &:hover,
   &.active {
-    background-color: $white;
+    @include bg-lDark;
     svg {
-      color: $secondary-color-dark;
+      color: $primary-color-light;
       font-size: 20px;
     }
   }
@@ -82,7 +84,7 @@ svg {
 }
 
 a {
-  color: $white;
+  color: $primary-color-light;
 }
 
 h1 {
@@ -104,40 +106,41 @@ h4 {
   font-size: 1.2rem;
 }
 
-body[data-theme="light"] {
-  background-color: $primary-color-light;
-  color: $primary-color-dark;
+body[data-theme="dark"] {
+  background-color: $primary-color-dark;
+  color: $primary-color-light;
 
   input {
-    background-color: $secondary-color-light;
-    color: $primary-color-dark;
-    border: 1px solid $tertiary-color-light;
+    background-color: $secondary-color-dark;
+    color: $primary-color-light;
+    border: 1px solid $tertiary-color-dark;
     &:hover,
     &:focus {
-      background-color: $tertiary-color-light;
+      background-color: $tertiary-color-dark;
     }
   }
 
   button {
     color: $primary-color-dark;
+    border: 1px solid #ffffff00;
     &:hover {
-      background-color: $lime-lightH;
+      background-color: $lime-darkH;
     }
     &:disabled {
-      background-color: $tertiary-color-light;
+      background-color: $tertiary-color-dark;
       color: $gray;
     }
   }
 
   .circle_button {
-    background-color: $primary-color-light;
-    color: $tertiary-color-dark;
-    border: 1px solid $tertiary-color-light;
+    background-color: $tertiary-color-dark;
+    color: $primary-color-light;
+    border: 1px solid #ffffff00;
     &:hover,
     &.active {
-      @include bg-anim-dark;
+      @include bg-dLight;
       svg {
-        color: $white;
+        color: $secondary-color-dark;
       }
     }
   }

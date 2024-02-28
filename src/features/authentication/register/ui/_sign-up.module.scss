@@ -44,6 +44,12 @@
       button {
         width: 60%;
       }
+      .signUpButton {
+        @include bg-lLight;
+        &:disabled {
+          @include button-disabled;
+        }
+      }
       .backButton {
         display: flex;
         flex-direction: row;
@@ -51,8 +57,9 @@
         align-items: center;
         width: 40%;
         border-radius: 50px;
-        background-color: $white;
-        color: $primary-color-dark;
+
+        background-color: $primary-color-dark;
+        color: $primary-color-light;
         font-weight: 500;
         cursor: pointer;
       }
@@ -60,19 +67,19 @@
   }
 }
 
-body[data-theme="light"] {
+body[data-theme="dark"] {
   .signUp {
     .form {
       .buttons {
         .signUpButton {
-          @include bg-anim-lime;
+          @include bg-dDark;
           &:disabled {
             @include button-disabled;
           }
         }
         .backButton {
-          background-color: $primary-color-dark;
-          color: $primary-color-light;
+          background-color: $primary-color-light;
+          color: $primary-color-dark;
         }
       }
     }

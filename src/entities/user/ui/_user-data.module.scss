@@ -36,7 +36,8 @@
         margin-top: 1rem;
         padding: 1rem;
         border-radius: 1rem;
-        background-color: $tertiary-color-dark;
+        background-color: $primary-color-light;
+        border: 1px solid $tertiary-color-light;
         align-items: center;
         #user_avatar {
           height: 8rem;
@@ -56,19 +57,18 @@
           width: 100%;
           padding: 1rem;
           border-radius: 30px;
-          background-color: $secondary-color-dark;
+          @include bg-lDark;
           .actionsCol {
             display: flex;
             align-items: center;
             flex-direction: column;
             gap: 0.2rem;
+            color: $primary-color-light;
             :first-child {
-              color: $white;
               font-weight: 400;
             }
             :last-child {
-              color: $gray;
-              font-weight: 400;
+              font-weight: 300;
             }
           }
         }
@@ -81,7 +81,7 @@
           width: 100%;
           font-size: 14px;
           :first-child {
-            color: $white;
+            color: $primary-color-dark;
             font-weight: 400;
           }
           :last-child {
@@ -92,8 +92,7 @@
     }
 
     .dataTab > input:checked + label {
-      background-color: $lime-dark;
-      color: $primary-color-dark;
+      @include bg-lDark;
       font-weight: 400;
     }
 
@@ -108,28 +107,20 @@
   }
 }
 
-body[data-theme="light"] {
+body[data-theme="dark"] {
   .userData {
     .dataTabs {
       .dataTab {
         .tabContent {
-          background-color: $primary-color-light;
-          border: 1px solid $tertiary-color-light;
+          background-color: $tertiary-color-dark;
+          border: 1px solid $tertiary-color-dark;
           .userActions {
-            @include bg-anim-dark;
-            .actionsCol {
-              :first-child {
-                color: $primary-color-light;
-              }
-              :last-child {
-                color: $gray;
-              }
-            }
+            @include bg-dDark;
           }
 
           &__user-activity {
             :first-child {
-              color: $primary-color-dark;
+              color: $primary-color-light;
             }
             :last-child {
               color: $gray;
@@ -139,8 +130,7 @@ body[data-theme="light"] {
       }
 
       .dataTab > input:checked + label {
-        @include bg-anim-dark;
-        color: $primary-color-light;
+        @include bg-dDark;
       }
     }
   }

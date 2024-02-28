@@ -39,6 +39,12 @@
       button {
         width: 50%;
       }
+      .signInButton {
+        @include bg-lLight;
+        &:disabled {
+          @include button-disabled;
+        }
+      }
       .signUpButton {
         display: flex;
         flex-direction: row;
@@ -46,8 +52,7 @@
         align-items: center;
         width: 50%;
         border-radius: 50px;
-        background-color: $white;
-        color: $primary-color-dark;
+        @include button-light;
         font-weight: 500;
         cursor: pointer;
       }
@@ -55,18 +60,18 @@
   }
 }
 
-body[data-theme="light"] {
+body[data-theme="dark"] {
   .signIn {
     .form {
       .buttons {
         .signInButton {
-          @include bg-anim-lime;
+          @include button-dark;
           &:disabled {
             @include button-disabled;
           }
         }
         .signUpButton {
-          @include bg-anim-dark;
+          @include button-light;
         }
       }
     }

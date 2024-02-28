@@ -6,18 +6,18 @@
   flex-direction: row;
   align-items: flex-start;
   border-radius: 30px;
-  background-color: $tertiary-color-dark;
-  color: $white;
+  background-color: $primary-color-light;
+  color: $primary-color-dark;
+  border: 1px solid $tertiary-color-light;
   transition: 0.2s ease-out all;
   &:hover {
-    background-color: $white;
+    @include bg-lDark;
     color: $primary-color-dark;
     transform: scale(0.98);
-    #card_title {
-      color: $primary-color-dark;
-    }
+    #card_title,
+    #card_role,
     #card_actions {
-      color: $primary-color-dark;
+      color: $primary-color-light;
     }
   }
 
@@ -35,6 +35,7 @@
       justify-content: space-between;
       .cardTitle {
         font-weight: 400;
+        color: $primary-color-dark;
       }
       .cardRole {
         font-size: 16px;
@@ -66,26 +67,26 @@
   }
 }
 
-body[data-theme="light"] {
+body[data-theme="dark"] {
   .ratingCard {
-    background-color: $primary-color-light;
-    color: $primary-color-dark;
-    border: 1px solid $tertiary-color-light;
+    background-color: $tertiary-color-dark;
+    color: $white;
+    border: 1px solid $tertiary-color-dark;
     &:hover {
-      @include bg-anim-dark;
+      @include bg-dLight;
       color: $primary-color-dark;
       #card_title {
-        color: $primary-color-light;
+        color: $primary-color-dark;
       }
       #card_actions {
-        color: $primary-color-light;
+        color: $primary-color-dark;
       }
     }
 
     .cardWrapper {
       .cardHeader {
         .cardTitle {
-          color: $primary-color-dark;
+          color: $primary-color-light;
         }
         .cardRole {
           color: $gray;

@@ -2,7 +2,7 @@
 @import "@/app/styles/mixins";
 
 .exportProducts {
-  color: $white;
+  color: $primary-color-dark;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -11,13 +11,16 @@
     align-self: center;
     font-size: 4rem;
   }
+  .exportButton {
+    @include button-light;
+  }
 }
 
-body[data-theme="light"] {
+body[data-theme="dark"] {
   .exportProducts {
-    color: $primary-color-dark;
-  }
-  .exportButton {
-    @include button-dark;
+    color: $primary-color-light;
+    .exportButton {
+      @include button-dark;
+    }
   }
 }
