@@ -12,12 +12,12 @@ import {
 import storage from "redux-persist/lib/storage";
 import userSlice from "./slices/userSlice";
 import dataSlice from "./slices/dataSlice";
-import addFormSlice from "./slices/addFormSlice";
+import settingsSlice from "./slices/settingsSlice";
 
 const rootReducer = combineReducers({
   user: userSlice,
   data: dataSlice,
-  addForm: addFormSlice,
+  settings: settingsSlice,
 });
 
 const persistConfig = {

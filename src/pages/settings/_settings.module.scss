@@ -1,4 +1,5 @@
 @import "@/app/styles/variables";
+@import "@/app/styles/mixins";
 
 .settings {
   height: 100%;
@@ -39,8 +40,8 @@
             margin-top: 0.5rem;
           }
           .bodyLink,
-          .bodyThemeSwither,
-          .bodyRegisterSwither {
+          .themeSwither,
+          .registerSwither {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -55,6 +56,33 @@
               gap: 1rem;
             }
           }
+          .themeSwither {
+            label {
+              width: 50px;
+              height: 24px;
+              background-color: $tertiary-color-dark;
+              border-radius: 50px;
+              cursor: pointer;
+              position: relative;
+              .slider {
+                position: absolute;
+                top: 4px;
+                left: 4px;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background-color: $secondary-color-light;
+                transition: 0.3s;
+                &.active {
+                  background-color: $lime-dark;
+                  transform: translateX(26px);
+                }
+              }
+              input {
+                display: none;
+              }
+            }
+          }
           .bodyLink:hover {
             background-color: $white;
             color: $primary-color-dark;
@@ -66,8 +94,37 @@
 
   .settingsFooter {
     padding: 0rem 0rem;
-    button {
+    .logoutButton {
+      @include bg-anim-lime;
       width: 100%;
+    }
+  }
+}
+
+body[data-theme="light"] {
+  .settings {
+    .settingsWrapper {
+      .settingsBody {
+        background-color: $primary-color-light;
+        border: 1px solid $tertiary-color-light;
+        .bodyWrapper {
+          .bodySection {
+            background-color: $secondary-color-light;
+            .bodyLink {
+              color: $primary-color-dark;
+            }
+            .bodyLink:hover {
+              @include button-dark;
+            }
+          }
+        }
+      }
+    }
+    .settingsFooter {
+      padding: 0rem 0rem;
+      .logoutButton {
+        @include button-dark;
+      }
     }
   }
 }

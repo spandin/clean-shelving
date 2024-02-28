@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-import { useAppDispatch } from "@/shared/lib/hooks/use-redux";
+import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
 import {
   getActivity,
   getBarcodes,
@@ -29,19 +29,21 @@ export default function Rootlayout() {
   const dispatch = useAppDispatch();
   const location = useLocation();
 
+  const { theme } = useAppSelector((state) => state.settings);
+
   useEffect(() => {
     dispatch(getProducts());
     dispatch(getBarcodes());
     dispatch(getUsers());
     dispatch(getActivity());
 
-    document.body.setAttribute("data-theme", "light");
+    document.body.setAttribute("data-theme", theme);
 
     console.info("ROOT LAYOUT: db is loaded");
-  }, [dispatch]);
+  }, [dispatch, theme]);
 
   return (
-    <div className={css.rootLayout} data-theme="dark">
+    <div className={css.rootLayout}>
       <NavigationBar />
       <main>
         {location.pathname !== "/" ? <Outlet /> : <AbountShop />}

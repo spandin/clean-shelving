@@ -9,7 +9,7 @@ import { AddFormInputsType, ProductType } from "@/shared/types/types";
 import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
 
 import { addProduct } from "../store/thunk";
-import { setSelectType } from "@/app/slices/addFormSlice";
+import { setSelectType } from "@/app/slices/settingsSlice";
 
 import { toastAddPromise, toastAuthErr } from "@/shared/helpers/toast";
 
@@ -32,7 +32,7 @@ export function AddProductForm() {
 
   const currentUser = useAppSelector((state) => state.user);
   const products = useAppSelector((state) => state.data.products);
-  const { selectType } = useAppSelector((state) => state.addForm);
+  const { selectType } = useAppSelector((state) => state.settings);
 
   const {
     register,
