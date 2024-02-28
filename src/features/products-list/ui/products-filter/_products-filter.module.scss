@@ -20,7 +20,7 @@
     }
   }
   button.active {
-    @include bg-lLight;
+    @include button-light;
   }
 }
 
