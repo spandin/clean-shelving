@@ -15,16 +15,12 @@ export default function ActionButton({
   id,
   action,
 }: Props) {
-  const handleAction = () => {
-    action();
-  };
-
   return isMobile ? (
-    <button className={className} id={id} onTouchEnd={handleAction}>
+    <button className={className} id={id} onTouchEnd={() => action()}>
       {children}
     </button>
   ) : (
-    <button className={className} id={id} onClick={handleAction}>
+    <button className={className} id={id} onClick={() => action()}>
       {children}
     </button>
   );

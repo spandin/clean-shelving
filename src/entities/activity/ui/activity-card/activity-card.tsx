@@ -18,7 +18,7 @@ export function ActivityCard({
       key={number}
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: number * 0.1 }}
+      transition={{ duration: 0.2, delay: number * 0.1 }}
       className={css.activityCard}
     >
       <div className={css.cardColumn}>
