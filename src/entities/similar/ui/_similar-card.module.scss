@@ -14,11 +14,8 @@
   scroll-snap-align: start;
   transition: 0.2s ease-out all;
   &:hover {
-    border-radius: 30px;
-
     @include bg-lDark;
     color: $primary-color-light;
-    transform: scale(0.98);
     .card_name_exported {
       &:before {
         background: $lime-lightH;

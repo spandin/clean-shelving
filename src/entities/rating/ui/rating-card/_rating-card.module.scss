@@ -14,7 +14,6 @@
   &:hover {
     @include bg-lDark;
     color: $primary-color-dark;
-    transform: scale(0.98);
     #card_title,
     #card_role,
     #card_actions {

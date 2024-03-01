@@ -13,7 +13,6 @@
   transition: 0.2s ease-out all;
   &:hover {
     @include bg-lDark;
-    transform: scale(0.98);
     #card_date,
     #card_description,
     #card_title {

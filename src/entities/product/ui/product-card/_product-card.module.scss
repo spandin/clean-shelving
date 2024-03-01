@@ -17,10 +17,7 @@
     color: $primary-color-dark;
   }
   &:hover {
-    border-radius: 30px;
     @include bg-lDark;
-    color: $primary-color-light;
-    transform: scale(0.98);
     #card_badge,
     #card_link {
       border: none;
