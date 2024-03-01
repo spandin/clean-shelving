@@ -8,7 +8,8 @@
   gap: 1rem;
   padding: 1rem;
   border-radius: 3rem;
-  background-color: $secondary-color-dark;
+  background-color: $secondary-color-light;
+  border: 1px solid $tertiary-color-light;
   opacity: 1;
   .navbarAvatar {
     display: flex;
@@ -20,8 +21,7 @@
     max-height: 50px;
     padding: 1rem;
     border-radius: 50%;
-    background-color: $lime-dark;
-    color: $primary-color-dark;
+    @include bg-lLight;
     font-weight: 500;
   }
   .navbarMenu {
@@ -34,13 +34,12 @@
   }
 }
 
-body[data-theme="light"] {
+body[data-theme="dark"] {
   .navbar {
-    background-color: $secondary-color-light;
-    border: 1px solid $tertiary-color-light;
-
+    background-color: $secondary-color-dark;
+    border: 1px solid $secondary-color-dark;
     .navbarAvatar {
-      @include bg-lLight;
+      @include bg-dLight;
     }
   }
 }

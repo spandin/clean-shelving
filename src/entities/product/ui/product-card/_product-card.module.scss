@@ -137,11 +137,10 @@ body[data-theme="dark"] {
       color: $primary-color-light;
     }
     &:hover {
-      @include bg-dLight;
-      color: $primary-color-dark;
+      @include bg-dDark;
       #card_link {
-        color: $primary-color-dark;
-        border: 1px solid $primary-color-dark;
+        color: $primary-color-light;
+        border: 1px solid $primary-color-light;
       }
 
       .card_name_exported {

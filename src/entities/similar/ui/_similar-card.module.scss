@@ -95,7 +95,7 @@ body[data-theme="dark"] {
     color: $primary-color-light;
     border: 1px solid $tertiary-color-dark;
     &:hover {
-      @include bg-dLight;
+      @include bg-dDark;
       .card_name_exported {
         &:before {
           background: $lime-darkH;

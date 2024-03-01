@@ -53,10 +53,10 @@ body[data-theme="dark"] {
     color: $primary-color-light;
     border: 1px solid $tertiary-color-dark;
     &:hover {
-      @include bg-dLight;
+      @include bg-dDark;
       #card_description,
       #card_title {
-        color: $primary-color-dark;
+        color: $primary-color-light;
       }
     }
     .cardRow {

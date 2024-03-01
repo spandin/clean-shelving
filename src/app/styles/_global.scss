@@ -146,7 +146,7 @@ body[data-theme="dark"] {
     border: 1px solid #ffffff00;
     &:hover,
     &.active {
-      @include bg-dLight;
+      @include button-white;
       svg {
         color: $secondary-color-dark;
       }

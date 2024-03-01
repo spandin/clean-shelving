@@ -57,7 +57,7 @@
           width: 100%;
           padding: 1rem;
           border-radius: 30px;
-          @include bg-lDark;
+          @include bg-dark;
           .actionsCol {
             display: flex;
             align-items: center;
@@ -92,7 +92,7 @@
     }
 
     .dataTab > input:checked + label {
-      @include bg-lDark;
+      @include bg-dark;
       font-weight: 400;
     }
 
@@ -115,22 +115,25 @@ body[data-theme="dark"] {
           background-color: $tertiary-color-dark;
           border: 1px solid $tertiary-color-dark;
           .userActions {
-            @include bg-dDark;
+            @include bg-light;
+            .actionsCol {
+              color: $primary-color-dark;
+            }
           }
 
           &__user-activity {
             :first-child {
-              color: $primary-color-light;
+              color: $primary-color-dark;
             }
             :last-child {
-              color: $gray;
+              color: $primary-color-dark;
             }
           }
         }
       }
 
       .dataTab > input:checked + label {
-        @include bg-dDark;
+        @include bg-light;
       }
     }
   }

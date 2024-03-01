@@ -26,12 +26,12 @@
 body[data-theme="dark"] {
   .exportButton {
     background-color: #ffffff00;
-    color: $primary-color-dark;
+    color: $primary-color-light;
     &:hover,
     &.active {
       background-color: #ffffff00;
       svg {
-        color: $primary-color-dark;
+        color: $primary-color-light;
       }
     }
   }
