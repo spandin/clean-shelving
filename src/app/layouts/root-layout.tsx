@@ -19,6 +19,7 @@ import {
 import { NavigationBar } from "@/widgets/navigation-bar/navigation-bar";
 import { AsideBar } from "@/widgets/aside-bar/aside-bar";
 import { AbountShop } from "@/widgets/abount-shop/abount-shop";
+import { setThemeAndMeta } from "@/shared/helpers/theme";
 
 import { setDefaultOptions } from "date-fns";
 import { ru } from "date-fns/locale";
@@ -37,7 +38,7 @@ export default function Rootlayout() {
     dispatch(getUsers());
     dispatch(getActivity());
 
-    document.body.setAttribute("data-theme", theme);
+    setThemeAndMeta(theme);
 
     console.info("ROOT LAYOUT: db is loaded");
   }, [dispatch, theme]);
