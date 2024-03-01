@@ -9,10 +9,10 @@ export const setThemeAndMeta = (theme: string) => {
   newMetaTag.setAttribute("name", "theme-color");
 
   if (theme === "light") {
-    newMetaTag.content = "#f8f8f8";
+    newMetaTag.content = "#ffffff";
     document.head.replaceChild(newMetaTag, oldMetaTag);
   } else {
-    newMetaTag.content = "#202020";
+    newMetaTag.content = "#131313";
     document.head.replaceChild(newMetaTag, oldMetaTag);
   }
 };
