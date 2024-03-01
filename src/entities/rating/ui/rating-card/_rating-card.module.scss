@@ -9,6 +9,7 @@
   background-color: $primary-color-light;
   color: $primary-color-dark;
   border: 1px solid $tertiary-color-light;
+  scroll-snap-align: start;
   transition: 0.2s ease-out all;
   &:hover {
     @include bg-lDark;

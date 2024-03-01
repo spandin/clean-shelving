@@ -23,8 +23,9 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 1rem;
     border-radius: 30px;
-    max-height: calc(100vh - 8rem);
+    max-height: calc(100vh - 8.3rem);
     overflow-y: scroll;
+    scroll-snap-type: y mandatory;
   }
 }
 
@@ -41,7 +42,7 @@
   .productsList {
     .listGrid {
       grid-template-columns: 1fr;
-      max-height: calc(100vh - 14.3rem);
+      max-height: calc(100vh - 14.6rem);
     }
   }
 }
