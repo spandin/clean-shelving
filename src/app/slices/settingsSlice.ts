@@ -20,6 +20,23 @@ const settingsSlice = createSlice({
     setTheme: (state, action) => {
       state.theme = action.payload;
       document.body.setAttribute("data-theme", action.payload);
+
+      const oldMetaTag =
+        document.querySelector('meta[name="theme-color"]') ||
+        document.createElement("meta");
+
+      const newMetaTag = document.createElement("meta");
+      newMetaTag.setAttribute("name", "theme-color");
+
+      if (action.payload === "light") {
+        newMetaTag.content = "#f8f8f8";
+        document.head.replaceChild(newMetaTag, oldMetaTag);
+        console.log(1);
+      } else {
+        newMetaTag.content = "#202020";
+        document.head.replaceChild(newMetaTag, oldMetaTag);
+        console.log(2);
+      }
     },
   },
 });
