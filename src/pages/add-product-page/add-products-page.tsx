@@ -10,7 +10,7 @@ export default function AddProductPage() {
       <div className={css.addProductHeader}>
         <HeaderInformer title="Добавление" />
       </div>
-      <AddProductForm />;
+      <AddProductForm />
     </div>
   );
 }
