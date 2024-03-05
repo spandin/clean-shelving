@@ -34,8 +34,8 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
     theme_color: "#f0f0f0",
     background_color: "#f0f0f0",
     display: "standalone",
-    scope: "/products",
-    start_url: "/products",
+    scope: "/",
+    start_url: "/",
     orientation: "portrait",
   },
 };
