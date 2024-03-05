@@ -40,7 +40,6 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
   },
 };
 
-// https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
     alias: {
@@ -52,7 +51,6 @@ export default defineConfig({
       "@pages": path.resolve(__dirname, "./src/pages"),
       "@shared": path.resolve(__dirname, "./src/shared"),
       "@widgets": path.resolve(__dirname, "./src/widgets"),
-      "@types": path.resolve(__dirname, "./src/types"),
     },
   },
   plugins: [react(), VitePWA(manifestForPlugin)],

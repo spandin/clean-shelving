@@ -1,12 +1,7 @@
 import { registerSW } from "virtual:pwa-register";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import store, { persistor } from "@/app/reduxStore";
@@ -15,14 +10,15 @@ import "@/shared/api/firebase-config";
 import Rootlayout from "@/app/layouts/root-layout";
 
 import { ToastContainer } from "react-toastify";
-import ProductsPage from "./pages/products/products-page";
-import ProductDetailsPage from "./pages/product-details/product-details-page";
-import AddProductPage from "./pages/add-product/add-products-page";
-import ProfilePage from "./pages/profile-details/profile-page";
-import UserDetailsPage from "./pages/user-details/user-details-page";
-import SettingsPage from "./pages/settings/settings-page";
-import RatingPage from "./pages/rating/rating-page";
-import ActivityPage from "./pages/activity/activity-page";
+import ProductsPage from "./pages/products-page/products-page";
+import ProductDetailsPage from "./pages/product-details-page/product-details-page";
+import AddProductPage from "./pages/add-product-page/add-products-page";
+import ProfilePage from "./pages/profile-details-page/profile-details-page";
+import UserDetailsPage from "./pages/user-details-page/user-details-page";
+import SettingsPage from "./pages/settings-page/settings-page";
+import RatingPage from "./pages/rating-page/rating-page";
+import ActivityPage from "./pages/activity-page/activity-page";
+import ErrorPage from "./pages/error-page/error-page";
 
 const updateSW = registerSW({
   onNeedRefresh() {
@@ -32,20 +28,57 @@ const updateSW = registerSW({
   },
 });
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<Rootlayout />}>
-      <Route index path="products/" element={<ProductsPage />} />
-      <Route path="products/:productId" element={<ProductDetailsPage />} />
-      <Route path="add/" element={<AddProductPage />} />
-      <Route path="profile/" element={<ProfilePage />} />
-      <Route path="user/:userId/" element={<UserDetailsPage />} />
-      <Route path="settings//" element={<SettingsPage />} />
-      <Route path="rating/" element={<RatingPage />} />
-      <Route path="activity/" element={<ActivityPage />} />
-    </Route>
-  )
-);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Rootlayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "activity/",
+        element: <ActivityPage />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "add/",
+        element: <AddProductPage />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "products/",
+        element: <ProductsPage />,
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            path: "products/:productId",
+            element: <ProductDetailsPage />,
+            errorElement: <ErrorPage />,
+          },
+        ],
+      },
+      {
+        path: "profile/",
+        element: <ProfilePage />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "user/:userId/",
+        element: <UserDetailsPage />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "rating/",
+        element: <RatingPage />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "settings/",
+        element: <SettingsPage />,
+        errorElement: <ErrorPage />,
+      },
+    ],
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

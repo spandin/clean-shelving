@@ -1,0 +1,20 @@
+@import "@/app/styles/variables";
+@import "@/app/styles/mixins";
+
+.products {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  .productsHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    .headerButtons {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+    }
+  }
+}

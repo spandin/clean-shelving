@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { isMobile } from "@/shared/helpers/mobile-check";
 
 interface Props {
-  children: ReactNode;
+  icon?: ReactNode;
+  text?: ReactNode;
   className?: string;
   id?: string;
   to: string;
@@ -12,7 +13,8 @@ interface Props {
 }
 
 export default function NavigateButton({
-  children,
+  icon,
+  text,
   className,
   id,
   to,
@@ -27,11 +29,13 @@ export default function NavigateButton({
 
   return isMobile ? (
     <button className={className} id={id} onTouchEnd={handleAction}>
-      {children}
+      {icon}
+      {text}
     </button>
   ) : (
     <button className={className} id={id} onClick={handleAction}>
-      {children}
+      {icon}
+      {text}
     </button>
   );
 }

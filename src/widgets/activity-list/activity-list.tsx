@@ -1,54 +1,90 @@
 import css from "./_activity-list.module.scss";
 
-import { ActivityCard } from "@/entities/activity";
-import { db } from "@/shared/api/firebase-config";
 import { Activity } from "@/shared/types/types";
-import HeaderInformer from "@/shared/ui/header-informer/header-informer";
-import { DocumentData, collection, onSnapshot } from "firebase/firestore";
+
 import { useEffect, useState } from "react";
 
+import { db } from "@/shared/api/firebase-config";
+import { DocumentData, collection, onSnapshot } from "firebase/firestore";
+
+import { ActivityCard } from "@/entities/activity";
+import PulsarLoader from "@/shared/ui/pulsar-loader/pulsar-loader";
+
+import IMAGES from "@/assets/images/images";
+
 export default function ActivityList() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isEmpty, setIsEmpty] = useState(true);
+  const [isError, setIsError] = useState(false);
+
   const [activity, setActivity] = useState<Activity[]>([]);
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(
-      collection(db, "activity"),
-      (querySnapshot) => {
-        const collectionSnapshot: Activity[] = [];
+    try {
+      const unsubscribe = onSnapshot(
+        collection(db, "activity"),
+        (querySnapshot) => {
+          const collectionSnapshot: Activity[] = [];
 
-        querySnapshot.forEach((doc: DocumentData) => {
-          collectionSnapshot.push(doc.data());
-          collectionSnapshot.sort(
-            (a, b) => +new Date(b.madeOn) - +new Date(a.madeOn)
-          );
-        });
+          querySnapshot.forEach((doc: DocumentData) => {
+            collectionSnapshot.push(doc.data());
+            collectionSnapshot.sort(
+              (a, b) => +new Date(b.madeOn) - +new Date(a.madeOn)
+            );
+          });
 
-        setActivity(collectionSnapshot);
-      }
-    );
+          if (collectionSnapshot.length === 0) {
+            setIsLoading(false);
+            setIsEmpty(true);
+          } else {
+            setIsEmpty(false);
+            setIsLoading(false);
 
-    return () => {
-      unsubscribe();
-    };
+            setActivity(collectionSnapshot);
+          }
+        }
+      );
+
+      return () => {
+        unsubscribe();
+      };
+    } catch (error) {
+      console.error("ACTIVITY LIST: " + error);
+      setIsError(true);
+    }
   }, []);
 
-  return (
-    <div className={css.activity}>
-      <div className={css.activityHeader}>
-        <HeaderInformer title="Активности" />
-      </div>
+  if (isError) {
+    return <div className={css.isState}>Ошибка загрузки</div>;
+  }
 
-      <div className={css.activityBody}>
-        {activity && activity.length
-          ? activity.map((activity, index) => (
-              <ActivityCard
-                key={`${activity.id}${activity.madeOn}`}
-                activity={activity}
-                number={index}
-              />
-            ))
-          : "Пока никто ничего не сделал :("}
+  if (isLoading) {
+    return (
+      <div className={css.isState}>
+        <PulsarLoader size={20} />
+        Загрузка активностей
       </div>
+    );
+  }
+
+  if (isEmpty) {
+    return (
+      <div className={css.isState}>
+        <img src={IMAGES.empty_activity} />
+        Активностей не обнаружено
+      </div>
+    );
+  }
+
+  return (
+    <div className={css.activityList}>
+      {activity.map((activity, index) => (
+        <ActivityCard
+          key={`${activity.id}${activity.madeOn}`}
+          activity={activity}
+          number={index}
+        />
+      ))}
     </div>
   );
 }

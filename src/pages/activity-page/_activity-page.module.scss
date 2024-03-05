@@ -1,0 +1,15 @@
+@import "@/app/styles/variables";
+
+.activity {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .activityHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+}

@@ -29,9 +29,11 @@ export default function ProfileDetails() {
           <div className={css.detailsWrapper}>
             <div className={css.detailsHeader}>
               <HeaderInformer title="Профиль" subtitle={profileInfo?.email} />
-              <NavigateButton className="circle_button" to={"/settings/"}>
-                <BsGear />
-              </NavigateButton>
+              <NavigateButton
+                icon={<BsGear />}
+                className="circle_button"
+                to={"/settings/"}
+              />
             </div>
 
             {profileInfo ? (

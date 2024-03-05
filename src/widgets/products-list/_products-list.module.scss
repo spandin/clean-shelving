@@ -1,48 +1,36 @@
 @import "@/app/styles/variables";
+@import "@/app/styles/mixins";
 
-.productsList {
+.isState {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  .listHeader {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    .listHeaderButtons {
-      display: flex;
-      flex-direction: row;
-      gap: 1rem;
-    }
-  }
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  height: calc(100vh - 14.3rem);
+}
 
-  .listGrid {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 1rem;
-    border-radius: 30px;
-    max-height: calc(100vh - 8.3rem);
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-  }
+.productsList {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  border-radius: 30px;
+  max-height: calc(100vh - 8.3rem);
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
 }
 
 @media only screen and (max-width: 1600px) {
   .productsList {
-    .listGrid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
 @media only screen and (max-width: 768px) {
   .productsList {
-    .listGrid {
-      grid-template-columns: 1fr;
-      max-height: calc(100vh - 14.6rem);
-    }
+    grid-template-columns: 1fr;
+    max-height: calc(100vh - 14.6rem);
   }
 }

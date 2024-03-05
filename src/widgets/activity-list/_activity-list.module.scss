@@ -1,34 +1,27 @@
 @import "@/app/styles/variables";
 
-.activity {
+.isState {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  height: calc(100vh - 14.3rem);
+}
+
+.activityList {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
-  .activityHeader {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .activityBody {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-height: calc(100vh - 8.3rem);
-    max-width: 500px;
-    border-radius: 30px;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-  }
+  max-height: calc(100vh - 8.3rem);
+  max-width: 500px;
+  border-radius: 30px;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
 }
 
 @media only screen and (max-width: 768px) {
-  .activity {
-    .activityBody {
-      max-height: calc(100vh - 14.6rem);
-    }
+  .activityList {
+    max-height: calc(100vh - 14.6rem);
   }
 }

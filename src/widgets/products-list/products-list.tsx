@@ -4,78 +4,89 @@ import { ProductType } from "@/shared/types/types";
 
 import { useEffect, useState } from "react";
 
-import { useTheme } from "@/shared/lib/hooks/use-theme";
 import { useAppSelector } from "@/shared/lib/hooks/use-redux";
 
 import { db } from "@/shared/api/firebase-config";
 import { DocumentData, collection, onSnapshot } from "firebase/firestore";
 
-import { Ring } from "@uiball/loaders";
-import { BsPlusCircle } from "react-icons/bs";
-
 import { ProductCard } from "@/entities/product";
 import productsFiltration from "../../features/products-list/lib/products-filtration";
-import HeaderInformer from "@/shared/ui/header-informer/header-informer";
-import FilterButton from "../../features/products-list/ui/products-filter/filter-button";
-import NavigateButton from "@/shared/ui/buttons/navigate-button/navigate-button";
+import PulsarLoader from "@/shared/ui/pulsar-loader/pulsar-loader";
+
+import IMAGES from "@/assets/images/images";
 
 export function ProductsList() {
-  const { isDark } = useTheme();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isEmpty, setIsEmpty] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   const [products, setProducts] = useState<ProductType[]>([]);
   const { exported, category } = useAppSelector((state) => state.data.filter);
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, "data"), (querySnapshot) => {
-      const collectionSnapshot: ProductType[] = [];
+    try {
+      const unsubscribe = onSnapshot(
+        collection(db, "data"),
+        (querySnapshot) => {
+          const collectionSnapshot: ProductType[] = [];
 
-      querySnapshot.forEach((doc: DocumentData) => {
-        collectionSnapshot.push(doc.data());
-        collectionSnapshot.sort(
-          (a, b) => +new Date(a.dates.exp) - +new Date(b.dates.exp)
-        );
-      });
+          querySnapshot.forEach((doc: DocumentData) => {
+            collectionSnapshot.push(doc.data());
+            collectionSnapshot.sort(
+              (a, b) => +new Date(a.dates.exp) - +new Date(b.dates.exp)
+            );
+          });
 
-      setProducts(collectionSnapshot);
-    });
+          if (collectionSnapshot.length === 0) {
+            setIsLoading(false);
+            setIsEmpty(true);
+          } else {
+            setIsEmpty(false);
+            setIsLoading(false);
 
-    return () => {
-      unsubscribe();
-    };
+            setProducts(collectionSnapshot);
+          }
+        }
+      );
+
+      return () => {
+        unsubscribe();
+      };
+    } catch (error) {
+      console.error("PRODUCTS LIST: " + error);
+      setIsError(true);
+    }
   }, []);
+
+  if (isError) {
+    return <div className={css.isState}>Ошибка загрузки</div>;
+  }
+
+  if (isLoading) {
+    return (
+      <div className={css.isState}>
+        <PulsarLoader size={20} />
+        Загрузка списка
+      </div>
+    );
+  }
+
+  if (isEmpty) {
+    return (
+      <div className={css.isState}>
+        <img src={IMAGES.empty_products} />
+        На данный момент тут пусто!
+      </div>
+    );
+  }
 
   return (
     <div className={css.productsList}>
-      <div className={css.listHeader}>
-        <HeaderInformer
-          title={`${category} ${
-            exported === "Все" ? "🙌" : exported === true ? "👍" : "👎"
-          } `}
-          subtitle={`${
-            productsFiltration(products, category, exported).length
-          } позиций`}
-        />
-
-        <div className={css.listHeaderButtons}>
-          <NavigateButton className="circle_button" to={"/add/"}>
-            <BsPlusCircle />
-          </NavigateButton>
-
-          <FilterButton />
-        </div>
-      </div>
-
-      <div className={css.listGrid}>
-        {products && products.length ? (
-          productsFiltration(products, category, exported).map(
-            (product, index) => (
-              <ProductCard key={product.id} product={product} number={index} />
-            )
-          )
-        ) : (
-          <Ring size={30} color={isDark ? "#ffffff" : "#121212"} />
-        )}
-      </div>
+      {productsFiltration(products, category, exported).map(
+        (product, index) => (
+          <ProductCard key={product.id} product={product} number={index} />
+        )
+      )}
     </div>
   );
 }

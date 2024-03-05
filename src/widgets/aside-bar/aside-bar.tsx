@@ -1,11 +1,11 @@
 import "./_aside-bar.module.scss";
 
-import ActivityList from "../activity-list/activity-list";
+import ActivityPage from "@/pages/activity-page/activity-page";
 
 export function AsideBar() {
   return (
     <aside>
-      <ActivityList />
+      <ActivityPage />
     </aside>
   );
 }

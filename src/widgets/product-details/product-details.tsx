@@ -3,21 +3,19 @@ import css from "./_product-details.module.scss";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { Ring } from "@uiball/loaders";
 import { BsPencilSquare, BsTrash3 } from "react-icons/bs";
 
 import { UpdateProduct } from "@/features/update-product/ui/update-product";
 import { DeleteProduct } from "@/features/delete-product/ui/delete-products";
 import { useAppSelector } from "@/shared/lib/hooks/use-redux";
-import { useTheme } from "@/shared/lib/hooks/use-theme";
 import { timestampToString } from "@/shared/helpers/parse-date";
 import HeaderInformer from "@/shared/ui/header-informer/header-informer";
 import { Modal } from "@/shared/ui/modal/modal";
 import ActionButton from "@/shared/ui/buttons/action-button/action-button";
+import RingLoader from "@/shared/ui/pulsar-loader/pulsar-loader";
 
 export default function ProductDetails() {
   const { productId } = useParams();
-  const { isDark } = useTheme();
 
   const [deleteModalActive, setDeleteModalActive] = useState(false);
   const [updateModalActive, setUpdateModalActive] = useState(false);
@@ -119,7 +117,7 @@ export default function ProductDetails() {
           </Modal>
         </>
       ) : (
-        <Ring size={30} color={isDark ? "#ffffff" : "#121212"} />
+        <RingLoader />
       )}
     </div>
   );
