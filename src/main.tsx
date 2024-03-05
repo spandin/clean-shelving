@@ -48,13 +48,11 @@ const router = createBrowserRouter([
         path: "products/",
         element: <ProductsPage />,
         errorElement: <ErrorPage />,
-        children: [
-          {
-            path: "products/:productId",
-            element: <ProductDetailsPage />,
-            errorElement: <ErrorPage />,
-          },
-        ],
+      },
+      {
+        path: "products/:productId",
+        element: <ProductDetailsPage />,
+        errorElement: <ErrorPage />,
       },
       {
         path: "profile/",
