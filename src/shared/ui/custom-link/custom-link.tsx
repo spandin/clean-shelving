@@ -19,7 +19,7 @@ export default function CustomLink({ children, className, id, to }: Props) {
       id={id}
       to={to}
       onTouchEnd={() => navigate(to, { unstable_viewTransition: true })}
-      preventScrollReset
+      preventScrollReset={true}
       unstable_viewTransition
     >
       {children}
@@ -29,7 +29,7 @@ export default function CustomLink({ children, className, id, to }: Props) {
       className={className}
       id={id}
       to={to}
-      preventScrollReset
+      preventScrollReset={true}
       unstable_viewTransition
     >
       {children}
