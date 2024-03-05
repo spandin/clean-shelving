@@ -7,6 +7,7 @@ import { DocumentData, collection, getDocs } from "firebase/firestore";
 
 import { getTime } from "date-fns";
 
+import { addProduct } from "@/features/add-product/store/thunk";
 import { updateProduct } from "@/features/update-product/store/thunk";
 import { changeExportState } from "@/features/export-products/store/change-export-state";
 
@@ -74,6 +75,9 @@ const dataSlice = createSlice({
     builder
       .addCase(getProducts.fulfilled, (state, action) => {
         state.products = action.payload;
+      })
+      .addCase(addProduct.fulfilled, (state, action) => {
+        state.products.push(action.payload);
       })
       .addCase(updateProduct.fulfilled, (state, action) => {
         // Updates in the products store
