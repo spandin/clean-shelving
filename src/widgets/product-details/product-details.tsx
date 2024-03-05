@@ -117,7 +117,7 @@ export default function ProductDetails() {
           </Modal>
         </>
       ) : (
-        <RingLoader />
+        <RingLoader size={30} />
       )}
     </div>
   );
