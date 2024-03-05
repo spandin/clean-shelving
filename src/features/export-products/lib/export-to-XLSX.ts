@@ -35,9 +35,7 @@ export default function exportToXLSX({ products, filter }: Props) {
         Имя: name,
         Штрихкод: code,
         Количество: quantity,
-        Создан: dates.createdAt
-          ? timestampToString(dates.createdAt)
-          : timestampToString(actions.updated.updatedAt),
+        Создан: timestampToString(dates.createdAt),
         Изготовлен: timestampToString(dates.mfd),
         Просрочится: timestampToString(dates.exp),
         Статус: actions.exported.isExported ? "Внесён" : "Не внесён",
