@@ -2,7 +2,7 @@ import css from "./_abount-shop.module.scss";
 
 import { useAppSelector } from "@/shared/lib/hooks/use-redux";
 
-import IMAGES from "@/assets/images/images";
+import IMAGES from "@/assets";
 
 import NavigateButton from "@/shared/ui/buttons/navigate-button/navigate-button";
 

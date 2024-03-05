@@ -2,12 +2,13 @@ import css from "./_delete-product.module.scss";
 
 import { useNavigate } from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
-
-import { toastAuthErr, toastDelPromise } from "@/shared/helpers/toast";
-
 import { deleteProduct } from "../store/thunk";
+
+import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
+import { toastAuthErr, toastDelPromise } from "@/shared/helpers/toast";
 import ActionButton from "@/shared/ui/buttons/action-button/action-button";
+
+import IMAGES from "@/assets";
 
 interface Props {
   name: string;
@@ -35,9 +36,13 @@ export function DeleteProduct({ name, id }: Props) {
 
   return (
     <div className={css.deleteProduct}>
-      <div>
-        <h3>Вы действительно хотите удалить?</h3>
-        <p>&quot;{name}&quot;</p>
+      <div className={css.deleteInfo}>
+        <div>
+          <h3>Вы действительно хотите удалить?</h3>
+          <span>Продукт - {name}</span>
+        </div>
+
+        <img src={IMAGES.delete_product} />
       </div>
 
       <ActionButton className={css.deleteButton} action={() => handleDelete()}>

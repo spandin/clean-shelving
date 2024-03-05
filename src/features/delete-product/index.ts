@@ -1,1 +1,1 @@
-export { DeleteProduct } from "./ui/delete-products";
+export { DeleteProduct } from "./ui/delete-product";

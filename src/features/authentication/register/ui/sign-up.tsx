@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import { useAppDispatch } from "@/shared/lib/hooks/use-redux";
 
-import IMAGES from "@/assets/images/images";
+import IMAGES from "@/assets";
 
 import { signUpUser } from "../store/thunk";
 import LoadButton from "@/shared/ui/buttons/load-button/load-button";

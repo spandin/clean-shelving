@@ -6,7 +6,7 @@ import {
   isNotExported,
 } from "@/shared/helpers/sort-produts";
 
-export default function productsFiltration(
+export function filtrationSwitch(
   products: ProductType[],
   category?: string,
   exported?: string | boolean

@@ -1,7 +1,7 @@
 @import "@/app/styles/variables";
 @import "@/app/styles/mixins";
 
-.productsFilter {
+.filterProducts {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -46,7 +46,7 @@
 }
 
 body[data-theme="dark"] {
-  .productsFilter {
+  .filterProducts {
     button {
       background-color: $tertiary-color-dark;
       color: $primary-color-light;

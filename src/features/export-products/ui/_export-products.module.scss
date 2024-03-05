@@ -7,9 +7,8 @@
   flex-direction: column;
   gap: 2rem;
   max-width: 375px;
-  svg {
-    align-self: center;
-    font-size: 4rem;
+  img {
+    padding-inline: 2rem;
   }
   .exportButton {
     @include button-light;

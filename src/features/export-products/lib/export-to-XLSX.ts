@@ -3,7 +3,7 @@ import { ProductType } from "@/shared/types/types";
 import * as FileSaver from "file-saver";
 import * as XLSX from "xlsx";
 
-import productsFiltration from "./products-filtration";
+import { filtrationSwitch } from "@/features/filter-products";
 
 import { timestampToString } from "@/shared/helpers/parse-date";
 
@@ -30,7 +30,7 @@ export default function exportToXLSX({ products, filter }: Props) {
 
   const exportData =
     products &&
-    productsFiltration(products, filter.category, filter.exported).map(
+    filtrationSwitch(products, filter.category, filter.exported).map(
       ({ name, code, quantity, dates, actions }) => ({
         Имя: name,
         Штрихкод: code,
@@ -44,10 +44,5 @@ export default function exportToXLSX({ products, filter }: Props) {
       })
     );
 
-  return exportToCSV(
-    exportData,
-    `${filter.category} ${
-      filter.exported === "Все" ? "🙌" : filter.exported ? "👍" : "👎"
-    } `
-  );
+  return exportToCSV(exportData, "CS-ProductsTable");
 }

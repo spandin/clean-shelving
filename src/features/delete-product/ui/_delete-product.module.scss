@@ -5,6 +5,18 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  .deleteInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    span {
+      font-weight: 400;
+      color: $red;
+    }
+    img {
+      padding-inline: 2rem;
+    }
+  }
   .deleteButton {
     @include button-light;
   }

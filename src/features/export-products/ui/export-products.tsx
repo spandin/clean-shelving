@@ -1,15 +1,17 @@
-import css from "./_products-export.module.scss";
+import css from "./_export-products.module.scss";
+
+import exportToXLSX from "../lib/export-to-XLSX";
+import { changeExportState } from "../store/change-export-state";
+import { addExportActivity } from "../store/add-export-activity";
+
+import { filtrationSwitch } from "@/features/filter-products";
 
 import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
-import { changeExportState } from "../../store/change-export-state";
-import { addExportActivity } from "../../store/add-export-activity";
-
-import { BsFiletypeXls } from "react-icons/bs";
-import exportToXLSX from "../../lib/export-to-XLSX";
-import productsFiltration from "../../lib/products-filtration";
 import ActionButton from "@/shared/ui/buttons/action-button/action-button";
 
-export function ProductsExport() {
+import IMAGES from "@/assets";
+
+export function ExportProducts() {
   const dispatch = useAppDispatch();
 
   const user = useAppSelector((state) => state.user);
@@ -24,7 +26,7 @@ export function ProductsExport() {
       // Проверка прав на смену стейта экспорта
       if (user.email === ("willstesi@gmail.com" || "marinulik.85@mail.ru")) {
         // Цикл для сменны статуса продукта
-        const allId = productsFiltration(
+        const allId = filtrationSwitch(
           products,
           filter.category,
           filter.exported
@@ -44,12 +46,12 @@ export function ProductsExport() {
 
   return (
     <div className={css.exportProducts}>
-      <h3>Экспорт Excel файла</h3>
+      <h3>Экспорт Excel</h3>
 
-      <BsFiletypeXls />
+      <img src={IMAGES.export_products} />
 
       <p>
-        Внимание при экспорте файла, все записи получат статус
+        *Внимание при экспорте файла, все записи получат статус
         &apos;Внесён&apos;
       </p>
 

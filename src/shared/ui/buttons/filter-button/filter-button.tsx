@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { BsFilterCircle } from "react-icons/bs";
 
-import { ProductsFilter } from "../..";
+import { FilterProducts } from "@/features/filter-products";
 
 import { Modal } from "@/shared/ui/modal/modal";
 import ActionButton from "@/shared/ui/buttons/action-button/action-button";
@@ -20,7 +20,7 @@ export default function FilterButton() {
       </ActionButton>
 
       <Modal active={filterModalActive} setActive={setFilterModalActive}>
-        <ProductsFilter />
+        <FilterProducts />
       </Modal>
     </>
   );

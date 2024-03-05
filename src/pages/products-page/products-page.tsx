@@ -1,13 +1,12 @@
 import css from "./_products-page.module.scss";
 import { BsPlusCircle } from "react-icons/bs";
 
-import productsFiltration from "@/features/products-list/lib/products-filtration";
-import FilterButton from "@/features/products-list/ui/products-filter/filter-button";
+import { filtrationSwitch } from "@/features/filter-products";
 
 import { useAppSelector } from "@/shared/lib/hooks/use-redux";
 import HeaderInformer from "@/shared/ui/header-informer/header-informer";
 import NavigateButton from "@/shared/ui/buttons/navigate-button/navigate-button";
-
+import FilterButton from "@/shared/ui/buttons/filter-button/filter-button";
 import { ProductsList } from "@/widgets/products-list/products-list";
 
 export default function ProductsPage() {
@@ -22,8 +21,8 @@ export default function ProductsPage() {
             exported === "Все" ? "🙌" : exported === true ? "👍" : "👎"
           } `}
           subtitle={`${
-            productsFiltration(products, category, exported).length
-          } позиций`}
+            filtrationSwitch(products, category, exported).length
+          } продуктов`}
         />
 
         <div className={css.headerButtons}>

@@ -4,16 +4,16 @@ import { ProductType } from "@/shared/types/types";
 
 import { useEffect, useState } from "react";
 
-import { useAppSelector } from "@/shared/lib/hooks/use-redux";
-
 import { db } from "@/shared/api/firebase-config";
 import { DocumentData, collection, onSnapshot } from "firebase/firestore";
 
+import { filtrationSwitch } from "@/features/filter-products";
 import { ProductCard } from "@/entities/product";
-import productsFiltration from "../../features/products-list/lib/products-filtration";
+
+import { useAppSelector } from "@/shared/lib/hooks/use-redux";
 import PulsarLoader from "@/shared/ui/pulsar-loader/pulsar-loader";
 
-import IMAGES from "@/assets/images/images";
+import IMAGES from "@/assets";
 
 export function ProductsList() {
   const [isLoading, setIsLoading] = useState(true);
@@ -82,11 +82,9 @@ export function ProductsList() {
 
   return (
     <div className={css.productsList}>
-      {productsFiltration(products, category, exported).map(
-        (product, index) => (
-          <ProductCard key={product.id} product={product} number={index} />
-        )
-      )}
+      {filtrationSwitch(products, category, exported).map((product, index) => (
+        <ProductCard key={product.id} product={product} number={index} />
+      ))}
     </div>
   );
 }

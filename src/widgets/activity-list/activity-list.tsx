@@ -10,7 +10,7 @@ import { DocumentData, collection, onSnapshot } from "firebase/firestore";
 import { ActivityCard } from "@/entities/activity";
 import PulsarLoader from "@/shared/ui/pulsar-loader/pulsar-loader";
 
-import IMAGES from "@/assets/images/images";
+import IMAGES from "@/assets";
 
 export default function ActivityList() {
   const [isLoading, setIsLoading] = useState(true);

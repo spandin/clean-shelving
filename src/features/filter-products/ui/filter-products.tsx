@@ -1,18 +1,18 @@
-import css from "./_products-filter.module.scss";
+import css from "./_filter-products.module.scss";
 
 import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
 
 import { setCategory, setExported } from "@/app/slices/dataSlice";
 import ActionButton from "@/shared/ui/buttons/action-button/action-button";
 
-export function ProductsFilter() {
+export function FilterProducts() {
   const dispatch = useAppDispatch();
 
   const exported = useAppSelector((state) => state.data.filter.exported);
   const category = useAppSelector((state) => state.data.filter.category);
 
   return (
-    <div className={css.productsFilter}>
+    <div className={css.filterProducts}>
       <h3>Фильтр списка</h3>
 
       <div className={css.exported}>

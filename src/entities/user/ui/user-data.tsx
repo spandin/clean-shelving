@@ -2,7 +2,7 @@ import css from "./_user-data.module.scss";
 
 import type { UserData } from "@/shared/types/types";
 
-import IMAGES from "@/assets/images/images";
+import IMAGES from "@/assets";
 
 export function UserData({ user }: { user: UserData }) {
   return (

@@ -1,90 +1,74 @@
 @import "@/app/styles/variables";
 @import "@/app/styles/mixins";
 
-.addProduct {
+.addProductForm {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  justify-content: space-between;
   height: 100%;
-  max-width: 500px;
 
-  .addProductHeader {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .addProductForm {
+  .formWrapper {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-
-    .formWrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      .formRow {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        gap: 1rem;
-      }
-
-      .formInput {
-        display: flex;
-        flex-direction: column;
-        gap: 0.2rem;
-        flex: 1 0;
-        position: relative;
-        label {
-          margin: 0rem 0.2rem;
-        }
-      }
-
-      .error {
-        padding: 0rem 0.2rem;
-        font-size: 14px;
-        font-weight: 400;
-        color: $primary-color-dark;
-      }
-    }
-
-    .formButtonWrapper {
+    gap: 0.5rem;
+    .formRow {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      &:has(.similarButton.active) {
-        gap: 1rem;
-      }
-      :first-child {
-        width: 100%;
+      gap: 1rem;
+    }
+
+    .formInput {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      flex: 1 0;
+      position: relative;
+      label {
+        margin: 0rem 0.2rem;
       }
     }
 
-    .similarButton {
-      opacity: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 0px;
-      height: 50px;
-      border-radius: 50px;
-      @include bg-lLight;
-      font-weight: 500;
-      pointer-events: none;
-      transition: 0.2s ease-out all;
-      &.active {
-        opacity: 1;
-        width: auto;
-        padding: 0rem 2rem;
-        cursor: pointer;
-        pointer-events: all;
-        &:hover {
-          color: $primary-color-dark;
-        }
+    .error {
+      padding: 0rem 0.2rem;
+      font-size: 14px;
+      font-weight: 400;
+      color: $primary-color-dark;
+    }
+  }
+
+  .formButtonWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    &:has(.similarButton.active) {
+      gap: 1rem;
+    }
+    :first-child {
+      width: 100%;
+    }
+  }
+
+  .similarButton {
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0px;
+    height: 50px;
+    border-radius: 50px;
+    @include bg-lLight;
+    font-weight: 500;
+    pointer-events: none;
+    transition: 0.2s ease-out all;
+    &.active {
+      opacity: 1;
+      width: auto;
+      padding: 0rem 2rem;
+      cursor: pointer;
+      pointer-events: all;
+      &:hover {
+        color: $primary-color-dark;
       }
     }
   }
@@ -127,20 +111,18 @@
 }
 
 body[data-theme="dark"] {
-  .addProduct {
-    .addProductForm {
-      .formWrapper {
-        .error {
-          color: $primary-color-light;
-        }
+  .addProductForm {
+    .formWrapper {
+      .error {
+        color: $primary-color-light;
       }
+    }
 
-      .similarButton {
-        @include bg-dDark;
-        &.active {
-          &:hover {
-            color: $primary-color-light;
-          }
+    .similarButton {
+      @include bg-dDark;
+      &.active {
+        &:hover {
+          color: $primary-color-light;
         }
       }
     }
