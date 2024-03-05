@@ -5,10 +5,14 @@ import { VitePWA, VitePWAOptions } from "vite-plugin-pwa";
 
 const manifestForPlugin: Partial<VitePWAOptions> = {
   registerType: "prompt",
+  workbox: {
+    globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
+  },
   includeAssets: ["favicon.svg"],
   manifest: {
     name: "Clean Shelving",
     short_name: "Clean Shelving",
+    description: `${process.env.VITE_SHOP_NAME}`,
     icons: [
       {
         src: "/icon-192x192.png",
