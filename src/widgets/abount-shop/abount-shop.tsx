@@ -25,9 +25,11 @@ export function AbountShop() {
             </span>
           </div>
 
-          <NavigateButton id={css.go_to_list} to={"products/"}>
-            Перейти к списку
-          </NavigateButton>
+          <NavigateButton
+            text="Перейти к списку"
+            id={css.go_to_list}
+            to={"products/"}
+          ></NavigateButton>
         </div>
       </div>
     </div>
