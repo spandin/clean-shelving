@@ -1,4 +1,4 @@
-import { AddFormInputsType, UserData } from "@/shared/types/types";
+import { AddFormInputsType, ProductType, UserData } from "@/shared/types/types";
 
 import { createAsyncThunk, nanoid } from "@reduxjs/toolkit";
 
@@ -19,44 +19,46 @@ export const addProduct = createAsyncThunk(
   async ({ data, currentUser, selectType }: Props) => {
     const id = nanoid();
 
+    const productObject: ProductType = {
+      id: id,
+      name: data.name,
+      code: parseInt(data.code),
+      category: data.category,
+      quantity: parseInt(data.quantity),
+      dates: {
+        createdAt: getTime(new Date()),
+        mfd: stringToTimestamp(data.dates.mfd),
+        exp:
+          selectType === "date"
+            ? stringToTimestamp(data.dates.exp)
+            : getTime(
+                addMonths(stringToUTC(data.dates.mfd), parseInt(data.dates.exp))
+              ),
+      },
+      actions: {
+        created: {
+          createdAt: getTime(new Date()),
+          whoCreated: `${currentUser.name}`,
+          whoCreatedID: `${currentUser.id}`,
+        },
+        updated: {
+          isUpdated: false,
+          whoUpdated: "",
+          whoUpdatedID: "",
+          updatedAt: 0,
+        },
+        exported: {
+          isExported: false,
+          exportedOn: 0,
+          whoExported: "",
+          whoExportedID: "",
+        },
+      },
+    };
+
     try {
       // Создание обьекта продукта в firestore/data
-      await setDoc(query(`data/${id}`), {
-        id: id,
-        name: data.name,
-        code: parseInt(data.code),
-        category: data.category,
-        quantity: parseInt(data.quantity),
-        dates: {
-          createdAt: getTime(new Date()),
-          mfd: stringToTimestamp(data.dates.mfd),
-          exp:
-            selectType === "date"
-              ? stringToTimestamp(data.dates.exp)
-              : getTime(
-                  addMonths(
-                    stringToUTC(data.dates.mfd),
-                    parseInt(data.dates.exp)
-                  )
-                ),
-        },
-        actions: {
-          created: {
-            createdAt: getTime(new Date()),
-            whoCreated: currentUser.name,
-            whoCreatedID: currentUser.id,
-          },
-          updated: {
-            isUpdated: false,
-            whoUpdated: null,
-            whoUpdatedID: null,
-            updatedAt: null,
-          },
-          exported: {
-            isExported: false,
-          },
-        },
-      });
+      await setDoc(query(`data/${id}`), productObject);
 
       // Создание обьекта штрихкода в firestore/barcodes
       await setDoc(query(`barcodes/${data.code}`), {
@@ -84,5 +86,7 @@ export const addProduct = createAsyncThunk(
     } catch (e) {
       console.error("ADD PRODUCT: " + e);
     }
+
+    return productObject;
   }
 );
