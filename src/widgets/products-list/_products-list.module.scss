@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  height: calc(100vh - 14.5rem);
+  height: calc(100dvh - 14.5rem);
 }
 
 .productsList {
@@ -16,7 +16,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1rem;
   border-radius: 30px;
-  max-height: calc(100vh - 8.3rem);
+  max-height: calc(100dvh - 8.3rem);
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
 }
@@ -31,6 +31,6 @@
 @media only screen and (max-width: 768px) {
   .productsList {
     grid-template-columns: 1fr;
-    max-height: calc(100vh - 14.5rem);
+    max-height: calc(100dvh - 14.5rem);
   }
 }
