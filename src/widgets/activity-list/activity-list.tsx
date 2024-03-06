@@ -20,10 +20,10 @@ export default function ActivityList() {
   const [activity, setActivity] = useState<Activity[]>([]);
 
   useEffect(() => {
-    try {
-      const unsubscribe = onSnapshot(
-        collection(db, "activity"),
-        (querySnapshot) => {
+    const getActivity = onSnapshot(
+      collection(db, "activity"),
+      (querySnapshot) => {
+        try {
           const collectionSnapshot: Activity[] = [];
 
           querySnapshot.forEach((doc: DocumentData) => {
@@ -34,24 +34,23 @@ export default function ActivityList() {
           });
 
           if (collectionSnapshot.length === 0) {
-            setIsLoading(false);
             setIsEmpty(true);
           } else {
             setIsEmpty(false);
-            setIsLoading(false);
-
             setActivity(collectionSnapshot);
           }
+        } catch (error) {
+          console.error("ACTIVITY LIST: " + error);
+          setIsError(true);
+        } finally {
+          setIsLoading(false);
         }
-      );
+      }
+    );
 
-      return () => {
-        unsubscribe();
-      };
-    } catch (error) {
-      console.error("ACTIVITY LIST: " + error);
-      setIsError(true);
-    }
+    return () => {
+      getActivity();
+    };
   }, []);
 
   if (isError) {

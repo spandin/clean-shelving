@@ -24,38 +24,34 @@ export function ProductsList() {
   const { exported, category } = useAppSelector((state) => state.data.filter);
 
   useEffect(() => {
-    try {
-      const unsubscribe = onSnapshot(
-        collection(db, "data"),
-        (querySnapshot) => {
-          const collectionSnapshot: ProductType[] = [];
+    const getData = onSnapshot(collection(db, "data"), (querySnapshot) => {
+      try {
+        const collectionSnapshot: ProductType[] = [];
 
-          querySnapshot.forEach((doc: DocumentData) => {
-            collectionSnapshot.push(doc.data());
-            collectionSnapshot.sort(
-              (a, b) => +new Date(a.dates.exp) - +new Date(b.dates.exp)
-            );
-          });
+        querySnapshot.forEach((doc: DocumentData) => {
+          collectionSnapshot.push(doc.data());
+          collectionSnapshot.sort(
+            (a, b) => +new Date(a.dates.exp) - +new Date(b.dates.exp)
+          );
+        });
 
-          if (collectionSnapshot.length === 0) {
-            setIsLoading(false);
-            setIsEmpty(true);
-          } else {
-            setIsEmpty(false);
-            setIsLoading(false);
-
-            setProducts(collectionSnapshot);
-          }
+        if (collectionSnapshot.length === 0) {
+          setIsEmpty(true);
+        } else {
+          setIsEmpty(false);
+          setProducts(collectionSnapshot);
         }
-      );
+      } catch (error) {
+        console.error("PRODUCTS LIST: " + error);
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    });
 
-      return () => {
-        unsubscribe();
-      };
-    } catch (error) {
-      console.error("PRODUCTS LIST: " + error);
-      setIsError(true);
-    }
+    return () => {
+      getData();
+    };
   }, []);
 
   if (isError) {

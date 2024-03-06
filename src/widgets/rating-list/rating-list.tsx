@@ -8,45 +8,63 @@ import { db } from "@/shared/api/firebase-config";
 import { DocumentData, collection, onSnapshot } from "firebase/firestore";
 
 import { RatingCard } from "@/entities/rating";
-import HeaderInformer from "@/shared/ui/header-informer/header-informer";
+
+import PulsarLoader from "@/shared/ui/pulsar-loader/pulsar-loader";
 
 export default function RatingList() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+
   const [users, setUsers] = useState<UserData[]>([]);
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, "users"), (querySnapshot) => {
-      const collectionSnapshot: UserData[] = [];
+    const getUsers = onSnapshot(collection(db, "users"), (querySnapshot) => {
+      try {
+        const collectionSnapshot: UserData[] = [];
 
-      querySnapshot.forEach((doc: DocumentData) => {
-        collectionSnapshot.push(doc.data());
-        collectionSnapshot.sort(
-          (a, b) =>
-            b.actions.added +
-            b.actions.updated / 4 +
-            b.actions.deleted / 2 -
-            (a.actions.added + a.actions.updated / 4 + a.actions.deleted / 2)
-        );
-      });
+        querySnapshot.forEach((doc: DocumentData) => {
+          collectionSnapshot.push(doc.data());
+          collectionSnapshot.sort(
+            (a, b) =>
+              b.actions.added +
+              b.actions.updated / 4 +
+              b.actions.deleted / 2 -
+              (a.actions.added + a.actions.updated / 4 + a.actions.deleted / 2)
+          );
+        });
 
-      setUsers(collectionSnapshot);
+        setUsers(collectionSnapshot);
+      } catch (error) {
+        console.error("RATING LIST: " + error);
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
+      }
     });
 
     return () => {
-      unsubscribe();
+      getUsers();
     };
   }, []);
 
-  return (
-    <div className={css.ratingList}>
-      <div className={css.listHeader}>
-        <HeaderInformer title="Рейтинг" subtitle="пользователей" />
-      </div>
+  if (isError) {
+    return <div className={css.isState}>Ошибка загрузки</div>;
+  }
 
-      <div className={css.listBody}>
-        {users.map((user, number) => {
-          return <RatingCard key={user.id} user={user} number={number} />;
-        })}
+  if (isLoading) {
+    return (
+      <div className={css.isState}>
+        <PulsarLoader size={20} />
+        Загрузка активностей
       </div>
+    );
+  }
+
+  return (
+    <div className={css.listBody}>
+      {users.map((user, number) => {
+        return <RatingCard key={user.id} user={user} number={number} />;
+      })}
     </div>
   );
 }
