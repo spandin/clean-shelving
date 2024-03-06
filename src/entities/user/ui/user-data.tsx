@@ -2,8 +2,6 @@ import css from "./_user-data.module.scss";
 
 import type { UserData } from "@/shared/types/types";
 
-import IMAGES from "@/assets";
-
 export function UserData({ user }: { user: UserData }) {
   return (
     <div className={css.userData}>
@@ -12,7 +10,7 @@ export function UserData({ user }: { user: UserData }) {
           <input type="radio" name="tabs" id="tab-1" defaultChecked />
           <label htmlFor="tab-1">Информация</label>
           <div className={css.tabContent}>
-            <img id={css.user_avatar} src={IMAGES.user_avatar} />
+            <div id={css.user_avatar}>{user.name?.charAt(0)} </div>
 
             <div className={css.userInfo}>
               <h2>{user.name}</h2>

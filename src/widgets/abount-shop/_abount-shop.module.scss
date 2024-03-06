@@ -6,6 +6,9 @@
   align-items: center;
   justify-content: center;
   height: 100%;
+  img {
+    min-width: 250px;
+  }
   .abountShopWrapper {
     display: flex;
     flex-direction: row;

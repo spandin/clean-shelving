@@ -40,10 +40,16 @@
         border: 1px solid $tertiary-color-light;
         align-items: center;
         #user_avatar {
-          height: 8rem;
-          width: 8rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          min-width: 150px;
+          min-height: 150px;
           border-radius: 100%;
-          object-fit: cover;
+          border: 1px solid $tertiary-color-light;
+          font-size: 3rem;
+          font-weight: 400;
         }
         .userInfo {
           display: flex;

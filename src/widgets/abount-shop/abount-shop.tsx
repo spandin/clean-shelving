@@ -13,7 +13,7 @@ export function AbountShop() {
   return (
     <div className={css.abountShop}>
       <div className={css.abountShopWrapper}>
-        <img src={IMAGES.registration} />
+        <img src={IMAGES.abount_shop} />
         <div className={css.shopInfo}>
           <div>
             {" "}
