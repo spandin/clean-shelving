@@ -1,13 +1,12 @@
 @import "./variables";
 
 :root {
-  --toastify-color-light: #fff;
-  --toastify-color-dark: #202020;
+  --toastify-color-light: linear-gradient(45deg, #0b1f00, #0d001f);
+  --toastify-color-dark: linear-gradient(45deg, #ffffff, #f7f1ff);
   --toastify-color-info: #3498db;
   --toastify-color-success: #c0fc34;
   --toastify-color-warning: #f1c40f;
   --toastify-color-error: #da615d;
-  --toastify-color-transparent: rgba(255, 255, 255, 0.7);
 
   --toastify-icon-color-info: var(--toastify-color-info);
   --toastify-icon-color-success: var(--toastify-color-success);
@@ -20,48 +19,34 @@
   --toastify-toast-max-height: 800px;
   --toastify-z-index: 9999;
 
-  --toastify-text-color-light: #757575;
-  --toastify-text-color-dark: #fff;
-
-  //Used only for colored theme
-  --toastify-text-color-info: #fff;
-  --toastify-text-color-success: #fff;
-  --toastify-text-color-warning: #fff;
-  --toastify-text-color-error: #fff;
+  --toastify-text-color-light: #ffffff;
+  --toastify-text-color-dark: #131313;
 
   --toastify-spinner-color: #fff;
   --toastify-spinner-color-empty-area: #e0e0e0;
 
-  // Used when no type is provided
-  // toast("**hello**")
-  --toastify-color-progress-light: linear-gradient(
-    to right,
-    #4cd964,
-    #5ac8fa,
-    #007aff,
-    #34aadc,
-    #5856d6,
-    #da615d
-  );
-  // Used when no type is provided
-  --toastify-color-progress-dark: #bb86fc;
   --toastify-color-progress-info: var(--toastify-color-info);
   --toastify-color-progress-success: var(--toastify-color-success);
   --toastify-color-progress-warning: var(--toastify-color-warning);
   --toastify-color-progress-error: var(--toastify-color-error);
-
-  // used to control the opacity of the progress trail
-  --toastify-color-progress-bgo: 0.2;
 }
 
 .Toastify__toast {
   padding: 0rem 1rem;
-  margin: 0 1.9rem;
-  margin-top: 1.9rem;
+  margin-inline: 2rem;
+  margin-top: 1rem;
   border-radius: 50px;
   font-size: 14px;
+  border: 1px solid #f8f8f8;
 }
 
 .Toastify__close-button {
   display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .Toastify__toast {
+    margin-inline: 2rem;
+    margin-top: 2rem;
+  }
 }

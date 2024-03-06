@@ -44,16 +44,14 @@ body[data-theme="dark"] {
 }
 
 @media only screen and (max-width: 768px) {
-  aside {
-    .informer {
-      padding-left: 0rem;
-      button {
-        display: flex;
-      }
-      &__col {
-        :first-child {
-          max-width: 17ch;
-        }
+  .informer {
+    padding-left: 0rem;
+    button {
+      display: flex;
+    }
+    &__col {
+      :first-child {
+        max-width: 24ch;
       }
     }
   }
