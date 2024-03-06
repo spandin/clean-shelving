@@ -9,7 +9,6 @@ import "@/shared/api/firebase-config";
 
 import Rootlayout from "@/app/layouts/root-layout";
 
-import { ToastContainer } from "react-toastify";
 import ProductsPage from "./pages/products-page/products-page";
 import ProductDetailsPage from "./pages/product-details-page/product-details-page";
 import AddProductPage from "./pages/add-product-page/add-products-page";
@@ -80,7 +79,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ToastContainer position="top-center" />
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <RouterProvider

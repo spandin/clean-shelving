@@ -1,13 +1,10 @@
 import { ToastOptions, toast } from "react-toastify";
 
-const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
 const settingsToast: ToastOptions = {
   position: "top-center",
   autoClose: 1500,
   hideProgressBar: false,
   closeOnClick: true,
-  theme: isDark ? "dark" : "light",
 };
 
 const toastAddPromise = (promise: Promise<unknown>) => {

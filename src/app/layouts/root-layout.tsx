@@ -19,7 +19,7 @@ import {
 import { NavigationBar } from "@/widgets/navigation-bar/navigation-bar";
 import { AsideBar } from "@/widgets/aside-bar/aside-bar";
 import { AbountShop } from "@/widgets/abount-shop/abount-shop";
-import { setThemeAndMeta } from "@/shared/helpers/theme";
+import { setThemeAndMeta } from "@/shared/helpers/change-meta-color";
 
 import { setDefaultOptions } from "date-fns";
 import { ru } from "date-fns/locale";
@@ -49,7 +49,7 @@ export default function Rootlayout() {
       <main>
         {location.pathname !== "/" ? <Outlet /> : <AbountShop />}
 
-        <ToastContainer theme="dark" limit={1} />
+        <ToastContainer theme={theme === "dark" ? "dark" : "light"} limit={1} />
       </main>
 
       <AsideBar />

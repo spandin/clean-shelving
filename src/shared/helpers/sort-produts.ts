@@ -13,8 +13,3 @@ export const findInArrayBy = (
   array.filter((product) =>
     Object.values(product).some((value) => ("" + value).indexOf(by) !== -1)
   );
-
-export const realLenghtArr = (array: ProductType[]): number =>
-  array.filter(function () {
-    return true;
-  }).length;

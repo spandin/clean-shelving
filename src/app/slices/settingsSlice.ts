@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { setThemeAndMeta } from "@/shared/helpers/theme";
+import { setThemeAndMeta } from "@/shared/helpers/change-meta-color";
 
 interface settingsState {
   selectType: string;
