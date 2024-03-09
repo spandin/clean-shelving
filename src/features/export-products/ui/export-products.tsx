@@ -74,6 +74,7 @@ export function ExportProducts() {
   }
 
   if (isExporting) {
+    const productsList = allProductsId.length;
     return (
       <div className={css.isExporting}>
         <h3>Изменение статусов</h3>
@@ -83,7 +84,7 @@ export function ExportProducts() {
         <div>
           <PulsarLoader size={20} />
           <p>
-            Изменено {count} из {allProductsId.length}
+            Изменено {count} из {productsList}
           </p>
         </div>
 
