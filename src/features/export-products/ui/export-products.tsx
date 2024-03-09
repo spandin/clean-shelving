@@ -50,8 +50,11 @@ export function ExportProducts() {
     } catch (e) {
       console.error("EXPORT AND CHANGE EXPORT STATE: " + e);
     } finally {
+      setCount(0);
       setIsExporting(false);
-      setIsCompleted(true);
+      if (ROLES_CAN_EXPORTING.includes(user.role)) {
+        setIsCompleted(true);
+      }
     }
   };
 
@@ -83,9 +86,7 @@ export function ExportProducts() {
 
         <div>
           <PulsarLoader size={20} />
-          <p>
-            Изменено {count} из {allProductsId.length + count}
-          </p>
+          <p>Изменено: {count} статусов</p>
         </div>
 
         <p>*Не закрывайте приложения во время изменения статусов.</p>
