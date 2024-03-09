@@ -8,6 +8,11 @@ const IMAGES = {
   delete_product: new URL("./images/delete_product.svg", import.meta.url).href,
   export_products: new URL("./images/export_products.svg", import.meta.url)
     .href,
+  change_state: new URL("./images/change_state.svg", import.meta.url).href,
+  change_state_completed: new URL(
+    "./images/change_state_completed.svg",
+    import.meta.url
+  ).href,
 };
 
 export default IMAGES;
