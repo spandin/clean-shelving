@@ -1,9 +1,11 @@
+import { useAppSelector } from "./use-redux";
+
 export function useTheme() {
-  const theme = window.matchMedia("(prefers-color-scheme: dark)");
+  const theme = useAppSelector((state) => state.settings.theme);
+  const isDark = theme === "dark" && true;
 
   return {
-    isDark: theme.matches,
-    isLight: !theme.matches,
+    isDark,
     theme: theme,
   };
 }
