@@ -9,7 +9,7 @@ const initialState: UserData = {
   id: null,
   name: null,
   email: null,
-  role: null,
+  role: "Guest",
   isAuth: false,
   actions: {
     added: 0,
@@ -26,7 +26,7 @@ const userSlice = createSlice({
       state.id = null;
       state.name = null;
       state.email = null;
-      state.role = null;
+      state.role = "Guest";
       state.isAuth = false;
     },
   },
