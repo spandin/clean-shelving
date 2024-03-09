@@ -121,7 +121,17 @@ body[data-theme="dark"] {
               color: $primary-color-light;
             }
             .bodyLink:hover {
-              @include button-dark;
+              @include bg-light;
+            }
+            .themeSwither {
+              label {
+                background-color: $tertiary-color-light;
+                .slider {
+                  &.active {
+                    background-color: $primary-color-dark;
+                  }
+                }
+              }
             }
           }
         }

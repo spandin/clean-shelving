@@ -120,6 +120,9 @@ body[data-theme="dark"] {
         .tabContent {
           background-color: $tertiary-color-dark;
           border: 1px solid $tertiary-color-dark;
+          #user_avatar {
+            border: 1px solid $gray;
+          }
           .userActions {
             @include bg-light;
             .actionsCol {

@@ -57,7 +57,7 @@ body[data-theme="dark"] {
       }
     }
     button.active {
-      @include bg-dLight;
+      @include bg-light;
     }
   }
 }

@@ -23,6 +23,6 @@
 
 body[data-theme="dark"] {
   .loadButton {
-    @include bg-dDark;
+    @include button-dark;
   }
 }

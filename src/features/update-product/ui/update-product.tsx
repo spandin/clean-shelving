@@ -30,14 +30,10 @@ export function UpdateProduct({ product, id }: Props) {
   } = useForm<ProductType>({ mode: "onSubmit" });
 
   const onUpdate: SubmitHandler<ProductType> = async (data) => {
-    try {
-      if (user.isAuth) {
-        toastUpdPromise(dispatch(updateProduct({ id, data, user })));
-      } else {
-        toastAuthErr();
-      }
-    } catch (e) {
-      console.error(`UPDATE PRODUCT:`, e);
+    if (user.isAuth) {
+      toastUpdPromise(dispatch(updateProduct({ id, data, user })));
+    } else {
+      toastAuthErr();
     }
   };
 
