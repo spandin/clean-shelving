@@ -1,13 +1,45 @@
 @import "@/app/styles/variables";
 @import "@/app/styles/mixins";
 
-.exportProducts {
-  color: $primary-color-dark;
+.isCompleted {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   max-width: 375px;
   img {
+    align-self: center;
+  }
+  .isCompletedButton {
+    @include button-light;
+  }
+}
+
+.isExporting {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 375px;
+  img {
+    align-self: center;
+  }
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 400;
+  }
+}
+
+.exportProducts {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  max-width: 375px;
+  color: $primary-color-dark;
+  img {
+    align-self: center;
     padding-inline: 2rem;
   }
   .exportButton {
@@ -16,6 +48,12 @@
 }
 
 body[data-theme="dark"] {
+  .isCompleted {
+    .isCompletedButton {
+      @include button-dark;
+    }
+  }
+
   .exportProducts {
     color: $primary-color-light;
     .exportButton {
