@@ -9,15 +9,17 @@ import { addExportActivity } from "../store/add-export-activity";
 import { filtrationSwitch } from "@/features/filter-products";
 
 import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
+import { useTheme } from "@/shared/lib/hooks/use-theme";
 import ActionButton from "@/shared/ui/buttons/action-button/action-button";
 import PulsarLoader from "@/shared/ui/pulsar-loader/pulsar-loader";
 
 import { ROLES_CAN_EXPORTING } from "@/shared/consts";
 
-import IMAGES from "@/assets";
+import { IMAGES_LIGHT, IMAGES_DARK } from "@/assets";
 
 export function ExportProducts() {
   const dispatch = useAppDispatch();
+  const { isDark } = useTheme();
   const [isCompleted, setIsCompleted] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
   const [count, setCount] = useState(0);
@@ -63,7 +65,13 @@ export function ExportProducts() {
       <div className={css.isCompleted}>
         <h3>Завершенно успешно</h3>
 
-        <img src={IMAGES.change_state_completed} />
+        <img
+          src={
+            isDark
+              ? IMAGES_DARK.change_state_completed_d
+              : IMAGES_LIGHT.change_state_completed
+          }
+        />
 
         <p>Изменение прошло успешно, можете заниматься своими делами.</p>
 
@@ -82,7 +90,9 @@ export function ExportProducts() {
       <div className={css.isExporting}>
         <h3>Изменение статусов</h3>
 
-        <img src={IMAGES.change_state} />
+        <img
+          src={isDark ? IMAGES_DARK.change_state_d : IMAGES_LIGHT.change_state}
+        />
 
         <div>
           <PulsarLoader size={20} />
@@ -98,7 +108,11 @@ export function ExportProducts() {
     <div className={css.exportProducts}>
       <h3>Экспорт Excel</h3>
 
-      <img src={IMAGES.export_products} />
+      <img
+        src={
+          isDark ? IMAGES_DARK.export_products_d : IMAGES_LIGHT.export_products
+        }
+      />
 
       <p>
         Файл будет содержать информацию о продуктах в соответствий с вашим

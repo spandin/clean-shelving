@@ -2,13 +2,14 @@ import css from "./_sign-up.module.scss";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { useAppDispatch } from "@/shared/lib/hooks/use-redux";
-
-import IMAGES from "@/assets";
-
 import { signUpUser } from "../store/thunk";
+
+import { useAppDispatch } from "@/shared/lib/hooks/use-redux";
+import { useTheme } from "@/shared/lib/hooks/use-theme";
 import LoadButton from "@/shared/ui/buttons/load-button/load-button";
 import ActionButton from "@/shared/ui/buttons/action-button/action-button";
+
+import { IMAGES_LIGHT, IMAGES_DARK } from "@/assets";
 
 interface FormValues {
   name: string;
@@ -23,6 +24,7 @@ export function SignUp({
   setAuthForm: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const dispatch = useAppDispatch();
+  const { isDark } = useTheme();
 
   const {
     register,
@@ -36,7 +38,10 @@ export function SignUp({
 
   return (
     <div className={css.signUp}>
-      <img src={IMAGES.registration} />
+      <img
+        src={isDark ? IMAGES_DARK.registration_d : IMAGES_LIGHT.registration}
+      />
+
       <form className={css.form} onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className={css.formTitle}>
           <h1>Регистрация</h1>

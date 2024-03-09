@@ -11,11 +11,13 @@ import { filtrationSwitch } from "@/features/filter-products";
 import { ProductCard } from "@/entities/product";
 
 import { useAppSelector } from "@/shared/lib/hooks/use-redux";
+import { useTheme } from "@/shared/lib/hooks/use-theme";
 import PulsarLoader from "@/shared/ui/pulsar-loader/pulsar-loader";
 
-import IMAGES from "@/assets";
+import { IMAGES_LIGHT, IMAGES_DARK } from "@/assets";
 
 export function ProductsList() {
+  const { isDark } = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [isEmpty, setIsEmpty] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -70,7 +72,11 @@ export function ProductsList() {
   if (isEmpty) {
     return (
       <div className={css.isState}>
-        <img src={IMAGES.empty_products} />
+        <img
+          src={
+            isDark ? IMAGES_DARK.empty_products_d : IMAGES_LIGHT.empty_products
+          }
+        />
         На данный момент тут пусто!
       </div>
     );

@@ -8,11 +8,13 @@ import { db } from "@/shared/api/firebase-config";
 import { DocumentData, collection, onSnapshot } from "firebase/firestore";
 
 import { ActivityCard } from "@/entities/activity";
-import PulsarLoader from "@/shared/ui/pulsar-loader/pulsar-loader";
 
-import IMAGES from "@/assets";
+import { useTheme } from "@/shared/lib/hooks/use-theme";
+import PulsarLoader from "@/shared/ui/pulsar-loader/pulsar-loader";
+import { IMAGES_DARK, IMAGES_LIGHT } from "@/assets";
 
 export default function ActivityList() {
+  const { isDark } = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [isEmpty, setIsEmpty] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -69,7 +71,11 @@ export default function ActivityList() {
   if (isEmpty) {
     return (
       <div className={css.isState}>
-        <img src={IMAGES.empty_activity} />
+        <img
+          src={
+            isDark ? IMAGES_DARK.empty_activity_d : IMAGES_LIGHT.empty_activity
+          }
+        />
         Активностей не обнаружено
       </div>
     );

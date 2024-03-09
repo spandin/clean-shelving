@@ -1,12 +1,14 @@
 import css from "./_sign-in.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { useAppDispatch } from "@/shared/lib/hooks/use-redux";
 import { signInUser } from "../store/thunk";
 
-import IMAGES from "@/assets";
+import { useAppDispatch } from "@/shared/lib/hooks/use-redux";
+import { useTheme } from "@/shared/lib/hooks/use-theme";
 import LoadButton from "@/shared/ui/buttons/load-button/load-button";
 import ActionButton from "@/shared/ui/buttons/action-button/action-button";
+
+import { IMAGES_LIGHT, IMAGES_DARK } from "@/assets";
 
 interface FormValues {
   email: string;
@@ -19,6 +21,7 @@ export function SignIn({
   setAuthForm: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const dispatch = useAppDispatch();
+  const { isDark } = useTheme();
 
   const {
     register,
@@ -32,7 +35,8 @@ export function SignIn({
 
   return (
     <div className={css.signIn}>
-      <img src={IMAGES.login} />
+      <img src={isDark ? IMAGES_DARK.login_d : IMAGES_LIGHT.login} />
+
       <form className={css.form} onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className={css.formTitle}>
           <h1>Войти в аккаунт</h1>
