@@ -13,7 +13,7 @@ export const changeExportState = createAsyncThunk(
     const products = await getDocs(collection(db, "data"));
     for (const snap of products.docs) {
       if (snap.id === id) {
-        await updateDoc(query(`activity/${snap.id}`), {
+        await updateDoc(query(`data/${snap.id}`), {
           "actions.exported.isExported": true,
           "actions.exported.exportedOn": getTime(new Date()),
           "actions.exported.whoExported": user.name,
