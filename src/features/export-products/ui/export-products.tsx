@@ -1,5 +1,7 @@
 import css from "./_export-products.module.scss";
 
+import { useState } from "react";
+
 import exportToXLSX from "../lib/export-to-XLSX";
 import { changeExportState } from "../store/change-export-state";
 import { addExportActivity } from "../store/add-export-activity";
@@ -8,10 +10,11 @@ import { filtrationSwitch } from "@/features/filter-products";
 
 import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
 import ActionButton from "@/shared/ui/buttons/action-button/action-button";
+import PulsarLoader from "@/shared/ui/pulsar-loader/pulsar-loader";
+
+import { ROLES_CAN_EXPORTING } from "@/shared/consts";
 
 import IMAGES from "@/assets";
-import { useState } from "react";
-import PulsarLoader from "@/shared/ui/pulsar-loader/pulsar-loader";
 
 export function ExportProducts() {
   const dispatch = useAppDispatch();
@@ -22,8 +25,6 @@ export function ExportProducts() {
   const user = useAppSelector((state) => state.user);
   const products = useAppSelector((state) => state.data.products);
   const filter = useAppSelector((state) => state.data.filter);
-
-  const ROLES_CAN_EXPORTING = ["Администратор", "Заведующий", "Developer"];
 
   const allProductsId = filtrationSwitch(
     products,
