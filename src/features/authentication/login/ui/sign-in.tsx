@@ -1,12 +1,14 @@
 import css from "./_sign-in.module.scss";
+
+import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { signInUser } from "../store/thunk";
 
-import { useAppDispatch } from "@/shared/lib/hooks/use-redux";
-import { useTheme } from "@/shared/lib/hooks/use-theme";
+import { useAppDispatch } from "@/shared/hooks/use-redux";
+import { useTheme } from "@/shared/hooks/use-theme";
 import LoadButton from "@/shared/ui/buttons/load-button/load-button";
-import ActionButton from "@/shared/ui/buttons/action-button/action-button";
+import NavigateButton from "@/shared/ui/buttons/navigate-button/navigate-button";
 
 import { IMAGES_LIGHT, IMAGES_DARK } from "@/assets";
 
@@ -15,13 +17,12 @@ interface FormValues {
   password: string;
 }
 
-export function SignIn({
-  setAuthForm,
-}: {
-  setAuthForm: React.Dispatch<React.SetStateAction<string>>;
-}) {
+export function SignIn() {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { isDark } = useTheme();
+
+  console.log(isDark);
 
   const {
     register,
@@ -31,6 +32,7 @@ export function SignIn({
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     await dispatch(signInUser(data));
+    navigate("/products/", { unstable_viewTransition: true });
   };
 
   return (
@@ -84,12 +86,11 @@ export function SignIn({
             isLoading={isSubmitting}
             text={"Войти"}
           />
-          <ActionButton
+          <NavigateButton
+            text="Регистрация"
             className={css.signUpButton}
-            action={() => setAuthForm("register")}
-          >
-            Регистрация
-          </ActionButton>
+            to={"/sign-up/"}
+          />
         </div>
       </form>
     </div>
