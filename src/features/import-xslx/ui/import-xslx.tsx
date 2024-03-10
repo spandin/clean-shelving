@@ -5,7 +5,6 @@ import * as XLSX from "xlsx";
 import { setDoc } from "firebase/firestore";
 import { query } from "@/shared/api/firebase-config";
 import { ProductType } from "@/shared/types/types";
-import { stringToTimestamp } from "@/shared/helpers/date";
 
 import { nanoid } from "@reduxjs/toolkit";
 
@@ -44,27 +43,27 @@ export function ImportXSLX() {
             category: row[2],
             quantity: row[3],
             dates: {
-              createdAt: stringToTimestamp(row[4]),
-              mfd: stringToTimestamp(row[5]),
-              exp: stringToTimestamp(row[6]),
+              createdAt: parseInt(row[4]),
+              mfd: parseInt(row[5]),
+              exp: parseInt(row[6]),
             },
             actions: {
               created: {
-                createdAt: stringToTimestamp(row[6]),
+                createdAt: parseInt(row[6]),
                 whoCreated: row[7],
                 whoCreatedID: row[9],
               },
               exported: {
-                isExported: false,
-                exportedOn: 0,
-                whoExported: "",
-                whoExportedID: "",
+                isExported: row[11],
+                exportedOn: parseInt(row[10]),
+                whoExported: row[12],
+                whoExportedID: row[13],
               },
               updated: {
-                isUpdated: false,
-                whoUpdated: "",
-                whoUpdatedID: "",
-                updatedAt: 0,
+                isUpdated: row[14],
+                whoUpdated: row[16],
+                whoUpdatedID: row[17],
+                updatedAt: parseInt(row[15]),
               },
             },
           };
