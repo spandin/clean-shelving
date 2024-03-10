@@ -72,7 +72,14 @@
 @mixin button-disabled {
   background: $tertiary-color-light;
   color: $gray;
-  border: 1px solid $tertiary-color-light;
+  box-shadow: none;
+  background-size: 400% 400%;
+  animation: none;
+}
+
+@mixin button-disabled-dark {
+  background: $tertiary-color-dark;
+  color: $gray;
   box-shadow: none;
   background-size: 400% 400%;
   animation: none;
