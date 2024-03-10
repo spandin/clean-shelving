@@ -16,7 +16,7 @@ export default function ExportDataToExcel() {
     FileSaver.saveAs(data, fileName + fileExtension);
   };
 
-  const data = useAppSelector((state) => state.data.barcodes);
+  const data = useAppSelector((state) => state.data.products);
 
   const exportData = data.map(({ name, code, category }) => ({
     Штрихкод: code,
