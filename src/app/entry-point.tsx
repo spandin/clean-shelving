@@ -21,7 +21,7 @@ import ErrorPage from "../pages/error-page/error-page";
 import { SignIn } from "@/features/authentication/login";
 import { SignUp } from "@/features/authentication/register";
 import { PrivateRoute } from "@/shared/ui/private-route/private-route";
-import { ExportDataToExcel } from "@/pages/export-barcodes-page/export-barcodes";
+import ExportDataToExcel from "@/pages/export-barcodes-page/export-barcodes";
 
 const updateSW = registerSW({
   onNeedRefresh() {
