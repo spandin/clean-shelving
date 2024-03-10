@@ -1,5 +1,5 @@
-import * as FileSaver from "file-saver";
 import * as XLSX from "xlsx";
+import * as FileSaver from "file-saver";
 
 import { useAppSelector } from "@/shared/hooks/use-redux";
 
@@ -45,7 +45,7 @@ export function ExportXSLX() {
     <div>
       <button
         value={"Скачать"}
-        onClick={() => exportToCSV(exportData, "CS-Barcodes")}
+        onClick={() => exportToCSV(exportData, "CS-XSLX")}
       />
     </div>
   );
