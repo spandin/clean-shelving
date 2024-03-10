@@ -6,7 +6,7 @@ import { setDoc } from "firebase/firestore";
 import { query } from "@/shared/api/firebase-config";
 import { ProductType } from "@/shared/types/types";
 import { stringToTimestamp } from "@/shared/helpers/date";
-import { getTime } from "date-fns";
+
 import { nanoid } from "@reduxjs/toolkit";
 
 export function ImportXSLX() {
@@ -41,30 +41,30 @@ export function ImportXSLX() {
             id: id,
             name: row[0],
             code: parseInt(row[1]),
-            category: data.category,
-            quantity: row[2],
+            category: row[2],
+            quantity: row[3],
             dates: {
-              createdAt: getTime(new Date()),
-              mfd: stringToTimestamp(row[3]),
-              exp: stringToTimestamp(row[4]),
+              createdAt: stringToTimestamp(row[4]),
+              mfd: stringToTimestamp(row[5]),
+              exp: stringToTimestamp(row[6]),
             },
             actions: {
               created: {
-                createdAt: getTime(new Date()),
-                whoCreated: ``,
-                whoCreatedID: ``,
-              },
-              updated: {
-                isUpdated: false,
-                whoUpdated: "",
-                whoUpdatedID: "",
-                updatedAt: 0,
+                createdAt: stringToTimestamp(row[6]),
+                whoCreated: row[7],
+                whoCreatedID: row[9],
               },
               exported: {
                 isExported: false,
                 exportedOn: 0,
                 whoExported: "",
                 whoExportedID: "",
+              },
+              updated: {
+                isUpdated: false,
+                whoUpdated: "",
+                whoUpdatedID: "",
+                updatedAt: 0,
               },
             },
           };
