@@ -1,6 +1,6 @@
 import { Pulsar } from "@uiball/loaders";
 
-import { useAppSelector } from "@/shared/lib/hooks/use-redux";
+import { useAppSelector } from "@/shared/hooks/use-redux";
 
 export default function PulsarLoader({ size }: { size: number }) {
   const theme = useAppSelector((state) => state.settings.theme);

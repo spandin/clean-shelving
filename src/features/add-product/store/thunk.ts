@@ -6,7 +6,7 @@ import { increment, setDoc, updateDoc } from "firebase/firestore";
 
 import { addMonths, getTime } from "date-fns";
 import { query } from "@/shared/api/firebase-config";
-import { stringToTimestamp, stringToUTC } from "@/shared/helpers/parse-date";
+import { stringToTimestamp, stringToUTC } from "@/shared/helpers/date";
 
 interface Props {
   data: AddFormInputsType;

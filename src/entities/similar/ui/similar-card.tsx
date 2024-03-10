@@ -2,7 +2,7 @@ import css from "./_similar-card.module.scss";
 
 import { ProductType } from "@/shared/types/types";
 
-import { timestampToString } from "@/shared/helpers/parse-date";
+import { timestampToString } from "@/shared/helpers/date";
 import CustomLink from "@/shared/ui/custom-link/custom-link";
 
 export function SimilarCard({ item }: { item: ProductType }) {

@@ -5,7 +5,7 @@ import * as XLSX from "xlsx";
 
 import { filtrationSwitch } from "@/features/filter-products";
 
-import { timestampToString } from "@/shared/helpers/parse-date";
+import { timestampToString } from "@/shared/helpers/date";
 
 interface Props {
   products: ProductType[];

@@ -4,7 +4,7 @@ import {
   findInArrayBy,
   isExported,
   isNotExported,
-} from "@/shared/helpers/sort-produts";
+} from "@/shared/helpers/produts";
 
 export function filtrationSwitch(
   products: ProductType[],

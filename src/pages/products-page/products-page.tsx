@@ -3,7 +3,7 @@ import { BsPlusCircle } from "react-icons/bs";
 
 import { filtrationSwitch } from "@/features/filter-products";
 
-import { useAppSelector } from "@/shared/lib/hooks/use-redux";
+import { useAppSelector } from "@/shared/hooks/use-redux";
 import HeaderInformer from "@/shared/ui/header-informer/header-informer";
 import NavigateButton from "@/shared/ui/buttons/navigate-button/navigate-button";
 import FilterButton from "@/shared/ui/buttons/filter-button/filter-button";

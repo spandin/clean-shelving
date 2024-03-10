@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 import { UserData } from "@/entities/user";
 import HeaderInformer from "@/shared/ui/header-informer/header-informer";
-import { useAppSelector } from "@/shared/lib/hooks/use-redux";
+import { useAppSelector } from "@/shared/hooks/use-redux";
 
 export default function UserDetails() {
   const { userId } = useParams();

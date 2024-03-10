@@ -8,8 +8,8 @@ import { addExportActivity } from "../store/add-export-activity";
 
 import { filtrationSwitch } from "@/features/filter-products";
 
-import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
-import { useTheme } from "@/shared/lib/hooks/use-theme";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/use-redux";
+import { useTheme } from "@/shared/hooks/use-theme";
 import ActionButton from "@/shared/ui/buttons/action-button/action-button";
 import PulsarLoader from "@/shared/ui/pulsar-loader/pulsar-loader";
 

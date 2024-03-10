@@ -1,6 +1,6 @@
 import "./_modal.scss";
 
-import { isMobile } from "@/shared/helpers/mobile-check";
+import { isMobile } from "@/shared/helpers/pwa";
 
 export const Modal = ({
   active,

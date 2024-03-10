@@ -7,9 +7,9 @@ import { IMaskInput } from "react-imask";
 
 import { updateProduct } from "../store/thunk";
 
-import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/use-redux";
 import { toastAuthErr, toastUpdPromise } from "@/shared/helpers/toast";
-import { timestampToString } from "@/shared/helpers/parse-date";
+import { timestampToString } from "@/shared/helpers/date";
 import LoadButton from "@/shared/ui/buttons/load-button/load-button";
 
 interface Props {

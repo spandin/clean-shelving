@@ -4,13 +4,13 @@ import { useEffect } from "react";
 import { UseFormGetValues, UseFormWatch } from "react-hook-form";
 import { isValid } from "date-fns";
 
-import { useAppSelector } from "@/shared/lib/hooks/use-redux";
+import { useAppSelector } from "@/shared/hooks/use-redux";
 
 import {
   calcDistanceEndFromExp,
   calcDistanceEndFromMonth,
   stringToTimestamp,
-} from "@/shared/helpers/parse-date";
+} from "@/shared/helpers/date";
 
 export default function CalcExpirationDate(
   watch: UseFormWatch<AddFormInputsType>,

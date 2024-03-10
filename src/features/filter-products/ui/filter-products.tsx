@@ -1,6 +1,6 @@
 import css from "./_filter-products.module.scss";
 
-import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/use-redux";
 
 import { setCategory, setExported } from "@/app/slices/dataSlice";
 import ActionButton from "@/shared/ui/buttons/action-button/action-button";

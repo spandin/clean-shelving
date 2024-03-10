@@ -12,7 +12,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
-import { stringToTimestamp } from "@/shared/helpers/parse-date";
+import { stringToTimestamp } from "@/shared/helpers/date";
 import { db, query } from "@/shared/api/firebase-config";
 
 interface Props {

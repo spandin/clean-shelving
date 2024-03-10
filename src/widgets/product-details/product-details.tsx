@@ -7,8 +7,8 @@ import { BsPencilSquare, BsTrash3 } from "react-icons/bs";
 
 import { UpdateProduct } from "@/features/update-product/ui/update-product";
 import { DeleteProduct } from "@/features/delete-product/ui/delete-product";
-import { useAppSelector } from "@/shared/lib/hooks/use-redux";
-import { timestampToString } from "@/shared/helpers/parse-date";
+import { useAppSelector } from "@/shared/hooks/use-redux";
+import { timestampToString } from "@/shared/helpers/date";
 import HeaderInformer from "@/shared/ui/header-informer/header-informer";
 import { Modal } from "@/shared/ui/modal/modal";
 import ActionButton from "@/shared/ui/buttons/action-button/action-button";

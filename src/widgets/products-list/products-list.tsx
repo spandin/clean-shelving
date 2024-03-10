@@ -10,8 +10,8 @@ import { DocumentData, collection, onSnapshot } from "firebase/firestore";
 import { filtrationSwitch } from "@/features/filter-products";
 import { ProductCard } from "@/entities/product";
 
-import { useAppSelector } from "@/shared/lib/hooks/use-redux";
-import { useTheme } from "@/shared/lib/hooks/use-theme";
+import { useAppSelector } from "@/shared/hooks/use-redux";
+import { useTheme } from "@/shared/hooks/use-theme";
 import PulsarLoader from "@/shared/ui/pulsar-loader/pulsar-loader";
 
 import { IMAGES_LIGHT, IMAGES_DARK } from "@/assets";

@@ -13,7 +13,7 @@ import {
   BsUpcScan,
 } from "react-icons/bs";
 
-import { useAppSelector } from "@/shared/lib/hooks/use-redux";
+import { useAppSelector } from "@/shared/hooks/use-redux";
 import CustomLink from "@/shared/ui/custom-link/custom-link";
 import NavigateButton from "@/shared/ui/buttons/navigate-button/navigate-button";
 import HeaderInformer from "@/shared/ui/header-informer/header-informer";

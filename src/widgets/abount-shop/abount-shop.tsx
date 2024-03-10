@@ -1,7 +1,7 @@
 import css from "./_abount-shop.module.scss";
 
-import { useAppSelector } from "@/shared/lib/hooks/use-redux";
-import { useTheme } from "@/shared/lib/hooks/use-theme";
+import { useAppSelector } from "@/shared/hooks/use-redux";
+import { useTheme } from "@/shared/hooks/use-theme";
 
 import NavigateButton from "@/shared/ui/buttons/navigate-button/navigate-button";
 

@@ -4,7 +4,7 @@ import { Activity } from "@/shared/types/types";
 
 import { motion } from "framer-motion";
 
-import { timestampToString } from "@/shared/helpers/parse-date";
+import { timestampToString } from "@/shared/helpers/date";
 
 export function ActivityCard({
   activity,

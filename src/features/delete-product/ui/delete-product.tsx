@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import { deleteProduct } from "../store/thunk";
 
-import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
-import { useTheme } from "@/shared/lib/hooks/use-theme";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/use-redux";
+import { useTheme } from "@/shared/hooks/use-theme";
 import { toastAuthErr, toastDelPromise } from "@/shared/helpers/toast";
 import ActionButton from "@/shared/ui/buttons/action-button/action-button";
 

@@ -6,7 +6,7 @@ import { IMaskInput } from "react-imask";
 
 import { AddFormInputsType, ProductType } from "@/shared/types/types";
 
-import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/use-redux";
 
 import { addProduct } from "../store/thunk";
 import { setSelectType } from "@/app/slices/settingsSlice";

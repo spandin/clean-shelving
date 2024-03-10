@@ -9,7 +9,7 @@ import { DocumentData, collection, onSnapshot } from "firebase/firestore";
 
 import { ActivityCard } from "@/entities/activity";
 
-import { useTheme } from "@/shared/lib/hooks/use-theme";
+import { useTheme } from "@/shared/hooks/use-theme";
 import PulsarLoader from "@/shared/ui/pulsar-loader/pulsar-loader";
 import { IMAGES_DARK, IMAGES_LIGHT } from "@/assets";
 

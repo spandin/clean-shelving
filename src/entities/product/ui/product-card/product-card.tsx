@@ -8,7 +8,7 @@ import { BsArrowDownLeftCircle } from "react-icons/bs";
 import {
   calcDistanceEndDayFromExp,
   timestampToString,
-} from "@/shared/helpers/parse-date";
+} from "@/shared/helpers/date";
 import CustomLink from "@/shared/ui/custom-link/custom-link";
 
 interface Props {

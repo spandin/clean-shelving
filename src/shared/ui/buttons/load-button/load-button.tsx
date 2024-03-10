@@ -2,7 +2,7 @@ import css from "./_load-button.module.scss";
 
 import { Ring } from "@uiball/loaders";
 
-import { useTheme } from "@/shared/lib/hooks/use-theme";
+import { useTheme } from "@/shared/hooks/use-theme";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function LoadButton({

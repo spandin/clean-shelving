@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { isMobile } from "@/shared/helpers/mobile-check";
+import { isMobile } from "@/shared/helpers/pwa";
 
 interface Props {
   children: ReactNode;
