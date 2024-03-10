@@ -21,8 +21,8 @@ import ErrorPage from "../pages/error-page/error-page";
 import { SignIn } from "@/features/authentication/login";
 import { SignUp } from "@/features/authentication/register";
 import { PrivateRoute } from "@/shared/ui/private-route/private-route";
-import ExportDataToExcel from "@/pages/export-barcodes-page/export-barcodes";
 import { ImportXSLX } from "@/features/import-xslx";
+import { ExportXSLX } from "@/features/export-xslx";
 
 const updateSW = registerSW({
   onNeedRefresh() {
@@ -96,7 +96,7 @@ const router = createBrowserRouter([
   },
   {
     path: "export-barcodes/",
-    element: <ExportDataToExcel />,
+    element: <ExportXSLX />,
     errorElement: <ErrorPage />,
   },
   {

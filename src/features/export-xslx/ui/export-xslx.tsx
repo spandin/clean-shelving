@@ -3,7 +3,7 @@ import * as XLSX from "xlsx";
 
 import { useAppSelector } from "@/shared/hooks/use-redux";
 
-export default function ExportDataToExcel() {
+export function ExportXSLX() {
   const fileType =
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
   const fileExtension = ".xlsx";

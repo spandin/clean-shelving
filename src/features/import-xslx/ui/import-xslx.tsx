@@ -49,11 +49,11 @@ export function ImportXSLX() {
               exp: stringToTimestamp(row[4]),
             },
             actions: {
-              //   created: {
-              //     createdAt: getTime(new Date()),
-              //     whoCreated: `${currentUser.name}`,
-              //     whoCreatedID: `${currentUser.id}`,
-              //   },
+              created: {
+                createdAt: getTime(new Date()),
+                whoCreated: ``,
+                whoCreatedID: ``,
+              },
               updated: {
                 isUpdated: false,
                 whoUpdated: "",
