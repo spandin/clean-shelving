@@ -13,20 +13,14 @@ interface Props {
 export const signInUser = createAsyncThunk(
   "@@authentication/signIn",
   async (data: Props) => {
-    try {
-      return await signInWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      ).then(async (userCredential) => {
+    return await signInWithEmailAndPassword(auth, data.email, data.password)
+      .then(async (userCredential) => {
         const docSnap: DocumentData = await getDoc(
           query(`users/${userCredential.user.uid}`)
         );
 
         return docSnap.data();
-      });
-    } catch (e) {
-      console.error(`SIGN IN: `, e);
-    }
+      })
+      .catch((err) => console.error(err));
   }
 );

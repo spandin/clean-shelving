@@ -1,13 +1,14 @@
 import css from "./_sign-up.module.scss";
 
+import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { signUpUser } from "../store/thunk";
 
-import { useAppDispatch } from "@/shared/lib/hooks/use-redux";
-import { useTheme } from "@/shared/lib/hooks/use-theme";
+import { useAppDispatch } from "@/shared/hooks/use-redux";
+import { useTheme } from "@/shared/hooks/use-theme";
 import LoadButton from "@/shared/ui/buttons/load-button/load-button";
-import ActionButton from "@/shared/ui/buttons/action-button/action-button";
+import NavigateButton from "@/shared/ui/buttons/navigate-button/navigate-button";
 
 import { IMAGES_LIGHT, IMAGES_DARK } from "@/assets";
 
@@ -18,11 +19,8 @@ interface FormValues {
   role: string;
 }
 
-export function SignUp({
-  setAuthForm,
-}: {
-  setAuthForm: React.Dispatch<React.SetStateAction<string>>;
-}) {
+export function SignUp() {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { isDark } = useTheme();
 
@@ -34,6 +32,7 @@ export function SignUp({
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     await dispatch(signUpUser(data));
+    navigate("/products/", { unstable_viewTransition: true });
   };
 
   return (
@@ -123,17 +122,16 @@ export function SignUp({
           <LoadButton
             className={css.signUpButton}
             type="submit"
-            isLoading={isSubmitting}
             text={"Зарегистрироваться"}
+            isLoading={isSubmitting}
             disabled={isValid}
           />
 
-          <ActionButton
+          <NavigateButton
+            text="Назад"
             className={css.backButton}
-            action={() => setAuthForm("login")}
-          >
-            Назад
-          </ActionButton>
+            to={"/sign-in/"}
+          />
         </div>
       </form>
     </div>

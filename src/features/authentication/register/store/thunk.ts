@@ -18,12 +18,8 @@ interface Props {
 export const signUpUser = createAsyncThunk(
   "@@authentication/signUp",
   async (data: Props) => {
-    try {
-      await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      ).then(async (userCredential) => {
+    await createUserWithEmailAndPassword(auth, data.email, data.password)
+      .then(async (userCredential) => {
         await setDoc(query(`users/${userCredential.user.uid}`), {
           id: userCredential.user.uid,
           name: data.name,
@@ -35,21 +31,17 @@ export const signUpUser = createAsyncThunk(
             deleted: 0,
           },
         });
-      });
+      })
+      .catch((err) => console.error(err));
 
-      return await signInWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      ).then(async (userCredential) => {
+    return await signInWithEmailAndPassword(auth, data.email, data.password)
+      .then(async (userCredential) => {
         const docSnap: DocumentData = await getDoc(
           query(`users/${userCredential.user.uid}`)
         );
 
         return docSnap.data();
-      });
-    } catch (e) {
-      console.error(`SIGN UP: `, e);
-    }
+      })
+      .catch((err) => console.error(err));
   }
 );
