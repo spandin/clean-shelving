@@ -9,5 +9,11 @@ export const ExportDataToExcel = () => {
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
 
-  return XLSX.writeFile(wb, "exported_data.xlsx");
+  return (
+    <div>
+      <button onClick={XLSX.writeFile(wb, "exported_data.xlsx")}>
+        Скачать БД ШК
+      </button>
+    </div>
+  );
 };
