@@ -18,11 +18,28 @@ export default function ExportDataToExcel() {
 
   const data = useAppSelector((state) => state.data.products);
 
-  const exportData = data.map(({ name, code, category }) => ({
-    Штрихкод: code,
-    Имя: name,
-    Категория: category,
-  }));
+  const exportData = data.map(
+    ({ name, code, category, actions, dates, quantity }) => ({
+      Имя: name,
+      Штрихкод: code,
+      Категория: category,
+      Кол: quantity,
+      Создан: dates.createdAt,
+      От: dates.mfd,
+      До: dates.exp,
+      АКК: actions.created.createdAt,
+      АВК: actions.created.whoCreated,
+      АВКИ: actions.created.whoCreatedID,
+      АЭЭО: actions.exported.exportedOn,
+      АЭИЭ: actions.exported.isExported,
+      АЭВЭ: actions.exported.whoExported,
+      АЭВЭИ: actions.exported.whoExportedID,
+      АУИУ: actions.updated.isUpdated,
+      АУУА: actions.updated.updatedAt,
+      АУВУ: actions.updated.whoUpdated,
+      АУВУИ: actions.updated.whoUpdatedID,
+    })
+  );
 
   return (
     <div>
