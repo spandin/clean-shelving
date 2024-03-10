@@ -16,3 +16,5 @@ export const setThemeAndMeta = (theme: string) => {
     document.head.replaceChild(newMetaTag, oldMetaTag);
   }
 };
+
+export const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);

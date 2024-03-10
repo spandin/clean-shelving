@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-import { useAppDispatch, useAppSelector } from "@/shared/lib/hooks/use-redux";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/use-redux";
 import {
   getActivity,
   getBarcodes,
@@ -19,7 +19,7 @@ import {
 import { NavigationBar } from "@/widgets/navigation-bar/navigation-bar";
 import { AsideBar } from "@/widgets/aside-bar/aside-bar";
 import { AbountShop } from "@/widgets/abount-shop/abount-shop";
-import { setThemeAndMeta } from "@/shared/helpers/change-meta-color";
+import { setThemeAndMeta } from "@/shared/helpers/pwa";
 
 import { setDefaultOptions } from "date-fns";
 import { ru } from "date-fns/locale";
