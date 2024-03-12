@@ -20,7 +20,7 @@ export default function ProfileDetails() {
     <div className={css.profileDetails}>
       <div className={css.detailsWrapper}>
         <div className={css.detailsHeader}>
-          <HeaderInformer title="Профиль" subtitle={profileInfo?.email} />
+          <HeaderInformer title="Профиль" />
           <NavigateButton
             icon={<BsGear />}
             className="circle_button"
