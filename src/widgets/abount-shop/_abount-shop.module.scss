@@ -1,4 +1,5 @@
 @import "@/app/styles/variables";
+@import "@/app/styles/mixins";
 
 .abountShop {
   display: flex;
@@ -25,18 +26,26 @@
         font-weight: 400;
       }
       #users {
-        color: $lime-dark;
+        color: $lime-light;
         font-weight: 400;
       }
       #go_to_list {
         align-self: end;
         padding: 0rem 2rem;
-        background-color: $tertiary-color-dark;
-        color: $white;
-        font-weight: 500;
-        &:hover {
-          background-color: $white;
-          color: $primary-color-dark;
+        @include button-light;
+      }
+    }
+  }
+}
+
+body[data-theme="dark"] {
+  .abountShop {
+    .abountShopWrapper {
+      .shopInfo {
+        #go_to_list {
+          align-self: end;
+          padding: 0rem 2rem;
+          @include button-dark;
         }
       }
     }
