@@ -242,7 +242,6 @@ export function AddProductForm() {
 
         <div className={css.formButtonWrapper}>
           <LoadButton
-            type="submit"
             disabled={true}
             isLoading={isSubmitting}
             text="Добавить"
