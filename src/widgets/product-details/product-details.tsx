@@ -75,12 +75,11 @@ export default function ProductDetails() {
               <div className={css.bodyContent}>
                 <h1>Даты:</h1>
                 <div>
-                  <span id={css.content_headline}>
-                    Добавлен: {timestampToString(product.dates.createdAt)}
-                  </span>
+                  <span id={css.content_headline}>Добавлен:</span>
+                  {timestampToString(product.dates.createdAt)}
                 </div>
                 <div>
-                  <span id={css.content_headline}>Изготовлен: </span>{" "}
+                  <span id={css.content_headline}>Изготовлен: </span>
                   {timestampToString(product.dates.mfd)}
                 </div>
                 <div>
