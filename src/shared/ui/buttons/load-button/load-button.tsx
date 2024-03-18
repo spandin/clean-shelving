@@ -4,14 +4,21 @@ import { Ring } from "@uiball/loaders";
 
 import { useTheme } from "@/shared/hooks/use-theme";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface Props {
+  text: string;
+  className?: string;
+  disabled?: boolean;
+  isLoading?: boolean;
+  onClick?: () => void;
+}
+
 export default function LoadButton({
   className,
   disabled,
   isLoading,
   onClick,
   text,
-}: any) {
+}: Props) {
   const { isDark } = useTheme();
 
   return (
