@@ -22,6 +22,10 @@ export const signInUser = createAsyncThunk(
 
         return docSnap.data();
       })
-      .catch((err) => err instanceof FirebaseError && setError(err.message));
+      .catch((err) => {
+        console.error("SIGN-IN: " + err.message);
+
+        err instanceof FirebaseError && setError("SIGN-IN: " + err.message);
+      });
   }
 );

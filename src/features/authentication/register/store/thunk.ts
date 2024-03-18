@@ -31,10 +31,11 @@ export const signUpUser = createAsyncThunk(
           },
         });
       })
-      .catch(
-        (err) =>
-          err instanceof FirebaseError && setError("SIGN-UP: " + err.message)
-      );
+      .catch((err) => {
+        console.error("SIGN-UP: " + err.message);
+
+        err instanceof FirebaseError && setError("SIGN-UP: " + err.message);
+      });
 
     return await signInWithEmailAndPassword(auth, data.email, data.password)
       .then(async (userCredential) => {
@@ -44,9 +45,10 @@ export const signUpUser = createAsyncThunk(
 
         return docSnap.data();
       })
-      .catch(
-        (err) =>
-          err instanceof FirebaseError && setError("SIGN-UP: " + err.message)
-      );
+      .catch((err) => {
+        console.error("SIGN-UP: " + err.message);
+
+        err instanceof FirebaseError && setError("SIGN-UP: " + err.message);
+      });
   }
 );
