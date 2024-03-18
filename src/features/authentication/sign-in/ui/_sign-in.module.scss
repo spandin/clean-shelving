@@ -1,14 +1,13 @@
 @import "@/app/styles/variables";
 @import "@/app/styles/mixins";
 
-.signUp {
+.signIn {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 4rem;
-  width: 100dvw;
-  height: 100dvh;
+  padding: 2rem;
 
   img {
     min-width: 250px;
@@ -32,11 +31,6 @@
       flex-direction: column;
       gap: 1rem;
       min-width: 300px;
-      .inputsRow {
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-      }
     }
 
     .buttons {
@@ -46,24 +40,22 @@
       gap: 1rem;
       width: 100%;
       button {
-        width: 60%;
+        width: 50%;
       }
-      .signUpButton {
+      .signInButton {
         @include bg-lLight;
         &:disabled {
           @include button-disabled;
         }
       }
-      .backButton {
+      .signUpButton {
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        width: 40%;
+        width: 50%;
         border-radius: 50px;
-
-        background-color: $primary-color-dark;
-        color: $primary-color-light;
+        @include button-light;
         font-weight: 500;
         cursor: pointer;
       }
@@ -72,18 +64,17 @@
 }
 
 body[data-theme="dark"] {
-  .signUp {
+  .signIn {
     .form {
       .buttons {
-        .signUpButton {
-          @include bg-dDark;
+        .signInButton {
+          @include button-dark;
           &:disabled {
             @include button-disabled-dark;
           }
         }
-        .backButton {
-          background-color: $primary-color-light;
-          color: $primary-color-dark;
+        .signUpButton {
+          @include bg-lLight;
         }
       }
     }
@@ -91,12 +82,11 @@ body[data-theme="dark"] {
 }
 
 @media only screen and (max-width: 768px) {
-  .signUp {
+  .signIn {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
     gap: 2rem;
-    padding: 2rem;
 
     img {
       max-width: 70%;

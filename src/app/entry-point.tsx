@@ -18,8 +18,8 @@ import SettingsPage from "../pages/settings-page/settings-page";
 import RatingPage from "../pages/rating-page/rating-page";
 import ActivityPage from "../pages/activity-page/activity-page";
 import ErrorPage from "../pages/error-page/error-page";
-import { SignIn } from "@/features/authentication/login";
-import { SignUp } from "@/features/authentication/register";
+import SignInPage from "@/pages/sign-in-page/sing-in-page";
+import SignUpPage from "@/pages/sign-up-page/sing-up-page";
 import { PrivateRoute } from "@/shared/ui/private-route/private-route";
 
 const updateSW = registerSW({
@@ -84,12 +84,12 @@ const router = createBrowserRouter([
   },
   {
     path: "sign-in/",
-    element: <SignIn />,
+    element: <SignInPage />,
     errorElement: <ErrorPage />,
   },
   {
     path: "sign-up/",
-    element: <SignUp />,
+    element: <SignUpPage />,
     errorElement: <ErrorPage />,
   },
 ]);

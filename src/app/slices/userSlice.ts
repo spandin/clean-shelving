@@ -2,8 +2,8 @@ import { UserData } from "@/shared/types/types";
 
 import { createSlice } from "@reduxjs/toolkit";
 
-import { signInUser } from "@/features/authentication/login/store/thunk";
-import { signUpUser } from "@/features/authentication/register/store/thunk";
+import { signInUser } from "@/features/authentication/sign-in/store/thunk";
+import { signUpUser } from "@/features/authentication/sign-up/store/thunk";
 
 const initialState: UserData = {
   id: null,

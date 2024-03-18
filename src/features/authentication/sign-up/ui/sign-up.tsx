@@ -21,7 +21,7 @@ interface FormValues {
   role: string;
 }
 
-export function SignUp() {
+export function SignUpForm() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { isDark } = useTheme();

@@ -1,4 +1,5 @@
 export const IMAGES_LIGHT = {
+  logo: new URL("./images/logo.svg", import.meta.url).href,
   login: new URL("./images/login.svg", import.meta.url).href,
   registration: new URL("./images/registration.svg", import.meta.url).href,
   abount_shop: new URL("./images/abount_shop.svg", import.meta.url).href,
@@ -15,6 +16,7 @@ export const IMAGES_LIGHT = {
 };
 
 export const IMAGES_DARK = {
+  logo_d: new URL("./images/logo_d.svg", import.meta.url).href,
   login_d: new URL("./images/login_d.svg", import.meta.url).href,
   registration_d: new URL("./images/registration_d.svg", import.meta.url).href,
   abount_shop_d: new URL("./images/abount_shop_d.svg", import.meta.url).href,

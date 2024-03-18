@@ -19,7 +19,7 @@ interface FormValues {
   password: string;
 }
 
-export function SignIn() {
+export function SignInForm() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { isDark } = useTheme();
@@ -89,6 +89,7 @@ export function SignIn() {
             isLoading={isSubmitting}
             text={"Войти"}
           />
+
           <NavigateButton
             text="Регистрация"
             className={css.signUpButton}
