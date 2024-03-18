@@ -187,12 +187,7 @@ export function UpdateProduct({ product, id }: Props) {
           </p>
         </div>
 
-        <LoadButton
-          type="submit"
-          disabled={true}
-          isLoading={isSubmitting}
-          text="Обновить"
-        />
+        <LoadButton disabled={true} isLoading={isSubmitting} text="Обновить" />
       </form>
     </div>
   );
