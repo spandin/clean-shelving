@@ -4,15 +4,16 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { DocumentData, getDoc } from "firebase/firestore";
 
 import { auth, query } from "@/shared/api/firebase-config";
+import { FirebaseError } from "firebase/app";
 
 interface Props {
-  email: string;
-  password: string;
+  data: { email: string; password: string };
+  setError: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export const signInUser = createAsyncThunk(
   "@@authentication/signIn",
-  async (data: Props) => {
+  async ({ data, setError }: Props) => {
     return await signInWithEmailAndPassword(auth, data.email, data.password)
       .then(async (userCredential) => {
         const docSnap: DocumentData = await getDoc(
@@ -21,6 +22,6 @@ export const signInUser = createAsyncThunk(
 
         return docSnap.data();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => err instanceof FirebaseError && setError(err.message));
   }
 );

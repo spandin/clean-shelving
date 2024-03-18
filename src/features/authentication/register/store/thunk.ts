@@ -7,17 +7,16 @@ import {
 import { DocumentData, getDoc, setDoc } from "firebase/firestore";
 
 import { auth, query } from "@/shared/api/firebase-config";
+import { FirebaseError } from "firebase/app";
 
 interface Props {
-  email: string;
-  password: string;
-  name: string;
-  role: string;
+  data: { email: string; password: string; name: string; role: string };
+  setError: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export const signUpUser = createAsyncThunk(
   "@@authentication/signUp",
-  async (data: Props) => {
+  async ({ data, setError }: Props) => {
     await createUserWithEmailAndPassword(auth, data.email, data.password)
       .then(async (userCredential) => {
         await setDoc(query(`users/${userCredential.user.uid}`), {
@@ -32,7 +31,10 @@ export const signUpUser = createAsyncThunk(
           },
         });
       })
-      .catch((err) => console.error(err));
+      .catch(
+        (err) =>
+          err instanceof FirebaseError && setError("SIGN-UP: " + err.message)
+      );
 
     return await signInWithEmailAndPassword(auth, data.email, data.password)
       .then(async (userCredential) => {
@@ -42,6 +44,9 @@ export const signUpUser = createAsyncThunk(
 
         return docSnap.data();
       })
-      .catch((err) => console.error(err));
+      .catch(
+        (err) =>
+          err instanceof FirebaseError && setError("SIGN-UP: " + err.message)
+      );
   }
 );

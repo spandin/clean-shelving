@@ -1,5 +1,6 @@
 import css from "./_sign-up.module.scss";
 
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -11,6 +12,7 @@ import LoadButton from "@/shared/ui/buttons/load-button/load-button";
 import NavigateButton from "@/shared/ui/buttons/navigate-button/navigate-button";
 
 import { IMAGES_LIGHT, IMAGES_DARK } from "@/assets";
+import AuthErrors from "@/shared/ui/auth-errors/auth-errors";
 
 interface FormValues {
   name: string;
@@ -24,6 +26,8 @@ export function SignUp() {
   const dispatch = useAppDispatch();
   const { isDark } = useTheme();
 
+  const [error, setError] = useState<string | null>(null);
+
   const {
     register,
     formState: { isSubmitting, isValid },
@@ -31,7 +35,7 @@ export function SignUp() {
   } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    await dispatch(signUpUser(data));
+    await dispatch(signUpUser({ data, setError }));
     navigate("/products/", { unstable_viewTransition: true });
   };
 
@@ -118,10 +122,11 @@ export function SignUp() {
           </div>
         </div>
 
+        <AuthErrors error={error} />
+
         <div className={css.buttons}>
           <LoadButton
             className={css.signUpButton}
-            type="submit"
             text={"Зарегистрироваться"}
             isLoading={isSubmitting}
             disabled={isValid}
